@@ -128,3 +128,9 @@ output_log.txt
 # ========================
 sysinfo.txt
 *.stackdump
+
+# ========================
+#  Etc
+# ========================
+/Assets/ThirdParty/
+/Assets/ThirdParty.meta
