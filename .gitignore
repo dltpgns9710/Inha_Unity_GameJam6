@@ -124,6 +124,11 @@ output_log.txt
 /[Pp]ackages/packages-lock.json
 
 # ========================
+#  UI Toolkit
+# ========================
+/[Uu][Ii][Ee]lements[Ss]chema/
+
+# ========================
 #  Misc
 # ========================
 sysinfo.txt
