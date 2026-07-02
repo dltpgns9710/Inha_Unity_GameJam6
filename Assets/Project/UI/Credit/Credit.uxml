@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Project/UI/Credit/Credit.uss?fileID=7433441132597879392&amp;guid=d085c2e3231be204fa64551f12e0b9ec&amp;type=3#Credit"/>
+    <Style src="project://database/Assets/Project/UI/Common.uss?fileID=7433441132597879392&amp;guid=2ed4f417a42ad7140a80d4654ef3cad9&amp;type=3#Common"/>
+    <ui:VisualElement name="RootElement" class="RootElement" style="flex-grow: 1; width: 100%; height: 100%;">
+        <ui:Label text="Credit" name="Label" class="CreditTitle" style="-unity-text-align: upper-center; font-size: 40px;"/>
+        <ui:ScrollView name="CreditScrollView" vertical-scroller-visibility="Hidden" class="CreditScrollView">
+            <ui:VisualElement name="CreditContent" class="CreditContent">
+                <ui:Label text="Label" class="CommonTitle" style="display: none;"/>
+                <ui:Label text="Label" class="CommonText" style="display: none;"/>
+            </ui:VisualElement>
+        </ui:ScrollView>
+        <ui:Button text="Close" name="CloseButton" class="CommonButton"/>
+    </ui:VisualElement>
+</ui:UXML>

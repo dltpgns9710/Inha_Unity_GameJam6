@@ -1,0 +1,32 @@
+VisualElement {
+}
+
+.CommonButton {
+    height: 100px;
+    width: 300px;
+    align-self: flex-end;
+}
+
+.CommonButton:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.CommonButton:focus {
+    -unity-background-image-tint-color: rgb(0, 0, 255);
+}
+
+.CommonButton:active {
+    -unity-background-image-tint-color: rgb(0, 255, 0);
+}
+
+.CommonText {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 40px;
+}
+
+.CommonTitle {
+    font-size: 60px;
+    -unity-font-style: bold;
+    padding-bottom: 70px;
+}
