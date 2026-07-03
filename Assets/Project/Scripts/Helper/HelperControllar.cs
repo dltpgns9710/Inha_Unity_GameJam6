@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HelperControllar : MonoBehaviour
@@ -6,7 +7,9 @@ public class HelperControllar : MonoBehaviour
     #region Serialized Fields
     [Header("Helper Settings")]
     [SerializeField] private Transform _playerTransform;
-    [SerializeField] private float _moveSpeed = 3.0f;
+    [SerializeField] private float _walkSpeed = 3.0f;
+    [SerializeField] private float _runSpeed = 6.0f;
+    [SerializeField] private float _runDistance = 4.0f;
     [SerializeField] private float _followDistance = 1.5f;
 
     #endregion
@@ -16,7 +19,7 @@ public class HelperControllar : MonoBehaviour
     private EHelperState _currentState;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    private bool _isMoving;
+    private bool _isRunning;
     #endregion
 
     #region Unity Lifecycle
@@ -42,30 +45,74 @@ public class HelperControllar : MonoBehaviour
         switch(_currentState)
         {
             case EHelperState.Idle:
-                // Idle 상태에서의 동작
+                UpdateIdle();
                 break;
             case EHelperState.Follow:
-                FollowPlayer();
+                UpdateFollow();
                 break;
             case EHelperState.DetectAnomaly:
-                // DetectAnomaly 상태에서의 동작
+                UpdateDetectAnomaly();
                 break;
         }
     }
 
-   
+    private void UpdateIdle()
+    {
+        _animator.SetBool("IsMoving", false);
+        _animator.SetBool("IsRunning", false);
+    }
+
+    private void UpdateFollow()
+    {
+        FollowPlayer();
+    }
+
+    private void UpdateDetectAnomaly()
+    {
+        //이상현상 감지 시 행동 정의
+    }
 
     private void FollowPlayer()
     {
-        float distance = Vector2.Distance(transform.position, _playerTransform.position);
+        float distance = Vector2.Distance(transform.position, _playerTransform.position);  
 
-        if(distance <= _followDistance)
-        {
-            _isMoving = false;
-            _animator.SetBool("IsMoving", _isMoving);
+        bool isMoving = distance > _followDistance;
+        bool isRunning = distance >= _runDistance;
+
+        UpdateRunState(distance);
+
+        _animator.SetBool("IsMoving", distance > _followDistance);
+        _animator.SetBool("IsRunning", _isRunning);
+
+        if (!isMoving)
+        {        
             return;
         }
 
+        float moveSpeed = _isRunning ? _runSpeed : _walkSpeed;
+
+        FlipByMoveDirection();
+
+        transform.position = Vector2.MoveTowards(
+            transform.position,
+            _playerTransform.position,
+            moveSpeed * Time.deltaTime);
+    }
+
+    private void UpdateRunState(float distance)
+    {
+        if (distance >= _runDistance)
+        {
+            _isRunning = true;
+        }
+        else if(distance <= _runDistance - 1.0)
+        {
+            _isRunning = false;
+        }
+    }
+
+    private void FlipByMoveDirection()
+    {
         Vector2 moveDirection = (_playerTransform.position - transform.position).normalized;
 
         if (moveDirection.x > 0.01f)
@@ -76,14 +123,6 @@ public class HelperControllar : MonoBehaviour
         {
             _spriteRenderer.flipX = true;
         }
-
-        _isMoving = true;
-        _animator.SetBool("IsMoving", _isMoving);
-
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            _playerTransform.position,
-            _moveSpeed * Time.deltaTime);     
     }
     #endregion
 }

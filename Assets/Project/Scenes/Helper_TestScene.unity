@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HelperControllar
   _playerTransform: {fileID: 620234196}
-  _moveSpeed: 4
+  _walkSpeed: 3
+  _runSpeed: 5
+  _runDistance: 3
   _followDistance: 1
 --- !u!212 &489227277
 SpriteRenderer:
