@@ -1,0 +1,27 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Project/UI/GameStart/GameStart.uss?fileID=7433441132597879392&amp;guid=b12e5ae07a5c802498853610ea5eabf7&amp;type=3#GameStart"/>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Button text="Button" name="Play">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f98ee34f4d308e44eadf0bb5817681d7" entry="Id(179704086528)"/>
+            </Bindings>
+        </ui:Button>
+        <ui:Button text="Button" name="Option">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f98ee34f4d308e44eadf0bb5817681d7" entry="Id(243625279488)"/>
+            </Bindings>
+        </ui:Button>
+        <ui:Button text="Button" name="Credit">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f98ee34f4d308e44eadf0bb5817681d7" entry="Id(278228287488)"/>
+            </Bindings>
+        </ui:Button>
+        <ui:Button text="Button" name="Quit">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f98ee34f4d308e44eadf0bb5817681d7" entry="Id(300848168960)"/>
+            </Bindings>
+        </ui:Button>
+        <ui:Button text="English" name="English"/>
+        <ui:Button text="Korean" name="Korean"/>
+    </ui:VisualElement>
+</ui:UXML>
