@@ -7,22 +7,35 @@ public class DoorController : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool _startOpened = false;
     [SerializeField] private bool _randomizeDoor = false;
+    [SerializeField] private bool _isLocked = false;
     [SerializeField] private List<GameObject> _otherDoors;
 
+    // 떨림 효과 설정
+    [SerializeField] private float _shakeDuration = 0.25f;
+    [SerializeField] private float _shakeIntensity = 0.05f;
+    [SerializeField] private int _shakeFrequency = 6;
 
     private Animator _animator;
     private bool _open = false;
     private bool _hasPlayerContactThisFrame = false;
     private bool _canInteract = true;
+    private bool _hasBeenUnlocked = true;
+    private Vector3 _originalPosition;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _originalPosition = transform.position;
 
         if (_startOpened)
         {
             _open = true;
         }
+        if (_isLocked == true)
+        {
+            _hasBeenUnlocked = false;
+        }
+
         _animator.SetBool("isOpen", _open);
     }
 
@@ -50,6 +63,22 @@ public class DoorController : MonoBehaviour, IInteractable
         _hasPlayerContactThisFrame = false;
     }
 
+    private bool Unlock(GameObject interactor)
+    {
+        if (_hasBeenUnlocked)
+        {
+            return true;
+        }
+
+        if (/*interactor has key in inventory check 추가*/ !_isLocked)
+        {
+            _isLocked = false;
+            _hasBeenUnlocked = true;
+            return true;
+        }
+        return false;
+    }
+
     public void Interact(GameObject interactor)
     {
         StartCoroutine(InteractCoroutine(interactor));
@@ -57,8 +86,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     private IEnumerator InteractCoroutine(GameObject interactor)
     {
-
-        if (_otherDoors.Count > 0)
+        if (_otherDoors.Count > 0 && Unlock(interactor))
         {
             int index = 0;
 
@@ -75,7 +103,27 @@ public class DoorController : MonoBehaviour, IInteractable
         }
         else
         {
-
+            // TODO: Implement door open failure sound
+            yield return StartCoroutine(ShakeDoor());
         }
+    }
+
+    private IEnumerator ShakeDoor()
+    {
+        _canInteract = false;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _shakeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            Vector3 randomOffset = UnityEngine.Random.insideUnitCircle * _shakeIntensity;
+            transform.position = _originalPosition + randomOffset;
+
+            yield return null;
+        }
+
+        transform.position = _originalPosition;
+        _canInteract = true;
     }
 }
