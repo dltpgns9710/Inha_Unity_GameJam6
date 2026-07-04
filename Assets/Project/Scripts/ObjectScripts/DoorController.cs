@@ -17,10 +17,10 @@ public class DoorController : MonoBehaviour, IInteractable
 
     private Animator _animator;
     private bool _open = false;
-    private bool _hasPlayerContactThisFrame = false;
-    private bool _canInteract = true;
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
+
+    public bool _canInteract = true;
 
     void Start()
     {
@@ -42,25 +42,7 @@ public class DoorController : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && _hasPlayerContactThisFrame && _canInteract)
-        {
-            Interact(GameObject.FindGameObjectWithTag("Player"));
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (_hasPlayerContactThisFrame)
-        {
-            return;
-        }
-
-        _hasPlayerContactThisFrame = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _hasPlayerContactThisFrame = false;
+        
     }
 
     private bool Unlock(GameObject interactor)

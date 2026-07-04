@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6724483034724540116}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,9 +106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464005752137bb44cb847dedd49ff144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
+  _isLoop: 0
   _startOpened: 0
   _randomizeDoor: 0
+  _isLocked: 0
   _otherDoors: []
+  _shakeDuration: 0.25
+  _shakeIntensity: 0.05
 --- !u!95 &7194125273174984845
 Animator:
   serializedVersion: 7

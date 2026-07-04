@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6707478202123450201}
   m_Layer: 0
   m_Name: CircularBulb
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
