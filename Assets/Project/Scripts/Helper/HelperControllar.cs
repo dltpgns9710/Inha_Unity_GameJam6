@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HelperControllar : MonoBehaviour
@@ -14,8 +12,7 @@ public class HelperControllar : MonoBehaviour
     [SerializeField] private float _followDistance = 1.5f;
 
     [Header("Detect")]
-    [SerializeField] private float _detectDistance = 3.0f;
-    [SerializeField] private float _detectRange = 3.0f;
+    [SerializeField] private float _detectDistance = 3.0f; 
     [SerializeField] private LayerMask _anomalyLayer;
     #endregion
 
@@ -127,7 +124,8 @@ public class HelperControllar : MonoBehaviour
     private void UpdateDetectAnomaly()
     {
         //이상현상 감지 시 행동 정의
-        Collider2D detectCollider = Physics2D.OverlapCircle(transform.position,
+        Collider2D detectCollider = Physics2D.OverlapCircle(
+            transform.position,
             _detectDistance,
             _anomalyLayer);
 
@@ -136,15 +134,21 @@ public class HelperControllar : MonoBehaviour
             ChangeState(EHelperState.Follow);
             return;
         }
+
         Debug.Assert(detectCollider != null, "이상현상 감지하지 못함");
-        
         ChangeState(EHelperState.Alert);
     }
 
     private void UpdateAlert()
     {
-       
+        FollowPlayer();
+        if (!CanDetectAnomaly())
+        {
+            ChangeState(EHelperState.Follow);
+            return;
+        }
     }
+
 
     private void FollowPlayer()
     {
@@ -211,7 +215,7 @@ public class HelperControllar : MonoBehaviour
 
         Gizmos.DrawWireSphere(
             transform.position,
-            _detectRange);
+            _detectDistance);
     }
     #endregion
 }

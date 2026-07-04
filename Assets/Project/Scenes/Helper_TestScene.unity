@@ -299,7 +299,7 @@ MonoBehaviour:
   _detectRange: 3
   _anomalyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!212 &489227277
 SpriteRenderer:
   serializedVersion: 2
