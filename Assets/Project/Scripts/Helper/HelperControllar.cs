@@ -85,6 +85,8 @@ public class HelperControllar : MonoBehaviour
             case EHelperState.DetectAnomaly:
                 break;
             case EHelperState.Alert:
+                _animator.SetBool("IsMoving", false);
+                _animator.SetBool("IsRunning", false);
                 _animator.SetTrigger("Bark");
                 break;
         }
@@ -141,12 +143,7 @@ public class HelperControllar : MonoBehaviour
 
     private void UpdateAlert()
     {
-        FollowPlayer();
-        if (!CanDetectAnomaly())
-        {
-            ChangeState(EHelperState.Follow);
-            return;
-        }
+       
     }
 
 
@@ -208,6 +205,11 @@ public class HelperControllar : MonoBehaviour
         return Physics2D.OverlapCircle(transform.position,
             _detectDistance,
             _anomalyLayer);
+    }
+
+    public void OnBarkAnimationEnd()
+    {
+        ChangeState(EHelperState.Follow);
     }
     private void OnDrawGizmos()
     {
