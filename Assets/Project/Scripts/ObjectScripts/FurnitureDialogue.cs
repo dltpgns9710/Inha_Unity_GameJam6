@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FurnitureDialogue : MonoBehaviour, IInteractable
 {
-    public bool _canInteract = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +17,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
-        _canInteract = false;
         // TODO: Implement UI dialogue system to display dialogue when interacting with objects
         Debug.Log("Interacted with furniture: " + gameObject.name);
-        _canInteract = true;
     }
 }

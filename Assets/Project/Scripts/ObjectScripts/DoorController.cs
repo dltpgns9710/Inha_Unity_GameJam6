@@ -20,8 +20,6 @@ public class DoorController : MonoBehaviour, IInteractable
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
 
-    public bool _canInteract = true;
-
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -72,7 +70,6 @@ public class DoorController : MonoBehaviour, IInteractable
         {
             int index = 0;
 
-            _canInteract = false;
             _animator.SetBool("isOpen", true);
             yield return new WaitForSeconds(2);
             if (_randomizeDoor && _otherDoors.Count >= 1)
@@ -81,7 +78,6 @@ public class DoorController : MonoBehaviour, IInteractable
             }
             interactor.transform.position = _otherDoors[index].transform.position;
             _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
-            _canInteract = true;
         }
         else
         {
@@ -92,7 +88,6 @@ public class DoorController : MonoBehaviour, IInteractable
 
     private IEnumerator ShakeDoor()
     {
-        _canInteract = false;
         float elapsedTime = 0f;
 
         while (elapsedTime < _shakeDuration)
@@ -106,6 +101,5 @@ public class DoorController : MonoBehaviour, IInteractable
         }
 
         transform.position = _originalPosition;
-        _canInteract = true;
     }
 }
