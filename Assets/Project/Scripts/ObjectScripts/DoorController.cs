@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool _isLoop = false;
+
     [SerializeField] private bool _startOpened = false;
     [SerializeField] private bool _randomizeDoor = false;
     [SerializeField] private bool _isLocked = false;
     [SerializeField] private List<GameObject> _otherDoors;
 
-    // 떨림 효과 설정
     [SerializeField] private float _shakeDuration = 0.25f;
     [SerializeField] private float _shakeIntensity = 0.05f;
-    [SerializeField] private int _shakeFrequency = 6;
 
     private Animator _animator;
     private bool _open = false;
