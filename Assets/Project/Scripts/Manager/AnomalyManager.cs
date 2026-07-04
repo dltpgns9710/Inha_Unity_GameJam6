@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace SEHOON.System
+namespace SEHOON.GameSystem
 {
     public class AnomalyManager : MonoBehaviour
     {

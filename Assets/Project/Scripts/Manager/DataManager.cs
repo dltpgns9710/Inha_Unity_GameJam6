@@ -1,7 +1,7 @@
 using UnityEngine;
 using USingleton;
 
-namespace SEHOON.System
+namespace SEHOON.GameSystem
 {
     public class DataManager : Singleton<DataManager>
     {
