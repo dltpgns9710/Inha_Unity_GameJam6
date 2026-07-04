@@ -17,7 +17,7 @@ namespace SEHOON.GameSystem
             ++_floor;
         }
         
-        public void SelectIncurrentDoor()
+        public void SelectIncorrectDoor()
         {
             _floor = 0;
         }
