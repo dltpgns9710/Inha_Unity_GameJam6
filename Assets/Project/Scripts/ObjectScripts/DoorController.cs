@@ -1,3 +1,4 @@
+using SEHOON.GameSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,8 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private bool _isLoop = false;
+    [SerializeField] private bool _isForward = false;
+    [SerializeField] private bool _isBackward = false;
 
     [SerializeField] private bool _startOpened = false;
     [SerializeField] private bool _randomizeDoor = false;
@@ -68,6 +70,26 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         if (_otherDoors.Count > 0 && Unlock(interactor))
         {
+            var anomalyMgr = FindAnyObjectByType<AnomalyManager>();
+            var dataMgr = FindAnyObjectByType<DataManager> ();
+            if (_isForward && anomalyMgr != null && anomalyMgr.IsAnomalyApply)
+            {
+                dataMgr.SelectIncorrectDoor();
+            }
+            else
+            {
+                dataMgr.SelectCorrectDoor();
+            }
+
+            if (_isBackward && anomalyMgr != null && anomalyMgr.IsAnomalyApply)
+            {
+                dataMgr.SelectCorrectDoor();
+            }
+            else
+            {
+                dataMgr.SelectIncorrectDoor();
+            }
+
             int index = 0;
 
             _animator.SetBool("isOpen", true);
