@@ -70,7 +70,7 @@ public class DoorController : MonoBehaviour, IInteractable
             return true;
         }
 
-        if (/*interactor has key in inventory check 추가*/ !_isLocked)
+        if (/*interactor has key in inventory check 추가*/ _isLocked)
         {
             _isLocked = false;
             _hasBeenUnlocked = true;
