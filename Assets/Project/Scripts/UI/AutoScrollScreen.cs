@@ -11,7 +11,7 @@ namespace SEHOON.UI
         public List<string> names;
     }
     
-    public class CreditScreen : MonoBehaviour
+    public class AutoScrollScreen : MonoBehaviour
     {
         
         [SerializeField] private UIDocument _uiDocument;
