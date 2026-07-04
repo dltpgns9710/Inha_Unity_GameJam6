@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HelperControllar : MonoBehaviour
@@ -12,6 +13,10 @@ public class HelperControllar : MonoBehaviour
     [SerializeField] private float _runDistance = 4.0f;
     [SerializeField] private float _followDistance = 1.5f;
 
+    [Header("Detect")]
+    [SerializeField] private float _detectDistance = 3.0f;
+    [SerializeField] private float _detectRange = 3.0f;
+    [SerializeField] private LayerMask _anomalyLayer;
     #endregion
 
 
@@ -28,7 +33,7 @@ public class HelperControllar : MonoBehaviour
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        _currentState = EHelperState.Follow;
+        ChangeState(EHelperState.Follow);
 
         Debug.Assert(_playerTransform != null, "Player Transform이 연결되지 않았습니다.");
         Debug.Assert(_spriteRenderer != null, "SpriteRenderer가 연결되지 않았습니다.");
@@ -53,8 +58,55 @@ public class HelperControllar : MonoBehaviour
             case EHelperState.DetectAnomaly:
                 UpdateDetectAnomaly();
                 break;
+            case EHelperState.Alert:
+                UpdateAlert();
+                break;
         }
     }
+
+    #region State Transition Logic
+    private void ChangeState(EHelperState nextState)   
+    {
+        if(_currentState == nextState)
+        {
+            return;
+        }
+
+        OnExitState(_currentState);
+        _currentState = nextState;
+        OnEnterState(_currentState);
+        
+    }
+    private void OnEnterState(EHelperState state)
+    {
+        switch (state)
+        {
+            case EHelperState.Idle:
+                break;
+            case EHelperState.Follow:
+                break;
+            case EHelperState.DetectAnomaly:
+                break;
+            case EHelperState.Alert:
+                _animator.SetTrigger("Bark");
+                break;
+        }
+    }
+    private void OnExitState(EHelperState state)
+    {
+        switch (state)
+        {
+            case EHelperState.Idle:
+                break;
+            case EHelperState.Follow:
+                break;
+            case EHelperState.DetectAnomaly:
+                break;
+            case EHelperState.Alert:
+                break;
+        }
+    }
+    #endregion
 
     private void UpdateIdle()
     {
@@ -65,11 +117,33 @@ public class HelperControllar : MonoBehaviour
     private void UpdateFollow()
     {
         FollowPlayer();
+
+        if(CanDetectAnomaly())
+        {
+            ChangeState(EHelperState.DetectAnomaly);
+        }
     }
 
     private void UpdateDetectAnomaly()
     {
         //이상현상 감지 시 행동 정의
+        Collider2D detectCollider = Physics2D.OverlapCircle(transform.position,
+            _detectDistance,
+            _anomalyLayer);
+
+        if (detectCollider == null)
+        {
+            ChangeState(EHelperState.Follow);
+            return;
+        }
+        Debug.Assert(detectCollider != null, "이상현상 감지하지 못함");
+        
+        ChangeState(EHelperState.Alert);
+    }
+
+    private void UpdateAlert()
+    {
+       
     }
 
     private void FollowPlayer()
@@ -123,6 +197,21 @@ public class HelperControllar : MonoBehaviour
         {
             _spriteRenderer.flipX = true;
         }
+    }
+
+    private bool CanDetectAnomaly()
+    {
+        return Physics2D.OverlapCircle(transform.position,
+            _detectDistance,
+            _anomalyLayer);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(
+            transform.position,
+            _detectRange);
     }
     #endregion
 }

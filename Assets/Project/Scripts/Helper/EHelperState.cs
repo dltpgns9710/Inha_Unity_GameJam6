@@ -5,4 +5,5 @@ public enum EHelperState
     Idle,
     Follow,
     DetectAnomaly,
+    Alert,
 }
