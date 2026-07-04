@@ -1,0 +1,49 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement
+        name="settings-root"
+        style="
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        ">
+
+        <ui:VisualElement
+            name="settings-panel"
+            style="
+                width: 400px;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                background-color: rgb(40, 40, 40);
+            ">
+
+            <ui:Label
+                text="설정"
+                style="
+                    color: white;
+                    font-size: 28px;
+                    unity-text-align: middle-center;
+                    margin-bottom: 20px;
+                " />
+
+            <ui:Toggle
+                name="fullscreen-toggle"
+                label="전체 화면" />
+
+            <ui:Button
+                name="resume-button"
+                text="계속하기" />
+
+            <ui:Button
+                name="close-button"
+                text="닫기" />
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
