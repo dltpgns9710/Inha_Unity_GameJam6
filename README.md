@@ -911,7 +911,43 @@ fix: 셰이더 Y축 뒤집힘 및 암전 오류 수정
 
 <br>
 
-### 10-5. 빌드 시 크레딧 표기 위치
+### 10-5. [BloodLines UI (Unity Asset) by xGaida, Shieldomirs](https://xgaida.itch.io/bloodlines-ui)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | xGaida, Shieldomirs |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- ✅ 상업적/비상업적 프로젝트 모두 사용 가능
+- ✅ 무제한 게임에 사용 가능
+- ❌ 에셋 자체의 재판매 및 재패키징 금지
+- 💡 크레딧 표기 의무는 없으나 예의상 아래 문구를 포함합니다.
+
+> `Bloodlines - Dark UI by xGaida & Shieldomirs (itch.io)`
+
+<br>
+
+### 10-6. [Survival Horror Items Pack by Leo's Pixel](https://leos-pixel.itch.io/survival-horror-items-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Leo's Pixel |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- ✅ 상업적/비상업적 프로젝트 모두 사용 가능
+- ✅ 수정 가능
+- ❌ 수정 여부와 관계없이 재배포 및 재판매 금지
+- 💡 크레딧 표기 의무는 없으나 예의상 아래 문구를 포함합니다.
+
+> `Survival Horror Items Pack by Leo's Pixel (itch.io)`
+
+<br>
+
+### 10-7. 빌드 시 크레딧 표기 위치
 
 위 크레딧 문구는 게임 내 다음 위치 중 한 곳에 반드시 포함합니다.
 
