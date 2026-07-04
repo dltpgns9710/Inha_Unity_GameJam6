@@ -14,6 +14,7 @@ namespace SEHOON.GameSystem
 
         private void Start()
         {
+            _isAnomalyApply = false;
             SelectAnomaly();
             if (_selectedAnomaly != null)
             {
@@ -35,6 +36,7 @@ namespace SEHOON.GameSystem
             {
                 int randomIndex = Random.Range(0, _anomalies.Count);
                 _selectedAnomaly = _anomalies[randomIndex];
+                _isAnomalyApply = true;
             }
         }
     }
