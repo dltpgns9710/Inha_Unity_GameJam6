@@ -26,6 +26,7 @@ public class HelperControllar : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private bool _isRunning;
+    private bool _isWaitAnimationEnd;
     private Transform _targetAnomaly;
     #endregion
 
@@ -45,6 +46,7 @@ public class HelperControllar : MonoBehaviour
     private void OnEnable()
     {
         _commandBroadcaster.DetectAnomalyRequested += RequestDetectAnomaly;
+        _commandBroadcaster.OnWaitRequested += RequestWait;
     }
 
     private void Update()
@@ -55,6 +57,7 @@ public class HelperControllar : MonoBehaviour
     private void OnDisable()
     {
         _commandBroadcaster.DetectAnomalyRequested -= RequestDetectAnomaly;
+        _commandBroadcaster.OnWaitRequested -= RequestWait;
     }
     #endregion
 
@@ -76,6 +79,29 @@ public class HelperControllar : MonoBehaviour
         _targetAnomaly = null;
         ChangeState(EHelperState.ReturnToPlayer);
     }
+
+    public void RequestWait()
+    {      
+        if(_currentState == EHelperState.Wait)
+        {
+            if(!_isWaitAnimationEnd)
+            {
+                return;
+            }
+            ChangeState(EHelperState.Follow);
+            return;
+        }
+        if (_currentState == EHelperState.Follow)
+        {
+            _isWaitAnimationEnd = false;
+            ChangeState(EHelperState.Wait);
+        }
+
+    }
+    public void OnWaitAnimationEnd()
+    {
+        _isWaitAnimationEnd = true;
+    }
     #endregion
 
     #region Private Methods
@@ -89,15 +115,18 @@ public class HelperControllar : MonoBehaviour
             case EHelperState.Follow:
                 UpdateFollow();
                 break;
+            case EHelperState.Alert:
+                UpdateAlert();
+                break;
+            case EHelperState.Wait:
+                UpdateWait();
+                break;
             case EHelperState.DetectAnomaly:
                 UpdateDetectAnomaly();
                 break;
             case EHelperState.MoveToAnomaly:
                 UpdateMoveToAnomaly();
-                break;
-            case EHelperState.Alert:
-                UpdateAlert();
-                break;
+                break;           
             case EHelperState.ReturnToPlayer:
                 UpdateReturnToPlayer();
                 break;
@@ -105,18 +134,7 @@ public class HelperControllar : MonoBehaviour
     }
 
     #region State Transition Logic
-    private void ChangeState(EHelperState nextState)
-    {
-        if(_currentState == nextState)
-        {
-            return;
-        }
-
-        OnExitState(_currentState);
-        _currentState = nextState;
-        OnEnterState(_currentState);
-    }
-
+    
     private void OnEnterState(EHelperState state)
     {
         switch (state)
@@ -125,15 +143,20 @@ public class HelperControllar : MonoBehaviour
                 break;
             case EHelperState.Follow:
                 break;
-            case EHelperState.DetectAnomaly:
-                break;
-            case EHelperState.MoveToAnomaly:
-                break;
             case EHelperState.Alert:
                 _animator.SetBool("IsMoving", false);
                 _animator.SetBool("IsRunning", false);
                 _animator.SetTrigger("Bark");
                 break;
+            case EHelperState.Wait:
+                _animator.SetBool("IsMoving", false);
+                _animator.SetBool("IsRunning", false);
+                _animator.SetBool("IsWaiting", true);
+                break;
+            case EHelperState.DetectAnomaly:
+                break;
+            case EHelperState.MoveToAnomaly:
+                break;            
             case EHelperState.ReturnToPlayer:
                 break;
         }
@@ -147,15 +170,29 @@ public class HelperControllar : MonoBehaviour
                 break;
             case EHelperState.Follow:
                 break;
+            case EHelperState.Alert:
+                break;
+            case EHelperState.Wait:
+                _animator.SetBool("IsWaiting", false);
+                break;
             case EHelperState.DetectAnomaly:
                 break;
             case EHelperState.MoveToAnomaly:
-                break;
-            case EHelperState.Alert:
-                break;
+                break;            
             case EHelperState.ReturnToPlayer:
                 break;
         }
+    }
+    private void ChangeState(EHelperState nextState)
+    {
+        if (_currentState == nextState)
+        {
+            return;
+        }
+
+        OnExitState(_currentState);
+        _currentState = nextState;
+        OnEnterState(_currentState);
     }
     #endregion
 
@@ -201,7 +238,7 @@ public class HelperControllar : MonoBehaviour
 
     private void UpdateAlert()
     {
-
+        
     }
 
     private void UpdateReturnToPlayer()
@@ -212,6 +249,11 @@ public class HelperControllar : MonoBehaviour
         {
             ChangeState(EHelperState.Follow);
         }
+    }
+
+    private void UpdateWait()
+    {
+        
     }
 
     private Transform FindNearestAnomaly()

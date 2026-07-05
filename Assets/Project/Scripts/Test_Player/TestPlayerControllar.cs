@@ -75,6 +75,11 @@ public class TestPlayerController : MonoBehaviour
         {
             _helperCommandBroadcaster.RequestDetectAnomaly();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _helperCommandBroadcaster.RequestWait();
+        }
     }
 
     private void Move()
