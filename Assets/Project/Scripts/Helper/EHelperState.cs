@@ -5,5 +5,7 @@ public enum EHelperState
     Idle,
     Follow,
     DetectAnomaly,
+    MoveToAnomaly,
     Alert,
+    ReturnToPlayer,
 }

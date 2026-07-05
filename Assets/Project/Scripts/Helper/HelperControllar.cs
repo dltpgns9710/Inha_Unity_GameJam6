@@ -11,8 +11,11 @@ public class HelperControllar : MonoBehaviour
     [SerializeField] private float _runDistance = 4.0f;
     [SerializeField] private float _followDistance = 1.5f;
 
+    [Header("Command")]
+    [SerializeField] private float _commandSearchDistance = 6.0f;
+
     [Header("Detect")]
-    [SerializeField] private float _detectDistance = 3.0f; 
+    [SerializeField] private float _anomalyArriveDistance = 1.0f;
     [SerializeField] private LayerMask _anomalyLayer;
     #endregion
 
@@ -22,6 +25,7 @@ public class HelperControllar : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private bool _isRunning;
+    private Transform _targetAnomaly;
     #endregion
 
     #region Unity Lifecycle
@@ -32,12 +36,34 @@ public class HelperControllar : MonoBehaviour
         _animator = GetComponent<Animator>();
         ChangeState(EHelperState.Follow);
 
-        Debug.Assert(_playerTransform != null, "Player Transform¿Ã ø¨∞·µ«¡ˆ æ æ“Ω¿¥œ¥Ÿ.");
-        Debug.Assert(_spriteRenderer != null, "SpriteRenderer∞° ø¨∞·µ«¡ˆ æ æ“Ω¿¥œ¥Ÿ.");
+        Debug.Assert(_playerTransform != null, "Player TransformÏù¥ Ïó∞Í≤∞ÎêòÏßÄ ÏïäÏïòÏäµÎãàÎã§.");
+        Debug.Assert(_spriteRenderer != null, "SpriteRendererÍ∞Ä Ïó∞Í≤∞ÎêòÏßÄ ÏïäÏïòÏäµÎãàÎã§.");
+        Debug.Assert(_animator != null, "AnimatorÍ∞Ä Ïó∞Í≤∞ÎêòÏßÄ ÏïäÏïòÏäµÎãàÎã§.");
     }
-    void Update()
+
+    private void Update()
     {
         UpdateState();
+    }
+    #endregion
+
+    #region Public Methods
+    public void RequestDetectAnomaly()
+    {
+        if (_currentState == EHelperState.MoveToAnomaly ||
+            _currentState == EHelperState.Alert ||
+            _currentState == EHelperState.ReturnToPlayer)
+        {
+            return;
+        }
+
+        ChangeState(EHelperState.DetectAnomaly);
+    }
+
+    public void OnBarkAnimationEnd()
+    {
+        _targetAnomaly = null;
+        ChangeState(EHelperState.ReturnToPlayer);
     }
     #endregion
 
@@ -55,14 +81,20 @@ public class HelperControllar : MonoBehaviour
             case EHelperState.DetectAnomaly:
                 UpdateDetectAnomaly();
                 break;
+            case EHelperState.MoveToAnomaly:
+                UpdateMoveToAnomaly();
+                break;
             case EHelperState.Alert:
                 UpdateAlert();
+                break;
+            case EHelperState.ReturnToPlayer:
+                UpdateReturnToPlayer();
                 break;
         }
     }
 
     #region State Transition Logic
-    private void ChangeState(EHelperState nextState)   
+    private void ChangeState(EHelperState nextState)
     {
         if(_currentState == nextState)
         {
@@ -72,8 +104,8 @@ public class HelperControllar : MonoBehaviour
         OnExitState(_currentState);
         _currentState = nextState;
         OnEnterState(_currentState);
-        
     }
+
     private void OnEnterState(EHelperState state)
     {
         switch (state)
@@ -84,13 +116,18 @@ public class HelperControllar : MonoBehaviour
                 break;
             case EHelperState.DetectAnomaly:
                 break;
+            case EHelperState.MoveToAnomaly:
+                break;
             case EHelperState.Alert:
                 _animator.SetBool("IsMoving", false);
                 _animator.SetBool("IsRunning", false);
                 _animator.SetTrigger("Bark");
                 break;
+            case EHelperState.ReturnToPlayer:
+                break;
         }
     }
+
     private void OnExitState(EHelperState state)
     {
         switch (state)
@@ -101,7 +138,11 @@ public class HelperControllar : MonoBehaviour
                 break;
             case EHelperState.DetectAnomaly:
                 break;
+            case EHelperState.MoveToAnomaly:
+                break;
             case EHelperState.Alert:
+                break;
+            case EHelperState.ReturnToPlayer:
                 break;
         }
     }
@@ -116,61 +157,126 @@ public class HelperControllar : MonoBehaviour
     private void UpdateFollow()
     {
         FollowPlayer();
-
-        if(CanDetectAnomaly())
-        {
-            ChangeState(EHelperState.DetectAnomaly);
-        }
     }
 
     private void UpdateDetectAnomaly()
     {
-        //¿ÃªÛ«ˆªÛ ∞®¡ˆ Ω√ «‡µø ¡§¿«
-        Collider2D detectCollider = Physics2D.OverlapCircle(
-            transform.position,
-            _detectDistance,
-            _anomalyLayer);
+        _targetAnomaly = FindNearestAnomaly();
 
-        if (detectCollider == null)
+        if (_targetAnomaly == null)
         {
             ChangeState(EHelperState.Follow);
             return;
         }
 
-        Debug.Assert(detectCollider != null, "¿ÃªÛ«ˆªÛ ∞®¡ˆ«œ¡ˆ ∏¯«‘");
-        ChangeState(EHelperState.Alert);
+        ChangeState(EHelperState.MoveToAnomaly);
+    }
+
+    private void UpdateMoveToAnomaly()
+    {
+        if (_targetAnomaly == null)
+        {
+            ChangeState(EHelperState.ReturnToPlayer);
+            return;
+        }
+
+        MoveToTarget(_targetAnomaly.position, _anomalyArriveDistance);
+
+        if (Vector2.Distance(transform.position, _targetAnomaly.position) <= _anomalyArriveDistance)
+        {
+            ChangeState(EHelperState.Alert);
+        }
     }
 
     private void UpdateAlert()
     {
-       
+
     }
 
+    private void UpdateReturnToPlayer()
+    {
+        FollowPlayer();
+
+        if (Vector2.Distance(transform.position, _playerTransform.position) <= _followDistance)
+        {
+            ChangeState(EHelperState.Follow);
+        }
+    }
+
+    private Transform FindNearestAnomaly()
+    {
+        Collider2D[] detectColliders = Physics2D.OverlapCircleAll(
+            transform.position,
+            _commandSearchDistance,
+            _anomalyLayer);
+
+        Transform nearestAnomaly = null;
+        float nearestDistance = float.MaxValue;
+
+        foreach (Collider2D detectCollider in detectColliders)
+        {
+            float distance = Vector2.Distance(transform.position, detectCollider.transform.position);
+
+            if (distance >= nearestDistance)
+            {
+                continue;
+            }
+
+            nearestDistance = distance;
+            nearestAnomaly = detectCollider.transform;
+        }
+
+        return nearestAnomaly;
+    }
 
     private void FollowPlayer()
     {
-        float distance = Vector2.Distance(transform.position, _playerTransform.position);  
+        float distance = Vector2.Distance(transform.position, _playerTransform.position);
 
         bool isMoving = distance > _followDistance;
-        bool isRunning = distance >= _runDistance;
 
         UpdateRunState(distance);
 
-        _animator.SetBool("IsMoving", distance > _followDistance);
+        _animator.SetBool("IsMoving", isMoving);
         _animator.SetBool("IsRunning", _isRunning);
 
         if (!isMoving)
-        {        
+        {
             return;
         }
 
         float moveSpeed = _isRunning ? _runSpeed : _walkSpeed;
 
-        FlipByMoveDirection();
+        FlipByMoveDirection(_playerTransform.position);
 
         transform.position = Vector2.MoveTowards(
             transform.position,
             _playerTransform.position,
+            moveSpeed * Time.deltaTime);
+    }
+
+    private void MoveToTarget(Vector2 targetPosition, float stopDistance)
+    {
+        float distance = Vector2.Distance(transform.position, targetPosition);
+        bool isMoving = distance > stopDistance;
+
+        UpdateRunState(distance);
+
+        _animator.SetBool("IsMoving", isMoving);
+        _animator.SetBool("IsRunning", _isRunning);
+
+        if (!isMoving)
+        {
+            return;
+        }
+
+        float moveSpeed = _isRunning ? _runSpeed : _walkSpeed;
+
+        FlipByMoveDirection(targetPosition);
+
+        transform.position = Vector2.MoveTowards(
+            transform.position,
+            targetPosition,
             moveSpeed * Time.deltaTime);
     }
 
@@ -186,9 +292,9 @@ public class HelperControllar : MonoBehaviour
         }
     }
 
-    private void FlipByMoveDirection()
+    private void FlipByMoveDirection(Vector2 targetPosition)
     {
-        Vector2 moveDirection = (_playerTransform.position - transform.position).normalized;
+        Vector2 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
 
         if (moveDirection.x > 0.01f)
         {
@@ -200,24 +306,13 @@ public class HelperControllar : MonoBehaviour
         }
     }
 
-    private bool CanDetectAnomaly()
-    {
-        return Physics2D.OverlapCircle(transform.position,
-            _detectDistance,
-            _anomalyLayer);
-    }
-
-    public void OnBarkAnimationEnd()
-    {
-        ChangeState(EHelperState.Follow);
-    }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
 
         Gizmos.DrawWireSphere(
             transform.position,
-            _detectDistance);
+            _commandSearchDistance);
     }
     #endregion
 }

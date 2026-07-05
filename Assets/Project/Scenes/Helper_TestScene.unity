@@ -295,8 +295,10 @@ MonoBehaviour:
   _runSpeed: 5
   _runDistance: 3
   _followDistance: 1
+  _helperCommandAction: {fileID: 0}
+  _commandSearchDistance: 6
   _detectDistance: 3
-  _detectRange: 3
+  _anomalyArriveDistance: 1
   _anomalyLayer:
     serializedVersion: 2
     m_Bits: 256
