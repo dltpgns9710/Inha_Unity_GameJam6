@@ -1,16 +1,11 @@
+using System;
 using UnityEngine;
 
 public class HelperCommandBroadcaster : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public event Action DetectAnomalyRequested;
+    public void RequestDetectAnomaly()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DetectAnomalyRequested?.Invoke();
     }
 }

@@ -11,12 +11,13 @@ public class HelperControllar : MonoBehaviour
     [SerializeField] private float _runDistance = 4.0f;
     [SerializeField] private float _followDistance = 1.5f;
 
-    [Header("Command")]
-    [SerializeField] private float _commandSearchDistance = 6.0f;
-
     [Header("Detect")]
-    [SerializeField] private float _anomalyArriveDistance = 1.0f;
+    [SerializeField] private float _commandSearchDistance = 6.0f;
+    [SerializeField] private float _anomalyArriveDistance = 1.5f;
     [SerializeField] private LayerMask _anomalyLayer;
+
+    [Header("References")]
+    [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
     #endregion
 
 
@@ -41,9 +42,19 @@ public class HelperControllar : MonoBehaviour
         Debug.Assert(_animator != null, "Animator가 연결되지 않았습니다.");
     }
 
+    private void OnEnable()
+    {
+        _commandBroadcaster.DetectAnomalyRequested += RequestDetectAnomaly;
+    }
+
     private void Update()
     {
         UpdateState();
+    }
+
+    private void OnDisable()
+    {
+        _commandBroadcaster.DetectAnomalyRequested -= RequestDetectAnomaly;
     }
     #endregion
 

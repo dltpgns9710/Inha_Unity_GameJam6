@@ -13,6 +13,9 @@ public class TestPlayerController : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private float _groundCheckRadius = 0.1f;
     [SerializeField] private LayerMask _groundLayer;
+
+    [Header("Helper Command")]
+    [SerializeField] private HelperCommandBroadcaster _helperCommandBroadcaster;
     #endregion
 
     #region Private Fields
@@ -32,11 +35,15 @@ public class TestPlayerController : MonoBehaviour
 
         Debug.Assert(_groundCheck != null,
             $"[{name}] Ground Check가 연결되지 않았습니다.");
+
+        Debug.Assert(_helperCommandBroadcaster != null,
+            $"[{name}] HelperCommandBroadcaster가 연결되지 않았습니다.");
     }
 
     private void Update()
     {
         HandleInput();
+        HandleHelperCommandInput();
         CheckGround();
     }
 
@@ -54,6 +61,19 @@ public class TestPlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             Jump();
+        }
+    }
+
+    private void HandleHelperCommandInput()
+    {
+        if (_helperCommandBroadcaster == null)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _helperCommandBroadcaster.RequestDetectAnomaly();
         }
     }
 
