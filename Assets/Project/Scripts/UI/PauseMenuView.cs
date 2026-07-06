@@ -1,0 +1,111 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+namespace SEHOON.UI
+{
+    public class PauseMenuView : MonoBehaviour
+    {
+        [Header("Title")]
+        [SerializeField] private string _titleText;
+
+        [Header("Buttons")]
+        [SerializeField] private string _resumeButtonText;
+        [SerializeField] private string _quitButtonText;
+
+        [Header("Button Actions")]
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _quitButton;
+
+        [Header("Font")]
+        [SerializeField] private TMP_FontAsset _font;
+
+        [Header("Text Widgets")]
+        [SerializeField] private TextMeshProUGUI _titleTextWidget;
+        [SerializeField] private TextMeshProUGUI _resumeButtonTextWidget;
+        [SerializeField] private TextMeshProUGUI _quitButtonTextWidget;
+
+        public string TitleText
+        {
+            get => _titleText;
+            set { _titleText = value; ApplyTexts(); }
+        }
+
+        public string ResumeButtonText
+        {
+            get => _resumeButtonText;
+            set { _resumeButtonText = value; ApplyTexts(); }
+        }
+
+        public string QuitButtonText
+        {
+            get => _quitButtonText;
+            set { _quitButtonText = value; ApplyTexts(); }
+        }
+
+        public TMP_FontAsset Font
+        {
+            get => _font;
+            set { _font = value; ApplyFont(); }
+        }
+
+        private void Awake()
+        {
+            ApplyTexts();
+            ApplyFont();
+            BindButtons();
+        }
+
+        private void OnValidate()
+        {
+            ApplyTexts();
+            ApplyFont();
+        }
+
+        private void OnEnable()
+        {
+            Time.timeScale = 0f;
+        }
+
+        private void OnDisable()
+        {
+            Time.timeScale = 1f;
+        }
+
+        private void BindButtons()
+        {
+            if (_resumeButton != null) _resumeButton.onClick.AddListener(OnResumeButtonClicked);
+            if (_quitButton != null) _quitButton.onClick.AddListener(OnQuitButtonClicked);
+        }
+
+        public void OnResumeButtonClicked()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void OnQuitButtonClicked()
+        {
+            Application.Quit();
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        }
+
+        private void ApplyTexts()
+        {
+            if (_titleTextWidget != null) _titleTextWidget.text = _titleText;
+            if (_resumeButtonTextWidget != null) _resumeButtonTextWidget.text = _resumeButtonText;
+            if (_quitButtonTextWidget != null) _quitButtonTextWidget.text = _quitButtonText;
+        }
+
+        private void ApplyFont()
+        {
+            if (_font == null) return;
+
+            if (_titleTextWidget != null) _titleTextWidget.font = _font;
+            if (_resumeButtonTextWidget != null) _resumeButtonTextWidget.font = _font;
+            if (_quitButtonTextWidget != null) _quitButtonTextWidget.font = _font;
+        }
+    }
+}
