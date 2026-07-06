@@ -6,6 +6,7 @@ namespace SEHOON.UI
 {
     public class PauseMenuView : MonoBehaviour
     {
+        #region Serialized Fields
         [Header("Title")]
         [SerializeField] private string _titleText;
 
@@ -24,7 +25,9 @@ namespace SEHOON.UI
         [SerializeField] private TextMeshProUGUI _titleTextWidget;
         [SerializeField] private TextMeshProUGUI _resumeButtonTextWidget;
         [SerializeField] private TextMeshProUGUI _quitButtonTextWidget;
+        #endregion
 
+        #region Properties
         public string TitleText
         {
             get => _titleText;
@@ -48,7 +51,9 @@ namespace SEHOON.UI
             get => _font;
             set { _font = value; ApplyFont(); }
         }
+        #endregion
 
+        #region Unity Lifecycle
         private void Awake()
         {
             ApplyTexts();
@@ -71,13 +76,9 @@ namespace SEHOON.UI
         {
             Time.timeScale = 1f;
         }
+        #endregion
 
-        private void BindButtons()
-        {
-            if (_resumeButton != null) _resumeButton.onClick.AddListener(OnResumeButtonClicked);
-            if (_quitButton != null) _quitButton.onClick.AddListener(OnQuitButtonClicked);
-        }
-
+        #region Public Methods
         public void OnResumeButtonClicked()
         {
             gameObject.SetActive(false);
@@ -90,6 +91,14 @@ namespace SEHOON.UI
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        }
+        #endregion
+
+        #region Private Methods
+        private void BindButtons()
+        {
+            _resumeButton?.onClick.AddListener(OnResumeButtonClicked);
+            _quitButton?.onClick.AddListener(OnQuitButtonClicked);
         }
 
         private void ApplyTexts()
@@ -107,5 +116,6 @@ namespace SEHOON.UI
             if (_resumeButtonTextWidget != null) _resumeButtonTextWidget.font = _font;
             if (_quitButtonTextWidget != null) _quitButtonTextWidget.font = _font;
         }
+        #endregion
     }
 }

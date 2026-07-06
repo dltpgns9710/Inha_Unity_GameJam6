@@ -8,6 +8,7 @@ namespace SEHOON.UI
 {
     public class MainMenuView : MonoBehaviour
     {
+        #region Serialized Fields
         [Header("Button Actions")]
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _creditsButton;
@@ -40,7 +41,9 @@ namespace SEHOON.UI
         [SerializeField] private string _startButtonText;
         [SerializeField] private string _creditsButtonText;
         [SerializeField] private string _quitButtonText;
+        #endregion
 
+        #region Unity Lifecycle
         private void Awake()
         {
             ApplyFont();
@@ -48,7 +51,7 @@ namespace SEHOON.UI
             BindButtons();
 
             SetButtonsAlpha(0f);
-            StartCoroutine(FadeInButtons());
+            StartCoroutine(CoFadeInButtons());
         }
 
         private void OnValidate()
@@ -56,14 +59,9 @@ namespace SEHOON.UI
             ApplyFont();
             ApplyText();
         }
+        #endregion
 
-        private void BindButtons()
-        {
-            if (_startButton != null) _startButton.onClick.AddListener(OnStartButtonClicked);
-            if (_creditsButton != null) _creditsButton.onClick.AddListener(OnCreditsButtonClicked);
-            if (_quitButton != null) _quitButton.onClick.AddListener(OnQuitButtonClicked);
-        }
-
+        #region Public Methods
         public void OnStartButtonClicked()
         {
             SceneManager.LoadScene(_sceneToLoad);
@@ -85,18 +83,14 @@ namespace SEHOON.UI
             UnityEditor.EditorApplication.isPlaying = false;
 #endif
         }
+        #endregion
 
-        private IEnumerator FadeInButtons()
+        #region Private Methods
+        private void BindButtons()
         {
-            float elapsed = 0f;
-            while (elapsed < _buttonFadeDuration)
-            {
-                elapsed += Time.deltaTime;
-                SetButtonsAlpha(Mathf.Clamp01(elapsed / _buttonFadeDuration));
-                yield return null;
-            }
-
-            SetButtonsAlpha(1f);
+            _startButton?.onClick.AddListener(OnStartButtonClicked);
+            _creditsButton?.onClick.AddListener(OnCreditsButtonClicked);
+            _quitButton?.onClick.AddListener(OnQuitButtonClicked);
         }
 
         private void SetButtonsAlpha(float alpha)
@@ -146,5 +140,21 @@ namespace SEHOON.UI
             if (!string.IsNullOrEmpty(_creditsButtonText) && _creditsButtonTextWidget != null) _creditsButtonTextWidget.text = _creditsButtonText;
             if (!string.IsNullOrEmpty(_quitButtonText) && _quitButtonTextWidget != null) _quitButtonTextWidget.text = _quitButtonText;
         }
+        #endregion
+
+        #region Coroutines
+        private IEnumerator CoFadeInButtons()
+        {
+            float elapsed = 0f;
+            while (elapsed < _buttonFadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                SetButtonsAlpha(Mathf.Clamp01(elapsed / _buttonFadeDuration));
+                yield return null;
+            }
+
+            SetButtonsAlpha(1f);
+        }
+        #endregion
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +8,7 @@ namespace SEHOON.UI
 {
     public class DialogueBoxView : MonoBehaviour
     {
+        #region Serialized Fields
         [Header("Dialogue Lines")]
         [SerializeField] private List<DialogueLine> _dialogueLines = new List<DialogueLine>();
 
@@ -21,16 +21,20 @@ namespace SEHOON.UI
 
         [Header("Skip Button")]
         [SerializeField] private Button _skipButton;
+        #endregion
 
+        #region Private Fields
         private int _currentIndex = 0;
+        #endregion
 
+        #region Unity Lifecycle
         private void Awake()
         {
             _currentIndex = 0;
             ApplyFont();
             ShowLine(_currentIndex);
 
-            if (_skipButton != null) _skipButton.onClick.AddListener(OnSkipButtonClicked);
+            _skipButton?.onClick.AddListener(OnSkipButtonClicked);
         }
 
         private void OnValidate()
@@ -45,6 +49,23 @@ namespace SEHOON.UI
             ShowLine(_currentIndex);
         }
 
+        private void Update()
+        {
+            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            {
+                if (_currentIndex >= _dialogueLines.Count - 1)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    Next();
+                }
+            }
+        }
+        #endregion
+
+        #region Public Methods
         public void ShowLine(int index)
         {
             if (_dialogueLines == null || _dialogueLines.Count == 0) return;
@@ -68,22 +89,9 @@ namespace SEHOON.UI
         {
             gameObject.SetActive(false);
         }
+        #endregion
 
-        private void Update()
-        {
-            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
-            {
-                if (_currentIndex >= _dialogueLines.Count - 1)
-                {
-                    gameObject.SetActive(false);
-                }
-                else
-                {
-                    Next();
-                }
-            }
-        }
-
+        #region Private Methods
         private void ApplyFont()
         {
             if (_font == null) return;
@@ -91,5 +99,6 @@ namespace SEHOON.UI
             if (_nameTextWidget != null) _nameTextWidget.font = _font;
             if (_textBoxItem != null) _textBoxItem.SetFont(_font);
         }
+        #endregion
     }
 }

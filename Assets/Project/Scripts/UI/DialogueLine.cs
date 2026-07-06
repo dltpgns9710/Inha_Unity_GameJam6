@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SEHOON.UI
 {
-    public enum DialogueBoxAlignment
+    public enum EDialogueBoxAlignment
     {
         Left,
         Right
@@ -13,7 +13,7 @@ namespace SEHOON.UI
     {
         [SerializeField] private string _name;
         [SerializeField, TextArea] private string _dialogue;
-        [SerializeField] private DialogueBoxAlignment _alignment = DialogueBoxAlignment.Left;
+        [SerializeField] private EDialogueBoxAlignment _alignment = EDialogueBoxAlignment.Left;
 
         public string Name
         {
@@ -27,7 +27,7 @@ namespace SEHOON.UI
             set => _dialogue = value;
         }
 
-        public DialogueBoxAlignment Alignment
+        public EDialogueBoxAlignment Alignment
         {
             get => _alignment;
             set => _alignment = value;

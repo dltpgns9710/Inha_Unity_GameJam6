@@ -7,6 +7,7 @@ namespace SEHOON.UI
 {
     public class CreditsView : MonoBehaviour
     {
+        #region Serialized Fields
         [Header("Credits")]
         [SerializeField] private List<CreditEntry> _entries = new List<CreditEntry>();
 
@@ -24,10 +25,14 @@ namespace SEHOON.UI
         [Header("Auto Scroll")]
         [SerializeField] private bool _autoScroll = true;
         [SerializeField] private float _scrollSpeed = 40f;
+        #endregion
 
+        #region Private Fields
         private float _contentHeight;
         private float _scrolledY;
+        #endregion
 
+        #region Unity Lifecycle
         private void Awake()
         {
             BuildLines();
@@ -55,7 +60,9 @@ namespace SEHOON.UI
                 gameObject.SetActive(false);
             }
         }
+        #endregion
 
+        #region Private Methods
         private void BuildLines()
         {
             float y = 0f;
@@ -103,5 +110,6 @@ namespace SEHOON.UI
 
             return height + _lineSpacing;
         }
+        #endregion
     }
 }

@@ -21,11 +21,11 @@ namespace SEHOON.UI
             }
         }
 
-        public void SetAlignment(DialogueBoxAlignment alignment)
+        public void SetAlignment(EDialogueBoxAlignment alignment)
         {
             if (_textWidget == null) return;
 
-            _textWidget.alignment = alignment == DialogueBoxAlignment.Right
+            _textWidget.alignment = alignment == EDialogueBoxAlignment.Right
                 ? TextAlignmentOptions.TopRight
                 : TextAlignmentOptions.TopLeft;
         }

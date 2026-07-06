@@ -9,6 +9,7 @@ namespace SEHOON.UI
 {
     public class DialogueWindowView : MonoBehaviour
     {
+        #region Serialized Fields
         [Header("Dialogue Lines")]
         [SerializeField] private List<DialogueLine> _dialogueLines = new List<DialogueLine>();
 
@@ -29,22 +30,26 @@ namespace SEHOON.UI
         [Header("Animation")]
         [SerializeField] private float _slideDistance = 60f;
         [SerializeField] private float _slideDuration = 0.25f;
+        #endregion
 
+        #region Private Fields
         private int _currentIndex = 0;
         private readonly List<RectTransform> _items = new List<RectTransform>();
         private Coroutine _revealCoroutine;
+        #endregion
 
+        #region Unity Lifecycle
         private void Awake()
         {
             _currentIndex = 0;
             BuildItems();
-        
+
             if (_content != null) _content.sizeDelta = new Vector2(_content.sizeDelta.x, 0f);
             if (_scrollRect != null) _scrollRect.enabled = false;
 
-            if (_skipButton != null) _skipButton.onClick.AddListener(OnSkipButtonClicked);
+            _skipButton?.onClick.AddListener(OnSkipButtonClicked);
         }
-        
+
         private void Update()
         {
             if (Mouse.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
@@ -52,33 +57,9 @@ namespace SEHOON.UI
                 ShowNext();
             }
         }
+        #endregion
 
-        private void BuildItems()
-        {
-            for (int i = 0; i < _dialogueLines.Count; i++)
-            {
-                DialogueLine line = _dialogueLines[i];
-
-                TextBoxItemView item = Instantiate(_textBoxItemPrefab, _content);
-                item.Text = line.Dialogue;
-                item.SetFont(_font);
-                item.SetAlignment(line.Alignment);
-
-                float anchorMinX = line.Alignment == DialogueBoxAlignment.Left ? 0f : 1f - _itemWidthRatio;
-                float anchorMaxX = line.Alignment == DialogueBoxAlignment.Left ? _itemWidthRatio : 1f;
-                
-                RectTransform rect = item.GetComponent<RectTransform>();
-                rect.anchorMin = new Vector2(anchorMinX, 1f);
-                rect.anchorMax = new Vector2(anchorMaxX, 1f);
-                rect.pivot = new Vector2(0.5f, 1f);
-                rect.sizeDelta = new Vector2(0f, _itemHeight);
-                rect.anchoredPosition = new Vector2(0f, -(i * (_itemHeight + _itemSpacing)));
-
-                item.gameObject.SetActive(false);
-                _items.Add(rect);
-            }
-        }
-
+        #region Public Methods
         public void OnSkipButtonClicked()
         {
             gameObject.SetActive(false);
@@ -94,7 +75,7 @@ namespace SEHOON.UI
 
             RectTransform rect = _items[_currentIndex];
             Vector2 itemTargetPosition = rect.anchoredPosition;
-            
+
             float oldContentY = CalculateContentTargetY(_currentIndex * (_itemHeight + _itemSpacing));
 
             _currentIndex++;
@@ -109,7 +90,35 @@ namespace SEHOON.UI
             rect.gameObject.SetActive(true);
 
             if (_revealCoroutine != null) StopCoroutine(_revealCoroutine);
-            _revealCoroutine = StartCoroutine(RevealAnimation(rect, itemTargetPosition, oldContentY, newContentY));
+            _revealCoroutine = StartCoroutine(CoRevealAnimation(rect, itemTargetPosition, oldContentY, newContentY));
+        }
+        #endregion
+
+        #region Private Methods
+        private void BuildItems()
+        {
+            for (int i = 0; i < _dialogueLines.Count; i++)
+            {
+                DialogueLine line = _dialogueLines[i];
+
+                TextBoxItemView item = Instantiate(_textBoxItemPrefab, _content);
+                item.Text = line.Dialogue;
+                item.SetFont(_font);
+                item.SetAlignment(line.Alignment);
+
+                float anchorMinX = line.Alignment == EDialogueBoxAlignment.Left ? 0f : 1f - _itemWidthRatio;
+                float anchorMaxX = line.Alignment == EDialogueBoxAlignment.Left ? _itemWidthRatio : 1f;
+
+                RectTransform rect = item.GetComponent<RectTransform>();
+                rect.anchorMin = new Vector2(anchorMinX, 1f);
+                rect.anchorMax = new Vector2(anchorMaxX, 1f);
+                rect.pivot = new Vector2(0.5f, 1f);
+                rect.sizeDelta = new Vector2(0f, _itemHeight);
+                rect.anchoredPosition = new Vector2(0f, -(i * (_itemHeight + _itemSpacing)));
+
+                item.gameObject.SetActive(false);
+                _items.Add(rect);
+            }
         }
 
         private float CalculateContentTargetY(float height)
@@ -121,7 +130,21 @@ namespace SEHOON.UI
             return height - viewportHeight;
         }
 
-        private IEnumerator RevealAnimation(RectTransform rect, Vector2 itemTargetPosition, float oldContentY, float newContentY)
+        private void SetContentY(float y)
+        {
+            if (_content == null) return;
+
+            if (_scrollRect != null)
+            {
+                _scrollRect.enabled = y > 0f;
+            }
+
+            _content.anchoredPosition = new Vector2(0f, y);
+        }
+        #endregion
+
+        #region Coroutines
+        private IEnumerator CoRevealAnimation(RectTransform rect, Vector2 itemTargetPosition, float oldContentY, float newContentY)
         {
             Vector2 itemStartPosition = itemTargetPosition + Vector2.down * _slideDistance;
             rect.anchoredPosition = itemStartPosition;
@@ -142,17 +165,6 @@ namespace SEHOON.UI
             SetContentY(newContentY);
             _revealCoroutine = null;
         }
-
-        private void SetContentY(float y)
-        {
-            if (_content == null) return;
-
-            if (_scrollRect != null)
-            {
-                _scrollRect.enabled = y > 0f;
-            }
-
-            _content.anchoredPosition = new Vector2(0f, y);
-        }
+        #endregion
     }
 }
