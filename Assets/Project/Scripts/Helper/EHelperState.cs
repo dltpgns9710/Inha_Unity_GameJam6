@@ -1,13 +1,16 @@
-
-public enum EHelperState
+namespace TAEWOOK.Helper
 {
-    None,
-    Idle,
-    Follow,
-    Wait,
-    Alert,
-    Sleep,
-    DetectAnomaly,
-    MoveToAnomaly,  
-    ReturnToPlayer,  
+    public enum EHelperState
+    {
+        None,
+        Idle,
+        Follow,
+        Wait,
+        Alert,
+        Sleep,
+        DetectAnomaly,
+        MoveToAnomaly,
+        ReturnToPlayer,
+    }
 }
+
