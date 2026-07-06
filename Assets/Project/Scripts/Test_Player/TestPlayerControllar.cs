@@ -23,6 +23,7 @@ public class TestPlayerController : MonoBehaviour
 
     private float _moveInput;
     private bool _isGrounded;
+    
     #endregion
 
     #region Unity Lifecycle
@@ -73,7 +74,11 @@ public class TestPlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _helperCommandBroadcaster.RequestDetectAnomaly();
+            Vector3 mouseScreenPosition = Input.mousePosition;
+            mouseScreenPosition.z = -Camera.main.transform.position.z;
+
+            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            _helperCommandBroadcaster.RequestDetectAnomaly(mouseWorldPosition);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))

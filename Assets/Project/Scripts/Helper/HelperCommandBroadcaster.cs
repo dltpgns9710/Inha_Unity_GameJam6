@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class HelperCommandBroadcaster : MonoBehaviour
 {
-    public event Action DetectAnomalyRequested;
+    public event Action<Vector2> DetectAnomalyRequested;
     public event Action OnWaitRequested;
-    public void RequestDetectAnomaly()
+    public void RequestDetectAnomaly(Vector2 searchPosition)
     {
-        DetectAnomalyRequested?.Invoke();
+        DetectAnomalyRequested?.Invoke(searchPosition);
     }
     
     public void RequestWait()

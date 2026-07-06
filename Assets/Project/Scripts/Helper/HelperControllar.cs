@@ -13,6 +13,7 @@ public class HelperControllar : MonoBehaviour
 
     [Header("Detect")]
     [SerializeField] private float _commandSearchDistance = 6.0f;
+    [SerializeField] private float _commandSearchArriveDistance = 0.5f;
     [SerializeField] private float _anomalyArriveDistance = 1.5f;
     [SerializeField] private LayerMask _anomalyLayer;
 
@@ -28,6 +29,8 @@ public class HelperControllar : MonoBehaviour
     private bool _isRunning;
     private bool _isWaitAnimationEnd;
     private Transform _targetAnomaly;
+    private Vector2 _commandSearchPosition;
+    private Vector2 _commandMovePosition;
     #endregion
 
     #region Unity Lifecycle
@@ -62,15 +65,18 @@ public class HelperControllar : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void RequestDetectAnomaly()
+    public void RequestDetectAnomaly(Vector2 searchPosition)
     {
-        if (_currentState == EHelperState.MoveToAnomaly ||
+        if (_currentState == EHelperState.DetectAnomaly ||
+            _currentState == EHelperState.MoveToAnomaly ||
             _currentState == EHelperState.Alert ||
             _currentState == EHelperState.ReturnToPlayer)
         {
             return;
         }
 
+        _commandSearchPosition = searchPosition;
+        _commandMovePosition = new Vector2(searchPosition.x, transform.position.y);
         ChangeState(EHelperState.DetectAnomaly);
     }
 
@@ -209,11 +215,18 @@ public class HelperControllar : MonoBehaviour
 
     private void UpdateDetectAnomaly()
     {
-        _targetAnomaly = FindNearestAnomaly();
+        MoveToTarget(_commandMovePosition, _commandSearchArriveDistance);
+
+        if (Vector2.Distance(transform.position, _commandMovePosition) > _commandSearchArriveDistance)
+        {
+            return;
+        }
+
+        _targetAnomaly = FindNearestAnomaly(_commandSearchPosition);
 
         if (_targetAnomaly == null)
         {
-            ChangeState(EHelperState.Follow);
+            ChangeState(EHelperState.ReturnToPlayer);
             return;
         }
 
@@ -256,10 +269,10 @@ public class HelperControllar : MonoBehaviour
         
     }
 
-    private Transform FindNearestAnomaly()
+    private Transform FindNearestAnomaly(Vector2 searchCenter)
     {
         Collider2D[] detectColliders = Physics2D.OverlapCircleAll(
-            transform.position,
+            searchCenter,
             _commandSearchDistance,
             _anomalyLayer);
 
@@ -268,7 +281,7 @@ public class HelperControllar : MonoBehaviour
 
         foreach (Collider2D detectCollider in detectColliders)
         {
-            float distance = Vector2.Distance(transform.position, detectCollider.transform.position);
+            float distance = Vector2.Distance(searchCenter, detectCollider.transform.position);
 
             if (distance >= nearestDistance)
             {
@@ -364,7 +377,7 @@ public class HelperControllar : MonoBehaviour
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawWireSphere(
-            transform.position,
+            _commandSearchPosition,
             _commandSearchDistance);
     }
     #endregion
