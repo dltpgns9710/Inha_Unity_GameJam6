@@ -38,6 +38,16 @@ namespace SEHOON.UI
             BuildLines();
         }
 
+        private void OnEnable()
+        {
+            _scrolledY = 0f;
+
+            if (_content != null && _viewport != null)
+            {
+                _content.anchoredPosition = new Vector2(_content.anchoredPosition.x, -_viewport.rect.height);
+            }
+        }
+
         private void Update()
         {
             if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)

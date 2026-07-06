@@ -43,6 +43,10 @@ namespace SEHOON.UI
         [SerializeField] private string _quitButtonText;
         #endregion
 
+        #region Private Fields
+        private GameObject _creditsInstance;
+        #endregion
+
         #region Unity Lifecycle
         private void Awake()
         {
@@ -71,8 +75,15 @@ namespace SEHOON.UI
         {
             if (_creditsPrefab == null) return;
 
-            Transform parent = _creditsSpawnParent != null ? _creditsSpawnParent : transform.parent;
-            Instantiate(_creditsPrefab, parent);
+            if (_creditsInstance == null)
+            {
+                Transform parent = _creditsSpawnParent != null ? _creditsSpawnParent : transform.parent;
+                _creditsInstance = Instantiate(_creditsPrefab, parent);
+            }
+            else
+            {
+                _creditsInstance.SetActive(true);
+            }
         }
 
         public void OnQuitButtonClicked()
