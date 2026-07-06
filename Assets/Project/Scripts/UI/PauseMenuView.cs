@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,6 +26,10 @@ namespace SEHOON.UI
         [SerializeField] private TextMeshProUGUI _titleTextWidget;
         [SerializeField] private TextMeshProUGUI _resumeButtonTextWidget;
         [SerializeField] private TextMeshProUGUI _quitButtonTextWidget;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onEnableEvent;
+        [SerializeField] private UnityEvent _onDisableEvent;
         #endregion
 
         #region Properties
@@ -70,10 +75,14 @@ namespace SEHOON.UI
         private void OnEnable()
         {
             Time.timeScale = 0f;
+
+            _onEnableEvent?.Invoke();
         }
 
         private void OnDisable()
         {
+            _onDisableEvent?.Invoke();
+
             Time.timeScale = 1f;
         }
         #endregion

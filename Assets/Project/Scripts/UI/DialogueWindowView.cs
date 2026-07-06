@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
@@ -30,12 +31,17 @@ namespace SEHOON.UI
         [Header("Animation")]
         [SerializeField] private float _slideDistance = 60f;
         [SerializeField] private float _slideDuration = 0.25f;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onEnableEvent;
+        [SerializeField] private UnityEvent _onDisableEvent;
         #endregion
 
         #region Private Fields
         private int _currentIndex = 0;
         private readonly List<RectTransform> _items = new List<RectTransform>();
         private Coroutine _revealCoroutine;
+        private CanvasGroup _skipButtonGroup;
         #endregion
 
         #region Unity Lifecycle
@@ -47,11 +53,53 @@ namespace SEHOON.UI
             if (_content != null) _content.sizeDelta = new Vector2(_content.sizeDelta.x, 0f);
             if (_scrollRect != null) _scrollRect.enabled = false;
 
+            if (_skipButton != null)
+            {
+                _skipButtonGroup = _skipButton.GetComponent<CanvasGroup>();
+                if (_skipButtonGroup == null) _skipButtonGroup = _skipButton.gameObject.AddComponent<CanvasGroup>();
+            }
+
             _skipButton?.onClick.AddListener(OnSkipButtonClicked);
+        }
+
+        private void OnEnable()
+        {
+            _currentIndex = 0;
+
+            if (_revealCoroutine != null)
+            {
+                StopCoroutine(_revealCoroutine);
+                _revealCoroutine = null;
+            }
+
+            foreach (RectTransform item in _items)
+            {
+                item.gameObject.SetActive(false);
+            }
+
+            if (_content != null) _content.sizeDelta = new Vector2(_content.sizeDelta.x, 0f);
+            if (_scrollRect != null) _scrollRect.enabled = false;
+
+            _onEnableEvent?.Invoke();
+        }
+
+        private void OnDisable()
+        {
+            _onDisableEvent?.Invoke();
         }
 
         private void Update()
         {
+            bool isPaused = Time.timeScale == 0f;
+
+            if (_skipButtonGroup != null)
+            {
+                _skipButtonGroup.interactable = !isPaused;
+                _skipButtonGroup.blocksRaycasts = !isPaused;
+            }
+
+            if (isPaused) return;
+
             if (Mouse.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 ShowNext();
@@ -62,6 +110,8 @@ namespace SEHOON.UI
         #region Public Methods
         public void OnSkipButtonClicked()
         {
+            if (Time.timeScale == 0f) return;
+
             gameObject.SetActive(false);
         }
 

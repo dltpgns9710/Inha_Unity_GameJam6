@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
@@ -21,10 +22,15 @@ namespace SEHOON.UI
 
         [Header("Skip Button")]
         [SerializeField] private Button _skipButton;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onEnableEvent;
+        [SerializeField] private UnityEvent _onDisableEvent;
         #endregion
 
         #region Private Fields
         private int _currentIndex = 0;
+        private CanvasGroup _skipButtonGroup;
         #endregion
 
         #region Unity Lifecycle
@@ -33,6 +39,12 @@ namespace SEHOON.UI
             _currentIndex = 0;
             ApplyFont();
             ShowLine(_currentIndex);
+
+            if (_skipButton != null)
+            {
+                _skipButtonGroup = _skipButton.GetComponent<CanvasGroup>();
+                if (_skipButtonGroup == null) _skipButtonGroup = _skipButton.gameObject.AddComponent<CanvasGroup>();
+            }
 
             _skipButton?.onClick.AddListener(OnSkipButtonClicked);
         }
@@ -47,10 +59,27 @@ namespace SEHOON.UI
         {
             _currentIndex = 0;
             ShowLine(_currentIndex);
+
+            _onEnableEvent?.Invoke();
+        }
+
+        private void OnDisable()
+        {
+            _onDisableEvent?.Invoke();
         }
 
         private void Update()
         {
+            bool isPaused = Time.timeScale == 0f;
+
+            if (_skipButtonGroup != null)
+            {
+                _skipButtonGroup.interactable = !isPaused;
+                _skipButtonGroup.blocksRaycasts = !isPaused;
+            }
+
+            if (isPaused) return;
+
             if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 if (_currentIndex >= _dialogueLines.Count - 1)
@@ -87,6 +116,8 @@ namespace SEHOON.UI
 
         public void OnSkipButtonClicked()
         {
+            if (Time.timeScale == 0f) return;
+
             gameObject.SetActive(false);
         }
         #endregion
