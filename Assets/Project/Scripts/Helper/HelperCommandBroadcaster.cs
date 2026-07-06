@@ -1,17 +1,21 @@
 using System;
 using UnityEngine;
 
-public class HelperCommandBroadcaster : MonoBehaviour
+namespace TAEWOOK.Helper
 {
-    public event Action<Vector2> DetectAnomalyRequested;
-    public event Action OnWaitRequested;
-    public void RequestDetectAnomaly(Vector2 searchPosition)
+    public class HelperCommandBroadcaster : MonoBehaviour
     {
-        DetectAnomalyRequested?.Invoke(searchPosition);
-    }
-    
-    public void RequestWait()
-    {
-        OnWaitRequested?.Invoke();
+        public event Action<Vector2> DetectAnomalyRequested;
+        public event Action OnWaitRequested;
+        public void RequestDetectAnomaly(Vector2 searchPosition)
+        {
+            DetectAnomalyRequested?.Invoke(searchPosition);
+        }
+
+        public void RequestWait()
+        {
+            OnWaitRequested?.Invoke();
+        }
     }
 }
+
