@@ -6,6 +6,7 @@ public enum EHelperState
     Follow,
     Wait,
     Alert,
+    Sleep,
     DetectAnomaly,
     MoveToAnomaly,  
     ReturnToPlayer,  

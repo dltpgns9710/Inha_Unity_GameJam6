@@ -10,6 +10,7 @@ public class HelperControllar : MonoBehaviour
     [SerializeField] private float _runSpeed = 6.0f;
     [SerializeField] private float _runDistance = 4.0f;
     [SerializeField] private float _followDistance = 1.5f;
+    [SerializeField] private float _SleepDelay = 5.0f;
 
     [Header("Detect")]
     [SerializeField] private float _commandSearchDistance = 6.0f;
@@ -31,6 +32,7 @@ public class HelperControllar : MonoBehaviour
     private Transform _targetAnomaly;
     private Vector2 _commandSearchPosition;
     private Vector2 _commandMovePosition;
+    private float _waitElapsedTime;
     #endregion
 
     #region Unity Lifecycle
@@ -87,7 +89,13 @@ public class HelperControllar : MonoBehaviour
     }
 
     public void RequestWait()
-    {      
+    {
+        if (_currentState == EHelperState.Sleep)
+        {
+            ChangeState(EHelperState.Follow);
+            return;
+        }
+
         if(_currentState == EHelperState.Wait)
         {
             if(!_isWaitAnimationEnd)
@@ -127,6 +135,9 @@ public class HelperControllar : MonoBehaviour
             case EHelperState.Wait:
                 UpdateWait();
                 break;
+            case EHelperState.Sleep:
+                UpdateSleep();
+                break;
             case EHelperState.DetectAnomaly:
                 UpdateDetectAnomaly();
                 break;
@@ -158,6 +169,11 @@ public class HelperControllar : MonoBehaviour
                 _animator.SetBool("IsMoving", false);
                 _animator.SetBool("IsRunning", false);
                 _animator.SetBool("IsWaiting", true);
+                _waitElapsedTime = 0f;
+                break;
+            case EHelperState.Sleep:
+                _animator.SetBool("IsWaiting", false);
+                _animator.SetBool("IsSleeping", true);
                 break;
             case EHelperState.DetectAnomaly:
                 break;
@@ -180,6 +196,9 @@ public class HelperControllar : MonoBehaviour
                 break;
             case EHelperState.Wait:
                 _animator.SetBool("IsWaiting", false);
+                break;
+            case EHelperState.Sleep:                
+                _animator.SetBool("IsSleeping", false);
                 break;
             case EHelperState.DetectAnomaly:
                 break;
@@ -265,6 +284,15 @@ public class HelperControllar : MonoBehaviour
     }
 
     private void UpdateWait()
+    {
+        _waitElapsedTime += Time.deltaTime;
+        if(_waitElapsedTime >= _SleepDelay)
+        {
+            ChangeState(EHelperState.Sleep);
+        }
+    }
+
+    private void UpdateSleep()
     {
         
     }
