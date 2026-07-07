@@ -1,25 +1,68 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Animator))]
     public class PlayerFlashlight : MonoBehaviour
     {
+        #region Constants
+
+        private const float MINIMUM_DECREASE_DURATION = 0.1f;
+
+        #endregion
+
         #region Serialized Fields
 
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
 
-        [Tooltip("실제 빛을 뿜는 Light 2D 또는 손전등 게임 오브젝트")]
         [SerializeField] private GameObject _flashlightObject;
+
+        [SerializeField] private Light2D _flashlightLight;
+
+        [Header("Light Test Settings")]
+        [SerializeField] private float _maximumLightIntensity = 1.0f;
+
+        [SerializeField] private float _minimumLightIntensity = 0.0f;
+
+        [SerializeField] private float _lightDecreaseDuration = 10.0f;
 
         #endregion
 
         #region Private Fields
 
         private Animator _animator;
+
+        private float _remainingLightTime;
+
         private bool _isEquipped;
         private bool _isTurnedOn;
+
+        #endregion
+
+        #region Properties
+
+        public bool IsEquipped => _isEquipped;
+        public bool IsTurnedOn => _isTurnedOn;
+        public float CurrentLightIntensity => _flashlightLight.intensity;
+
+        /// <summary>
+        /// 현재 손전등의 남은 빛 비율
+        /// </summary>
+        public float RemainingLightRatio
+        {
+            get
+            {
+                if (_lightDecreaseDuration <= 0.0f)
+                {
+                    return 0.0f;
+                }
+
+                return Mathf.Clamp01(
+                    _remainingLightTime / _lightDecreaseDuration);
+            }
+        }
 
         #endregion
 
@@ -27,8 +70,8 @@ namespace JUNBEOM.Player
 
         private static class AnimHash
         {
-            // 플래시를 들고 있는 자세(모션)를 위한 bool
-            public static readonly int IsFlashEquipped = Animator.StringToHash("IsFlashEquipped");
+            public static readonly int IsFlashEquipped =
+                Animator.StringToHash("IsFlashEquipped");
         }
 
         #endregion
@@ -39,11 +82,35 @@ namespace JUNBEOM.Player
         {
             _animator = GetComponent<Animator>();
 
-            Debug.Assert(_inputManager != null, $"[{name}] PlayerInputManager 누락");
-            Debug.Assert(_flashlightObject != null, $"[{name}] _flashlightObject 누락");
+            if ((_flashlightLight == null) &&
+                (_flashlightObject != null))
+            {
+                _flashlightLight =
+                    _flashlightObject.GetComponentInChildren<Light2D>(true);
+            }
 
-            // 초기 상태: 플래시를 들지 않음 & 꺼짐
-            _flashlightObject.SetActive(false);
+            Debug.Assert(
+                _inputManager != null,
+                $"[{name}] PlayerInputManager 누락");
+
+            Debug.Assert(
+                _flashlightObject != null,
+                $"[{name}] FlashlightObject 누락");
+
+            Debug.Assert(
+                _flashlightLight != null,
+                $"[{name}] Light2D 누락");
+
+            _lightDecreaseDuration = Mathf.Max(
+                MINIMUM_DECREASE_DURATION,
+                _lightDecreaseDuration);
+
+            _remainingLightTime = _lightDecreaseDuration;
+            _flashlightLight.intensity = _maximumLightIntensity;
+            PlayerEventChannel.BroadcastLightRatio(RemainingLightRatio);
+
+            _isEquipped = false;
+            SetFlashlightActive(false);
         }
 
         private void OnEnable()
@@ -58,6 +125,16 @@ namespace JUNBEOM.Player
             _inputManager.OnToggleFlashlightEvent -= HandleToggleFlashlight;
         }
 
+        private void Update()
+        {
+            if (!_isTurnedOn)
+            {
+                return;
+            }
+
+            DecreaseLight();
+        }
+
         #endregion
 
         #region Input Event Handlers
@@ -66,25 +143,56 @@ namespace JUNBEOM.Player
         {
             _isEquipped = !_isEquipped;
 
-            // 애니메이터에 플래시 장착 상태 전달 (꺼내는 모션 재생)
-            _animator.SetBool(AnimHash.IsFlashEquipped, _isEquipped);
+            _animator.SetBool(
+                AnimHash.IsFlashEquipped,
+                _isEquipped);
 
-            // 플래시를 주머니에 넣을 때는 빛도 강제로 끕니다.
-            if (!_isEquipped && _isTurnedOn)
+            if (!_isEquipped)
             {
-                _isTurnedOn = false;
-                _flashlightObject.SetActive(false);
+                SetFlashlightActive(false);
             }
         }
 
         private void HandleToggleFlashlight()
         {
-            // 플래시를 꺼내지 않은 상태면 켤 수 없음
-            bool canToggle = _isEquipped;
-            if (!canToggle) return;
+            if (!_isEquipped)
+            {
+                return;
+            }
 
-            _isTurnedOn = !_isTurnedOn;
-            _flashlightObject.SetActive(_isTurnedOn);
+            SetFlashlightActive(!_isTurnedOn);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void DecreaseLight()
+        {
+            _remainingLightTime -= Time.deltaTime;
+            _remainingLightTime = Mathf.Max(
+                0.0f,
+                _remainingLightTime);
+
+            float lightRatio = RemainingLightRatio;
+
+            _flashlightLight.intensity = Mathf.Lerp(
+                _minimumLightIntensity,
+                _maximumLightIntensity,
+                lightRatio);
+
+            PlayerEventChannel.BroadcastLightRatio(lightRatio);
+
+            if (_remainingLightTime <= 0.0f)
+            {
+                Debug.Log($"[{name}] 손전등 빛이 모두 감소했습니다.");
+            }
+        }
+
+        private void SetFlashlightActive(bool isActive)
+        {
+            _isTurnedOn = isActive;
+            _flashlightObject.SetActive(isActive);
         }
 
         #endregion
