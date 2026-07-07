@@ -23,6 +23,11 @@ namespace TAEWOOK.Helper
         [SerializeField] private float _anomalyArriveDistance = 1.5f;
         [SerializeField] private LayerMask _anomalyLayer;
 
+        [Header("Detect Feedback")]
+        [SerializeField] private GameObject _exclamationIconPrefab;
+        [SerializeField] private Vector3 _exclamationIconOffset = new Vector3(0, 1.5f, 0);
+        [SerializeField] private float _exclamationIconDuration = 1.0f;
+
         [Header("References")]
         [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
         #endregion
@@ -267,7 +272,7 @@ namespace TAEWOOK.Helper
                 ChangeState(EHelperState.ReturnToPlayer);
                 return;
             }
-
+            ShowExclamtionIcon(transform.position);
             ChangeState(EHelperState.MoveToAnomaly);
         }
 
@@ -310,6 +315,21 @@ namespace TAEWOOK.Helper
         private void UpdateSleep()
         {
 
+        }
+
+        private void ShowExclamtionIcon(Vector3 position)
+        {
+            if(_exclamationIconPrefab == null)
+            {
+                return;
+            }
+
+            GameObject icon = Instantiate(
+                _exclamationIconPrefab,
+                position + _exclamationIconOffset,
+                Quaternion.identity);
+
+            Destroy(icon, _exclamationIconDuration);
         }
 
         private void OnDrawGizmos()
