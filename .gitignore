@@ -119,11 +119,6 @@ output_log.txt
 **/[Aa]ssets/[Rr]ider[Pp]ackage
 
 # ========================
-#  Package Manager
-# ========================
-/[Pp]ackages/packages-lock.json
-
-# ========================
 #  UI Toolkit
 # ========================
 /[Uu][Ii][Ee]lements[Ss]chema/
