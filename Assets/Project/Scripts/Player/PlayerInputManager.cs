@@ -20,6 +20,8 @@ namespace JUNBEOM.Player
         public event Action OnEquipFlashlightEvent;
         public event Action OnToggleFlashlightEvent;
         public event Action OnToggleSettingsEvent;
+        public event Action OnInteractEvent;
+        public event Action OnReturnCameraEvent;
 
         #endregion
 
@@ -39,6 +41,10 @@ namespace JUNBEOM.Player
             _inputActions.Player.Jump.started += OnJump;
             _inputActions.Player.EquipFlashlight.started += OnEquipFlashlight;
             _inputActions.Player.ToggleFlashlight.started += OnToggleFlashlight;
+
+            _inputActions.Player.Interact.started += OnInteract;
+
+            _inputActions.Player.ReturnCamera.started += OnReturnCamera;
 
             // UI Action Map 구독
             _inputActions.UI.ToggleSettings.started += OnToggleSettings;
@@ -92,6 +98,11 @@ namespace JUNBEOM.Player
             OnJumpEvent?.Invoke();
         }
 
+        private void OnInteract(InputAction.CallbackContext context)
+        {
+            OnInteractEvent?.Invoke();
+        }
+
         private void OnEquipFlashlight(InputAction.CallbackContext context)
         {
             OnEquipFlashlightEvent?.Invoke();
@@ -100,6 +111,10 @@ namespace JUNBEOM.Player
         private void OnToggleFlashlight(InputAction.CallbackContext context)
         {
             OnToggleFlashlightEvent?.Invoke();
+        }
+        private void OnReturnCamera(InputAction.CallbackContext context)
+        {
+            OnReturnCameraEvent?.Invoke();
         }
 
         private void OnToggleSettings(InputAction.CallbackContext context)
