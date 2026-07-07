@@ -17,6 +17,11 @@ public class TestPlayerController : MonoBehaviour
 
     [Header("Helper Command")]
     [SerializeField] private HelperCommandBroadcaster _helperCommandBroadcaster;
+
+    [Header("Detect Targeting")]
+    [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private float _cameraFollowMouseDistance = 3.0f;
+    [SerializeField] private float _detectTargetingCameraSize = 4.0f;
     #endregion
 
     #region Private Fields
@@ -24,6 +29,10 @@ public class TestPlayerController : MonoBehaviour
 
     private float _moveInput;
     private bool _isGrounded;
+    private bool _isDetectTargeting;
+    private Camera _camera;
+    private Vector3 _defaultCameraLocalPosition;
+    private float _defaultCameraSize;
     
     #endregion
 
@@ -40,6 +49,23 @@ public class TestPlayerController : MonoBehaviour
 
         Debug.Assert(_helperCommandBroadcaster != null,
             $"[{name}] HelperCommandBroadcaster가 연결되지 않았습니다.");
+
+        _camera = Camera.main;
+
+        if (_cameraTransform == null && _camera != null)
+        {
+            _cameraTransform = _camera.transform;
+        }
+
+        if (_cameraTransform != null)
+        {
+            _defaultCameraLocalPosition = _cameraTransform.localPosition;
+        }
+
+        if (_camera != null)
+        {
+            _defaultCameraSize = _camera.orthographicSize;
+        }
     }
 
     private void Update()
@@ -75,16 +101,97 @@ public class TestPlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Vector3 mouseScreenPosition = Input.mousePosition;
-            mouseScreenPosition.z = -Camera.main.transform.position.z;
+            StartDetectTargeting();
+        }
 
-            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-            _helperCommandBroadcaster.RequestDetectAnomaly(mouseWorldPosition);
+        if (_isDetectTargeting)
+        {
+            UpdateDetectTargeting();
+            HandleDetectTargetingInput();
+            return;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _helperCommandBroadcaster.RequestWait();
+        }
+    }
+
+    private void StartDetectTargeting()
+    {
+        if (_cameraTransform == null)
+        {
+            return;
+        }
+
+        _isDetectTargeting = true;
+
+        if (_camera != null)
+        {
+            _camera.orthographicSize = _detectTargetingCameraSize;
+        }
+    }
+
+    private void UpdateDetectTargeting()
+    {
+        if (_cameraTransform == null || _camera == null)
+        {
+            return;
+        }
+
+        Vector3 mouseViewportPosition = _camera.ScreenToViewportPoint(Input.mousePosition);
+
+        Vector2 normalizedMouseOffset = new Vector2(
+            mouseViewportPosition.x - 0.5f,
+            mouseViewportPosition.y - 0.5f) * 2.0f;
+
+        _cameraTransform.localPosition = _defaultCameraLocalPosition + new Vector3(
+            normalizedMouseOffset.x * _cameraFollowMouseDistance,
+            normalizedMouseOffset.y * _cameraFollowMouseDistance,
+            0.0f);
+    }
+
+    private void HandleDetectTargetingInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RequestDetectAtMousePosition();
+            EndDetectTargeting();
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDetectTargeting();
+        }
+    }
+
+    private void RequestDetectAtMousePosition()
+    {
+        if (_camera == null)
+        {
+            return;
+        }
+
+        Vector3 mouseScreenPosition = Input.mousePosition;
+        mouseScreenPosition.z = -_camera.transform.position.z;
+
+        Vector2 mouseWorldPosition = _camera.ScreenToWorldPoint(mouseScreenPosition);
+        _helperCommandBroadcaster.RequestDetectAnomaly(mouseWorldPosition);
+    }
+
+    private void EndDetectTargeting()
+    {
+        _isDetectTargeting = false;
+
+        if (_cameraTransform != null)
+        {
+            _cameraTransform.localPosition = _defaultCameraLocalPosition;
+        }
+
+        if (_camera != null)
+        {
+            _camera.orthographicSize = _defaultCameraSize;
         }
     }
 
