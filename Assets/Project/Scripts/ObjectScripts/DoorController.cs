@@ -70,24 +70,23 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         if (_otherDoors.Count > 0 && Unlock(interactor))
         {
-            var anomalyMgr = FindAnyObjectByType<AnomalyManager>();
-            var dataMgr = FindAnyObjectByType<DataManager> ();
-            if (_isForward && anomalyMgr != null && anomalyMgr.IsAnomalyApply)
+            bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
+            if (_isForward && hasAnomaly)
             {
-                dataMgr.SelectIncorrectDoor();
+                DataManager.Instance.SelectIncorrectDoor();
             }
             else
             {
-                dataMgr.SelectCorrectDoor();
+                DataManager.Instance.SelectCorrectDoor();
             }
 
-            if (_isBackward && anomalyMgr != null && anomalyMgr.IsAnomalyApply)
+            if (_isBackward && hasAnomaly)
             {
-                dataMgr.SelectCorrectDoor();
+                DataManager.Instance.SelectCorrectDoor();
             }
             else
             {
-                dataMgr.SelectIncorrectDoor();
+                DataManager.Instance.SelectIncorrectDoor();
             }
 
             int index = 0;

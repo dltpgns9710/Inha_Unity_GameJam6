@@ -21,5 +21,10 @@ namespace SEHOON.GameSystem
         {
             _floor = 0;
         }
+
+        public bool IsAnomalyApply()
+        {
+            return false;
+        }
     }
 }
