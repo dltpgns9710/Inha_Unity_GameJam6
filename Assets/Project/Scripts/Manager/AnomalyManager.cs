@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace SEHOON.System
+namespace SEHOON.GameSystem
 {
     public class AnomalyManager : MonoBehaviour
     {
@@ -14,6 +14,7 @@ namespace SEHOON.System
 
         private void Start()
         {
+            _isAnomalyApply = false;
             SelectAnomaly();
             if (_selectedAnomaly != null)
             {
@@ -35,6 +36,7 @@ namespace SEHOON.System
             {
                 int randomIndex = Random.Range(0, _anomalies.Count);
                 _selectedAnomaly = _anomalies[randomIndex];
+                _isAnomalyApply = true;
             }
         }
     }

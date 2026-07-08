@@ -1,7 +1,7 @@
 using UnityEngine;
 using USingleton;
 
-namespace SEHOON.System
+namespace SEHOON.GameSystem
 {
     public class DataManager : Singleton<DataManager>
     {
@@ -17,7 +17,7 @@ namespace SEHOON.System
             ++_floor;
         }
         
-        public void SelectIncurrentDoor()
+        public void SelectIncorrectDoor()
         {
             _floor = 0;
         }

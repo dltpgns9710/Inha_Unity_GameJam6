@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SEHOON.System
+namespace SEHOON.GameSystem
 {
     public abstract class AnomalyBase : MonoBehaviour
     {
