@@ -25,7 +25,7 @@ namespace JUNBEOM.Player
         public event Action OnSelectCompanionCommandZEvent;
         public event Action OnSelectCompanionCommandXEvent;
         public event Action OnConfirmCompanionCommandEvent;
-        public event Action OnCoancelCompanionCommandEvent;
+        public event Action OnCancelCompanionCommandEvent;
 
         #endregion
 
@@ -135,11 +135,11 @@ namespace JUNBEOM.Player
         }
         private void OnConfirmCompanionCommand(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandXEvent?.Invoke();
+            OnConfirmCompanionCommandEvent?.Invoke();
         }
         private void OnConcelCompanionCommand(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandXEvent?.Invoke();
+            OnCancelCompanionCommandEvent?.Invoke();
         }
 
         private void OnToggleSettings(InputAction.CallbackContext context)
