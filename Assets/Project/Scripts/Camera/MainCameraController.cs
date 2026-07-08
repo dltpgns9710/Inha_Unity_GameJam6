@@ -118,18 +118,14 @@ namespace JUNBEOM.Camera
         #region Public Methods
 
         /// <summary>
-        /// 플레이어 추적 모드와 자유 카메라 모드를 전환합니다.
+        /// 플레이어 추적 모드와 자유 카메라 모드를 전환
         /// </summary>
         public void ToggleCameraMode()
         {
             _isFollowingPlayer = !_isFollowingPlayer;
 
-            // 이전 모드에서 사용하던 이동 속도가
-            // 다음 모드에 영향을 주지 않도록 초기화합니다.
             _moveVelocity = Vector3.zero;
 
-            // 플레이어 추적 모드로 전환되는 순간
-            // 카메라를 즉시 플레이어 위치로 이동시킵니다.
             if (_isFollowingPlayer && _player != null)
             {
                 FollowPlayerImmediately();
@@ -150,7 +146,7 @@ namespace JUNBEOM.Camera
         #region Private Methods
 
         /// <summary>
-        /// Smooth Time을 사용하지 않고 카메라를 플레이어에게 즉시 고정합니다.
+        /// Smooth Time을 사용하지 않고 카메라를 플레이어에게 즉시 고정
         /// </summary>
         private void FollowPlayerImmediately()
         {
@@ -159,12 +155,12 @@ namespace JUNBEOM.Camera
 
             transform.position = targetPosition;
 
-            // 자유 카메라 이동 중 남아 있던 속도를 제거합니다.
+
             _moveVelocity = Vector3.zero;
         }
 
         /// <summary>
-        /// 자유 카메라 상태에서만 Smooth Time을 사용합니다.
+        /// 자유 카메라 상태에서만 Smooth Time을 사용
         /// </summary>
         private void MoveFreeCameraSmoothly()
         {
@@ -179,7 +175,7 @@ namespace JUNBEOM.Camera
         }
 
         /// <summary>
-        /// 플레이어의 현재 위치를 카메라 목표 위치로 반환합니다.
+        /// 플레이어의 현재 위치를 카메라 목표 위치로 반환.
         /// </summary>
         private Vector3 GetPlayerTargetPosition()
         {
@@ -190,7 +186,7 @@ namespace JUNBEOM.Camera
         }
 
         /// <summary>
-        /// 마우스의 화면 위치를 Camera Boundary 범위에 대응시킵니다.
+        /// 마우스의 화면 위치를 Camera Boundary 범위에 대응
         /// </summary>
         private Vector3 GetFreeCameraTargetPosition()
         {
@@ -230,7 +226,7 @@ namespace JUNBEOM.Camera
         }
 
         /// <summary>
-        /// 카메라 중심 위치가 Camera Boundary를 벗어나지 않게 제한합니다.
+        /// 카메라 중심 위치가 Camera Boundary를 벗어나지 않게 제한
         /// </summary>
         private Vector3 ClampToBoundary(
             Vector3 targetPosition)

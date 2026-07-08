@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 2100961302472923795}
   - component: {fileID: 7465885626439827489}
   - component: {fileID: 304176886167493714}
+  - component: {fileID: 3724830758570131284}
+  - component: {fileID: 5696824040067253841}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -108,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 6696961991513125471}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 140e3a336aee7f34aa17af7245a72564, type: 2}
+  m_Controller: {fileID: 9100000, guid: 380b4bac04036be4290c47b429b40697, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -207,6 +209,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerFlashlight
   _inputManager: {fileID: 7465885626439827489}
   _flashlightObject: {fileID: 9144347914524029728}
+  _flashlightLight: {fileID: 8878459012611453915}
+  _maximumLightIntensity: 3
+  _minimumLightIntensity: 0
+  _lightDecreaseDuration: 50
 --- !u!114 &7465885626439827489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +241,35 @@ MonoBehaviour:
   _runSpeed: 5
   _jumpForce: 5
   _inputManager: {fileID: 7465885626439827489}
+--- !u!114 &3724830758570131284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696961991513125471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd9ebff8c041684fbcec7638c212b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerInteraction
+  _interactionPoint: {fileID: 0}
+  _interactionRadius: 1.2
+  _interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5696824040067253841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696961991513125471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e91b1d98c857014cbb4a531ea2fa6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerInventory
 --- !u!1 &9144347914524029728
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,8 +295,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9144347914524029728}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.132, y: 0.037, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.12, y: 0.037, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,9 +320,9 @@ MonoBehaviour:
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensity: 0.01
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000756b45a2bb5d79e79dd2668f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -297,18 +332,18 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensity: 1
   m_ShadowSoftness: 0.3
   m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 1
+  m_ShadowVolumeIntensity: 1
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 45
   m_PointLightOuterAngle: 60
   m_PointLightInnerRadius: 5
-  m_PointLightOuterRadius: 5.977733
+  m_PointLightOuterRadius: 11.801816
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

@@ -41,6 +41,7 @@ namespace JUNBEOM.Player
         private bool _isJumping;
         private bool _isRunning;
         private bool _isGrounded;
+        private bool _isDead = false;
 
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
 
@@ -54,6 +55,7 @@ namespace JUNBEOM.Player
             public static readonly int Velocity = Animator.StringToHash("Velocity");
             public static readonly int IsRunning = Animator.StringToHash("IsRunning");
             public static readonly int IsJumping = Animator.StringToHash("IsJumping");
+            public static readonly int IsDead = Animator.StringToHash("IsDead");
         }
 
         #endregion
@@ -68,8 +70,6 @@ namespace JUNBEOM.Player
 
             _initialScale = _cachedTransform.localScale;
             _currentMoveSpeed = _walkSpeed;
-
-            Debug.Assert(_inputManager != null, $"[{name}] PlayerInputManager 누락");
         }
 
         private void OnEnable()
@@ -93,6 +93,7 @@ namespace JUNBEOM.Player
 
         private void FixedUpdate()
         {
+            if(_isDead) return;
             Move();
         }
 
@@ -140,9 +141,8 @@ namespace JUNBEOM.Player
         private void UpdateFacingDirection()
         {
             if (Mathf.Approximately(_moveInputX, 0.0f)) return;
-
-            Vector3 scale = _initialScale;
-            scale.x = _moveInputX < 0.0f ? -Mathf.Abs(_initialScale.x) : Mathf.Abs(_initialScale.x);
+            Vector2 scale = _initialScale;
+            scale.x = _moveInputX < 0.0f ? -_initialScale.x : _initialScale.x;
             _cachedTransform.localScale = scale;
         }
 
@@ -154,6 +154,7 @@ namespace JUNBEOM.Player
             _animator.SetFloat(AnimHash.Velocity, movementAmount);
             _animator.SetBool(AnimHash.IsRunning, _isRunning);
             _animator.SetBool(AnimHash.IsJumping, _isJumping);
+            _animator.SetBool(AnimHash.IsDead, _isDead);
         }
 
         private bool IsGroundCollision(Collision2D collision)
@@ -167,6 +168,7 @@ namespace JUNBEOM.Player
             }
             return false;
         }
+
 
         #endregion
 
@@ -207,6 +209,15 @@ namespace JUNBEOM.Player
             _isGrounded = _groundColliders.Count > 0;
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            // 충돌한 Collider가 적(크리쳐)이면 사망처리
+            if (collision.CompareTag("ENEMY"))
+            {
+                //_inputManager.DisablePlayerInput();
+                _isDead = true;
+            }
+        }
         #endregion
     }
 }

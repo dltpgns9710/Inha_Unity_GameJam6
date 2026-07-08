@@ -89,18 +89,6 @@ namespace JUNBEOM.Player
                     _flashlightObject.GetComponentInChildren<Light2D>(true);
             }
 
-            Debug.Assert(
-                _inputManager != null,
-                $"[{name}] PlayerInputManager 누락");
-
-            Debug.Assert(
-                _flashlightObject != null,
-                $"[{name}] FlashlightObject 누락");
-
-            Debug.Assert(
-                _flashlightLight != null,
-                $"[{name}] Light2D 누락");
-
             _lightDecreaseDuration = Mathf.Max(
                 MINIMUM_DECREASE_DURATION,
                 _lightDecreaseDuration);
