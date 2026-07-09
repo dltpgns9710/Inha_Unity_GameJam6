@@ -9,7 +9,6 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private bool _isForward = false;
     [SerializeField] private bool _isBackward = false;
 
-    [SerializeField] private bool _startOpened = false;
     [SerializeField] private bool _randomizeDoor = false;
     [SerializeField] private bool _isLocked = false;
     [SerializeField] private List<GameObject> _otherDoors;
@@ -21,16 +20,14 @@ public class DoorController : MonoBehaviour, IInteractable
     private bool _open = false;
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
+    private bool _hasKey = false;
+
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _originalPosition = transform.position;
 
-        if (_startOpened)
-        {
-            _open = true;
-        }
         if (_isLocked == true)
         {
             _hasBeenUnlocked = false;
@@ -43,6 +40,32 @@ public class DoorController : MonoBehaviour, IInteractable
     void Update()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        // PlayerEventChannel.OnInteractionRequested += OnInteraction;
+    }
+    private void OnDisable()
+    {
+        // PlayerEventChannel.OnInteractionRequested -= OnInteraction;
+    }
+
+    private void OnInteraction(GameObject target, GameObject player)
+    {
+        if (target != gameObject)
+            return;
+        // PlayerEventChannel.RequestKeyState(CheckKey);
+        Interact(player);
+    }
+
+    private void CheckKey(bool hasKey)
+    {
+        _hasKey = hasKey;
+        if (_hasKey)
+        {
+            Debug.Log("열쇠 소유");
+        }
     }
 
     private bool Unlock(GameObject interactor)
@@ -71,33 +94,34 @@ public class DoorController : MonoBehaviour, IInteractable
         if (_otherDoors.Count > 0 && Unlock(interactor))
         {
             bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
-            if (_isForward && hasAnomaly)
+            if (_isForward || _isBackward)
             {
-                DataManager.Instance.SelectIncorrectDoor();
-            }
-            else
-            {
-                DataManager.Instance.SelectCorrectDoor();
-            }
-
-            if (_isBackward && hasAnomaly)
-            {
-                DataManager.Instance.SelectCorrectDoor();
-            }
-            else
-            {
-                DataManager.Instance.SelectIncorrectDoor();
+                if (this._isForward && hasAnomaly)
+                {
+                    DataManager.Instance.SelectIncorrectDoor();
+                }
+                else if (this._isBackward && !hasAnomaly)
+                {
+                    DataManager.Instance.SelectIncorrectDoor();
+                }
+                else
+                {
+                    DataManager.Instance.SelectCorrectDoor();
+                }
             }
 
             int index = 0;
-
-            _animator.SetBool("isOpen", true);
-            yield return new WaitForSeconds(2);
             if (_randomizeDoor && _otherDoors.Count >= 1)
             {
                 index = UnityEngine.Random.Range(0, _otherDoors.Count);
             }
+
+            _animator.SetBool("isOpen", true);
+            _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", true);
+            yield return new WaitForSeconds(2);
             interactor.transform.position = _otherDoors[index].transform.position;
+
+            _animator.SetBool("isOpen", false);
             _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
         }
         else
@@ -105,6 +129,7 @@ public class DoorController : MonoBehaviour, IInteractable
             // TODO: Implement door open failure sound
             yield return StartCoroutine(ShakeDoor());
         }
+        // PlayerEventChannel.OnInteractionRequested -= OnInteraction;
     }
 
     private IEnumerator ShakeDoor()
