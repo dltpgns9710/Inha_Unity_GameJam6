@@ -11,6 +11,7 @@ namespace JUNBEOM.Player
         [SerializeField] private Transform _interactionPoint;
         [SerializeField] private float _interactionRadius = 1.2f;
         [SerializeField] private LayerMask _interactableLayerMask;
+        [SerializeField] private GameObject _interactionIndicator;
 
         #endregion
 
@@ -18,6 +19,14 @@ namespace JUNBEOM.Player
 
         private PlayerInputManager _inputManager;
         private PlayerEventManager _eventManager;
+        private GameObject _currentTarget;
+
+        #endregion
+
+        #region Properties
+
+        public GameObject CurrentTarget => _currentTarget;
+        public bool HasInteractableTarget => _currentTarget != null;
 
         #endregion
 
@@ -27,6 +36,7 @@ namespace JUNBEOM.Player
         {
             _inputManager = GetComponent<PlayerInputManager>();
             _eventManager = PlayerEventManager.Instance;
+            SetIndicatorActive(false);
         }
 
         private void OnEnable()
@@ -37,13 +47,18 @@ namespace JUNBEOM.Player
         private void OnDisable()
         {
             _inputManager.OnInteractEvent -= HandleInteractInput;
+            _currentTarget = null;
+            SetIndicatorActive(false);
         }
+        private void Update()
+        {
+            UpdateInteractionTarget();
+        }
+
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(
-                GetInteractionCenter(),
-                _interactionRadius);
+            Gizmos.DrawWireSphere(GetInteractionCenter(),_interactionRadius);
         }
 
         #endregion
@@ -67,6 +82,19 @@ namespace JUNBEOM.Player
         #endregion
 
         #region Private Methods
+        private void UpdateInteractionTarget()
+        {
+            GameObject newTarget = FindNearestTarget();
+
+            if (_currentTarget == newTarget)
+            {
+                return;
+            }
+
+            _currentTarget = newTarget;
+
+            SetIndicatorActive(_currentTarget != null);
+        }
 
         private GameObject FindNearestTarget()
         {
@@ -109,7 +137,22 @@ namespace JUNBEOM.Player
             return nearestTarget;
         }
 
-        private Vector3 GetInteractionCenter()
+        private void SetIndicatorActive(bool isActive)
+        {
+            if (_interactionIndicator == null)
+            {
+                return;
+            }
+
+            if (_interactionIndicator.activeSelf == isActive)
+            {
+                return;
+            }
+
+            _interactionIndicator.SetActive(isActive);
+        }
+
+        private Vector2 GetInteractionCenter()
         {
             if (_interactionPoint != null)
             {
