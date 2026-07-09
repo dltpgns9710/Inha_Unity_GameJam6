@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TAEWOOK.Helper
+namespace TAEWOOK.Helper.Core
 {
     public class HelperCommandBroadcaster : MonoBehaviour
     {

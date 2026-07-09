@@ -1,4 +1,4 @@
-namespace TAEWOOK.Helper
+namespace TAEWOOK.Helper.Core
 {
     public enum EHelperState
     {

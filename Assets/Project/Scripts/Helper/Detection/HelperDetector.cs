@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TAEWOOK.Helper
+namespace TAEWOOK.Helper.Detection
 {
     public class HelperDetector : MonoBehaviour
     {

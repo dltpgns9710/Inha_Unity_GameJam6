@@ -16,7 +16,7 @@ public class TestPlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     [Header("Helper Command")]
-    [SerializeField] private HelperCommandBroadcaster _helperCommandBroadcaster;
+    [SerializeField] private TAEWOOK.Helper.Core.HelperCommandBroadcaster _helperCommandBroadcaster;
 
     [Header("Detect Targeting")]
     [SerializeField] private Transform _cameraTransform;

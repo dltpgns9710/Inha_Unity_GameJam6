@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace TAEWOOK.Helper
+namespace TAEWOOK.Helper.Core
 {
     [RequireComponent(typeof(HelperMovement))]
-    [RequireComponent(typeof(HelperDetector))]
+    [RequireComponent(typeof(Detection.HelperDetector))]
     [RequireComponent(typeof(HelperAnimation))]
     public class HelperControllar : MonoBehaviour
     {
@@ -26,7 +26,7 @@ namespace TAEWOOK.Helper
         [Header("Detect Feedback")]
         [SerializeField] private GameObject _exclamationIconPrefab;
         [SerializeField] private Vector3 _exclamationIconOffset = new Vector3(0, 1.5f, 0);
-        [SerializeField] private float _exclamationIconDuration = 1.0f;
+        [SerializeField] private float _exclamationIconDuration = 0.75f;
 
         [Header("References")]
         [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
@@ -37,7 +37,7 @@ namespace TAEWOOK.Helper
         private EHelperState _currentState;
         private bool _isWaitAnimationEnd;
         private HelperMovement _movement;
-        private HelperDetector _detector;
+        private Detection.HelperDetector _detector;
         private HelperAnimation _helperAnimation;
         private Transform _targetAnomaly;
         private Vector2 _commandSearchPosition;
@@ -50,7 +50,7 @@ namespace TAEWOOK.Helper
         {
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             _movement = GetComponent<HelperMovement>();
-            _detector = GetComponent<HelperDetector>();
+            _detector = GetComponent<Detection.HelperDetector>();
             _helperAnimation = GetComponent<HelperAnimation>();
 
             if (_movement == null)
@@ -60,7 +60,7 @@ namespace TAEWOOK.Helper
 
             if (_detector == null)
             {
-                _detector = gameObject.AddComponent<HelperDetector>();
+                _detector = gameObject.AddComponent<Detection.HelperDetector>();
             }
 
             if (_helperAnimation == null)
@@ -272,7 +272,7 @@ namespace TAEWOOK.Helper
                 ChangeState(EHelperState.ReturnToPlayer);
                 return;
             }
-            ShowExclamtionIcon(transform.position);
+            ShowExclamtionIcon();
             ChangeState(EHelperState.MoveToAnomaly);
         }
 
@@ -317,17 +317,16 @@ namespace TAEWOOK.Helper
 
         }
 
-        private void ShowExclamtionIcon(Vector3 position)
+        private void ShowExclamtionIcon()
         {
-            if(_exclamationIconPrefab == null)
+            if (_exclamationIconPrefab == null)
             {
                 return;
             }
 
-            GameObject icon = Instantiate(
-                _exclamationIconPrefab,
-                position + _exclamationIconOffset,
-                Quaternion.identity);
+            GameObject icon = Instantiate(_exclamationIconPrefab, transform);
+            icon.transform.localPosition = _exclamationIconOffset;
+            icon.transform.localRotation = Quaternion.identity;
 
             Destroy(icon, _exclamationIconDuration);
         }

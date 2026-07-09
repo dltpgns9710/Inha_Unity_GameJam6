@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TAEWOOK.Helper
+namespace TAEWOOK.Helper.Core
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Animator))]
