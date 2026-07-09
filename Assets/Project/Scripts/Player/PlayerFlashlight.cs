@@ -38,7 +38,7 @@ namespace JUNBEOM.Player
 
         private bool _isEquipped;
         private bool _isTurnedOn;
-
+        private PlayerEventManager _eventManager;
         #endregion
 
         #region Properties
@@ -95,7 +95,9 @@ namespace JUNBEOM.Player
 
             _remainingLightTime = _lightDecreaseDuration;
             _flashlightLight.intensity = _maximumLightIntensity;
-            PlayerEventChannel.BroadcastLightRatio(RemainingLightRatio);
+
+            _eventManager = PlayerEventManager.Instance;
+            _eventManager.BroadcastLightRatio(RemainingLightRatio);
 
             _isEquipped = false;
             SetFlashlightActive(false);
@@ -169,7 +171,7 @@ namespace JUNBEOM.Player
                 _maximumLightIntensity,
                 lightRatio);
 
-            PlayerEventChannel.BroadcastLightRatio(lightRatio);
+            _eventManager.BroadcastLightRatio(lightRatio);
 
             if (_remainingLightTime <= 0.0f)
             {

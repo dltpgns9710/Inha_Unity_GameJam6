@@ -17,6 +17,7 @@ namespace JUNBEOM.Player
         #region Private Fields
 
         private PlayerInputManager _inputManager;
+        private PlayerEventManager _eventManager;
 
         #endregion
 
@@ -25,6 +26,7 @@ namespace JUNBEOM.Player
         private void Awake()
         {
             _inputManager = GetComponent<PlayerInputManager>();
+            _eventManager = PlayerEventManager.Instance;
         }
 
         private void OnEnable()
@@ -57,7 +59,7 @@ namespace JUNBEOM.Player
                 return;
             }
 
-            PlayerEventChannel.BroadcastInteraction(
+            _eventManager.BroadcastInteraction(
                 target,
                 gameObject);
         }
