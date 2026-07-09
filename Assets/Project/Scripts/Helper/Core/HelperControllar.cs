@@ -1,66 +1,59 @@
 using UnityEngine;
+using TAEWOOK.Helper.Ability;
+using TAEWOOK.Helper.Data;
 
 namespace TAEWOOK.Helper.Core
 {
     [RequireComponent(typeof(HelperMovement))]
-    [RequireComponent(typeof(Detection.HelperDetector))]
     [RequireComponent(typeof(HelperAnimation))]
     public class HelperControllar : MonoBehaviour
     {
-
         #region Serialized Fields
-        [Header("Helper Settings")]
+        [Header("Helper State Settings")]      
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _walkSpeed = 3.0f;
         [SerializeField] private float _runSpeed = 6.0f;
         [SerializeField] private float _runDistance = 4.0f;
         [SerializeField] private float _followDistance = 1.5f;
-        [SerializeField] private float _SleepDelay = 5.0f;
-
-        [Header("Detect")]
-        [SerializeField] private float _commandSearchDistance = 6.0f;
-        [SerializeField] private float _commandSearchArriveDistance = 0.5f;
-        [SerializeField] private float _anomalyArriveDistance = 1.5f;
-        [SerializeField] private LayerMask _anomalyLayer;
-
-        [Header("Detect Feedback")]
-        [SerializeField] private GameObject _exclamationIconPrefab;
-        [SerializeField] private Vector3 _exclamationIconOffset = new Vector3(0, 1.5f, 0);
-        [SerializeField] private float _exclamationIconDuration = 0.75f;
+        [SerializeField] private float _sleepDelay = 5.0f;
 
         [Header("References")]
         [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
+        [SerializeField] private HelperConfig _config;
         #endregion
-
 
         #region Private Fields
         private EHelperState _currentState;
         private bool _isWaitAnimationEnd;
         private HelperMovement _movement;
-        private Detection.HelperDetector _detector;
         private HelperAnimation _helperAnimation;
-        private Transform _targetAnomaly;
-        private Vector2 _commandSearchPosition;
-        private Vector2 _commandMovePosition;
+        private HelperAbility _ability;
         private float _waitElapsedTime;
+        #endregion
+
+        #region Properties
+        public HelperConfig Config => _config;
+        public Vector2 PlayerPosition => _playerTransform != null ? _playerTransform.position : transform.position;
+        public float FollowDistance => _followDistance;
         #endregion
 
         #region Unity Lifecycle
         private void Awake()
         {
-            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (_playerTransform == null && player != null)
+            {
+                _playerTransform = player.transform;
+            }
+
             _movement = GetComponent<HelperMovement>();
-            _detector = GetComponent<Detection.HelperDetector>();
             _helperAnimation = GetComponent<HelperAnimation>();
+            _ability = GetComponent<HelperAbility>();
 
             if (_movement == null)
             {
                 _movement = gameObject.AddComponent<HelperMovement>();
-            }
-
-            if (_detector == null)
-            {
-                _detector = gameObject.AddComponent<Detection.HelperDetector>();
             }
 
             if (_helperAnimation == null)
@@ -68,58 +61,74 @@ namespace TAEWOOK.Helper.Core
                 _helperAnimation = gameObject.AddComponent<HelperAnimation>();
             }
 
+            ApplyConfig();
             _movement.Initialize(_walkSpeed, _runSpeed, _runDistance);
-            _detector.Initialize(_commandSearchDistance, _anomalyLayer);
+            _ability?.Initialize(this);
+
             ChangeState(EHelperState.Follow);
 
-            Debug.Assert(_playerTransform != null, "Player Transform이 연결되지 않았습니다.");
-            Debug.Assert(_movement != null, "HelperMovement가 연결되지 않았습니다.");
-            Debug.Assert(_detector != null, "HelperDetector가 연결되지 않았습니다.");
-            Debug.Assert(_helperAnimation != null, "HelperAnimation이 연결되지 않았습니다.");
+            Debug.Assert(_playerTransform != null, "Player Transform is not connected.");
+            Debug.Assert(_movement != null, "HelperMovement is not connected.");
+            Debug.Assert(_helperAnimation != null, "HelperAnimation is not connected.");
         }
 
         private void OnEnable()
         {
-            _commandBroadcaster.DetectAnomalyRequested += RequestDetectAnomaly;
+            if (_commandBroadcaster == null)
+            {
+                return;
+            }
+
+            _commandBroadcaster.DetectAnomalyRequested += RequestUseAbility;
             _commandBroadcaster.OnWaitRequested += RequestWait;
         }
 
         private void Update()
         {
+            if (_ability != null && _ability.IsActive)
+            {
+                _ability.TickAbility();
+                return;
+            }
+
             UpdateState();
         }
 
         private void OnDisable()
         {
-            _commandBroadcaster.DetectAnomalyRequested -= RequestDetectAnomaly;
+            if (_commandBroadcaster == null)
+            {
+                return;
+            }
+
+            _commandBroadcaster.DetectAnomalyRequested -= RequestUseAbility;
             _commandBroadcaster.OnWaitRequested -= RequestWait;
         }
         #endregion
 
         #region Public Methods
-        public void RequestDetectAnomaly(Vector2 searchPosition)
+        public void RequestUseAbility(Vector2 targetPosition)
         {
-            if (_currentState == EHelperState.DetectAnomaly ||
-                _currentState == EHelperState.MoveToAnomaly ||
-                _currentState == EHelperState.Alert ||
-                _currentState == EHelperState.ReturnToPlayer)
+            if (_ability == null || !_ability.CanUseAbility())
             {
                 return;
             }
 
-            _commandSearchPosition = searchPosition;
-            _commandMovePosition = new Vector2(searchPosition.x, transform.position.y);
-            ChangeState(EHelperState.DetectAnomaly);
+            _ability.UseAbility(targetPosition);
         }
 
-        public void OnBarkAnimationEnd()
+        public void RequestDetectAnomaly(Vector2 searchPosition)
         {
-            _targetAnomaly = null;
-            ChangeState(EHelperState.ReturnToPlayer);
+            RequestUseAbility(searchPosition);
         }
 
         public void RequestWait()
         {
+            if (_ability != null && _ability.IsActive)
+            {
+                return;
+            }
+
             if (_currentState == EHelperState.Sleep)
             {
                 ChangeState(EHelperState.Follow);
@@ -132,23 +141,49 @@ namespace TAEWOOK.Helper.Core
                 {
                     return;
                 }
+
                 ChangeState(EHelperState.Follow);
                 return;
             }
+
             if (_currentState == EHelperState.Follow)
             {
                 _isWaitAnimationEnd = false;
                 ChangeState(EHelperState.Wait);
             }
-
         }
+
         public void OnWaitAnimationEnd()
         {
             _isWaitAnimationEnd = true;
         }
+
+        public void OnBarkAnimationEnd()
+        {
+            _ability?.OnBarkAnimationEnd();
+        }
+
+        public void ReturnToFollowState()
+        {
+            ChangeState(EHelperState.Follow);
+        }
         #endregion
 
         #region Private Methods
+        private void ApplyConfig()
+        {
+            if (_config == null)
+            {
+                return;
+            }
+
+            _walkSpeed = _config.WalkSpeed;
+            _runSpeed = _config.RunSpeed;
+            _runDistance = _config.RunDistance;
+            _followDistance = _config.FollowDistance;
+            _sleepDelay = _config.SleepDelay;
+        }
+
         private void UpdateState()
         {
             switch (_currentState)
@@ -159,82 +194,15 @@ namespace TAEWOOK.Helper.Core
                 case EHelperState.Follow:
                     UpdateFollow();
                     break;
-                case EHelperState.Alert:
-                    UpdateAlert();
-                    break;
                 case EHelperState.Wait:
                     UpdateWait();
                     break;
                 case EHelperState.Sleep:
                     UpdateSleep();
                     break;
-                case EHelperState.DetectAnomaly:
-                    UpdateDetectAnomaly();
-                    break;
-                case EHelperState.MoveToAnomaly:
-                    UpdateMoveToAnomaly();
-                    break;
-                case EHelperState.ReturnToPlayer:
-                    UpdateReturnToPlayer();
-                    break;
             }
         }
 
-        #region State Transition Logic    
-        private void OnEnterState(EHelperState state)
-        {
-            switch (state)
-            {
-                case EHelperState.Idle:
-                    break;
-                case EHelperState.Follow:
-                    break;
-                case EHelperState.Alert:
-                    _movement.Stop();
-                    _helperAnimation.PlayBark();
-                    break;
-                case EHelperState.Wait:
-                    _movement.Stop();
-                    _helperAnimation.SetWaiting(true);
-                    _waitElapsedTime = 0f;
-                    break;
-                case EHelperState.Sleep:
-                    _helperAnimation.SetWaiting(false);
-                    _helperAnimation.SetSleeping(true);
-                    break;
-                case EHelperState.DetectAnomaly:
-                    break;
-                case EHelperState.MoveToAnomaly:
-                    break;
-                case EHelperState.ReturnToPlayer:
-                    break;
-            }
-        }
-
-        private void OnExitState(EHelperState state)
-        {
-            switch (state)
-            {
-                case EHelperState.Idle:
-                    break;
-                case EHelperState.Follow:
-                    break;
-                case EHelperState.Alert:
-                    break;
-                case EHelperState.Wait:
-                    _helperAnimation.SetWaiting(false);
-                    break;
-                case EHelperState.Sleep:
-                    _helperAnimation.SetSleeping(false);
-                    break;
-                case EHelperState.DetectAnomaly:
-                    break;
-                case EHelperState.MoveToAnomaly:
-                    break;
-                case EHelperState.ReturnToPlayer:
-                    break;
-            }
-        }
         private void ChangeState(EHelperState nextState)
         {
             if (_currentState == nextState)
@@ -246,7 +214,35 @@ namespace TAEWOOK.Helper.Core
             _currentState = nextState;
             OnEnterState(_currentState);
         }
-        #endregion
+
+        private void OnEnterState(EHelperState state)
+        {
+            switch (state)
+            {
+                case EHelperState.Wait:
+                    _movement.Stop();
+                    _helperAnimation.SetWaiting(true);
+                    _waitElapsedTime = 0f;
+                    break;
+                case EHelperState.Sleep:
+                    _helperAnimation.SetWaiting(false);
+                    _helperAnimation.SetSleeping(true);
+                    break;
+            }
+        }
+
+        private void OnExitState(EHelperState state)
+        {
+            switch (state)
+            {
+                case EHelperState.Wait:
+                    _helperAnimation.SetWaiting(false);
+                    break;
+                case EHelperState.Sleep:
+                    _helperAnimation.SetSleeping(false);
+                    break;
+            }
+        }
 
         private void UpdateIdle()
         {
@@ -255,58 +251,14 @@ namespace TAEWOOK.Helper.Core
 
         private void UpdateFollow()
         {
-            _movement.Follow(_playerTransform.position, _followDistance);
-        }
-
-        private void UpdateDetectAnomaly()
-        {
-            if (!_movement.MoveToTarget(_commandMovePosition, _commandSearchArriveDistance))
-            {
-                return;
-            }
-
-            _targetAnomaly = _detector.FindNearestAnomaly(_commandSearchPosition);
-
-            if (_targetAnomaly == null)
-            {
-                ChangeState(EHelperState.ReturnToPlayer);
-                return;
-            }
-            ShowExclamtionIcon();
-            ChangeState(EHelperState.MoveToAnomaly);
-        }
-
-        private void UpdateMoveToAnomaly()
-        {
-            if (_targetAnomaly == null)
-            {
-                ChangeState(EHelperState.ReturnToPlayer);
-                return;
-            }
-
-            if (_movement.MoveToTarget(_targetAnomaly.position, _anomalyArriveDistance))
-            {
-                ChangeState(EHelperState.Alert);
-            }
-        }
-
-        private void UpdateAlert()
-        {
-
-        }
-
-        private void UpdateReturnToPlayer()
-        {
-            if (_movement.Follow(_playerTransform.position, _followDistance))
-            {
-                ChangeState(EHelperState.Follow);
-            }
+            _movement.Follow(PlayerPosition, _followDistance);
         }
 
         private void UpdateWait()
         {
             _waitElapsedTime += Time.deltaTime;
-            if (_waitElapsedTime >= _SleepDelay)
+
+            if (_waitElapsedTime >= _sleepDelay)
             {
                 ChangeState(EHelperState.Sleep);
             }
@@ -314,32 +266,7 @@ namespace TAEWOOK.Helper.Core
 
         private void UpdateSleep()
         {
-
-        }
-
-        private void ShowExclamtionIcon()
-        {
-            if (_exclamationIconPrefab == null)
-            {
-                return;
-            }
-
-            GameObject icon = Instantiate(_exclamationIconPrefab, transform);
-            icon.transform.localPosition = _exclamationIconOffset;
-            icon.transform.localRotation = Quaternion.identity;
-
-            Destroy(icon, _exclamationIconDuration);
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-
-            Gizmos.DrawWireSphere(
-                _commandSearchPosition,
-                _commandSearchDistance);
         }
         #endregion
     }
 }
-

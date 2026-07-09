@@ -6,11 +6,6 @@ namespace TAEWOOK.Helper.Core
         Idle,
         Follow,
         Wait,
-        Alert,
         Sleep,
-        DetectAnomaly,
-        MoveToAnomaly,
-        ReturnToPlayer,
     }
 }
-

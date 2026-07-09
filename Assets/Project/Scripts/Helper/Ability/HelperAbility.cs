@@ -1,20 +1,32 @@
 using UnityEngine;
+using TAEWOOK.Helper.Core;
 
 namespace TAEWOOK.Helper.Ability
 {
-    public class HelperAbility : MonoBehaviour
+    public abstract class HelperAbility : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        #region Protected Fields
+        protected HelperControllar Helper;
+        #endregion
 
+        #region Public Methods
+        public virtual bool IsActive => false;
+
+        public virtual void Initialize(HelperControllar helper)
+        {
+            Helper = helper;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        public abstract bool CanUseAbility();
+        public abstract void UseAbility(Vector2 targetPosition);
 
+        public virtual void TickAbility()
+        {
         }
+
+        public virtual void OnBarkAnimationEnd()
+        {
+        }
+        #endregion
     }
 }
-
