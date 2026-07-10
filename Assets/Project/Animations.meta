@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 44e43138cf7d4d54799b42b72a08425d
+folderAsset: yes
+=======
+<<<<<<<< HEAD:Assets/Project/Animations/door_0.controller.rej.meta
+guid: 9140d8233e3d8ab4ba42c875955f2e7f
+========
+guid: 08dd3d1e52a3c354f98c2f3cc75c1f38
+folderAsset: yes
+>>>>>>>> development:Assets/Project/Animations.meta
+>>>>>>> development
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
