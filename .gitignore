@@ -134,9 +134,13 @@ sysinfo.txt
 # ========================
 /Assets/ThirdParty/
 /Assets/ThirdParty.meta
+<<<<<<< HEAD
 Assets/Project/Scenes/Test.unity
 Assets/Project/Scenes/Test.unity.meta
 Assets/Project/Scripts/TestPlayerController.cs
 Assets/Project/Scripts/TestPlayerController.cs.meta
 Assets/Project/Scripts/ObjectScripts/TestPlayerController.cs
 Assets/Project/Scripts/ObjectScripts/TestPlayerController.cs.meta
+=======
+
+>>>>>>> development
