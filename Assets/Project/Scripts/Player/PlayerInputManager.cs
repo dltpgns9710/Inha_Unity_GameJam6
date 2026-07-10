@@ -1,0 +1,152 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace JUNBEOM.Player
+{
+    public class PlayerInputManager : MonoBehaviour
+    {
+        #region Private Fields
+
+        private PlayerInputActions _inputActions;
+
+        #endregion
+
+        #region Events
+
+        public event Action<float> OnMoveEvent;
+        public event Action<bool> OnRunEvent;
+        public event Action OnJumpEvent;
+        public event Action OnEquipFlashlightEvent;
+        public event Action OnToggleFlashlightEvent;
+        public event Action OnToggleSettingsEvent;
+        public event Action OnInteractEvent;
+        public event Action OnReturnCameraEvent;
+        public event Action OnSelectCompanionCommandZEvent;
+        public event Action OnSelectCompanionCommandXEvent;
+        public event Action OnConfirmCompanionCommandEvent;
+        public event Action OnCancelCompanionCommandEvent;
+
+        #endregion
+
+        #region Unity Lifecycle
+
+        private void Awake()
+        {
+            _inputActions = new PlayerInputActions();
+
+            // Player Action Map 구독
+            _inputActions.Player.Move.performed += OnMove;
+            _inputActions.Player.Move.canceled += OnMove;
+
+            _inputActions.Player.Run.performed += OnRun;
+            _inputActions.Player.Run.canceled += OnRun;
+
+            _inputActions.Player.Jump.started += OnJump;
+            _inputActions.Player.EquipFlashlight.started += OnEquipFlashlight;
+            _inputActions.Player.ToggleFlashlight.started += OnToggleFlashlight;
+
+            _inputActions.Player.Interact.started += OnInteract;
+
+            _inputActions.Player.ReturnCamera.started += OnReturnCamera;
+
+            _inputActions.Player.SelectCompanionCommandZ.started += OnSelectCompanionCommandZ;
+            _inputActions.Player.SelectCompanionCommandX.started += OnSelectCompanionCommandX;
+            _inputActions.Player.ConfirmCompanionCommand.started += OnConfirmCompanionCommand;
+            _inputActions.Player.CancelCompanionCommand.started += OnConcelCompanionCommand;
+
+            // UI Action Map 구독
+            _inputActions.UI.ToggleSettings.started += OnToggleSettings;
+        }
+
+        private void OnEnable()
+        {
+            EnablePlayerInput();
+            _inputActions.UI.Enable(); // UI 액션맵은 항상 활성화
+        }
+
+        private void OnDisable()
+        {
+            _inputActions.Disable();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public void EnablePlayerInput()
+        {
+            _inputActions.Player.Enable();
+        }
+
+        public void DisablePlayerInput()
+        {
+            _inputActions.Player.Disable();
+            OnMoveEvent?.Invoke(0f); // 입력 차단 시 이동 취소 보정
+            OnRunEvent?.Invoke(false);
+        }
+
+        #endregion
+
+        #region Input Callbacks
+
+        private void OnMove(InputAction.CallbackContext context)
+        {
+            float inputX = context.ReadValue<float>();
+            OnMoveEvent?.Invoke(inputX);
+        }
+
+        private void OnRun(InputAction.CallbackContext context)
+        {
+            bool isRunning = context.ReadValueAsButton();
+            OnRunEvent?.Invoke(isRunning);
+        }
+
+        private void OnJump(InputAction.CallbackContext context)
+        {
+            OnJumpEvent?.Invoke();
+        }
+
+        private void OnInteract(InputAction.CallbackContext context)
+        {
+            OnInteractEvent?.Invoke();
+        }
+
+        private void OnEquipFlashlight(InputAction.CallbackContext context)
+        {
+            OnEquipFlashlightEvent?.Invoke();
+        }
+
+        private void OnToggleFlashlight(InputAction.CallbackContext context)
+        {
+            OnToggleFlashlightEvent?.Invoke();
+        }
+        private void OnReturnCamera(InputAction.CallbackContext context)
+        {
+            OnReturnCameraEvent?.Invoke();
+        }
+        private void OnSelectCompanionCommandZ(InputAction.CallbackContext context)
+        {
+            OnSelectCompanionCommandZEvent?.Invoke();
+        }
+        private void OnSelectCompanionCommandX(InputAction.CallbackContext context)
+        {
+            OnSelectCompanionCommandXEvent?.Invoke();
+        }
+        private void OnConfirmCompanionCommand(InputAction.CallbackContext context)
+        {
+            OnConfirmCompanionCommandEvent?.Invoke();
+        }
+        private void OnConcelCompanionCommand(InputAction.CallbackContext context)
+        {
+            OnCancelCompanionCommandEvent?.Invoke();
+        }
+
+        private void OnToggleSettings(InputAction.CallbackContext context)
+        {
+            OnToggleSettingsEvent?.Invoke();
+        }
+
+        #endregion
+    }
+}

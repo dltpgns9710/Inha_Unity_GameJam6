@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+
+  tags:
+  - ENEMY
+
   layers:
   - Default
   - TransparentFX
@@ -11,6 +14,7 @@ TagManager:
   - 
   - Water
   - UI
+
   - Player
   - Helper
   - Anomaly
@@ -41,6 +45,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+
+  - name: Background
+    uniqueID: 2722458485
+    locked: 0
+  - name: Ground
+    uniqueID: 3982341241
+    locked: 0
+  - name: Player
+    uniqueID: 3883490747
+    locked: 0
+  - name: Foreground
+    uniqueID: 2405880477
+    locked: 0
+
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
