@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -411476549
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1921378318177413420, guid: 67b83897eee53bb49811ff8e2d4596a1, type: 3}
@@ -349,7 +349,7 @@ MonoBehaviour:
   _interactionRadius: 0.34
   _interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   _interactionIndicator: {fileID: 1512281608731073815}
 --- !u!114 &5696824040067253841
 MonoBehaviour:

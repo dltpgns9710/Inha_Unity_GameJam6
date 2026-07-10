@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6120537938547268466}
   - component: {fileID: 8522829390557782643}
   - component: {fileID: -6928065487222145892}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hutch
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084517c8bb2036c4490df7ba09747833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
+  _textBox: {fileID: 0}

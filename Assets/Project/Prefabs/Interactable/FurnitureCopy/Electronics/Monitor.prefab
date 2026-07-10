@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7874380881878974849}
   - component: {fileID: 4488047088299313774}
   - component: {fileID: -5272194406530798975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Monitor
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084517c8bb2036c4490df7ba09747833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
+  _textBox: {fileID: 0}

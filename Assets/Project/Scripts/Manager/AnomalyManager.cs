@@ -32,12 +32,14 @@ namespace SEHOON.GameSystem
 
         private void SelectAnomaly()
         {
+            /*
             if (Random.Range(0, 10) > 1)
             {
                 int randomIndex = Random.Range(0, _anomalies.Count);
                 _selectedAnomaly = _anomalies[randomIndex];
                 _isAnomalyApply = true;
             }
+            */
         }
     }
 }

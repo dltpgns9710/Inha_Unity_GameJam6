@@ -1,11 +1,11 @@
-// using JUNBEOM.Player;
-using SEHOON.GameSystem;
+using JUNBEOM.Player;
 using SEHOON.GameSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PlayerInputManager = JUNBEOM.Player.PlayerInputManager;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
@@ -25,11 +25,11 @@ public class DoorController : MonoBehaviour, IInteractable
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
     private bool _hasKey = false;
-    // private PlayerEventManager _eventManager;   //EventManager 싱글톤 방식으로 변경
+    private PlayerEventManager _eventManager;   //EventManager 싱글톤 방식으로 변경
 
     void Awake()
     {
-        // _eventManager = PlayerEventManager.Instance;
+        _eventManager = PlayerEventManager.Instance;
     }
     void Start()
     {
@@ -49,13 +49,13 @@ public class DoorController : MonoBehaviour, IInteractable
     {
     }
     private void OnEnable()
-    {
-        // _eventManager.OnInteractionRequested += OnInteraction;   //EventManager 싱글톤 방식으로 변경
+    { 
+        _eventManager.OnInteractionRequested += OnInteraction;   //EventManager 싱글톤 방식으로 변경
     }
 
     private void OnDisable()
     {
-        // _eventManager.OnInteractionRequested -= OnInteraction;   //EventManager 싱글톤 방식으로 변경
+        _eventManager.OnInteractionRequested -= OnInteraction;   //EventManager 싱글톤 방식으로 변경
     }
 
     private bool Unlock(GameObject interactor)
@@ -78,7 +78,7 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         if (target != gameObject)
             return;
-        // _eventManager.RequestKeyState(CheckKey);    //EventManager 싱글톤 방식으로 변경
+        _eventManager.RequestKeyState(CheckKey);    //EventManager 싱글톤 방식으로 변경
         Interact(player);
     }
 
@@ -117,7 +117,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
         _isOpening = true;
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
-        // inputManager.DisablePlayerInput();  //플레이어 입력 불가능
+        inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
         try
         {
@@ -152,7 +152,7 @@ public class DoorController : MonoBehaviour, IInteractable
         }
         finally
         {
-            // inputManager.EnablePlayerInput();   //플레이어 입력 가능
+            inputManager.EnablePlayerInput();   //플레이어 입력 가능
             _isOpening = false;
         }
     }

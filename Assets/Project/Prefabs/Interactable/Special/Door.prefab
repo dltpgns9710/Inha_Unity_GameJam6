@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6286288707718547519}
   - component: {fileID: 7194125273174984845}
   - component: {fileID: 6724483034724540116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -108,12 +108,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
   _isForward: 0
   _isBackward: 0
-  _startOpened: 0
   _randomizeDoor: 0
   _isLocked: 0
   _otherDoors: []
   _shakeDuration: 0.25
   _shakeIntensity: 0.05
+  _openDuration: 2
 --- !u!95 &7194125273174984845
 Animator:
   serializedVersion: 7
