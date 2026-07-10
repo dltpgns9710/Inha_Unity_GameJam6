@@ -58,6 +58,7 @@ namespace JUNBEOM.Player
 
         private void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(GetInteractionCenter(),_interactionRadius);
         }
 

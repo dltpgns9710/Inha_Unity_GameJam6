@@ -41,12 +41,6 @@ namespace JUNBEOM.Camera
 
         #endregion
 
-        #region Properties
-
-        public bool IsFollowingPlayer => _isFollowingPlayer;
-
-        #endregion
-
         #region Unity Lifecycle
 
         private void Awake()
@@ -66,12 +60,14 @@ namespace JUNBEOM.Camera
         {
             if (_inputManager == null) return;
             _inputManager.OnReturnCameraEvent += HandleToggleCameraMode;
+            _inputManager.OnInteractEvent += HandlePlayerInterect;
         }
 
         private void OnDisable()
         {
             if (_inputManager == null) return;
             _inputManager.OnReturnCameraEvent -= HandleToggleCameraMode;
+            _inputManager.OnInteractEvent -= HandlePlayerInterect;
         }
 
         private void LateUpdate()
@@ -139,6 +135,11 @@ namespace JUNBEOM.Camera
         private void HandleToggleCameraMode()
         {
             ToggleCameraMode();
+        }
+
+        private void HandlePlayerInterect()
+        {
+
         }
 
         #endregion
@@ -236,6 +237,7 @@ namespace JUNBEOM.Camera
                 _minCameraBoundary.x,
                 _maxCameraBoundary.x);
 
+            //targetPosition.y = _player.position.y;
             targetPosition.y = Mathf.Clamp(
                 targetPosition.y,
                 _minCameraBoundary.y,

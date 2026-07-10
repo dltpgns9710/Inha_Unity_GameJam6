@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerInteraction
   _interactionPoint: {fileID: 177742966616357621}
-  _interactionRadius: 0.4
+  _interactionRadius: 0.34
   _interactableLayerMask:
     serializedVersion: 2
     m_Bits: 64
