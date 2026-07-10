@@ -1,8 +1,11 @@
+// using JUNBEOM.Player;
+using SEHOON.GameSystem;
 using SEHOON.GameSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
@@ -15,14 +18,19 @@ public class DoorController : MonoBehaviour, IInteractable
 
     [SerializeField] private float _shakeDuration = 0.25f;
     [SerializeField] private float _shakeIntensity = 0.05f;
+    [SerializeField] private float _openDuration = 2.0f;
 
     private Animator _animator;
-    private bool _open = false;
+    private bool _isOpening;
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
     private bool _hasKey = false;
+    // private PlayerEventManager _eventManager;   //EventManager 싱글톤 방식으로 변경
 
-
+    void Awake()
+    {
+        // _eventManager = PlayerEventManager.Instance;
+    }
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -33,29 +41,44 @@ public class DoorController : MonoBehaviour, IInteractable
             _hasBeenUnlocked = false;
         }
 
-        _animator.SetBool("isOpen", _open);
+        _animator.SetBool("isOpen", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
-
     private void OnEnable()
     {
-        // PlayerEventChannel.OnInteractionRequested += OnInteraction;
+        // _eventManager.OnInteractionRequested += OnInteraction;   //EventManager 싱글톤 방식으로 변경
     }
+
     private void OnDisable()
     {
-        // PlayerEventChannel.OnInteractionRequested -= OnInteraction;
+        // _eventManager.OnInteractionRequested -= OnInteraction;   //EventManager 싱글톤 방식으로 변경
+    }
+
+    private bool Unlock(GameObject interactor)
+    {
+        if (_hasBeenUnlocked)
+        {
+            return true;
+        }
+
+        if (_hasKey && _isLocked)
+        {
+            _isLocked = false;
+            _hasBeenUnlocked = true;
+            return true;
+        }
+        return false;
     }
 
     private void OnInteraction(GameObject target, GameObject player)
     {
         if (target != gameObject)
             return;
-        // PlayerEventChannel.RequestKeyState(CheckKey);
+        // _eventManager.RequestKeyState(CheckKey);    //EventManager 싱글톤 방식으로 변경
         Interact(player);
     }
 
@@ -68,39 +91,44 @@ public class DoorController : MonoBehaviour, IInteractable
         }
     }
 
-    private bool Unlock(GameObject interactor)
-    {
-        if (_hasBeenUnlocked)
-        {
-            return true;
-        }
-
-        if (/*interactor has key in inventory check 추가*/ _isLocked)
-        {
-            _isLocked = false;
-            _hasBeenUnlocked = true;
-            return true;
-        }
-        return false;
-    }
-
     public void Interact(GameObject interactor)
     {
+        if (_isOpening)
+        {
+            return;
+        }
+
         StartCoroutine(InteractCoroutine(interactor));
     }
 
+
+    //문 작동시 플레이어 인풋 정지
     private IEnumerator InteractCoroutine(GameObject interactor)
     {
-        if (_otherDoors.Count > 0 && Unlock(interactor))
+
+        bool canOpenDoor = _otherDoors.Count > 0 && Unlock(interactor);
+
+        if (!canOpenDoor)
+        {
+            // TODO: Implement door open failure sound
+            yield return StartCoroutine(ShakeDoor());
+            yield break;
+        }
+
+        _isOpening = true;
+        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
+        // inputManager.DisablePlayerInput();  //플레이어 입력 불가능
+
+        try
         {
             bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
-            if (_isForward || _isBackward)
+            if (_isBackward || _isForward)
             {
-                if (this._isForward && hasAnomaly)
+                if (_isForward && hasAnomaly)
                 {
                     DataManager.Instance.SelectIncorrectDoor();
                 }
-                else if (this._isBackward && !hasAnomaly)
+                else if (_isBackward && !hasAnomaly)
                 {
                     DataManager.Instance.SelectIncorrectDoor();
                 }
@@ -109,27 +137,24 @@ public class DoorController : MonoBehaviour, IInteractable
                     DataManager.Instance.SelectCorrectDoor();
                 }
             }
+            
 
             int index = 0;
+
+            _animator.SetBool("isOpen", true);
+            yield return new WaitForSeconds(_openDuration);  //_openDuration 기간 동안 정지
             if (_randomizeDoor && _otherDoors.Count >= 1)
             {
                 index = UnityEngine.Random.Range(0, _otherDoors.Count);
             }
-
-            _animator.SetBool("isOpen", true);
-            _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", true);
-            yield return new WaitForSeconds(2);
             interactor.transform.position = _otherDoors[index].transform.position;
-
-            _animator.SetBool("isOpen", false);
             _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
         }
-        else
+        finally
         {
-            // TODO: Implement door open failure sound
-            yield return StartCoroutine(ShakeDoor());
+            // inputManager.EnablePlayerInput();   //플레이어 입력 가능
+            _isOpening = false;
         }
-        // PlayerEventChannel.OnInteractionRequested -= OnInteraction;
     }
 
     private IEnumerator ShakeDoor()
