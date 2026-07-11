@@ -75,9 +75,14 @@ namespace JUNBEOM.Player
                 return;
             }
 
-            _eventManager.BroadcastInteraction(
-                target,
-                gameObject);
+            //_eventManager.OnInteractionRequested?.Invoke(
+            //    target,
+            //    gameObject);
+            //_eventManager.BroadcastInteraction(
+            //    target,
+            //    gameObject);
+            IInteractable interactable = target.GetComponentInParent<IInteractable>();
+            interactable?.Interact(gameObject);
         }
 
         #endregion

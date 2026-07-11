@@ -47,6 +47,8 @@ namespace JUNBEOM.Player
         public bool IsTurnedOn => _isTurnedOn;
         public float CurrentLightIntensity => _flashlightLight.intensity;
 
+        public float CurrentLightRatio { get; private set; } = 1.0f;
+
         /// <summary>
         /// 현재 손전등의 남은 빛 비율
         /// </summary>
@@ -97,7 +99,9 @@ namespace JUNBEOM.Player
             _flashlightLight.intensity = _maximumLightIntensity;
 
             _eventManager = PlayerEventManager.Instance;
-            _eventManager.BroadcastLightRatio(RemainingLightRatio);
+
+            _eventManager.OnLightRatioChanged?.Invoke(
+                CurrentLightRatio);
 
             _isEquipped = false;
             SetFlashlightActive(false);
@@ -171,7 +175,9 @@ namespace JUNBEOM.Player
                 _maximumLightIntensity,
                 lightRatio);
 
-            _eventManager.BroadcastLightRatio(lightRatio);
+            CurrentLightRatio = Mathf.Clamp01(lightRatio);
+            _eventManager.OnLightRatioChanged?.Invoke(CurrentLightRatio);
+            //_eventManager.BroadcastLightRatio(lightRatio);
 
             if (_remainingLightTime <= 0.0f)
             {
