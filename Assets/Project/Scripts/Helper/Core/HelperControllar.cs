@@ -10,12 +10,7 @@ namespace TAEWOOK.Helper.Core
     {
         #region Serialized Fields
         [Header("Helper State Settings")]      
-        [SerializeField] private Transform _playerTransform;
-        [SerializeField] private float _walkSpeed = 3.0f;
-        [SerializeField] private float _runSpeed = 6.0f;
-        [SerializeField] private float _runDistance = 4.0f;
-        [SerializeField] private float _followDistance = 1.5f;
-        [SerializeField] private float _sleepDelay = 5.0f;
+        [SerializeField] private Transform _playerTransform;                                   
 
         [Header("References")]
         [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
@@ -23,6 +18,11 @@ namespace TAEWOOK.Helper.Core
         #endregion
 
         #region Private Fields
+        private float _walkSpeed = 3.0f;
+        private float _runSpeed = 6.0f;
+        private float _runDistance = 4.0f;
+        private float _followDistance = 2.0f;
+        private float _sleepDelay = 5.0f;
         private EHelperState _currentState;
         private bool _isWaitAnimationEnd;
         private HelperMovement _movement;
