@@ -19,13 +19,12 @@ namespace JUNBEOM.Player
         public event Action OnJumpEvent;
         public event Action OnEquipFlashlightEvent;
         public event Action OnToggleFlashlightEvent;
-        public event Action OnToggleSettingsEvent;
         public event Action OnInteractEvent;
         public event Action OnReturnCameraEvent;
-        public event Action OnSelectCompanionCommandZEvent;
-        public event Action OnSelectCompanionCommandXEvent;
-        public event Action OnConfirmCompanionCommandEvent;
-        public event Action OnCancelCompanionCommandEvent;
+        public event Action OnRequestDetectAnomalyEvent;
+        public event Action OnRequestWaitEvent;
+        public event Action OnConfirmEvent;
+        public event Action OnCancelEvent;
 
         #endregion
 
@@ -49,10 +48,10 @@ namespace JUNBEOM.Player
 
             _playerInput.actions["ReturnCamera"].started += OnReturnCamera;
 
-            _playerInput.actions["SelectCompanionCommandZ"].started += OnSelectCompanionCommandZ;
-            _playerInput.actions["SelectCompanionCommandX"].started += OnSelectCompanionCommandX;
-            _playerInput.actions["ConfirmCompanionCommand"].started += OnConfirmCompanionCommand;
-            _playerInput.actions["CancelCompanionCommand"].started += OnCancelCompanionCommand; 
+            _playerInput.actions["RequestDetectAnomaly"].started += OnRequestDetectAnomaly;
+            _playerInput.actions["RequestWait"].started += OnRequestWait;
+            _playerInput.actions["Confirm"].started += OnConfirm;
+            _playerInput.actions["Cancel"].started += OnCancel; 
         }
 
         private void OnEnable()
@@ -120,27 +119,23 @@ namespace JUNBEOM.Player
         {
             OnReturnCameraEvent?.Invoke();
         }
-        private void OnSelectCompanionCommandZ(InputAction.CallbackContext context)
+        private void OnRequestDetectAnomaly(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandZEvent?.Invoke();
+            OnRequestDetectAnomalyEvent?.Invoke();
         }
-        private void OnSelectCompanionCommandX(InputAction.CallbackContext context)
+        private void OnRequestWait(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandXEvent?.Invoke();
+            OnRequestWaitEvent?.Invoke();
         }
-        private void OnConfirmCompanionCommand(InputAction.CallbackContext context)
+        private void OnConfirm(InputAction.CallbackContext context)
         {
-            OnConfirmCompanionCommandEvent?.Invoke();
+            OnConfirmEvent?.Invoke();
         }
-        private void OnCancelCompanionCommand(InputAction.CallbackContext context)
+        private void OnCancel(InputAction.CallbackContext context)
         {
-            OnCancelCompanionCommandEvent?.Invoke();
+            OnCancelEvent?.Invoke();
         }
 
-        private void OnToggleSettings(InputAction.CallbackContext context)
-        {
-            OnToggleSettingsEvent?.Invoke();
-        }
 
         #endregion
     }

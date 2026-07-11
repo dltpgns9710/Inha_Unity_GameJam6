@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 3724830758570131284}
   - component: {fileID: 5696824040067253841}
   - component: {fileID: 3181727023848422106}
+  - component: {fileID: 1008887758534178700}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -334,6 +335,9 @@ MonoBehaviour:
   _runSpeed: 5
   _jumpForce: 5
   _inputManager: {fileID: 7465885626439827489}
+  _moveClip: {fileID: 8300000, guid: 228daec2fdd62664daa416e7066b422e, type: 3}
+  _walkSoundInterval: 0.5
+  _runSoundInterval: 0.5
 --- !u!114 &3724830758570131284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +398,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1008887758534178700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696961991513125471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1aee9e9de8392144860a761b90e50dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerAIInteract
+  _inputManager: {fileID: 7465885626439827489}
+  _HelperInteract: {fileID: 0}
 --- !u!1 &9144347914524029728
 GameObject:
   m_ObjectHideFlags: 0

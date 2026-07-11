@@ -70,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectCompanionCommandZ",
+                    "name": "RequestDetectAnomaly",
                     "type": "Button",
                     "id": "11605d7b-7216-4626-b9af-89a6af803e2a",
                     "expectedControlType": "",
@@ -79,7 +79,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SelectCompanionCommandX",
+                    "name": "RequestWait",
                     "type": "Button",
                     "id": "6de61eef-1882-4092-b323-916eb37caa0c",
                     "expectedControlType": "",
@@ -88,7 +88,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ConfirmCompanionCommand",
+                    "name": "Confirm",
                     "type": "Button",
                     "id": "6124df93-b9a9-44fa-b876-622c1c602439",
                     "expectedControlType": "",
@@ -97,7 +97,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CancelCompanionCommand",
+                    "name": "Cancel",
                     "type": "Button",
                     "id": "f64c9a66-dd1d-4725-b4cd-15009f25ddfc",
                     "expectedControlType": "",
@@ -213,7 +213,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectCompanionCommandZ",
+                    "action": "RequestDetectAnomaly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -224,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectCompanionCommandX",
+                    "action": "RequestWait",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ConfirmCompanionCommand",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -246,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CancelCompanionCommand",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

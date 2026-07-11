@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using SEHOON.GameSystem;
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -26,6 +26,11 @@ namespace JUNBEOM.Player
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
 
+        [Header("AudioSetting")]
+        [SerializeField] private AudioClip _moveClip;
+        [SerializeField] private float _walkSoundInterval = 0.1f; 
+        [SerializeField] private float _runSoundInterval = 0.05f; 
+
         #endregion
 
         #region Private Fields
@@ -44,6 +49,8 @@ namespace JUNBEOM.Player
         private bool _isDead = false;
 
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
+
+        private float _footstepTimer = 0f; // 발소리 타이머
 
         #endregion
 
@@ -89,6 +96,7 @@ namespace JUNBEOM.Player
         private void Update()
         {
             UpdateAnimation();
+            HandleFootstepSound();
         }
 
         private void FixedUpdate()
@@ -131,11 +139,36 @@ namespace JUNBEOM.Player
 
         #region Private Methods
 
+        private void HandleFootstepSound()
+        {
+            // 땅에 닿아있고 && 좌우 이동 입력이 있을 때만 실행
+            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f)
+            {
+                _footstepTimer -= Time.deltaTime;
+
+                // 타이머가 0 이하가 되면 사운드 재생
+                if (_footstepTimer <= 0f)
+                {
+                    SoundManager.Instance.PlaySfx(_moveClip);
+
+                    // 달리기/걷기 상태에 따라 다음 재생 쿨타임을 다르게 설정
+                    _footstepTimer = _isRunning ? _runSoundInterval : _walkSoundInterval;
+                }
+            }
+            else
+            {
+                // 가만히 서있거나 점프 중일 때는 타이머를 0으로 초기화
+                // (다음에 다시 움직일 때 발소리가 즉시 나도록 함)
+                _footstepTimer = 0f;
+            }
+        }
+
         private void Move()
         {
             Vector2 currentVelocity = _rigidbody.linearVelocity;
             currentVelocity.x = _moveInputX * _currentMoveSpeed;
             _rigidbody.linearVelocity = currentVelocity;
+            //SoundManager.Instance.PlaySfx(_moveClip);
         }
 
         private void UpdateFacingDirection()
