@@ -168,11 +168,7 @@ namespace JUNBEOM.Camera
             Vector3 targetPosition = GetFreeCameraTargetPosition();
             targetPosition = ClampToBoundary(targetPosition);
 
-            transform.position = Vector3.SmoothDamp(
-                transform.position,
-                targetPosition,
-                ref _moveVelocity,
-                _freeCameraSmoothTime);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _moveVelocity, _freeCameraSmoothTime);
         }
 
         /// <summary>
@@ -180,10 +176,7 @@ namespace JUNBEOM.Camera
         /// </summary>
         private Vector3 GetPlayerTargetPosition()
         {
-            return new Vector3(
-                _player.position.x,
-                _player.position.y,
-                transform.position.z);
+            return new Vector3(_player.position.x, _player.position.y, transform.position.z);
         }
 
         /// <summary>
@@ -191,39 +184,24 @@ namespace JUNBEOM.Camera
         /// </summary>
         private Vector3 GetFreeCameraTargetPosition()
         {
-            bool cannotReadMouse =
-                (Mouse.current == null) ||
-                (Screen.width <= 0) ||
-                (Screen.height <= 0);
+            bool cannotReadMouse = (Mouse.current == null) || (Screen.width <= 0) ||(Screen.height <= 0);
 
             if (cannotReadMouse)
             {
                 return transform.position;
             }
 
-            Vector2 mousePosition =
-                Mouse.current.position.ReadValue();
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-            float normalizedX = Mathf.Clamp01(
-                mousePosition.x / Screen.width);
+            float normalizedX = Mathf.Clamp01(mousePosition.x / Screen.width);
 
-            float normalizedY = Mathf.Clamp01(
-                mousePosition.y / Screen.height);
+            float normalizedY = Mathf.Clamp01(mousePosition.y / Screen.height);
 
-            float targetX = Mathf.Lerp(
-                _minCameraBoundary.x,
-                _maxCameraBoundary.x,
-                normalizedX);
+            float targetX = Mathf.Lerp(_minCameraBoundary.x, _maxCameraBoundary.x, normalizedX);
 
-            float targetY = Mathf.Lerp(
-                _minCameraBoundary.y,
-                _maxCameraBoundary.y,
-                normalizedY);
+            float targetY = Mathf.Lerp(_minCameraBoundary.y, _maxCameraBoundary.y, normalizedY);
 
-            return new Vector3(
-                targetX,
-                targetY,
-                transform.position.z);
+            return new Vector3(targetX, targetY, transform.position.z);
         }
 
         /// <summary>
@@ -232,16 +210,10 @@ namespace JUNBEOM.Camera
         private Vector3 ClampToBoundary(
             Vector3 targetPosition)
         {
-            targetPosition.x = Mathf.Clamp(
-                targetPosition.x,
-                _minCameraBoundary.x,
-                _maxCameraBoundary.x);
+            targetPosition.x = Mathf.Clamp(targetPosition.x, _minCameraBoundary.x, _maxCameraBoundary.x);
 
             //targetPosition.y = _player.position.y;
-            targetPosition.y = Mathf.Clamp(
-                targetPosition.y,
-                _minCameraBoundary.y,
-                _maxCameraBoundary.y);
+            targetPosition.y = Mathf.Clamp( targetPosition.y, _minCameraBoundary.y, _maxCameraBoundary.y);
 
             return targetPosition;
         }

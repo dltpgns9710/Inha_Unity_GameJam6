@@ -21,7 +21,7 @@ namespace SEHOON.UI
             PlayerEventManager.Instance.OnKeyStateChanged += HandleKeyStateChanged;
 
             HandleLightRatioChanged(PlayerEventManager.Instance.CurrentLightRatio);
-            PlayerEventManager.Instance.RequestKeyState(HandleKeyStateChanged);
+            PlayerEventManager.Instance.OnKeyStateRequested?.Invoke(HandleKeyStateChanged);
         }
 
         private void OnDisable()

@@ -62,7 +62,7 @@ namespace JUNBEOM.Player
         private void OnEnable()
         {
             EnablePlayerInput();
-            _inputActions.UI.Enable(); // UI 액션맵은 항상 활성화
+            //_inputActions.UI.Enable(); // UI 액션맵은 항상 활성화
         }
 
         private void OnDisable()

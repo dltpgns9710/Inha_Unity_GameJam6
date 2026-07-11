@@ -13,56 +13,56 @@ namespace JUNBEOM.Player
         #endregion
 
         #region Events
-        public event Action<GameObject, GameObject> OnInteractionRequested;
+        public Action<GameObject, GameObject> OnInteractionRequested;
 
-        public event Action OnKeyCollected;
-        public event Action<bool> OnKeyStateChanged;
-        public event Action<Action<bool>> OnKeyStateRequested;
+        public Action OnKeyCollected;
+        public Action<bool> OnKeyStateChanged;
+        public Action<Action<bool>> OnKeyStateRequested;
 
-        public event Action<float> OnLightRatioChanged;
+        public Action<float> OnLightRatioChanged;
         #endregion
 
         #region Interaction Events
 
-        public void BroadcastInteraction(
-            GameObject target,
-            GameObject interactor)
-        {
-            OnInteractionRequested?.Invoke(
-                target,
-                interactor);
-        }
+        //public void BroadcastInteraction(
+        //    GameObject target,
+        //    GameObject interactor)
+        //{
+        //    OnInteractionRequested?.Invoke(
+        //        target,
+        //        interactor);
+        //}
 
         #endregion
 
         #region Key Events
 
-        public void NotifyKeyCollected()
-        {
-            OnKeyCollected?.Invoke();
-        }
+        //public void NotifyKeyCollected()
+        //{
+        //    OnKeyCollected?.Invoke();
+        //}
 
-        public void BroadcastKeyState(bool hasKey)
-        {
-            OnKeyStateChanged?.Invoke(hasKey);
-        }
+        //public void BroadcastKeyState(bool hasKey)
+        //{
+        //    OnKeyStateChanged?.Invoke(hasKey);
+        //}
 
-        public void RequestKeyState(Action<bool> response)
-        {
-            OnKeyStateRequested?.Invoke(response);
-        }
+        //public void RequestKeyState(Action<bool> response)
+        //{
+        //    OnKeyStateRequested?.Invoke(response);
+        //}
 
         #endregion
 
         #region Flashlight Events
 
-        public void BroadcastLightRatio(float lightRatio)
-        {
-            CurrentLightRatio =
-                Mathf.Clamp01(lightRatio);
-            OnLightRatioChanged?.Invoke(
-                CurrentLightRatio);
-        }
+        //public void BroadcastLightRatio(float lightRatio)
+        //{
+        //    CurrentLightRatio =
+        //        Mathf.Clamp01(lightRatio);
+        //    OnLightRatioChanged?.Invoke(
+        //        CurrentLightRatio);
+        //}
 
         #endregion
     }
