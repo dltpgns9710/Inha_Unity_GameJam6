@@ -8,16 +8,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-    }
-    private void OnEnable()
-    { 
-        PlayerEventManager.Instance.OnInteractionRequested += OnInteraction;   //EventManager 싱글톤 방식으로 변경
-    }
-    private void OnInteraction(GameObject target, GameObject player)
-    {
-        if (target != gameObject)
-            return;   //EventManager 싱글톤 방식으로 변경
-        Interact(player);
+    
     }
     // Update is called once per frame
     void Update()
@@ -28,6 +19,5 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
     public void Interact(GameObject interactor)
     {
         _textBox.SetActive(true);
-        Debug.Log("1234");
     }
 }

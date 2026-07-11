@@ -102,42 +102,36 @@ public class DoorController : MonoBehaviour, IInteractable
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
         inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
-        try
+        bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
+        if (_isBackward || _isForward)
         {
-            bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
-            if (_isBackward || _isForward)
+            if (_isForward && hasAnomaly)
             {
-                if (_isForward && hasAnomaly)
-                {
-                    DataManager.Instance.SelectIncorrectDoor();
-                }
-                else if (_isBackward && !hasAnomaly)
-                {
-                    DataManager.Instance.SelectIncorrectDoor();
-                }
-                else
-                {
-                    DataManager.Instance.SelectCorrectDoor();
-                }
+                DataManager.Instance.SelectIncorrectDoor();
             }
+            else if (_isBackward && !hasAnomaly)
+            {
+                DataManager.Instance.SelectIncorrectDoor();
+            }
+            else
+            {
+                DataManager.Instance.SelectCorrectDoor();
+            }
+        }
             
+        int index = 0;
 
-            int index = 0;
-
-            _animator.SetBool("isOpen", true);
-            yield return new WaitForSeconds(_openDuration);  //_openDuration 기간 동안 정지
-            if (_randomizeDoor && _otherDoors.Count >= 1)
-            {
-                index = UnityEngine.Random.Range(0, _otherDoors.Count);
-            }
-            interactor.transform.position = _otherDoors[index].transform.position;
-            _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
-        }
-        finally
+        _animator.SetBool("isOpen", true);
+        yield return new WaitForSeconds(_openDuration);  //_openDuration 기간 동안 정지
+        if (_randomizeDoor && _otherDoors.Count >= 1)
         {
-            inputManager.EnablePlayerInput();   //플레이어 입력 가능
-            _isOpening = false;
+            index = UnityEngine.Random.Range(0, _otherDoors.Count);
         }
+        interactor.transform.position = _otherDoors[index].transform.position;
+        _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
+
+        inputManager.EnablePlayerInput();   //플레이어 입력 가능
+        _isOpening = false;
     }
 
     private IEnumerator CoroutineShakeDoor()
