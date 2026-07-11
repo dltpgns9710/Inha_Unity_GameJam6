@@ -111,7 +111,7 @@ public class DoorController : MonoBehaviour, IInteractable
         if (!canOpenDoor)
         {
             // TODO: Implement door open failure sound
-            yield return StartCoroutine(ShakeDoor());
+            yield return StartCoroutine(CoroutineShakeDoor());
             yield break;
         }
 
@@ -157,7 +157,7 @@ public class DoorController : MonoBehaviour, IInteractable
         }
     }
 
-    private IEnumerator ShakeDoor()
+    private IEnumerator CoroutineShakeDoor()
     {
         float elapsedTime = 0f;
 
