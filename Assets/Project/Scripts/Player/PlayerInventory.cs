@@ -29,7 +29,7 @@ namespace JUNBEOM.Player
 
         private void Start()
         {
-            _eventManager.BroadcastKeyState(_hasKey);
+            _eventManager.OnKeyStateChanged?.Invoke(_hasKey);
         }
 
         private void OnDisable()
@@ -50,7 +50,7 @@ namespace JUNBEOM.Player
             }
 
             _hasKey = true;
-            _eventManager.BroadcastKeyState(_hasKey);
+            _eventManager.OnKeyStateChanged?.Invoke(_hasKey);
         }
 
         private void HandleKeyStateRequested(Action<bool> response)

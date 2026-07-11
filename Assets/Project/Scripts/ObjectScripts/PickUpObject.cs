@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using JUNBEOM.Player;
 
 public class PickUpObject : MonoBehaviour, IInteractable
 {
@@ -19,7 +20,7 @@ public class PickUpObject : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
-        // TODO: Add item to inventory system when interacting with the object
+        PlayerEventManager.Instance.OnKeyCollected?.Invoke();
         Debug.Log("Picked up item: " + gameObject.name);
         this.GameObject().SetActive(false);
     }

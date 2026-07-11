@@ -48,15 +48,6 @@ public class DoorController : MonoBehaviour, IInteractable
     void Update()
     {
     }
-    private void OnEnable()
-    { 
-        _eventManager.OnInteractionRequested += OnInteraction;   //EventManager 싱글톤 방식으로 변경
-    }
-
-    private void OnDisable()
-    {
-        _eventManager.OnInteractionRequested -= OnInteraction;   //EventManager 싱글톤 방식으로 변경
-    }
 
     private bool Unlock(GameObject interactor)
     {
@@ -73,15 +64,6 @@ public class DoorController : MonoBehaviour, IInteractable
         }
         return false;
     }
-
-    private void OnInteraction(GameObject target, GameObject player)
-    {
-        if (target != gameObject)
-            return;
-        _eventManager.RequestKeyState(CheckKey);    //EventManager 싱글톤 방식으로 변경
-        Interact(player);
-    }
-
     private void CheckKey(bool hasKey)
     {
         _hasKey = hasKey;
@@ -93,6 +75,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        PlayerEventManager.Instance.OnKeyStateRequested?.Invoke(CheckKey);
         if (_isOpening)
         {
             return;
