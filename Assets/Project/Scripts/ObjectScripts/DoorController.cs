@@ -20,6 +20,10 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private float _shakeIntensity = 0.05f;
     [SerializeField] private float _openDuration = 2.0f;
 
+    [SerializeField] private AudioClip _doorOpenSound;
+    [SerializeField] private AudioClip _doorCloseSound;
+    [SerializeField] private AudioClip _doorLockedSound;
+
     private Animator _animator;
     private bool _isOpening;
     private bool _hasBeenUnlocked = true;
@@ -127,11 +131,14 @@ public class DoorController : MonoBehaviour, IInteractable
         }
         _animator.SetBool("isOpen", true);
         _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", true);
+        SoundManager.Instance.PlaySfx(_doorOpenSound);
+
         yield return new WaitForSeconds(_openDuration);
 
         interactor.transform.position = _otherDoors[index].transform.position;
         _animator.SetBool("isOpen", false);
         _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
+        SoundManager.Instance.PlaySfx(_doorCloseSound);
 
         inputManager.EnablePlayerInput();   //플레이어 입력 가능
         _isOpening = false;
@@ -140,7 +147,7 @@ public class DoorController : MonoBehaviour, IInteractable
     private IEnumerator CoroutineShakeDoor()
     {
         float elapsedTime = 0f;
-
+        SoundManager.Instance.PlaySfx(_doorLockedSound);
         while (elapsedTime < _shakeDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -150,7 +157,6 @@ public class DoorController : MonoBehaviour, IInteractable
 
             yield return null;
         }
-
         transform.position = _originalPosition;
     }
 }
