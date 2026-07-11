@@ -15,7 +15,7 @@ MonoBehaviour:
   _walkSpeed: 3
   _runSpeed: 5
   _runDistance: 3
-  _followDistance: 2
+  _followDistance: 3
   _sleepDelay: 5
   _commandSearchDistance: 3
   _commandSearchArriveDistance: 0.5
