@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 117391142345137186}
   - component: {fileID: 86742450191955685}
   - component: {fileID: -5832371222190956214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}

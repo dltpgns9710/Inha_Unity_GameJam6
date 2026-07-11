@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8440251996833436426}
   - component: {fileID: 7141957544726832062}
   - component: {fileID: -501131138518141221}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FlowerVase
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084517c8bb2036c4490df7ba09747833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
+  _textBox: {fileID: 0}

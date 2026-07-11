@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1748977076815657158}
   - component: {fileID: -1855785466351165796}
   - component: {fileID: 6576498175027717077}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SideViewBunkBed
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084517c8bb2036c4490df7ba09747833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
+  _textBox: {fileID: 0}
