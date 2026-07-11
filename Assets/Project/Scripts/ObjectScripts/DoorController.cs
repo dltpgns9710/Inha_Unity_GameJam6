@@ -121,13 +121,16 @@ public class DoorController : MonoBehaviour, IInteractable
             
         int index = 0;
 
-        _animator.SetBool("isOpen", true);
-        yield return new WaitForSeconds(_openDuration);  //_openDuration 기간 동안 정지
         if (_randomizeDoor && _otherDoors.Count >= 1)
         {
             index = UnityEngine.Random.Range(0, _otherDoors.Count);
         }
+        _animator.SetBool("isOpen", true);
+        _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", true);
+        yield return new WaitForSeconds(_openDuration);
+
         interactor.transform.position = _otherDoors[index].transform.position;
+        _animator.SetBool("isOpen", false);
         _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
 
         inputManager.EnablePlayerInput();   //플레이어 입력 가능
