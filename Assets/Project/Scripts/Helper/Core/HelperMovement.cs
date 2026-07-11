@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TAEWOOK.Helper.Core
@@ -9,6 +10,7 @@ namespace TAEWOOK.Helper.Core
         #region Private Fields
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
+        private Rigidbody2D _rigidbody;
 
         private float _walkSpeed;
         private float _runSpeed;
@@ -58,10 +60,12 @@ namespace TAEWOOK.Helper.Core
 
             FlipByMoveDirection(targetPosition);
 
-            transform.position = Vector2.MoveTowards(
-                transform.position,
-                targetPosition,
-                moveSpeed * Time.deltaTime);
+            
+            Vector2 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
+            _rigidbody.linearVelocity = new Vector2(
+                moveDirection.x * moveSpeed,
+                _rigidbody.linearVelocity.y
+                );
 
             return false;
         }
@@ -85,6 +89,11 @@ namespace TAEWOOK.Helper.Core
             if (_animator == null)
             {
                 _animator = GetComponent<Animator>();
+            }
+
+            if (_rigidbody == null)
+            {
+                _rigidbody = GetComponent<Rigidbody2D>();
             }
         }
 
