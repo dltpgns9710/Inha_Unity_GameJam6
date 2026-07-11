@@ -47,10 +47,10 @@ namespace JUNBEOM.Player
         //    OnKeyStateChanged?.Invoke(hasKey);
         //}
 
-        public void RequestKeyState(Action<bool> response)
-        {
-            OnKeyStateRequested?.Invoke(response);
-        }
+        //public void RequestKeyState(Action<bool> response)
+        //{
+        //    OnKeyStateRequested?.Invoke(response);
+        //}
 
         #endregion
 

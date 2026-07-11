@@ -177,7 +177,6 @@ namespace JUNBEOM.Player
 
             CurrentLightRatio = Mathf.Clamp01(lightRatio);
             _eventManager.OnLightRatioChanged?.Invoke(CurrentLightRatio);
-            //_eventManager.BroadcastLightRatio(lightRatio);
 
             if (_remainingLightTime <= 0.0f)
             {
