@@ -134,4 +134,5 @@ sysinfo.txt
 # ========================
 /Assets/ThirdParty/
 /Assets/ThirdParty.meta
-
+.vsconfig
+unityProject.slnx
