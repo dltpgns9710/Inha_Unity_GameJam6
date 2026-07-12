@@ -62,6 +62,46 @@ MonoBehaviour:
   - _part: Design
     _names:
     - Designer A
+  - _part: LICENSE
+    _names: []
+  - _part: Bloodlines - Dark UI (Unity UI Asset Pack) by xGaida, Shieldomirs
+    _names:
+    - https://xgaida.itch.io/bloodlines-ui
+  - _part: 'Character: Steven by Kronovi (darkpixel-kronovi)'
+    _names:
+    - https://darkpixel-kronovi.itch.io/character-steven-free
+  - _part: "\uB9C8\uB8E8 \uBD80\uB9AC (Font) by Naver"
+    _names:
+    - https://noonnu.cc/font_page/487
+    - https://hangeul.naver.com/fonts/search?f=maru
+  - _part: Free Survival Horror Items Pack by Leo's Pixel
+    _names:
+    - https://leos-pixel.itch.io/survival-horror-items-pack
+  - _part: Must Have Horror Sound Effects by YourPalRob
+    _names:
+    - https://yourpalrob.itch.io/must-have-horror-sound-effects
+  - _part: FREE HORROR SFX - VN - SCARY SOUND EFFECTS by Liminal Games
+    _names:
+    - https://liminal-space-dev.itch.io/free-horror-sfx-sounds
+  - _part: Melancholic Indie Horror Game Music Pack (Lonely Nightmare) by Crow Shade
+    _names:
+    - https://crowshade.itch.io/melancholic-indie-horror-game-soundtrack-pack
+  - _part: pH64 Pixel Pack - 100s of Sideview Assets by PurpleHeart (Stacy Kendra
+      Love)
+    _names:
+    - https://opengameart.org/content/ph64-pixel-pack-100s-of-sideview-assets
+  - _part: PSX Horror Music & SFX Pack by Pablo Alegria
+    _names:
+    - https://pabloalegria9.itch.io/psxhorrorpack
+  - _part: Pet Dogs Pack by LuizMelo
+    _names:
+    - https://luizmelo.itch.io/pet-dogs-pack
+  - _part: Pixel Icons and Game controller by Disven
+    _names:
+    - https://disven.itch.io/pixel-icons-and-game-controller-2
+  - _part: Overworld Objects by Kelvin Shadewing
+    _names:
+    - https://opengameart.org/content/overworld-objects
   _viewport: {fileID: 7163553046750750161}
   _content: {fileID: 2348386119439047377}
   _linePrefab: {fileID: 5290113893863494285, guid: 3cbeaef24a9da734880040d01164becc, type: 3}
