@@ -12,7 +12,6 @@ namespace USingleton
             {
                 if (_instance == null)
                 {
-                    //_instance = FindObjectOfType<T>();
                     _instance = (T)FindAnyObjectByType(typeof(T));
 
                     if (_instance == null)
@@ -29,7 +28,7 @@ namespace USingleton
 
         public virtual void Awake()
         {
-            if (_instance == null)
+            if (_instance == null || _instance == this)
             {
                 _instance = this as T;
                 DontDestroyOnLoad(gameObject);
