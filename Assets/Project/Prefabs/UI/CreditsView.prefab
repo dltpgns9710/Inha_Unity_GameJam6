@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3572427323483355845}
   - component: {fileID: 1768821836802950672}
+  - component: {fileID: -3256579064611757847}
   m_Layer: 0
   m_Name: CreditsView
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   _groupSpacing: 30
   _autoScroll: 1
   _scrollSpeed: 80
+--- !u!114 &-3256579064611757847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300700430032903538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88a22d08bf683943a952e74d904cf6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.UiSoundContoller
+  _bgmSource: {fileID: 8300000, guid: 4003a822663e76145bd8a500cc4aa43a, type: 3}
 --- !u!1 &995596911669902875
 GameObject:
   m_ObjectHideFlags: 0
