@@ -407,7 +407,7 @@ MonoBehaviour:
   _startButton: {fileID: 6106880373958814526}
   _creditsButton: {fileID: 8535705588775792217}
   _quitButton: {fileID: 8621535312118700268}
-  _sceneToLoad: MainScene
+  _sceneToLoad: StoryScene
   _creditsPrefab: {fileID: 300700430032903538, guid: 81716fc1517e76a4d923cb49ef882066, type: 3}
   _creditsSpawnParent: {fileID: 0}
   _startButtonGroup: {fileID: 5529288537672551965}
