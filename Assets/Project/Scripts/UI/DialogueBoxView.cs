@@ -90,7 +90,11 @@ namespace SEHOON.UI
 
             if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
-                if (_currentIndex >= _dialogueLines.Count - 1)
+                if (_textBoxItem != null && _textBoxItem.IsRevealing)
+                {
+                    _textBoxItem.CompleteText();
+                }
+                else if (_currentIndex >= _dialogueLines.Count - 1)
                 {
                     gameObject.SetActive(false);
                 }

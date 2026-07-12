@@ -40,6 +40,7 @@ namespace SEHOON.UI
         #region Private Fields
         private int _currentIndex = 0;
         private readonly List<RectTransform> _items = new List<RectTransform>();
+        private readonly List<TextBoxItemView> _itemViews = new List<TextBoxItemView>();
         private Coroutine _revealCoroutine;
         private CanvasGroup _skipButtonGroup;
         #endregion
@@ -102,7 +103,18 @@ namespace SEHOON.UI
 
             if (Mouse.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
-                ShowNext();
+                TextBoxItemView currentItem = (_currentIndex > 0 && _currentIndex - 1 < _itemViews.Count)
+                    ? _itemViews[_currentIndex - 1]
+                    : null;
+
+                if (currentItem != null && currentItem.IsRevealing)
+                {
+                    currentItem.CompleteText();
+                }
+                else
+                {
+                    ShowNext();
+                }
             }
         }
         #endregion
@@ -168,6 +180,7 @@ namespace SEHOON.UI
 
                 item.gameObject.SetActive(false);
                 _items.Add(rect);
+                _itemViews.Add(item);
             }
         }
 
