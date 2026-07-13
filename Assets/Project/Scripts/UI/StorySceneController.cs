@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 namespace SEHOON.UI
 {
-    public class SceneController : MonoBehaviour
+    public class StorySceneController : MonoBehaviour
     {
         [Serializable]
         public struct StoryTypeEntry
         {
             public EStoryType StoryType;
-            public GameObject DialogueWindow;
+            public GameObject StoryInstance;
             public string SceneName;
             public AudioClip AudioClip;
         }
@@ -32,7 +32,7 @@ namespace SEHOON.UI
 
             foreach (StoryTypeEntry entry in _storyTypeEntries)
             {
-                entry.DialogueWindow?.SetActive(entry.StoryType == currentStoryType);
+                entry.StoryInstance?.SetActive(entry.StoryType == currentStoryType);
             }
         }
 
