@@ -3,14 +3,27 @@ using USingleton;
 
 namespace SEHOON.GameSystem
 {
+    public enum EStoryType
+    {
+        Start,
+        Ending
+    }
+
     public class DataManager : Singleton<DataManager>
     {
 
         [SerializeField] private int _goalFloor = 8;
-        
+
         private int _floor = 1;
-        
+        private EStoryType _storyType = EStoryType.Start;
+
         public int Floor => _floor;
+
+        public EStoryType StoryType
+        {
+            get => _storyType;
+            set => _storyType = value;
+        }
 
         public void SelectCorrectDoor()
         {
