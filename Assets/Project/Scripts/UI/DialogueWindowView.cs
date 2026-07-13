@@ -101,7 +101,7 @@ namespace SEHOON.UI
 
             if (isPaused) return;
 
-            if (Mouse.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 TextBoxItemView currentItem = (_currentIndex > 0 && _currentIndex - 1 < _itemViews.Count)
                     ? _itemViews[_currentIndex - 1]
