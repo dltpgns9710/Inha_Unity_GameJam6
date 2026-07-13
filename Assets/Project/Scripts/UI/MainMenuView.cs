@@ -1,4 +1,5 @@
 using System.Collections;
+using SEHOON.GameSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -68,6 +69,7 @@ namespace SEHOON.UI
         #region Public Methods
         public void OnStartButtonClicked()
         {
+            DataManager.Instance.Init();
             SceneManager.LoadScene(_sceneToLoad);
         }
 
