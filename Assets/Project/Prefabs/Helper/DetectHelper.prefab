@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: _config
       value: 
       objectReference: {fileID: 11400000, guid: 1de64a4a17b154e4c8d12b2f5820dc9a, type: 2}
+    - target: {fileID: 6072896592744460911, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: _commandBroadcaster
+      value: 
+      objectReference: {fileID: 3526886167333943713}
     - target: {fileID: 7935917964602267340, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -94,6 +98,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5043127154478296404}
+    - targetCorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3526886167333943713}
   m_SourcePrefab: {fileID: 100100000, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
 --- !u!1 &779421284710873734 stripped
 GameObject:
@@ -124,3 +131,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be02a377b195f54a97aaf60321ae13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Ability.DetectHelperAbility
+--- !u!114 &3526886167333943713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779421284710873734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9360d49741b04e9909e8496965e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Core.HelperCommandBroadcaster
