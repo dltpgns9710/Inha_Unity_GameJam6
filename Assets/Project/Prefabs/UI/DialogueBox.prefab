@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB9841"
+  m_text: "\uB2D0 \uBE0C\uB8E9\uC2A4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
   m_sharedMaterial: {fileID: 5929983933777521458, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
@@ -189,10 +189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.DialogueBoxView
   _dialogueLines:
-  - _name: "\uC774\uB9841"
+  - _name: "\uB2D0 \uBE0C\uB8E9\uC2A4"
     _dialogue: "\uB300\uD654\uCC3D \uD45C\uC2DC \uD14D\uC2A4\uD2B81"
     _alignment: 0
-  - _name: "\uC774\uB9842"
+  - _name: "\uB2D0 \uBE0C\uB8E9\uC2A4"
     _dialogue: "\uB300\uD654\uCC3D \uD45C\uC2DC \uD14D\uC2A4\uD2B82"
     _alignment: 0
   _nameTextWidget: {fileID: 5698519837425815737}
