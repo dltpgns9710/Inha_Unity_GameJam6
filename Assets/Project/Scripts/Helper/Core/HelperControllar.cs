@@ -17,12 +17,7 @@ namespace TAEWOOK.Helper.Core
         [SerializeField] private HelperConfig _config;
         #endregion
 
-        #region Private Fields
-        private float _walkSpeed = 3.0f;
-        private float _runSpeed = 6.0f;
-        private float _runDistance = 4.0f;
-        private float _followDistance = 2.0f;
-        private float _sleepDelay = 5.0f;
+        #region Private Fields      
         private EHelperState _currentState;
         private bool _isWaitAnimationEnd;
         private HelperMovement _movement;
@@ -34,7 +29,7 @@ namespace TAEWOOK.Helper.Core
         #region Properties
         public HelperConfig Config => _config;
         public Vector2 PlayerPosition => _playerTransform != null ? _playerTransform.position : transform.position;
-        public float FollowDistance => _followDistance;
+        public float FollowDistance => _config.FollowDistance;
         #endregion
 
         #region Unity Lifecycle
@@ -60,9 +55,8 @@ namespace TAEWOOK.Helper.Core
             {
                 _helperAnimation = gameObject.AddComponent<HelperAnimation>();
             }
-
-            ApplyConfig();
-            _movement.Initialize(_walkSpeed, _runSpeed, _runDistance);
+           
+            _movement.Initialize(_config.WalkSpeed, _config.RunSpeed, _config.RunDistance);
             _ability?.Initialize(this);
 
             ChangeState(EHelperState.Follow);
@@ -170,19 +164,6 @@ namespace TAEWOOK.Helper.Core
         #endregion
 
         #region Private Methods
-        private void ApplyConfig()
-        {
-            if (_config == null)
-            {
-                return;
-            }
-
-            _walkSpeed = _config.WalkSpeed;
-            _runSpeed = _config.RunSpeed;
-            _runDistance = _config.RunDistance;
-            _followDistance = _config.FollowDistance;
-            _sleepDelay = _config.SleepDelay;
-        }
 
         private void UpdateState()
         {
@@ -251,14 +232,15 @@ namespace TAEWOOK.Helper.Core
 
         private void UpdateFollow()
         {
-            _movement.Follow(PlayerPosition, _followDistance);
+            TeleportToPlayer();
+            _movement.Follow(PlayerPosition, _config.FollowDistance);
         }
 
         private void UpdateWait()
         {
             _waitElapsedTime += Time.deltaTime;
 
-            if (_waitElapsedTime >= _sleepDelay)
+            if (_waitElapsedTime >= _config.SleepDelay)
             {
                 ChangeState(EHelperState.Sleep);
             }
@@ -266,6 +248,21 @@ namespace TAEWOOK.Helper.Core
 
         private void UpdateSleep()
         {
+        }
+
+        private void TeleportToPlayer()
+        {
+            float yDistance = Mathf.Abs(PlayerPosition.y - transform.position.y);
+
+            if(yDistance <= 10.0f)
+            {
+                return;
+            }
+
+            transform.position = new Vector3(
+                PlayerPosition.x - _config.FollowDistance,
+                PlayerPosition.y,
+                transform.position.z);               
         }
         #endregion
     }

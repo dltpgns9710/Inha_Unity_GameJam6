@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc28a602a361d644cb62720e5e9b2e88, type: 3}
   m_Name: DetectHelperConfig
   m_EditorClassIdentifier: 
-  _walkSpeed: 3
+  _walkSpeed: 1.9
   _runSpeed: 5
-  _runDistance: 3
+  _runDistance: 5
   _followDistance: 3
   _sleepDelay: 5
   _commandSearchDistance: 3

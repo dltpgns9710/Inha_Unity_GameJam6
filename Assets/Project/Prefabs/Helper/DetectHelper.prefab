@@ -8,17 +8,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 840911104240159795, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 931972892576428545, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_Name
       value: DetectHelper
       objectReference: {fileID: 0}
+    - target: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -13.68
       objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +80,10 @@ PrefabInstance:
       propertyPath: _config
       value: 
       objectReference: {fileID: 11400000, guid: 1de64a4a17b154e4c8d12b2f5820dc9a, type: 2}
+    - target: {fileID: 7935917964602267340, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94,6 +122,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6be02a377b195f54a97aaf60321ae13d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Ability.DetectHelperAbility
-  _config: {fileID: 11400000, guid: 1de64a4a17b154e4c8d12b2f5820dc9a, type: 2}
