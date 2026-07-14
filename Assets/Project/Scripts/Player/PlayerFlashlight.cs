@@ -38,7 +38,6 @@ namespace JUNBEOM.Player
 
         private bool _isEquipped;
         private bool _isTurnedOn;
-        private PlayerEventManager _eventManager;
         #endregion
 
         #region Properties
@@ -98,9 +97,7 @@ namespace JUNBEOM.Player
             _remainingLightTime = _lightDecreaseDuration;
             _flashlightLight.intensity = _maximumLightIntensity;
 
-            _eventManager = PlayerEventManager.Instance;
-
-            _eventManager.OnLightRatioChanged?.Invoke(
+            PlayerEventManager.Instance.OnLightRatioChanged?.Invoke(
                 CurrentLightRatio);
 
             _isEquipped = false;
@@ -176,7 +173,7 @@ namespace JUNBEOM.Player
                 lightRatio);
 
             CurrentLightRatio = Mathf.Clamp01(lightRatio);
-            _eventManager.OnLightRatioChanged?.Invoke(CurrentLightRatio);
+            PlayerEventManager.Instance.OnLightRatioChanged?.Invoke(CurrentLightRatio);
 
             if (_remainingLightTime <= 0.0f)
             {
