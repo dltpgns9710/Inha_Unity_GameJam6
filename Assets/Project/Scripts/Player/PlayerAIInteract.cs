@@ -7,13 +7,16 @@ using JUNBEOM.Player;
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
         [SerializeField] private HelperCommandBroadcaster _HelperInteract;
+        public Texture2D _findCursor;
+        public Texture2D _normalCursor;
 
-        #region Private Fields
+    #region Private Fields
         private bool _canDetect;
         private bool _cantMove;
-        #endregion
+        private Vector2 hotSpot = Vector2.zero;
+    #endregion
 
-        private void Awake()
+    private void Awake()
         {
             _cantMove = false;
             _canDetect = false;
@@ -39,16 +42,18 @@ using JUNBEOM.Player;
         private void HandleRequestDetectAnomaly()
         {
             _canDetect = true;
+            Cursor.SetCursor(_findCursor, hotSpot, CursorMode.Auto);
         }
 
         private void HandleRequestWait()
         {
             _HelperInteract.RequestWait();
+            _cantMove = true;
         }
 
         private void HandleConfirm()
         {
-            if (_canDetect == false)
+            if (_canDetect == false|| _cantMove ==true)
             {
                 return;
             }
@@ -57,11 +62,14 @@ using JUNBEOM.Player;
             Vector2 searchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _HelperInteract.RequestDetectAnomaly(searchPosition);
             _canDetect = false;
+            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);
+            _cantMove = false;
         }
 
         private void HandleCancel()
         {
             _canDetect = false;
+            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);
         }
     }
 

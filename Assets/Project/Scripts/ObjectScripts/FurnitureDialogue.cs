@@ -28,7 +28,8 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
     public void Interact(GameObject interactor)
     {
         // TODO: Implement UI dialogue system to display dialogue when interacting with objects
-        _textBox.SetActive(true);
+
+        if(_textBox != null) _textBox.SetActive(true);
         Debug.Log("1234");
     }
 }
