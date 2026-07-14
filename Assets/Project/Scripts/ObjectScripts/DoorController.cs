@@ -104,7 +104,7 @@ public class DoorController : MonoBehaviour, IInteractable
 
         try
         {
-            bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
+            bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
             if (_isBackward || _isForward)
             {
                 if (_isForward && hasAnomaly)

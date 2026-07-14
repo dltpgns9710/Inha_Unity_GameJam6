@@ -11,18 +11,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc28a602a361d644cb62720e5e9b2e88, type: 3}
   m_Name: DetectHelperConfig
-  m_EditorClassIdentifier:
-  _walkSpeed: 3
+  m_EditorClassIdentifier: 
+  _walkSpeed: 1.9
   _runSpeed: 5
-  _runDistance: 3
-  _followDistance: 1
+  _runDistance: 5
+  _followDistance: 3
   _sleepDelay: 5
   _commandSearchDistance: 3
   _commandSearchArriveDistance: 0.5
   _anomalyArriveDistance: 3
   _anomalyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   _exclamationIconPrefab: {fileID: 1120365889990329829, guid: e9ddd686868009541905d48b4824138d, type: 3}
   _exclamationIconOffset: {x: 0, y: 0.5, z: 0}
   _exclamationIconDuration: 0.75
