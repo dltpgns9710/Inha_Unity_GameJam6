@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using SEHOON.GameSystem;
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Animator))]
@@ -28,6 +28,10 @@ namespace JUNBEOM.Player
 
         [SerializeField] private float _lightDecreaseDuration = 10.0f;
 
+        [Header("AudioSetting")]
+        [SerializeField] private AudioClip _flashOnClip;
+        [SerializeField] private AudioClip _flashOffClip;
+
         #endregion
 
         #region Private Fields
@@ -38,7 +42,6 @@ namespace JUNBEOM.Player
 
         private bool _isEquipped;
         private bool _isTurnedOn;
-        private PlayerEventManager _eventManager;
         #endregion
 
         #region Properties
@@ -98,9 +101,7 @@ namespace JUNBEOM.Player
             _remainingLightTime = _lightDecreaseDuration;
             _flashlightLight.intensity = _maximumLightIntensity;
 
-            _eventManager = PlayerEventManager.Instance;
-
-            _eventManager.OnLightRatioChanged?.Invoke(
+            PlayerEventManager.Instance.OnLightRatioChanged?.Invoke(
                 CurrentLightRatio);
 
             _isEquipped = false;
@@ -153,7 +154,14 @@ namespace JUNBEOM.Player
             {
                 return;
             }
-
+            if (!_isTurnedOn)
+            {
+                SoundManager.Instance.PlaySfx(_flashOnClip);
+            }
+            else if (_isTurnedOn)
+            {
+                SoundManager.Instance.PlaySfx(_flashOffClip);
+            }
             SetFlashlightActive(!_isTurnedOn);
         }
 
@@ -176,7 +184,7 @@ namespace JUNBEOM.Player
                 lightRatio);
 
             CurrentLightRatio = Mathf.Clamp01(lightRatio);
-            _eventManager.OnLightRatioChanged?.Invoke(CurrentLightRatio);
+            PlayerEventManager.Instance.OnLightRatioChanged?.Invoke(CurrentLightRatio);
 
             if (_remainingLightTime <= 0.0f)
             {

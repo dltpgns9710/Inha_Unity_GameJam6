@@ -15,8 +15,8 @@ namespace TAEWOOK.Helper.Ability
             MoveToAnomaly,
             Alert,
             ReturnToPlayer,
-        }    
-
+        }   
+      
         #region Private Fields
         private DetectHelperConfig _config;
         private HelperMovement _movement;      

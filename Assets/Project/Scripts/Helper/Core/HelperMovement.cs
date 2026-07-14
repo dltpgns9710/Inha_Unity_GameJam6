@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TAEWOOK.Helper.Core
@@ -9,11 +10,13 @@ namespace TAEWOOK.Helper.Core
         #region Private Fields
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
+        //private Rigidbody2D _rigidbody;
 
         private float _walkSpeed;
         private float _runSpeed;
         private float _runDistance;
         private bool _isRunning;
+        private bool _isMoving;
         #endregion
 
         #region Unity Lifecycle
@@ -43,13 +46,20 @@ namespace TAEWOOK.Helper.Core
         {
             EnsureReferences();
 
-            float distance = Vector2.Distance(transform.position, targetPosition);
-            bool isMoving = distance > stopDistance;
+            float xDistance = Mathf.Abs(targetPosition.x - transform.position.x);
+            if(!_isMoving && xDistance > stopDistance + 0.2f)
+            {
+                _isMoving = true;
+            }
+            else if(_isMoving && xDistance <= stopDistance)
+            {
+                _isMoving = false;
+            }
 
-            UpdateRunState(distance);
-            SetMoveAnimation(isMoving);
+            UpdateRunState(xDistance);
+            SetMoveAnimation(_isMoving);
 
-            if (!isMoving)
+            if (!_isMoving)
             {
                 return true;
             }
@@ -57,12 +67,23 @@ namespace TAEWOOK.Helper.Core
             float moveSpeed = _isRunning ? _runSpeed : _walkSpeed;
 
             FlipByMoveDirection(targetPosition);
-
+           
+            Vector2 targetXPosition = new Vector2(
+                targetPosition.x,
+                transform.position.y);
+            
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                targetPosition,
-                moveSpeed * Time.deltaTime);
-
+                targetXPosition,
+                moveSpeed * Time.deltaTime
+                );
+            /*
+            Vector2 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
+            _rigidbody.linearVelocity = new Vector2(
+                moveDirection.x * moveSpeed,
+                _rigidbody.linearVelocity.y
+                );
+            */
             return false;
         }
 
@@ -86,12 +107,13 @@ namespace TAEWOOK.Helper.Core
             {
                 _animator = GetComponent<Animator>();
             }
+            
         }
 
         private void SetMoveAnimation(bool isMoving)
         {
             _animator.SetBool("IsMoving", isMoving);
-            _animator.SetBool("IsRunning", _isRunning);
+            _animator.SetBool("IsRunning", isMoving && _isRunning);
         }
 
         private void UpdateRunState(float distance)

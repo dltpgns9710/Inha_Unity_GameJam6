@@ -29,12 +29,6 @@ public class DoorController : MonoBehaviour, IInteractable
     private bool _hasBeenUnlocked = true;
     private Vector3 _originalPosition;
     private bool _hasKey = false;
-    private PlayerEventManager _eventManager;   //EventManager 싱글톤 방식으로 변경
-
-    void Awake()
-    {
-        _eventManager = PlayerEventManager.Instance;
-    }
     void Start()
     {
         _animator = GetComponent<Animator>();
