@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3282844942214131128}
   - component: {fileID: 3441576821274943018}
   - component: {fileID: 2789179022150839365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AlarmClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

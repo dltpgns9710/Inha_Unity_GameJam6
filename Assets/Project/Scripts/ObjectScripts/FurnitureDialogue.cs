@@ -18,6 +18,11 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        if (_textBox == null)
+        {
+            Debug.LogWarning("TextBox is not assigned in the inspector.");
+            return;
+        }
         _textBox.SetActive(true);
     }
 }
