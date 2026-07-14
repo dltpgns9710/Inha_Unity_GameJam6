@@ -6,11 +6,12 @@ namespace SEHOON.GameSystem
     public class AnomalyManager : MonoBehaviour
     {
         [SerializeField] private List<AnomalyBase> _anomalies;
+        [SerializeField, Range(0, 100)] private int _anomalyApplyChance = 80;
 
         private AnomalyBase _selectedAnomaly = null;
 
 
-        private void Start()
+        private void OnEnable()
         {
             DataManager.Instance.IsAnomalyApply = false;
             SelectAnomaly();
@@ -32,15 +33,31 @@ namespace SEHOON.GameSystem
 
         private void SelectAnomaly()
         {
-            _selectedAnomaly = _anomalies[0];
-            /*
-            if (Random.Range(0, 10) > 1)
+            if (_anomalies == null || _anomalies.Count == 0) return;
+
+            if (Random.Range(0, 100) < _anomalyApplyChance)
             {
-                int randomIndex = Random.Range(0, _anomalies.Count);
-                _selectedAnomaly = _anomalies[randomIndex];
-                _isAnomalyApply = true;
+                _selectedAnomaly = GetWeightedRandomAnomaly();
             }
-            */
+        }
+
+        private AnomalyBase GetWeightedRandomAnomaly()
+        {
+            float totalWeight = 0f;
+            foreach (AnomalyBase anomaly in _anomalies)
+            {
+                totalWeight += anomaly.Weight;
+            }
+
+            float randomPoint = Random.Range(0f, totalWeight);
+            float cumulativeWeight = 0f;
+            foreach (AnomalyBase anomaly in _anomalies)
+            {
+                cumulativeWeight += anomaly.Weight;
+                if (randomPoint < cumulativeWeight) return anomaly;
+            }
+
+            return _anomalies[_anomalies.Count - 1];
         }
 
 #if UNITY_EDITOR
