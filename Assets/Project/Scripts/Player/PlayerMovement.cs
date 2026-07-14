@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using SEHOON.GameSystem;
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -26,6 +26,12 @@ namespace JUNBEOM.Player
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
 
+        [Header("AudioSetting")]
+        [SerializeField] private AudioClip _moveClip;
+        [SerializeField] private AudioClip _runClip;
+        [SerializeField] private float _walkSoundInterval = 0.1f; 
+        [SerializeField] private float _runSoundInterval = 0.05f; 
+
         #endregion
 
         #region Private Fields
@@ -44,6 +50,9 @@ namespace JUNBEOM.Player
         private bool _isDead = false;
 
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
+
+        private float _footstepTimer = 0f; // 발소리 타이머
+        private float _runstepTimer = 0f; // 달리기 타이머
 
         #endregion
 
@@ -89,6 +98,8 @@ namespace JUNBEOM.Player
         private void Update()
         {
             UpdateAnimation();
+            HandleFootstepSound();
+            HandleRunstepSound();
         }
 
         private void FixedUpdate()
@@ -130,6 +141,44 @@ namespace JUNBEOM.Player
         #endregion
 
         #region Private Methods
+
+        private void HandleFootstepSound()
+        {
+            // 땅에 닿아있고 && 좌우 이동 입력이 있을 때만 실행
+            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f && !_isRunning)
+            {
+                _footstepTimer -= Time.deltaTime;
+
+                if (_footstepTimer <= 0f)
+                {
+                    SoundManager.Instance.PlaySfx(_moveClip);
+
+                    _footstepTimer =_walkSoundInterval;
+                }
+            }
+            else
+            {
+                _footstepTimer = 0f;
+            }
+        }
+        private void HandleRunstepSound()
+        {
+            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f&&_isRunning)
+            {
+                _runstepTimer -= Time.deltaTime;
+
+                if (_runstepTimer <= 0f)
+                {
+                    SoundManager.Instance.PlaySfx(_runClip);
+
+                    _runstepTimer = _runSoundInterval;
+                }
+            }
+            else
+            {
+                _runstepTimer = 0f;
+            }
+        }
 
         private void Move()
         {

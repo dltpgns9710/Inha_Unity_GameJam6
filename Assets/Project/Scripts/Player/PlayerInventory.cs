@@ -9,8 +9,6 @@ namespace JUNBEOM.Player
 
         private bool _hasKey;
 
-        private PlayerEventManager _eventManager;
-
         #endregion
 
         #region Unity Lifecycle
@@ -18,24 +16,23 @@ namespace JUNBEOM.Player
         private void Awake()
         {
             _hasKey = false;
-            _eventManager = PlayerEventManager.Instance;
         }
 
         private void OnEnable()
         {
-            _eventManager.OnKeyCollected += HandleKeyCollected;
-            _eventManager.OnKeyStateRequested += HandleKeyStateRequested;
+            PlayerEventManager.Instance.OnKeyCollected += HandleKeyCollected;
+            PlayerEventManager.Instance.OnKeyStateRequested += HandleKeyStateRequested;
         }
 
         private void Start()
         {
-            _eventManager.OnKeyStateChanged?.Invoke(_hasKey);
+            PlayerEventManager.Instance.OnKeyStateChanged?.Invoke(_hasKey);
         }
 
         private void OnDisable()
         {
-            _eventManager.OnKeyCollected -= HandleKeyCollected;
-            _eventManager.OnKeyStateRequested -= HandleKeyStateRequested;
+            PlayerEventManager.Instance.OnKeyCollected -= HandleKeyCollected;
+            PlayerEventManager.Instance.OnKeyStateRequested -= HandleKeyStateRequested;
         }
 
         #endregion
@@ -50,7 +47,7 @@ namespace JUNBEOM.Player
             }
 
             _hasKey = true;
-            _eventManager.OnKeyStateChanged?.Invoke(_hasKey);
+            PlayerEventManager.Instance.OnKeyStateChanged?.Invoke(_hasKey);
         }
 
         private void HandleKeyStateRequested(Action<bool> response)

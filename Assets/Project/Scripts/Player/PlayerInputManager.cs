@@ -8,7 +8,7 @@ namespace JUNBEOM.Player
     {
         #region Private Fields
 
-        private PlayerInputActions _inputActions;
+        private PlayerInput _playerInput;
 
         #endregion
 
@@ -19,13 +19,12 @@ namespace JUNBEOM.Player
         public event Action OnJumpEvent;
         public event Action OnEquipFlashlightEvent;
         public event Action OnToggleFlashlightEvent;
-        public event Action OnToggleSettingsEvent;
         public event Action OnInteractEvent;
         public event Action OnReturnCameraEvent;
-        public event Action OnSelectCompanionCommandZEvent;
-        public event Action OnSelectCompanionCommandXEvent;
-        public event Action OnConfirmCompanionCommandEvent;
-        public event Action OnCancelCompanionCommandEvent;
+        public event Action OnRequestDetectAnomalyEvent;
+        public event Action OnRequestWaitEvent;
+        public event Action OnConfirmEvent;
+        public event Action OnCancelEvent;
 
         #endregion
 
@@ -33,41 +32,36 @@ namespace JUNBEOM.Player
 
         private void Awake()
         {
-            _inputActions = new PlayerInputActions();
+            _playerInput = GetComponent<PlayerInput>();
 
-            // Player Action Map 구독
-            _inputActions.Player.Move.performed += OnMove;
-            _inputActions.Player.Move.canceled += OnMove;
+            _playerInput.actions["Move"].performed += OnMove;
+            _playerInput.actions["Move"].canceled += OnMove;
 
-            _inputActions.Player.Run.performed += OnRun;
-            _inputActions.Player.Run.canceled += OnRun;
+            _playerInput.actions["Run"].performed += OnRun;
+            _playerInput.actions["Run"].canceled += OnRun;
 
-            _inputActions.Player.Jump.started += OnJump;
-            _inputActions.Player.EquipFlashlight.started += OnEquipFlashlight;
-            _inputActions.Player.ToggleFlashlight.started += OnToggleFlashlight;
+            _playerInput.actions["Jump"].started += OnJump;
+            _playerInput.actions["EquipFlashlight"].started += OnEquipFlashlight;
+            _playerInput.actions["ToggleFlashlight"].started += OnToggleFlashlight;
 
-            _inputActions.Player.Interact.started += OnInteract;
+            _playerInput.actions["Interact"].started += OnInteract;
 
-            _inputActions.Player.ReturnCamera.started += OnReturnCamera;
+            _playerInput.actions["ReturnCamera"].started += OnReturnCamera;
 
-            _inputActions.Player.SelectCompanionCommandZ.started += OnSelectCompanionCommandZ;
-            _inputActions.Player.SelectCompanionCommandX.started += OnSelectCompanionCommandX;
-            _inputActions.Player.ConfirmCompanionCommand.started += OnConfirmCompanionCommand;
-            _inputActions.Player.CancelCompanionCommand.started += OnConcelCompanionCommand;
-
-            // UI Action Map 구독
-            _inputActions.UI.ToggleSettings.started += OnToggleSettings;
+            _playerInput.actions["RequestDetectAnomaly"].started += OnRequestDetectAnomaly;
+            _playerInput.actions["RequestWait"].started += OnRequestWait;
+            _playerInput.actions["Confirm"].started += OnConfirm;
+            _playerInput.actions["Cancel"].started += OnCancel; 
         }
 
         private void OnEnable()
         {
             EnablePlayerInput();
-            //_inputActions.UI.Enable(); // UI 액션맵은 항상 활성화
         }
 
         private void OnDisable()
         {
-            _inputActions.Disable();
+            DisablePlayerInput(); 
         }
 
         #endregion
@@ -76,13 +70,13 @@ namespace JUNBEOM.Player
 
         public void EnablePlayerInput()
         {
-            _inputActions.Player.Enable();
+            _playerInput.actions.Enable();
         }
 
         public void DisablePlayerInput()
         {
-            _inputActions.Player.Disable();
-            OnMoveEvent?.Invoke(0f); // 입력 차단 시 이동 취소 보정
+            _playerInput.actions.Disable();
+            OnMoveEvent?.Invoke(0f);
             OnRunEvent?.Invoke(false);
         }
 
@@ -125,27 +119,23 @@ namespace JUNBEOM.Player
         {
             OnReturnCameraEvent?.Invoke();
         }
-        private void OnSelectCompanionCommandZ(InputAction.CallbackContext context)
+        private void OnRequestDetectAnomaly(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandZEvent?.Invoke();
+            OnRequestDetectAnomalyEvent?.Invoke();
         }
-        private void OnSelectCompanionCommandX(InputAction.CallbackContext context)
+        private void OnRequestWait(InputAction.CallbackContext context)
         {
-            OnSelectCompanionCommandXEvent?.Invoke();
+            OnRequestWaitEvent?.Invoke();
         }
-        private void OnConfirmCompanionCommand(InputAction.CallbackContext context)
+        private void OnConfirm(InputAction.CallbackContext context)
         {
-            OnConfirmCompanionCommandEvent?.Invoke();
+            OnConfirmEvent?.Invoke();
         }
-        private void OnConcelCompanionCommand(InputAction.CallbackContext context)
+        private void OnCancel(InputAction.CallbackContext context)
         {
-            OnCancelCompanionCommandEvent?.Invoke();
+            OnCancelEvent?.Invoke();
         }
 
-        private void OnToggleSettings(InputAction.CallbackContext context)
-        {
-            OnToggleSettingsEvent?.Invoke();
-        }
 
         #endregion
     }
