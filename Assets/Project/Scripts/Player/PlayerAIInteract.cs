@@ -10,10 +10,12 @@ using JUNBEOM.Player;
 
         #region Private Fields
         private bool _canDetect;
+        private bool _cantMove;
         #endregion
 
         private void Awake()
         {
+            _cantMove = false;
             _canDetect = false;
         }
 
@@ -46,7 +48,7 @@ using JUNBEOM.Player;
 
         private void HandleConfirm()
         {
-            if (!_canDetect)
+            if (_canDetect == false)
             {
                 return;
             }
@@ -54,6 +56,7 @@ using JUNBEOM.Player;
 
             Vector2 searchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _HelperInteract.RequestDetectAnomaly(searchPosition);
+            _canDetect = false;
         }
 
         private void HandleCancel()
