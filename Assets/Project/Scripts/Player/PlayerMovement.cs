@@ -28,6 +28,7 @@ namespace JUNBEOM.Player
 
         [Header("AudioSetting")]
         [SerializeField] private AudioClip _moveClip;
+        [SerializeField] private AudioClip _runClip;
         [SerializeField] private float _walkSoundInterval = 0.1f; 
         [SerializeField] private float _runSoundInterval = 0.05f; 
 
@@ -51,6 +52,7 @@ namespace JUNBEOM.Player
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
 
         private float _footstepTimer = 0f; // 발소리 타이머
+        private float _runstepTimer = 0f; // 달리기 타이머
 
         #endregion
 
@@ -97,6 +99,7 @@ namespace JUNBEOM.Player
         {
             UpdateAnimation();
             HandleFootstepSound();
+            HandleRunstepSound();
         }
 
         private void FixedUpdate()
@@ -142,24 +145,38 @@ namespace JUNBEOM.Player
         private void HandleFootstepSound()
         {
             // 땅에 닿아있고 && 좌우 이동 입력이 있을 때만 실행
-            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f)
+            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f && !_isRunning)
             {
                 _footstepTimer -= Time.deltaTime;
 
-                // 타이머가 0 이하가 되면 사운드 재생
                 if (_footstepTimer <= 0f)
                 {
                     SoundManager.Instance.PlaySfx(_moveClip);
 
-                    // 달리기/걷기 상태에 따라 다음 재생 쿨타임을 다르게 설정
-                    _footstepTimer = _isRunning ? _runSoundInterval : _walkSoundInterval;
+                    _footstepTimer =_walkSoundInterval;
                 }
             }
             else
             {
-                // 가만히 서있거나 점프 중일 때는 타이머를 0으로 초기화
-                // (다음에 다시 움직일 때 발소리가 즉시 나도록 함)
                 _footstepTimer = 0f;
+            }
+        }
+        private void HandleRunstepSound()
+        {
+            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f&&_isRunning)
+            {
+                _runstepTimer -= Time.deltaTime;
+
+                if (_runstepTimer <= 0f)
+                {
+                    SoundManager.Instance.PlaySfx(_runClip);
+
+                    _runstepTimer = _runSoundInterval;
+                }
+            }
+            else
+            {
+                _runstepTimer = 0f;
             }
         }
 
@@ -168,7 +185,6 @@ namespace JUNBEOM.Player
             Vector2 currentVelocity = _rigidbody.linearVelocity;
             currentVelocity.x = _moveInputX * _currentMoveSpeed;
             _rigidbody.linearVelocity = currentVelocity;
-            //SoundManager.Instance.PlaySfx(_moveClip);
         }
 
         private void UpdateFacingDirection()

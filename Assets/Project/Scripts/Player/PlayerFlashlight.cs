@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using SEHOON.GameSystem;
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Animator))]
@@ -27,6 +27,10 @@ namespace JUNBEOM.Player
         [SerializeField] private float _minimumLightIntensity = 0.0f;
 
         [SerializeField] private float _lightDecreaseDuration = 10.0f;
+
+        [Header("AudioSetting")]
+        [SerializeField] private AudioClip _flashOnClip;
+        [SerializeField] private AudioClip _flashOffClip;
 
         #endregion
 
@@ -150,7 +154,14 @@ namespace JUNBEOM.Player
             {
                 return;
             }
-
+            if (!_isTurnedOn)
+            {
+                SoundManager.Instance.PlaySfx(_flashOnClip);
+            }
+            else if (_isTurnedOn)
+            {
+                SoundManager.Instance.PlaySfx(_flashOffClip);
+            }
             SetFlashlightActive(!_isTurnedOn);
         }
 
