@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 2541363440835938235}
   - component: {fileID: 8967764642787949298}
   - component: {fileID: 518918634139975404}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

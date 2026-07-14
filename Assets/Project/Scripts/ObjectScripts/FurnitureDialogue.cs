@@ -1,4 +1,5 @@
 using JUNBEOM.Player;
+using SEHOON.UI;
 using UnityEngine;
 
 public class FurnitureDialogue : MonoBehaviour, IInteractable
@@ -24,5 +25,9 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
             return;
         }
         _textBox.SetActive(true);
+        /*_textBox.GetComponent<DialogueBoxView>().OnDisableEvent.AddListener(() =>
+        {
+            _textBox.SetActive(false);
+        });*/
     }
 }

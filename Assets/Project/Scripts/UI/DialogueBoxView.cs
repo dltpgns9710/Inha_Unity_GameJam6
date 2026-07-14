@@ -34,6 +34,11 @@ namespace SEHOON.UI
         private bool _skipInputThisFrame;
         #endregion
 
+        #region Property Fields
+        public UnityEvent OnEnableEvent { get; }
+        public UnityEvent OnDisableEvent { get; }
+        #endregion
+
         #region Unity Lifecycle
         private void Awake()
         {
