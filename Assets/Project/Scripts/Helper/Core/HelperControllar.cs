@@ -252,17 +252,18 @@ namespace TAEWOOK.Helper.Core
 
         private void TeleportToPlayer()
         {
+            float xDistance = Mathf.Abs(PlayerPosition.x - transform.position.x);
             float yDistance = Mathf.Abs(PlayerPosition.y - transform.position.y);
-
-            if(yDistance <= 10.0f)
+            
+            if(xDistance <= 40.0f && yDistance <= 10.0f)
             {
                 return;
-            }
-
+            }                    
+            
             transform.position = new Vector3(
                 PlayerPosition.x - _config.FollowDistance,
                 PlayerPosition.y,
-                transform.position.z);               
+                transform.position.z);                 
         }
         #endregion
     }
