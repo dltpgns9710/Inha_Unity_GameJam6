@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game SubTitle
+  m_text: "\uBCF5\uB3C4 \uB05D\uC758 \uBB38"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cabc53b9ea172d4282436c61fde0b81, type: 2}
   m_sharedMaterial: {fileID: -8618218095367786585, guid: 4cabc53b9ea172d4282436c61fde0b81, type: 2}
@@ -359,6 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4491541965633051790}
   - component: {fileID: 8952848844018446143}
+  - component: {fileID: -7469307602057949390}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -406,7 +407,7 @@ MonoBehaviour:
   _startButton: {fileID: 6106880373958814526}
   _creditsButton: {fileID: 8535705588775792217}
   _quitButton: {fileID: 8621535312118700268}
-  _sceneToLoad: 
+  _sceneToLoad: StoryScene
   _creditsPrefab: {fileID: 300700430032903538, guid: 81716fc1517e76a4d923cb49ef882066, type: 3}
   _creditsSpawnParent: {fileID: 0}
   _startButtonGroup: {fileID: 5529288537672551965}
@@ -422,10 +423,23 @@ MonoBehaviour:
   _subtitleFont: {fileID: 11400000, guid: 4cabc53b9ea172d4282436c61fde0b81, type: 2}
   _buttonFont: {fileID: 11400000, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
   _titleText: Game Title
-  _subtitleText: Game SubTitle
+  _subtitleText: "\uBCF5\uB3C4 \uB05D\uC758 \uBB38"
   _startButtonText: "\uAC8C\uC784 \uC2DC\uC791"
   _creditsButtonText: "\uD06C\uB808\uB527"
   _quitButtonText: "\uC885\uB8CC"
+--- !u!114 &-7469307602057949390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034393315313763927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88a22d08bf683943a952e74d904cf6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.UiSoundContoller
+  _bgmSource: {fileID: 8300000, guid: 4912a4f994e669f499d6934e70dcb8ae, type: 3}
 --- !u!1001 &1223131653772403030
 PrefabInstance:
   m_ObjectHideFlags: 0

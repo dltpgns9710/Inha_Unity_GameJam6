@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -25,6 +26,9 @@ namespace SEHOON.UI
         [Header("Auto Scroll")]
         [SerializeField] private bool _autoScroll = true;
         [SerializeField] private float _scrollSpeed = 40f;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onDisableEvent;
         #endregion
 
         #region Private Fields
@@ -46,6 +50,11 @@ namespace SEHOON.UI
             {
                 _content.anchoredPosition = new Vector2(_content.anchoredPosition.x, -_viewport.rect.height);
             }
+        }
+
+        private void OnDisable()
+        {
+            _onDisableEvent?.Invoke();
         }
 
         private void Update()

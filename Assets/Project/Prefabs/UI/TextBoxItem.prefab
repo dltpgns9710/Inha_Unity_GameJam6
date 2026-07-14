@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.TextBoxItemView
   _textWidget: {fileID: 1857550895624028715}
+  _charInterval: 0.1
 --- !u!1 &2641731270559430975
 GameObject:
   m_ObjectHideFlags: 0

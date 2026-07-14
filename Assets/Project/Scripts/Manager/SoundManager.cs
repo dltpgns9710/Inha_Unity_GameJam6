@@ -105,6 +105,7 @@ namespace SEHOON.GameSystem
             ApplyBgmVolume();
         }
 
+        public AudioClip GetCurrentBgmClip() => _bgmSource != null ? _bgmSource.clip : null;
         public float GetMasterVolume() => _masterVolume;
         public float GetSfxVolume() => _sfxVolume;
         public float GetBgmVolume() => _bgmVolume;
