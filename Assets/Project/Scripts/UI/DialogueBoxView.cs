@@ -31,6 +31,7 @@ namespace SEHOON.UI
         #region Private Fields
         private int _currentIndex = 0;
         private CanvasGroup _skipButtonGroup;
+        private bool _skipInputThisFrame;
         #endregion
 
         #region Unity Lifecycle
@@ -59,6 +60,7 @@ namespace SEHOON.UI
         {
             _currentIndex = 0;
             ShowLine(_currentIndex);
+            _skipInputThisFrame = true;
 
             _onEnableEvent?.Invoke();
         }
@@ -80,9 +82,19 @@ namespace SEHOON.UI
 
             if (isPaused) return;
 
+            if (_skipInputThisFrame)
+            {
+                _skipInputThisFrame = false;
+                return;
+            }
+
             if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
-                if (_currentIndex >= _dialogueLines.Count - 1)
+                if (_textBoxItem != null && _textBoxItem.IsRevealing)
+                {
+                    _textBoxItem.CompleteText();
+                }
+                else if (_currentIndex >= _dialogueLines.Count - 1)
                 {
                     gameObject.SetActive(false);
                 }
