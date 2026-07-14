@@ -106,7 +106,7 @@ public class DoorController : MonoBehaviour, IInteractable
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
         inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
-        bool hasAnomaly = DataManager.Instance.IsAnomalyApply();
+        bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
         if (_isBackward || _isForward)
         {
             if (_isForward && hasAnomaly)
