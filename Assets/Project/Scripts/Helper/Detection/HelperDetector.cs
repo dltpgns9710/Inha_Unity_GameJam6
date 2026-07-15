@@ -1,45 +1,75 @@
+using SEHOON.GameSystem;
 using UnityEngine;
 
 namespace TAEWOOK.Helper.Detection
 {
     public class HelperDetector : MonoBehaviour
     {
+        [SerializeField] private AnomalyManager _anomalyManager;
+
         #region Private Fields
         private float _searchDistance;
         private LayerMask _anomalyLayer;
+
         #endregion
 
         #region Public Methods
+        public bool TryGetAnomaly(out AnomalyBase anomaly)
+        {
+            anomaly = null;
+
+            if (_anomalyManager == null)
+            {
+                return false;
+            }
+            anomaly = _anomalyManager.SelectedAnomaly;
+
+            if(anomaly == null)
+            {
+                return false;
+            }
+
+            SDetectData detectData = anomaly.DetectData;
+
+            if (detectData.Type == EAnomalyType.Global)
+            {
+                anomaly = null;
+                return false;
+            }
+            return true;
+        }
+            
+        
+        
+        
+
         public void Initialize(float searchDistance, LayerMask anomalyLayer)
         {
             _searchDistance = searchDistance;
             _anomalyLayer = anomalyLayer;
         }
 
-        public Transform FindNearestAnomaly(Vector2 searchCenter)
+        public Transform FindAnomaly(Vector2 searchCenter)
         {
-            Collider2D[] detectColliders = Physics2D.OverlapCircleAll(
-                searchCenter,
-                _searchDistance,
-                _anomalyLayer);
-
-            Transform nearestAnomaly = null;
-            float nearestDistance = float.MaxValue;
-
-            foreach (Collider2D detectCollider in detectColliders)
+            if(!TryGetAnomaly(out AnomalyBase anomaly))
             {
-                float distance = Vector2.Distance(searchCenter, detectCollider.transform.position);
-
-                if (distance >= nearestDistance)
-                {
-                    continue;
-                }
-
-                nearestDistance = distance;
-                nearestAnomaly = detectCollider.transform;
+                return null;
             }
 
-            return nearestAnomaly;
+            SDetectData detectData = anomaly.DetectData;
+            Vector2 anomalyPosition = detectData.AnomalyPos;
+            float detectRange = detectData.DetectRange;
+
+            float distance = Vector2.Distance(searchCenter, anomalyPosition);
+
+            
+
+            if (distance > detectRange)
+            {
+                return null;
+            }
+
+            return anomaly.transform;
         }
         #endregion
     }

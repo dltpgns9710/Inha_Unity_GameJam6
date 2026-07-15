@@ -116,7 +116,7 @@ namespace TAEWOOK.Helper.Ability
                 return;
             }
 
-            _targetAnomaly = _detector.FindNearestAnomaly(_commandSearchPosition);
+            _targetAnomaly = _detector.FindAnomaly(_commandSearchPosition);
 
             if (_targetAnomaly == null)
             {
