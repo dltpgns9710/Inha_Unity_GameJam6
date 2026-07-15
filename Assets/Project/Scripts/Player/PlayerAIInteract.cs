@@ -53,7 +53,7 @@ using JUNBEOM.Player;
 
         private void HandleConfirm()
         {
-            if (_canDetect == false|| _cantMove ==true)
+            if (_canDetect == false || _cantMove ==true)
             {
                 return;
             }

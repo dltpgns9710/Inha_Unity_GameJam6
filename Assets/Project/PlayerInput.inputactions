@@ -104,15 +104,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PauseMenu",
-                    "type": "Button",
-                    "id": "b760318a-87d6-4af8-b707-7d294ff0884f",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -258,10 +249,27 @@
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "7c513d85-471d-45a4-9c3f-bdd290cc1737",
+            "actions": [
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "976df3c1-4681-41b3-b547-22a4d3f21b00",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "751712f2-7840-4827-be67-fd15c12f14ab",
+                    "id": "caaab291-c0df-493a-805e-7ccfe203a025",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
