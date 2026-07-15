@@ -53,15 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.CreditsView
   _entries:
   - _part: Programming
+    _names: []
+  - _part: Player
     _names:
-    - "\uC774\uC138\uD6C8"
-  - _part: Art
+    - Yang JunBeom
+  - _part: UI
     _names:
-    - Artist A
-    - Artist B
-  - _part: Design
-    _names:
-    - Designer A
+    - Lee Sehoon
   - _part: LICENSE
     _names: []
   - _part: Bloodlines - Dark UI (Unity UI Asset Pack) by xGaida, Shieldomirs
@@ -80,16 +78,21 @@ MonoBehaviour:
   - _part: Must Have Horror Sound Effects by YourPalRob
     _names:
     - https://yourpalrob.itch.io/must-have-horror-sound-effects
+  - _part: 'House-tileset by maschiaT [maschiaT@wememo.art]'
+    _names:
+    - https://maschiat.itch.io/house-tileset
   - _part: FREE HORROR SFX - VN - SCARY SOUND EFFECTS by Liminal Games
     _names:
     - https://liminal-space-dev.itch.io/free-horror-sfx-sounds
-  - _part: Melancholic Indie Horror Game Music Pack (Lonely Nightmare) by Crow Shade
+  - _part: 'Melancholic Indie Horror Game Music Pack (Lonely Nightmare) by Crow Shade
+      [Music by Crow Shade]'
     _names:
     - https://crowshade.itch.io/melancholic-indie-horror-game-soundtrack-pack
-  - _part: pH64 Pixel Pack - 100s of Sideview Assets by PurpleHeart (Stacy Kendra
-      Love)
+    - 'LICENSE : CC-BY 4.0 '
+  - _part: pH64 Pixel Pack by Stacy Kendra Love (Narcissist Interactive)
     _names:
     - https://opengameart.org/content/ph64-pixel-pack-100s-of-sideview-assets
+    - 'LICENSE : CC-BY 4.0 '
   - _part: PSX Horror Music & SFX Pack by Pablo Alegria
     _names:
     - https://pabloalegria9.itch.io/psxhorrorpack
@@ -99,9 +102,12 @@ MonoBehaviour:
   - _part: Pixel Icons and Game controller by Disven
     _names:
     - https://disven.itch.io/pixel-icons-and-game-controller-2
+    - 'LICENSE : CC-BY 4.0 '
   - _part: Overworld Objects by Kelvin Shadewing
     _names:
     - https://opengameart.org/content/overworld-objects
+    - kelvinshadewing.net
+    - 'LICENSE : CC-BY-SA 4.0 '
   _viewport: {fileID: 7163553046750750161}
   _content: {fileID: 2348386119439047377}
   _linePrefab: {fileID: 5290113893863494285, guid: 3cbeaef24a9da734880040d01164becc, type: 3}
@@ -113,6 +119,9 @@ MonoBehaviour:
   _groupSpacing: 30
   _autoScroll: 1
   _scrollSpeed: 80
+  _onDisableEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-3256579064611757847
 MonoBehaviour:
   m_ObjectHideFlags: 0
