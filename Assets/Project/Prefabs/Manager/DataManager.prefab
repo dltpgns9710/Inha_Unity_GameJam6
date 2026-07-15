@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.System.DataManager
   _goalFloor: 8
+  _normalCursor: {fileID: 2800000, guid: 035f5f0489ff6ea4e91f81fb8c6c34fa, type: 3}

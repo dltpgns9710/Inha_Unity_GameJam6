@@ -30,8 +30,7 @@ namespace JUNBEOM.Player
         [SerializeField] private AudioClip _moveClip;
         [SerializeField] private AudioClip _runClip;
         [SerializeField] private float _walkSoundInterval = 0.1f; 
-        [SerializeField] private float _runSoundInterval = 0.05f; 
-
+        [SerializeField] private float _runSoundInterval = 0.05f;
         #endregion
 
         #region Private Fields
@@ -76,6 +75,7 @@ namespace JUNBEOM.Player
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _cachedTransform = transform;
+
 
             _initialScale = _cachedTransform.localScale;
             _currentMoveSpeed = _walkSpeed;
@@ -137,7 +137,6 @@ namespace JUNBEOM.Player
             _animator.SetBool(AnimHash.IsJumping, true);
             _animator.SetBool(AnimHash.IsGrounded, false);
         }
-
         #endregion
 
         #region Private Methods

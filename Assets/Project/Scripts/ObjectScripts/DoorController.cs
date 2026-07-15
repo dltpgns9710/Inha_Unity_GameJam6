@@ -20,6 +20,10 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private float _shakeIntensity = 0.05f;
     [SerializeField] private float _openDuration = 2.0f;
 
+    [SerializeField] private AudioClip _doorOpenSound;
+    [SerializeField] private AudioClip _doorCloseSound;
+    [SerializeField] private AudioClip _doorLockedSound;
+
     private Animator _animator;
     private bool _isOpening;
     private bool _hasBeenUnlocked = true;
@@ -88,7 +92,7 @@ public class DoorController : MonoBehaviour, IInteractable
         if (!canOpenDoor)
         {
             // TODO: Implement door open failure sound
-            yield return StartCoroutine(ShakeDoor());
+            yield return StartCoroutine(CoroutineShakeDoor());
             yield break;
         }
 
@@ -96,48 +100,48 @@ public class DoorController : MonoBehaviour, IInteractable
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
         inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
-        try
+        bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
+        if (_isBackward || _isForward)
         {
-            bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
-            if (_isBackward || _isForward)
+            if (_isForward && hasAnomaly)
             {
-                if (_isForward && hasAnomaly)
-                {
-                    DataManager.Instance.SelectIncorrectDoor();
-                }
-                else if (_isBackward && !hasAnomaly)
-                {
-                    DataManager.Instance.SelectIncorrectDoor();
-                }
-                else
-                {
-                    DataManager.Instance.SelectCorrectDoor();
-                }
+                DataManager.Instance.SelectIncorrectDoor();
             }
+            else if (_isBackward && !hasAnomaly)
+            {
+                DataManager.Instance.SelectIncorrectDoor();
+            }
+            else
+            {
+                DataManager.Instance.SelectCorrectDoor();
+            }
+        }
             
+        int index = 0;
 
-            int index = 0;
-
-            _animator.SetBool("isOpen", true);
-            yield return new WaitForSeconds(_openDuration);  //_openDuration 기간 동안 정지
-            if (_randomizeDoor && _otherDoors.Count >= 1)
-            {
-                index = UnityEngine.Random.Range(0, _otherDoors.Count);
-            }
-            interactor.transform.position = _otherDoors[index].transform.position;
-            _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
-        }
-        finally
+        if (_randomizeDoor && _otherDoors.Count >= 1)
         {
-            inputManager.EnablePlayerInput();   //플레이어 입력 가능
-            _isOpening = false;
+            index = UnityEngine.Random.Range(0, _otherDoors.Count);
         }
+        _animator.SetBool("isOpen", true);
+        _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", true);
+        SoundManager.Instance.PlaySfx(_doorOpenSound);
+
+        yield return new WaitForSeconds(_openDuration);
+
+        interactor.transform.position = _otherDoors[index].transform.position;
+        _animator.SetBool("isOpen", false);
+        _otherDoors[index].GetComponent<Animator>().SetBool("isOpen", false);
+        SoundManager.Instance.PlaySfx(_doorCloseSound);
+
+        inputManager.EnablePlayerInput();   //플레이어 입력 가능
+        _isOpening = false;
     }
 
-    private IEnumerator ShakeDoor()
+    private IEnumerator CoroutineShakeDoor()
     {
         float elapsedTime = 0f;
-
+        SoundManager.Instance.PlaySfx(_doorLockedSound);
         while (elapsedTime < _shakeDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -147,7 +151,6 @@ public class DoorController : MonoBehaviour, IInteractable
 
             yield return null;
         }
-
         transform.position = _originalPosition;
     }
 }
