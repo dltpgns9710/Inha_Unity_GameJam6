@@ -25,6 +25,7 @@ namespace JUNBEOM.Player
         public event Action OnRequestWaitEvent;
         public event Action OnConfirmEvent;
         public event Action OnCancelEvent;
+        public event Action OnPauseMenuEvent;
 
         #endregion
 
@@ -52,6 +53,7 @@ namespace JUNBEOM.Player
             _playerInput.actions["RequestWait"].started += OnRequestWait;
             _playerInput.actions["Confirm"].started += OnConfirm;
             _playerInput.actions["Cancel"].started += OnCancel; 
+            _playerInput.actions["PauseMenu"].started += OnPauseMenu; 
         }
 
         private void OnEnable()
@@ -134,6 +136,10 @@ namespace JUNBEOM.Player
         private void OnCancel(InputAction.CallbackContext context)
         {
             OnCancelEvent?.Invoke();
+        }
+        private void OnPauseMenu(InputAction.CallbackContext context)
+        {
+            OnPauseMenuEvent?.Invoke();
         }
 
 

@@ -30,8 +30,10 @@ namespace JUNBEOM.Player
         [SerializeField] private AudioClip _moveClip;
         [SerializeField] private AudioClip _runClip;
         [SerializeField] private float _walkSoundInterval = 0.1f; 
-        [SerializeField] private float _runSoundInterval = 0.05f; 
+        [SerializeField] private float _runSoundInterval = 0.05f;
 
+        [Header("PauseMenu")]
+        [SerializeField] private GameObject _paueMenu;
         #endregion
 
         #region Private Fields
@@ -48,6 +50,7 @@ namespace JUNBEOM.Player
         private bool _isRunning;
         private bool _isGrounded;
         private bool _isDead = false;
+        private bool _openPause;
 
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
 
@@ -77,8 +80,12 @@ namespace JUNBEOM.Player
             _animator = GetComponent<Animator>();
             _cachedTransform = transform;
 
+
             _initialScale = _cachedTransform.localScale;
             _currentMoveSpeed = _walkSpeed;
+            if(_paueMenu != null)
+                _paueMenu.SetActive(false);
+            _openPause = false;
         }
 
         private void OnEnable()
@@ -86,6 +93,7 @@ namespace JUNBEOM.Player
             _inputManager.OnMoveEvent += HandleMoveInput;
             _inputManager.OnRunEvent += HandleRunInput;
             _inputManager.OnJumpEvent += HandleJumpInput;
+            _inputManager.OnPauseMenuEvent += HandlePauseMenuInput;
         }
 
         private void OnDisable()
@@ -93,6 +101,7 @@ namespace JUNBEOM.Player
             _inputManager.OnMoveEvent -= HandleMoveInput;
             _inputManager.OnRunEvent -= HandleRunInput;
             _inputManager.OnJumpEvent -= HandleJumpInput;
+            _inputManager.OnJumpEvent -= HandlePauseMenuInput;
         }
 
         private void Update()
@@ -136,6 +145,20 @@ namespace JUNBEOM.Player
 
             _animator.SetBool(AnimHash.IsJumping, true);
             _animator.SetBool(AnimHash.IsGrounded, false);
+        }
+        private void HandlePauseMenuInput()
+        {
+            if (_paueMenu = null)
+                return;
+            if (_openPause)
+            {
+                _paueMenu.SetActive(false);
+                _openPause = false;
+                return;
+            }
+
+            _paueMenu.SetActive(true);
+            _openPause = true;
         }
 
         #endregion
