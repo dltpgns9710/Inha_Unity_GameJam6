@@ -7,10 +7,7 @@ namespace TAEWOOK.Helper.Detection
     {
         [SerializeField] private AnomalyManager _anomalyManager;
 
-        #region Private Fields
-        private float _searchDistance;
-        private LayerMask _anomalyLayer;
-
+        #region Private Fields        
         #endregion
 
         #region Public Methods
@@ -37,17 +34,7 @@ namespace TAEWOOK.Helper.Detection
                 return false;
             }
             return true;
-        }
-            
-        
-        
-        
-
-        public void Initialize(float searchDistance, LayerMask anomalyLayer)
-        {
-            _searchDistance = searchDistance;
-            _anomalyLayer = anomalyLayer;
-        }
+        }                                        
 
         public Transform FindAnomaly(Vector2 searchCenter)
         {

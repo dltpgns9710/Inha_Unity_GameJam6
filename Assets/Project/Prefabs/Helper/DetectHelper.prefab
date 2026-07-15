@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 3155040495169286329, guid: ec0d47673120b3d47a59d99a8fdee82f, type: 3}
     - target: {fileID: 931972892576428545, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_Name
@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.74
+      value: -13.671
       objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.16
+      value: -2.298
       objectReference: {fileID: 0}
     - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfee11699cae2541a3475d39115b4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Detection.HelperDetector
+  _anomalyManager: {fileID: 0}
 --- !u!114 &5043127154478296404
 MonoBehaviour:
   m_ObjectHideFlags: 0

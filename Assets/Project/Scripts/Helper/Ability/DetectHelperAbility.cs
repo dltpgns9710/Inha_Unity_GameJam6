@@ -12,7 +12,6 @@ namespace TAEWOOK.Helper.Ability
         {
             None,
             MoveToSearchPosition,
-            MoveToAnomaly,
             Alert,
             ReturnToPlayer,
         }   
@@ -22,7 +21,7 @@ namespace TAEWOOK.Helper.Ability
         private HelperMovement _movement;      
         private HelperAnimation _helperAnimation;
         private HelperDetector _detector;
-        private Transform _targetAnomaly;
+        
         private Vector2 _commandSearchPosition;
         private Vector2 _commandMovePosition;
         private EDetectAbilityState _currentState;
@@ -47,12 +46,7 @@ namespace TAEWOOK.Helper.Ability
             if (_detector == null)
             {
                 _detector = gameObject.AddComponent<HelperDetector>();
-            }
-
-            if (_config != null)
-            {
-                _detector.Initialize(_config.CommandSearchDistance, _config.AnomalyLayer);
-            }
+            }            
         }
 
         public override bool CanUseAbility()
@@ -73,8 +67,7 @@ namespace TAEWOOK.Helper.Ability
             }
 
             _commandSearchPosition = targetPosition;
-            _commandMovePosition = new Vector2(targetPosition.x, transform.position.y);
-            _targetAnomaly = null;
+            _commandMovePosition = new Vector2(targetPosition.x, transform.position.y);            
             _currentState = EDetectAbilityState.MoveToSearchPosition;
         }
 
@@ -84,10 +77,7 @@ namespace TAEWOOK.Helper.Ability
             {
                 case EDetectAbilityState.MoveToSearchPosition:
                     UpdateMoveToSearchPosition();
-                    break;
-                case EDetectAbilityState.MoveToAnomaly:
-                    UpdateMoveToAnomaly();
-                    break;
+                    break;                                     
                 case EDetectAbilityState.Alert:
                     break;
                 case EDetectAbilityState.ReturnToPlayer:
@@ -102,8 +92,7 @@ namespace TAEWOOK.Helper.Ability
             {
                 return;
             }
-
-            _targetAnomaly = null;
+            
             _currentState = EDetectAbilityState.ReturnToPlayer;
         }
         #endregion
@@ -116,33 +105,21 @@ namespace TAEWOOK.Helper.Ability
                 return;
             }
 
-            _targetAnomaly = _detector.FindAnomaly(_commandSearchPosition);
+            Transform targetAnomaly = _detector.FindAnomaly(_commandSearchPosition);
 
-            if (_targetAnomaly == null)
+            if (targetAnomaly == null)
             {
                 _currentState = EDetectAbilityState.ReturnToPlayer;
                 return;
             }
 
+            _movement.Stop();
             ShowExclamationIcon();
-            _currentState = EDetectAbilityState.MoveToAnomaly;
+            _helperAnimation.PlayBark();
+            _currentState = EDetectAbilityState.Alert;
         }
 
-        private void UpdateMoveToAnomaly()
-        {
-            if (_targetAnomaly == null)
-            {
-                _currentState = EDetectAbilityState.ReturnToPlayer;
-                return;
-            }
-
-            if (_movement.MoveToTarget(_targetAnomaly.position, _config.AnomalyArriveDistance))
-            {
-                _movement.Stop();
-                _helperAnimation.PlayBark();
-                _currentState = EDetectAbilityState.Alert;
-            }
-        }
+     
 
         private void UpdateReturnToPlayer()
         {
@@ -153,8 +130,7 @@ namespace TAEWOOK.Helper.Ability
         }
 
         private void FinishAbility()
-        {
-            _targetAnomaly = null;
+        {            
             _currentState = EDetectAbilityState.None;
             Helper.ReturnToFollowState();
         }

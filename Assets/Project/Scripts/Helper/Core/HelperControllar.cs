@@ -182,9 +182,6 @@ namespace TAEWOOK.Helper.Core
                 case EHelperState.Wait:
                     UpdateWait();
                     break;
-                case EHelperState.Sleep:
-                    UpdateSleep();
-                    break;
             }
         }
 
@@ -248,11 +245,7 @@ namespace TAEWOOK.Helper.Core
             {
                 ChangeState(EHelperState.Sleep);
             }
-        }
-
-        private void UpdateSleep()
-        {
-        }
+        }        
 
         private void TeleportToPlayer()
         {

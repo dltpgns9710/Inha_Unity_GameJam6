@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TAEWOOK.Helper.Core
@@ -9,9 +8,7 @@ namespace TAEWOOK.Helper.Core
     {
         #region Private Fields
         private SpriteRenderer _spriteRenderer;
-        private Animator _animator;
-        //private Rigidbody2D _rigidbody;
-
+        private Animator _animator;        
         private float _walkSpeed;
         private float _runSpeed;
         private float _runDistance;
@@ -77,13 +74,7 @@ namespace TAEWOOK.Helper.Core
                 targetXPosition,
                 moveSpeed * Time.deltaTime
                 );
-            /*
-            Vector2 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
-            _rigidbody.linearVelocity = new Vector2(
-                moveDirection.x * moveSpeed,
-                _rigidbody.linearVelocity.y
-                );
-            */
+            
             return false;
         }
 
