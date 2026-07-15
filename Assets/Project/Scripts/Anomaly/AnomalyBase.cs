@@ -21,8 +21,8 @@ namespace SEHOON.GameSystem
         [SerializeField] private SDetectData _detectData;
         [SerializeField] private float _weight = 1f;
 
-        public float Weight { get; }
-        public SDetectData DetectData { get; }
+        public float Weight => _weight;
+        public SDetectData DetectData => _detectData;
         
         public abstract void Apply();
         public abstract void Remove();
