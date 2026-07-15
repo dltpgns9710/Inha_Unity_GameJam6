@@ -1,13 +1,16 @@
 using UnityEngine;
+using SEHOON.GameSystem;
 using TAEWOOK.Helper.Core;
 using TAEWOOK.Helper.Data;
 using TAEWOOK.Helper.Detection;
+using System;
 
 namespace TAEWOOK.Helper.Ability
 {
     [RequireComponent(typeof(HelperDetector))]
     public class DetectHelperAbility : HelperAbility
     {
+        [SerializeField] AudioClip _barkSound;
         private enum EDetectAbilityState
         {
             None,
@@ -20,7 +23,7 @@ namespace TAEWOOK.Helper.Ability
         private DetectHelperConfig _config;
         private HelperMovement _movement;      
         private HelperAnimation _helperAnimation;
-        private HelperDetector _detector;
+        private HelperDetector _detector;        
         
         private Vector2 _commandSearchPosition;
         private Vector2 _commandMovePosition;
@@ -116,6 +119,7 @@ namespace TAEWOOK.Helper.Ability
             _movement.Stop();
             ShowExclamationIcon();
             _helperAnimation.PlayBark();
+            SoundManager.Instance.PlaySfx(_barkSound);
             _currentState = EDetectAbilityState.Alert;
         }
 
