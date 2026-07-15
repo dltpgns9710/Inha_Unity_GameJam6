@@ -13,12 +13,21 @@ namespace SEHOON.GameSystem
     {
 
         [SerializeField] private int _goalFloor = 8;
+        [SerializeField] private Texture2D _normalCursor;
 
         private int _floor = 1;
         private bool _isAnomalyApply = false;
         private EStoryType _storyType = EStoryType.Start;
 
         public int Floor => _floor;
+
+        private void Start()
+        {
+            if (_normalCursor != null)
+            {
+                Cursor.SetCursor(_normalCursor, Vector2.zero, CursorMode.Auto);
+            }
+        }
 
         public bool IsAnomalyApply
         {
