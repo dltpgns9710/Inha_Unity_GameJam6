@@ -26,6 +26,7 @@
   - [3-11. Pet Dogs Pack](#3-11-pet-dogs-pack-by-luizmelo)
   - [3-12. Pixel Icons and Game controller](#3-12-pixel-icons-and-game-controller-2-by-disven)
   - [3-13. Overworld Objects](#3-13-overworld-objects--opengameartorg)
+  - [3-14. Cursor Pixel Pack](#3-14-cursor-pixel-pack-by-kenney)
 
 <br>
 
@@ -306,7 +307,21 @@ fix: 셰이더 Y축 뒤집힘 및 암전 오류 수정
 
 <br>
 
-### 3-14. 빌드 시 크레딧 표기 위치
+### 3-14. [Cursor Pixel Pack by Kenney](https://kenney.nl/assets/cursor-pixel-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Kenney |
+| 출처 | kenney.nl |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 크레딧 표기 불필요
+
+<br>
+
+### 3-15. 빌드 시 크레딧 표기 위치
 
 위 크레딧 문구는 게임 내 다음 위치 중 한 곳에 반드시 포함합니다.
 
