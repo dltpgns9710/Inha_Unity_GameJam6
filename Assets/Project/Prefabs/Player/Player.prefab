@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 5696824040067253841}
   - component: {fileID: 3181727023848422106}
   - component: {fileID: 1008887758534178700}
+  - component: {fileID: 1612542955956462334}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -128,7 +129,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.06, y: -2.12, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7625735562005671926}
@@ -341,7 +342,6 @@ MonoBehaviour:
   _runClip: {fileID: 8300000, guid: 228daec2fdd62664daa416e7066b422e, type: 3}
   _walkSoundInterval: 0.5
   _runSoundInterval: 0.5
-  _paueMenu: {fileID: 0}
 --- !u!114 &3724830758570131284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +418,20 @@ MonoBehaviour:
   _HelperInteract: {fileID: 0}
   _findCursor: {fileID: 2800000, guid: d8f04af95468a6e4185bf7819f2f3a3c, type: 3}
   _normalCursor: {fileID: 2800000, guid: 035f5f0489ff6ea4e91f81fb8c6c34fa, type: 3}
+--- !u!114 &1612542955956462334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696961991513125471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f66a053edefdc458d03e708878e5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPauseMenu
+  _pauseMenuView: {fileID: 0}
+  _playerInputManager: {fileID: 7465885626439827489}
 --- !u!1 &9144347914524029728
 GameObject:
   m_ObjectHideFlags: 0
