@@ -83,7 +83,8 @@ namespace JUNBEOM.Player
 
             _initialScale = _cachedTransform.localScale;
             _currentMoveSpeed = _walkSpeed;
-            _paueMenu.SetActive(false);
+            if(_paueMenu != null)
+                _paueMenu.SetActive(false);
             _openPause = false;
         }
 
@@ -147,6 +148,8 @@ namespace JUNBEOM.Player
         }
         private void HandlePauseMenuInput()
         {
+            if (_paueMenu = null)
+                return;
             if (_openPause)
             {
                 _paueMenu.SetActive(false);

@@ -226,7 +226,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8eb94234d25a55a4f8d27958f7233aeb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -341,6 +341,7 @@ MonoBehaviour:
   _runClip: {fileID: 8300000, guid: 228daec2fdd62664daa416e7066b422e, type: 3}
   _walkSoundInterval: 0.5
   _runSoundInterval: 0.5
+  _paueMenu: {fileID: 0}
 --- !u!114 &3724830758570131284
 MonoBehaviour:
   m_ObjectHideFlags: 0
