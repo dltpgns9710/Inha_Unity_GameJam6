@@ -24,8 +24,8 @@ namespace SEHOON.UI
         [SerializeField] private Button _skipButton;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent _onEnableEvent;
-        [SerializeField] private UnityEvent _onDisableEvent;
+        [SerializeField] private UnityEvent _onEnableEvent = new UnityEvent();
+        [SerializeField] private UnityEvent _onDisableEvent = new UnityEvent();
         #endregion
 
         #region Private Fields
@@ -35,8 +35,8 @@ namespace SEHOON.UI
         #endregion
 
         #region Property Fields
-        public UnityEvent OnEnableEvent { get; }
-        public UnityEvent OnDisableEvent { get; }
+        public UnityEvent OnEnableEvent => _onEnableEvent;
+        public UnityEvent OnDisableEvent => _onDisableEvent;
         #endregion
 
         #region Unity Lifecycle

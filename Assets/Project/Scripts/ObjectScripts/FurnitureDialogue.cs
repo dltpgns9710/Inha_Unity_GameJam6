@@ -24,10 +24,19 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
             Debug.LogWarning("TextBox is not assigned in the inspector.");
             return;
         }
+
+        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();
         _textBox.SetActive(true);
-        /*_textBox.GetComponent<DialogueBoxView>().OnDisableEvent.AddListener(() =>
+
+        DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
+        dialogueBoxView.OnEnableEvent.AddListener(() =>
         {
-            _textBox.SetActive(false);
-        });*/
+            inputManager.DisablePlayerInput();
+        });
+
+        dialogueBoxView.OnDisableEvent.AddListener(() =>
+        {
+            inputManager.EnablePlayerInput();
+        });
     }
 }
