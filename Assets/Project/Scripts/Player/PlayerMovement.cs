@@ -148,7 +148,7 @@ namespace JUNBEOM.Player
         }
         private void HandlePauseMenuInput()
         {
-            if (_paueMenu = null)
+            if (_paueMenu == null)
                 return;
             if (_openPause)
             {
