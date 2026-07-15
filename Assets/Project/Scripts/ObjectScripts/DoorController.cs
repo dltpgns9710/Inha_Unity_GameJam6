@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using PlayerInputManager = JUNBEOM.Player.PlayerInputManager;
 
 public class DoorController : MonoBehaviour, IInteractable
@@ -115,6 +116,11 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 DataManager.Instance.SelectCorrectDoor();
             }
+
+            _animator.SetBool("isOpen", true);
+            yield return new WaitForSeconds(_openDuration);
+            SceneManager.LoadScene("MainScene");
+            yield break;
         }
             
         int index = 0;
