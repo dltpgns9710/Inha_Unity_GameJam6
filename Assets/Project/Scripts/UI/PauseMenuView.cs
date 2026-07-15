@@ -50,6 +50,8 @@ namespace SEHOON.UI
             get => _quitButtonText;
             set { _quitButtonText = value; ApplyTexts(); }
         }
+        public UnityEvent OnEnableEvent => _onEnableEvent;
+        public UnityEvent OnDisableEvent => _onDisableEvent;
 
         public TMP_FontAsset Font
         {
