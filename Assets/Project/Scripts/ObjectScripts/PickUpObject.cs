@@ -22,6 +22,5 @@ public class PickUpObject : MonoBehaviour, IInteractable
     {
         PlayerEventManager.Instance.OnKeyCollected?.Invoke();
         Debug.Log("Picked up item: " + gameObject.name);
-        this.GameObject().SetActive(false);
     }
 }

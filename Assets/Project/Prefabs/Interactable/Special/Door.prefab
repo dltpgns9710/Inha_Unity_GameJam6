@@ -114,6 +114,9 @@ MonoBehaviour:
   _shakeDuration: 0.25
   _shakeIntensity: 0.05
   _openDuration: 2
+  _doorOpenSound: {fileID: 8300000, guid: f5adeae676f9ff6469d45c2435ddae9b, type: 3}
+  _doorCloseSound: {fileID: 8300000, guid: 6ff58eb4e3aabee49848ad42faeddca5, type: 3}
+  _doorLockedSound: {fileID: 8300000, guid: ac57ec655a3458243853894103fa58fd, type: 3}
 --- !u!95 &7194125273174984845
 Animator:
   serializedVersion: 7

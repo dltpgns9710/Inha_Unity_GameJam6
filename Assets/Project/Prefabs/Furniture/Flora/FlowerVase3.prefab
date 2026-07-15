@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017710313592461763}
   - component: {fileID: 1318622940348457987}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FlowerVase3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
