@@ -24,6 +24,8 @@ namespace TAEWOOK.Helper.Core
         private HelperAnimation _helperAnimation;
         private HelperAbility _ability;
         private float _waitElapsedTime;
+        private Collider2D _playerCollider;
+        private Collider2D _helperCollider;
         #endregion
 
         #region Properties
@@ -36,6 +38,8 @@ namespace TAEWOOK.Helper.Core
         private void Awake()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            _playerCollider = _playerTransform.GetComponent<Collider2D>();
+            _helperCollider = GetComponent<Collider2D>();
 
             if (_playerTransform == null && player != null)
             {
@@ -258,11 +262,19 @@ namespace TAEWOOK.Helper.Core
             if(xDistance <= 40.0f && yDistance <= 10.0f)
             {
                 return;
-            }                    
+            }
+
+            float targetY = PlayerPosition.y;
+
+            if(_playerCollider != null && _helperCollider != null)
+            {
+                float footDiff = _playerCollider.bounds.min.y - _helperCollider.bounds.min.y;
+                targetY = transform.position.y + footDiff;
+            }
             
             transform.position = new Vector3(
                 PlayerPosition.x - _config.FollowDistance,
-                PlayerPosition.y,
+                targetY,
                 transform.position.z);                 
         }
         #endregion
