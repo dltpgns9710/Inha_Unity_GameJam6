@@ -57,9 +57,23 @@ MonoBehaviour:
   - _part: Player
     _names:
     - Yang JunBeom
+  - _part: AI
+    _names:
+    - Park TaeWook
+  - _part: 'Objects '
+    _names:
+    - Justin Sung Joo Kang
+  - _part: System
+    _names:
+    - Lee Sehoon
   - _part: UI
     _names:
     - Lee Sehoon
+  - _part: Design
+    _names: []
+  - _part: Main Scene
+    _names:
+    - Justin Sung Joo Kang
   - _part: LICENSE
     _names: []
   - _part: Bloodlines - Dark UI (Unity UI Asset Pack) by xGaida, Shieldomirs
