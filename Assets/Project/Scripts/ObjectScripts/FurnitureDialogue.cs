@@ -1,4 +1,5 @@
 using JUNBEOM.Player;
+using SEHOON.GameSystem;
 using SEHOON.UI;
 using UnityEngine;
 
@@ -40,6 +41,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
         
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();
         _textBox.SetActive(true);
+        DataManager.Instance.ActiveGameUI?.Invoke(false);
         
         inputManager.DisablePlayerInput();
         
@@ -47,6 +49,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
         {
             inputManager.EnablePlayerInput();
             _isInteracted = true;
+            DataManager.Instance.ActiveGameUI?.Invoke(true);
         });
         
     }

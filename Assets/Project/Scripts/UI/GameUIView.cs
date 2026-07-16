@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using JUNBEOM.Player;
+using SEHOON.GameSystem;
 
 namespace SEHOON.UI
 {
@@ -17,6 +19,7 @@ namespace SEHOON.UI
         #region Unity Lifecycle
         private void OnEnable()
         {
+            DataManager.Instance.ActiveGameUI += HideGameUI;
             PlayerEventManager.Instance.OnLightRatioChanged += HandleLightRatioChanged;
             PlayerEventManager.Instance.OnKeyStateChanged += HandleKeyStateChanged;
 
@@ -29,9 +32,21 @@ namespace SEHOON.UI
             PlayerEventManager.Instance.OnLightRatioChanged -= HandleLightRatioChanged;
             PlayerEventManager.Instance.OnKeyStateChanged -= HandleKeyStateChanged;
         }
+
+        private void OnDestroy()
+        {
+            DataManager.Instance.ActiveGameUI -= HideGameUI;
+        }
+
         #endregion
 
         #region Private Methods
+
+        private void HideGameUI(bool hide)
+        {
+            gameObject.SetActive(hide);
+        }
+        
         private void HandleLightRatioChanged(float ratio)
         {
             if (_lightRatioSlider != null) _lightRatioSlider.value = ratio;

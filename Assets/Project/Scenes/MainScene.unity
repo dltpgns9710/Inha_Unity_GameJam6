@@ -923,6 +923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8713928302100794686, guid: e38a247f57f09a941bee89c592654b25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2512,6 +2516,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6421335530088039353, guid: bc3727099390d7a45ba14f943c19f5f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1528708045}
+    - targetCorrespondingSourceObject: {fileID: 6421335530088039353, guid: bc3727099390d7a45ba14f943c19f5f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1528708048}
   m_SourcePrefab: {fileID: 100100000, guid: bc3727099390d7a45ba14f943c19f5f5, type: 3}
 --- !u!4 &518903452 stripped
 Transform:
@@ -7697,6 +7704,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &1528708048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528708042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084517c8bb2036c4490df7ba09747833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
+  _textBox: {fileID: 0}
 --- !u!1001 &1529011011
 PrefabInstance:
   m_ObjectHideFlags: 0
