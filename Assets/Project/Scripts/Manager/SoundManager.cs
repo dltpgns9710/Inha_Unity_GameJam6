@@ -134,12 +134,16 @@ namespace SEHOON.GameSystem
         {
             if (_bgmSource == null) _bgmSource = gameObject.AddComponent<AudioSource>();
             if (_sfxSource == null) _sfxSource = gameObject.AddComponent<AudioSource>();
-
+            if (_loopSfxSource == null) _loopSfxSource = gameObject.AddComponent<AudioSource>();
+            
             _bgmSource.playOnAwake = false;
             _bgmSource.loop = true;
 
             _sfxSource.playOnAwake = false;
             _sfxSource.loop = false;
+            
+            _loopSfxSource.playOnAwake = false;
+            _loopSfxSource.loop = true;
         }
 
         private void LoadSettings()
