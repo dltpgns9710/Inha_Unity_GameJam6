@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using System;
+using SEHOON.GameSystem;
 
 namespace SEHOON.UI
 {
@@ -15,7 +17,12 @@ namespace SEHOON.UI
         [SerializeField] private float _fadeDuration = 1.5f;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent _onDisableEvent;
+        [SerializeField] private UnityEvent _onDisableEvent = new UnityEvent();
+
+        [SerializeField] private AudioClip _doorCloseSound;
+
+        public event Action _fadeOutEnd;
+        public event Action _fadeInEnd;
         #endregion
 
         #region Private Fields
@@ -27,6 +34,8 @@ namespace SEHOON.UI
         {
             if (_textWidget != null) _textWidget.text = text;
         }
+
+        public UnityEvent OnDisableEvent => _onDisableEvent;
         #endregion
 
         #region Unity Lifecycle
@@ -34,17 +43,19 @@ namespace SEHOON.UI
         {
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = StartCoroutine(CoFadeIn());
+            SoundManager.Instance.PlaySfx(_doorCloseSound);
         }
 
         private void OnDisable()
         {
             if (_fadeCoroutine != null)
             {
+
                 StopCoroutine(_fadeCoroutine);
                 _fadeCoroutine = null;
             }
 
-            _onDisableEvent?.Invoke();
+            _fadeInEnd?.Invoke();
         }
         #endregion
 
