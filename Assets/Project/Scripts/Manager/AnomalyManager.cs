@@ -9,7 +9,7 @@ namespace SEHOON.GameSystem
         [SerializeField, Range(0, 100)] private int _anomalyApplyChance = 80;
 
         private AnomalyBase _selectedAnomaly = null;
-
+        public AnomalyBase SelectedAnomaly => _selectedAnomaly;
 
         private void OnEnable()
         {
