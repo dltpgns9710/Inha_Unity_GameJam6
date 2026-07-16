@@ -40,7 +40,7 @@ public class ChromaticAberrationAnomaly : AnomalyBase
         {
             // 이상현상이 해제될 때도 원래 수치(0)로 서서히 돌아가게 합니다.
             if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
-            transitionCoroutine = StartCoroutine(TransitionIntensity(0f));
+            chromaticAberration.intensity.value = 0f;
         }
     }
 
