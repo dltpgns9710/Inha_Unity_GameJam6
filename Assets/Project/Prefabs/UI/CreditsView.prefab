@@ -108,6 +108,9 @@ MonoBehaviour:
     - https://opengameart.org/content/overworld-objects
     - kelvinshadewing.net
     - 'LICENSE : CC-BY-SA 4.0 '
+  - _part: Cursor Pixel Pack by Kenney
+    _names:
+    - https://kenney.nl/assets/cursor-pixel-pack
   _viewport: {fileID: 7163553046750750161}
   _content: {fileID: 2348386119439047377}
   _linePrefab: {fileID: 5290113893863494285, guid: 3cbeaef24a9da734880040d01164becc, type: 3}

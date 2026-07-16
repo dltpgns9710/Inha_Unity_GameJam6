@@ -35,8 +35,8 @@ namespace SEHOON.UI
         #endregion
 
         #region Property Fields
-        public UnityEvent OnEnableEvent { get; }
-        public UnityEvent OnDisableEvent { get; }
+        public UnityEvent OnEnableEvent => _onEnableEvent;
+        public UnityEvent OnDisableEvent => _onDisableEvent;
         #endregion
 
         #region Unity Lifecycle
