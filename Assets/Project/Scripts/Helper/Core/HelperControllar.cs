@@ -24,6 +24,8 @@ namespace TAEWOOK.Helper.Core
         private HelperAnimation _helperAnimation;
         private HelperAbility _ability;
         private float _waitElapsedTime;
+        private Collider2D _playerCollider;
+        private Collider2D _helperCollider;
         #endregion
 
         #region Properties
@@ -36,6 +38,8 @@ namespace TAEWOOK.Helper.Core
         private void Awake()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            _playerCollider = _playerTransform.GetComponent<Collider2D>();
+            _helperCollider = GetComponent<Collider2D>();
 
             if (_playerTransform == null && player != null)
             {
@@ -73,7 +77,7 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
-            _commandBroadcaster.DetectAnomalyRequested += RequestUseAbility;
+            _commandBroadcaster.DetectAnomalyRequested += RequestDetectAnomaly;
             _commandBroadcaster.OnWaitRequested += RequestWait;
         }
 
@@ -95,7 +99,7 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
-            _commandBroadcaster.DetectAnomalyRequested -= RequestUseAbility;
+            _commandBroadcaster.DetectAnomalyRequested -= RequestDetectAnomaly;
             _commandBroadcaster.OnWaitRequested -= RequestWait;
         }
         #endregion
@@ -113,7 +117,10 @@ namespace TAEWOOK.Helper.Core
 
         public void RequestDetectAnomaly(Vector2 searchPosition)
         {
-            RequestUseAbility(searchPosition);
+            if(_currentState == EHelperState.Follow || _currentState == EHelperState.Idle)
+            {
+                RequestUseAbility(searchPosition);
+            }            
         }
 
         public void RequestWait()
@@ -178,9 +185,6 @@ namespace TAEWOOK.Helper.Core
                 case EHelperState.Wait:
                     UpdateWait();
                     break;
-                case EHelperState.Sleep:
-                    UpdateSleep();
-                    break;
             }
         }
 
@@ -244,25 +248,30 @@ namespace TAEWOOK.Helper.Core
             {
                 ChangeState(EHelperState.Sleep);
             }
-        }
-
-        private void UpdateSleep()
-        {
-        }
+        }        
 
         private void TeleportToPlayer()
         {
+            float xDistance = Mathf.Abs(PlayerPosition.x - transform.position.x);
             float yDistance = Mathf.Abs(PlayerPosition.y - transform.position.y);
-
-            if(yDistance <= 10.0f)
+            
+            if(xDistance <= 40.0f && yDistance <= 10.0f)
             {
                 return;
             }
 
+            float targetY = PlayerPosition.y;
+
+            if(_playerCollider != null && _helperCollider != null)
+            {
+                float footDiff = _playerCollider.bounds.min.y - _helperCollider.bounds.min.y;
+                targetY = transform.position.y + footDiff;
+            }
+            
             transform.position = new Vector3(
                 PlayerPosition.x - _config.FollowDistance,
-                PlayerPosition.y,
-                transform.position.z);               
+                targetY,
+                transform.position.z);                 
         }
         #endregion
     }
