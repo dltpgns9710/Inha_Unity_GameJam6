@@ -19,6 +19,7 @@ namespace SEHOON.UI
         [SerializeField] private bool _isDoFadeOut = true;
         
         [Header("Events")]
+        [SerializeField] private UnityEvent _onEnableEvent = new UnityEvent();
         [SerializeField] private UnityEvent _onDisableEvent = new UnityEvent();
 
         [SerializeField] private AudioClip _doorCloseSound;
@@ -45,6 +46,7 @@ namespace SEHOON.UI
         {
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = _isDoFadeOut? StartCoroutine(CoFadeOut()) : StartCoroutine(CoFadeIn());
+            _onEnableEvent?.Invoke();
         }
 
         private void OnDisable()
@@ -81,6 +83,9 @@ namespace SEHOON.UI
             _fadeCoroutine = null;
             _isDoFadeOut = true;
             _fadeInEnd?.Invoke();
+            //yield return new WaitForSeconds(_fadeDuration);
+            yield return null;
+            gameObject.SetActive(false);
             //gameObject.SetActive(false);
         }
         
