@@ -130,6 +130,11 @@ namespace JUNBEOM.Camera
             }
         }
 
+        public bool GetPlayerFollowing()
+        {
+            return _isFollowingPlayer;
+        }
+
         #endregion
 
         #region Input Event Handlers

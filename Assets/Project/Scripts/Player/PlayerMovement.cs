@@ -26,6 +26,9 @@ namespace JUNBEOM.Player
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
 
+        [Header("MAinCamera")]
+        [SerializeField] private Camera.MainCameraController _mainCamera;
+
         [Header("AudioSetting")]
         [SerializeField] private AudioClip _moveClip;
         [SerializeField] private AudioClip _runClip;
@@ -52,6 +55,8 @@ namespace JUNBEOM.Player
 
         private float _footstepTimer = 0f; // 발소리 타이머
         private float _runstepTimer = 0f; // 달리기 타이머
+
+        private bool _isFollowingPlayer;
 
         #endregion
 
@@ -100,6 +105,7 @@ namespace JUNBEOM.Player
             UpdateAnimation();
             HandleFootstepSound();
             HandleRunstepSound();
+
         }
 
         private void FixedUpdate()
@@ -114,18 +120,30 @@ namespace JUNBEOM.Player
 
         private void HandleMoveInput(float inputX)
         {
+            if(!_mainCamera.GetPlayerFollowing())
+            {
+                _mainCamera.ToggleCameraMode();
+            }
             _moveInputX = inputX;
             UpdateFacingDirection();
         }
 
         private void HandleRunInput(bool isRunning)
         {
+            if (!_mainCamera.GetPlayerFollowing())
+            {
+                _mainCamera.ToggleCameraMode();
+            }
             _isRunning = isRunning;
             _currentMoveSpeed = _isRunning ? _runSpeed : _walkSpeed;
         }
 
         private void HandleJumpInput()
         {
+            if (!_mainCamera.GetPlayerFollowing())
+            {
+                _mainCamera.ToggleCameraMode();
+            }
             bool canJump = _isGrounded && !_isJumping;
             if (!canJump) return;
 
