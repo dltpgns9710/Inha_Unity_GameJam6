@@ -87,7 +87,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.TextBoxItemView
   _textWidget: {fileID: 1857550895624028715}
   _charInterval: 0.1
+  _typingSound: {fileID: 8300000, guid: 539fa89d3457bca4a81fe4499206c2d2, type: 3}
 --- !u!1 &2641731270559430975
 GameObject:
   m_ObjectHideFlags: 0

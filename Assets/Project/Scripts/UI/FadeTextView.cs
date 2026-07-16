@@ -16,7 +16,10 @@ namespace SEHOON.UI
         [Header("Fade")]
         [SerializeField] private float _fadeDuration = 1.5f;
 
+        [SerializeField] private bool _isDoFadeOut = true;
+        
         [Header("Events")]
+        [SerializeField] private UnityEvent _onEnableEvent = new UnityEvent();
         [SerializeField] private UnityEvent _onDisableEvent = new UnityEvent();
 
         [SerializeField] private AudioClip _doorCloseSound;
@@ -42,20 +45,18 @@ namespace SEHOON.UI
         private void OnEnable()
         {
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
-            _fadeCoroutine = StartCoroutine(CoFadeIn());
-            SoundManager.Instance.PlaySfx(_doorCloseSound);
+            _fadeCoroutine = _isDoFadeOut? StartCoroutine(CoFadeOut()) : StartCoroutine(CoFadeIn());
+            _onEnableEvent?.Invoke();
         }
 
         private void OnDisable()
         {
             if (_fadeCoroutine != null)
             {
-
                 StopCoroutine(_fadeCoroutine);
                 _fadeCoroutine = null;
             }
             _onDisableEvent?.Invoke();
-            _fadeInEnd?.Invoke();
         }
         #endregion
 
@@ -80,7 +81,37 @@ namespace SEHOON.UI
             color.a = 1f;
             _textWidget.color = color;
             _fadeCoroutine = null;
+            _isDoFadeOut = true;
+            _fadeInEnd?.Invoke();
+            //yield return new WaitForSeconds(_fadeDuration);
+            yield return null;
+            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+        }
+        
+        private IEnumerator CoFadeOut()
+        {
+            if (_textWidget == null) yield break;
 
+            SoundManager.Instance.PlaySfx(_doorCloseSound);
+            Color color = _textWidget.color;
+            color.a = 1f;
+            _textWidget.color = color;
+
+            float elapsed = 0f;
+            while (elapsed < _fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                color.a = 1f - Mathf.Clamp01(elapsed / _fadeDuration);
+                _textWidget.color = color;
+                yield return null;
+            }
+
+            color.a = 0f;
+            _textWidget.color = color;
+            _fadeCoroutine = null;
+            _isDoFadeOut = false;
+            _fadeOutEnd?.Invoke();
             gameObject.SetActive(false);
         }
         #endregion

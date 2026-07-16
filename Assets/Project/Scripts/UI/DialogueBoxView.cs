@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SEHOON.GameSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -37,6 +38,12 @@ namespace SEHOON.UI
         #region Property Fields
         public UnityEvent OnEnableEvent => _onEnableEvent;
         public UnityEvent OnDisableEvent => _onDisableEvent;
+
+        public List<DialogueLine> DialogueLines
+        {
+            get => _dialogueLines;
+            set => _dialogueLines = value;
+        }
         #endregion
 
         #region Unity Lifecycle
@@ -66,7 +73,8 @@ namespace SEHOON.UI
             _currentIndex = 0;
             ShowLine(_currentIndex);
             _skipInputThisFrame = true;
-
+            
+            SoundManager.Instance.StopLoopSfx();
             _onEnableEvent?.Invoke();
         }
 
@@ -93,7 +101,11 @@ namespace SEHOON.UI
                 return;
             }
 
-            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            if ((Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
+                (Mouse.current != null && 
+                 (Mouse.current.leftButton.wasPressedThisFrame  || 
+                  Mouse.current.rightButton.wasPressedThisFrame  || 
+                  Mouse.current.middleButton.wasPressedThisFrame )))
             {
                 if (_textBoxItem != null && _textBoxItem.IsRevealing)
                 {

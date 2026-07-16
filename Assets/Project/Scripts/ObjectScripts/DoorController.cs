@@ -99,8 +99,9 @@ public class DoorController : MonoBehaviour, IInteractable
         {
             // TODO: Implement door open failure sound
             yield return StartCoroutine(CoroutineShakeDoor());
+            DataManager.Instance.ActiveGameUI?.Invoke(false);
             _textBox.SetActive(true);
-
+            
             if (_textBox == null)
             {
                 Debug.LogWarning("TextBox is not assigned in the inspector.");
@@ -113,6 +114,7 @@ public class DoorController : MonoBehaviour, IInteractable
             dialogueBoxView.OnDisableEvent.AddListener(() =>
             {
                 inputManager.EnablePlayerInput();
+                DataManager.Instance.ActiveGameUI?.Invoke(true);
             });
             yield break;
         }

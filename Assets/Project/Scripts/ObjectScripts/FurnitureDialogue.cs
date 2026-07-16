@@ -1,4 +1,5 @@
 using JUNBEOM.Player;
+using SEHOON.GameSystem;
 using SEHOON.UI;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _textBox;
 
+    private bool _isInteracted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,16 +26,31 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
             Debug.LogWarning("TextBox is not assigned in the inspector.");
             return;
         }
-
+        
+        DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
+        
+        if (_isInteracted)
+        {
+            dialogueBoxView.DialogueLines.Clear();
+            DialogueLine interactedDialogue = new DialogueLine();
+            interactedDialogue.Name = "닐 브룩스";
+            interactedDialogue.Dialogue = "아까와 달라진 점은 없어 보인다.";
+            interactedDialogue.Alignment = EDialogueBoxAlignment.Left;
+            dialogueBoxView.DialogueLines.Add(interactedDialogue);
+        }
+        
         PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();
         _textBox.SetActive(true);
-
-        DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
+        DataManager.Instance.ActiveGameUI?.Invoke(false);
+        
         inputManager.DisablePlayerInput();
-
+        
         dialogueBoxView.OnDisableEvent.AddListener(() =>
         {
             inputManager.EnablePlayerInput();
+            _isInteracted = true;
+            DataManager.Instance.ActiveGameUI?.Invoke(true);
         });
+        
     }
 }
