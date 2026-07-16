@@ -12,12 +12,14 @@ using JUNBEOM.Player;
 
     #region Private Fields
         private bool _canDetect;
-        private bool _cantMove;
         private Vector2 hotSpot = Vector2.zero;
     #endregion
+    private void Start()
+    {
+        _canDetect = false;
+    }
 
-
-        private void OnEnable()
+    private void OnEnable()
         {
             _inputManager.OnRequestDetectAnomalyEvent += HandleRequestDetectAnomaly;
             _inputManager.OnRequestWaitEvent += HandleRequestWait;
@@ -37,6 +39,7 @@ using JUNBEOM.Player;
         private void HandleRequestDetectAnomaly()
         {            
             Cursor.SetCursor(_findCursor, hotSpot, CursorMode.Auto);
+            _canDetect = true;
         }
 
         private void HandleRequestWait()
@@ -46,9 +49,12 @@ using JUNBEOM.Player;
 
         private void HandleConfirm()
         {
+            if (!_canDetect)
+                return;
             Vector2 searchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _HelperInteract.RequestDetectAnomaly(searchPosition);            
-            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);            
+            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);
+            _canDetect = false;
         }
 
         private void HandleCancel()
