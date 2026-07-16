@@ -15,7 +15,7 @@ namespace SEHOON.UI
         [SerializeField] private float _fadeDuration = 1.5f;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent _onDisableEvent;
+        [SerializeField] private UnityEvent _onDisableEvent = new UnityEvent();
         #endregion
 
         #region Private Fields
@@ -27,6 +27,8 @@ namespace SEHOON.UI
         {
             if (_textWidget != null) _textWidget.text = text;
         }
+
+        public UnityEvent OnDisableEvent => _onDisableEvent;
         #endregion
 
         #region Unity Lifecycle

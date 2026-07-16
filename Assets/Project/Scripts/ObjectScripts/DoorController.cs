@@ -1,8 +1,10 @@
 using JUNBEOM.Player;
 using SEHOON.GameSystem;
+using SEHOON.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,10 +14,8 @@ public class DoorController : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool _isForward = false;
     [SerializeField] private bool _isBackward = false;
-
     [SerializeField] private bool _randomizeDoor = false;
     [SerializeField] private bool _isLocked = false;
-    [SerializeField] private List<GameObject> _otherDoors;
 
     [SerializeField] private float _shakeDuration = 0.25f;
     [SerializeField] private float _shakeIntensity = 0.05f;
@@ -24,6 +24,10 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip _doorOpenSound;
     [SerializeField] private AudioClip _doorCloseSound;
     [SerializeField] private AudioClip _doorLockedSound;
+
+    [SerializeField] private GameObject _fadeText;
+
+    [SerializeField] private List<GameObject> _otherDoors;
 
     private Animator _animator;
     private bool _isOpening;
@@ -104,6 +108,7 @@ public class DoorController : MonoBehaviour, IInteractable
         bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
         if (_isBackward || _isForward)
         {
+            
             if (_isForward && hasAnomaly)
             {
                 DataManager.Instance.SelectIncorrectDoor();
@@ -119,7 +124,21 @@ public class DoorController : MonoBehaviour, IInteractable
 
             _animator.SetBool("isOpen", true);
             yield return new WaitForSeconds(_openDuration);
-            SceneManager.LoadScene("MainScene");
+            SoundManager.Instance.PlaySfx(_doorOpenSound);
+            if (DataManager.Instance.Floor == DataManager.Instance.GoalFloor + 1)
+            {
+                DataManager.Instance.StoryType = EStoryType.Ending;
+                SceneManager.LoadScene("StoryScene");
+                yield break;
+            }
+            FadeTextView fadeTextView = _fadeText.GetComponent<FadeTextView>();
+            _fadeText.SetActive(true);
+
+            fadeTextView.OnDisableEvent.AddListener(() =>
+            {
+                SceneManager.LoadScene("MainScene");
+            });
+
             yield break;
         }
             

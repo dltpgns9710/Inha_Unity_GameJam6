@@ -20,6 +20,7 @@ namespace SEHOON.GameSystem
         private EStoryType _storyType = EStoryType.Start;
 
         public int Floor => _floor;
+        public int GoalFloor => _goalFloor;
 
         private void Start()
         {

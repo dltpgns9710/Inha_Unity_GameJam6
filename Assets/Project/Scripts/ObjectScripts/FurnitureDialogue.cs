@@ -29,10 +29,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
         _textBox.SetActive(true);
 
         DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
-        dialogueBoxView.OnEnableEvent.AddListener(() =>
-        {
-            inputManager.DisablePlayerInput();
-        });
+        inputManager.DisablePlayerInput();
 
         dialogueBoxView.OnDisableEvent.AddListener(() =>
         {
