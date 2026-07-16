@@ -1021,6 +1021,38 @@ PrefabInstance:
       propertyPath: _dialogueLines.Array.data[7]._alignment
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 163242736}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SEHOON.UI.StorySceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654025273208353723, guid: b85d70df173994c42adb507085612623, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
