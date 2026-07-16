@@ -26,6 +26,7 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip _doorLockedSound;
 
     [SerializeField] private GameObject _fadeText;
+    [SerializeField] private GameObject _textBox;
 
     [SerializeField] private List<GameObject> _otherDoors;
 
@@ -91,24 +92,37 @@ public class DoorController : MonoBehaviour, IInteractable
     //문 작동시 플레이어 인풋 정지
     private IEnumerator InteractCoroutine(GameObject interactor)
     {
-
+        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();
         bool canOpenDoor = _otherDoors.Count > 0 && Unlock(interactor);
 
         if (!canOpenDoor)
         {
             // TODO: Implement door open failure sound
             yield return StartCoroutine(CoroutineShakeDoor());
+            _textBox.SetActive(true);
+
+            if (_textBox == null)
+            {
+                Debug.LogWarning("TextBox is not assigned in the inspector.");
+                yield return null;
+            }
+
+            DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
+            inputManager.DisablePlayerInput();
+
+            dialogueBoxView.OnDisableEvent.AddListener(() =>
+            {
+                inputManager.EnablePlayerInput();
+            });
             yield break;
         }
 
         _isOpening = true;
-        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
         inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
         bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
         if (_isBackward || _isForward)
         {
-            
             if (_isForward && hasAnomaly)
             {
                 DataManager.Instance.SelectIncorrectDoor();
@@ -123,8 +137,8 @@ public class DoorController : MonoBehaviour, IInteractable
             }
 
             _animator.SetBool("isOpen", true);
-            yield return new WaitForSeconds(_openDuration);
             SoundManager.Instance.PlaySfx(_doorOpenSound);
+            yield return new WaitForSeconds(_openDuration);
             if (DataManager.Instance.Floor == DataManager.Instance.GoalFloor + 1)
             {
                 DataManager.Instance.StoryType = EStoryType.Ending;
@@ -134,11 +148,7 @@ public class DoorController : MonoBehaviour, IInteractable
             FadeTextView fadeTextView = _fadeText.GetComponent<FadeTextView>();
             _fadeText.SetActive(true);
 
-            fadeTextView.OnDisableEvent.AddListener(() =>
-            {
-                SceneManager.LoadScene("MainScene");
-            });
-
+            fadeTextView._fadeInEnd += LoadMain;
             yield break;
         }
             
@@ -165,6 +175,12 @@ public class DoorController : MonoBehaviour, IInteractable
 
     private IEnumerator CoroutineShakeDoor()
     {
+        if (_textBox == null)
+        {
+            Debug.LogWarning("TextBox is not assigned in the inspector.");
+            yield return null;
+        }
+
         float elapsedTime = 0f;
         SoundManager.Instance.PlaySfx(_doorLockedSound);
         while (elapsedTime < _shakeDuration)
@@ -177,5 +193,10 @@ public class DoorController : MonoBehaviour, IInteractable
             yield return null;
         }
         transform.position = _originalPosition;
+    }
+
+    private void LoadMain()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

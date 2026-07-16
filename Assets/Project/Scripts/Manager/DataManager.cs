@@ -52,13 +52,11 @@ namespace SEHOON.GameSystem
         public void SelectCorrectDoor()
         {
             ++_floor;
-            Debug.Log($"Correct door selected. Current floor: {_floor}");
         }
         
         public void SelectIncorrectDoor()
         {
-            _floor = 0;
-            Debug.Log($"Incorrect door selected. Current floor: {_floor}");
+            _floor = 1;
         }
     }
 }
