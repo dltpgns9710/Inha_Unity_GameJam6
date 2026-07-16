@@ -16,11 +16,6 @@ using JUNBEOM.Player;
         private Vector2 hotSpot = Vector2.zero;
     #endregion
 
-    private void Awake()
-        {
-            _cantMove = false;
-            _canDetect = false;
-        }
 
         private void OnEnable()
         {
@@ -40,35 +35,24 @@ using JUNBEOM.Player;
 
 
         private void HandleRequestDetectAnomaly()
-        {
-            _canDetect = true;
+        {            
             Cursor.SetCursor(_findCursor, hotSpot, CursorMode.Auto);
         }
 
         private void HandleRequestWait()
         {
-            _HelperInteract.RequestWait();
-            _cantMove = true;
+            _HelperInteract.RequestWait();            
         }
 
         private void HandleConfirm()
         {
-            if (_canDetect == false || _cantMove ==true)
-            {
-                return;
-            }
-            //Vector2 searchPosition = Input.mousePosition;
-
             Vector2 searchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _HelperInteract.RequestDetectAnomaly(searchPosition);
-            _canDetect = false;
-            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);
-            _cantMove = false;
+            _HelperInteract.RequestDetectAnomaly(searchPosition);            
+            Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);            
         }
 
         private void HandleCancel()
-        {
-            _canDetect = false;
+        {            
             Cursor.SetCursor(_normalCursor, hotSpot, CursorMode.Auto);
         }
     }

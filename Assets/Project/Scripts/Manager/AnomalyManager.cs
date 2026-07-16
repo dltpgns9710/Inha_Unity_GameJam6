@@ -12,6 +12,9 @@ namespace SEHOON.GameSystem
 
         private AnomalyBase _selectedAnomaly = null;
 
+        public AnomalyBase SelectedAnomaly => _selectedAnomaly;
+
+
         private void OnEnable()
         {
             DataManager.Instance.IsAnomalyApply = false;
