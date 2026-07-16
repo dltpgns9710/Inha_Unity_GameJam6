@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 namespace SEHOON.GameSystem
 {
@@ -10,16 +12,10 @@ namespace SEHOON.GameSystem
 
         private AnomalyBase _selectedAnomaly = null;
 
-
         private void OnEnable()
         {
             DataManager.Instance.IsAnomalyApply = false;
-            SelectAnomaly();
-            if (_selectedAnomaly != null)
-            {
-                DataManager.Instance.IsAnomalyApply = true;
-                _selectedAnomaly.Apply();
-            }
+            Invoke("TryApplyAnomaly", .5f);
         }
 
         private void OnDisable()
@@ -31,6 +27,19 @@ namespace SEHOON.GameSystem
             }
         }
 
+        private void TryApplyAnomaly()
+        {
+            SelectAnomaly();
+            if (_selectedAnomaly != null)
+            {
+                DataManager.Instance.IsAnomalyApply = true;
+                _selectedAnomaly.Apply();
+            }
+#if UNITY_EDITOR
+            ChangeAnomalyIndex?.Invoke();
+#endif
+        }
+        
         private void SelectAnomaly()
         {
             if (_anomalies == null || _anomalies.Count == 0) return;
@@ -63,6 +72,7 @@ namespace SEHOON.GameSystem
 #if UNITY_EDITOR
         public int CurrentAnomalyIndex => _selectedAnomaly != null ? _anomalies.IndexOf(_selectedAnomaly) : -1;
 
+        public event Action ChangeAnomalyIndex;
         public void DebugApplyAnomaly(int index)
         {
             if (index < 0 || index >= _anomalies.Count) return;
@@ -71,6 +81,7 @@ namespace SEHOON.GameSystem
 
             _selectedAnomaly = _anomalies[index];
             _selectedAnomaly.Apply();
+            ChangeAnomalyIndex?.Invoke();
             DataManager.Instance.IsAnomalyApply = true;
         }
 
@@ -80,6 +91,7 @@ namespace SEHOON.GameSystem
 
             _selectedAnomaly.Remove();
             _selectedAnomaly = null;
+            ChangeAnomalyIndex?.Invoke();
             DataManager.Instance.IsAnomalyApply = false;
         }
 #endif
