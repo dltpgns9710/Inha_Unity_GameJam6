@@ -31,6 +31,7 @@ namespace SEHOON.UI
             _removeButton?.onClick.AddListener(OnRemoveButtonClicked);
 
             RefreshCurrentIndexText();
+            _anomalyManager.ChangeAnomalyIndex += RefreshCurrentIndexText;
         }
 
         private void OnDisable()
