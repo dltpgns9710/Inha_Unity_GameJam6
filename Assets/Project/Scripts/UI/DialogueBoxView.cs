@@ -37,6 +37,12 @@ namespace SEHOON.UI
         #region Property Fields
         public UnityEvent OnEnableEvent => _onEnableEvent;
         public UnityEvent OnDisableEvent => _onDisableEvent;
+
+        public List<DialogueLine> DialogueLines
+        {
+            get => _dialogueLines;
+            set => _dialogueLines = value;
+        }
         #endregion
 
         #region Unity Lifecycle
