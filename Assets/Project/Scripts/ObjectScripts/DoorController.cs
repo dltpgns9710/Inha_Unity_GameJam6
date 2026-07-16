@@ -1,20 +1,21 @@
 using JUNBEOM.Player;
 using SEHOON.GameSystem;
+using SEHOON.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using PlayerInputManager = JUNBEOM.Player.PlayerInputManager;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool _isForward = false;
     [SerializeField] private bool _isBackward = false;
-
     [SerializeField] private bool _randomizeDoor = false;
     [SerializeField] private bool _isLocked = false;
-    [SerializeField] private List<GameObject> _otherDoors;
 
     [SerializeField] private float _shakeDuration = 0.25f;
     [SerializeField] private float _shakeIntensity = 0.05f;
@@ -23,6 +24,11 @@ public class DoorController : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip _doorOpenSound;
     [SerializeField] private AudioClip _doorCloseSound;
     [SerializeField] private AudioClip _doorLockedSound;
+
+    [SerializeField] private GameObject _fadeText;
+    [SerializeField] private GameObject _textBox;
+
+    [SerializeField] private List<GameObject> _otherDoors;
 
     private Animator _animator;
     private bool _isOpening;
@@ -86,18 +92,32 @@ public class DoorController : MonoBehaviour, IInteractable
     //문 작동시 플레이어 인풋 정지
     private IEnumerator InteractCoroutine(GameObject interactor)
     {
-
+        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();
         bool canOpenDoor = _otherDoors.Count > 0 && Unlock(interactor);
 
         if (!canOpenDoor)
         {
             // TODO: Implement door open failure sound
             yield return StartCoroutine(CoroutineShakeDoor());
+            _textBox.SetActive(true);
+
+            if (_textBox == null)
+            {
+                Debug.LogWarning("TextBox is not assigned in the inspector.");
+                yield return null;
+            }
+
+            DialogueBoxView dialogueBoxView = _textBox.GetComponent<DialogueBoxView>();
+            inputManager.DisablePlayerInput();
+
+            dialogueBoxView.OnDisableEvent.AddListener(() =>
+            {
+                inputManager.EnablePlayerInput();
+            });
             yield break;
         }
 
         _isOpening = true;
-        PlayerInputManager inputManager = interactor.GetComponentInParent<PlayerInputManager>();  //플레이어 인풋 매니져 연결
         inputManager.DisablePlayerInput();  //플레이어 입력 불가능
 
         bool hasAnomaly = DataManager.Instance.IsAnomalyApply;
@@ -115,6 +135,21 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 DataManager.Instance.SelectCorrectDoor();
             }
+
+            _animator.SetBool("isOpen", true);
+            SoundManager.Instance.PlaySfx(_doorOpenSound);
+            yield return new WaitForSeconds(_openDuration);
+            if (DataManager.Instance.Floor == DataManager.Instance.GoalFloor + 1)
+            {
+                DataManager.Instance.StoryType = EStoryType.Ending;
+                SceneManager.LoadScene("StoryScene");
+                yield break;
+            }
+            FadeTextView fadeTextView = _fadeText.GetComponent<FadeTextView>();
+            _fadeText.SetActive(true);
+
+            fadeTextView._fadeInEnd += LoadMain;
+            yield break;
         }
             
         int index = 0;
@@ -140,6 +175,12 @@ public class DoorController : MonoBehaviour, IInteractable
 
     private IEnumerator CoroutineShakeDoor()
     {
+        if (_textBox == null)
+        {
+            Debug.LogWarning("TextBox is not assigned in the inspector.");
+            yield return null;
+        }
+
         float elapsedTime = 0f;
         SoundManager.Instance.PlaySfx(_doorLockedSound);
         while (elapsedTime < _shakeDuration)
@@ -152,5 +193,10 @@ public class DoorController : MonoBehaviour, IInteractable
             yield return null;
         }
         transform.position = _originalPosition;
+    }
+
+    private void LoadMain()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
