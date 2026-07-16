@@ -10142,6 +10142,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5009161060081465542, guid: f369fe4c76705fd419d17a91ad9d49ac, type: 3}
+      propertyPath: _typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a91224f37a2254418e182c9d158f4ce, type: 3}
     - target: {fileID: 8746907109224183886, guid: f369fe4c76705fd419d17a91ad9d49ac, type: 3}
       propertyPath: m_Name
       value: Interphone

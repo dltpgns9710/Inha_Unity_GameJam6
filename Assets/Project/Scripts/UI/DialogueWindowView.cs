@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SEHOON.GameSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -82,10 +83,12 @@ namespace SEHOON.UI
             if (_scrollRect != null) _scrollRect.enabled = false;
 
             _onEnableEvent?.Invoke();
+            ShowNext();
         }
 
         private void OnDisable()
         {
+            SoundManager.Instance.StopLoopSfx();
             _onDisableEvent?.Invoke();
         }
 

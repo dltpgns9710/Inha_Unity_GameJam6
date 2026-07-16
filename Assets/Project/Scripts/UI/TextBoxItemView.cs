@@ -1,4 +1,5 @@
 using System.Collections;
+using SEHOON.GameSystem;
 using UnityEngine;
 using TMPro;
 
@@ -11,6 +12,9 @@ namespace SEHOON.UI
 
         [Header("Typewriter")]
         [SerializeField] private float _charInterval = 0.03f;
+        
+        [Header("Sound")]
+        [SerializeField] private AudioClip _typingSound;
         #endregion
 
         #region Private Fields
@@ -81,6 +85,7 @@ namespace SEHOON.UI
 
         public void CompleteText()
         {
+            SoundManager.Instance.StopLoopSfx();
             if (_typewriterCoroutine != null)
             {
                 StopCoroutine(_typewriterCoroutine);
@@ -95,6 +100,7 @@ namespace SEHOON.UI
         private void PlayTypewriter()
         {
             if (_typewriterCoroutine != null) StopCoroutine(_typewriterCoroutine);
+            
             _typewriterCoroutine = StartCoroutine(CoRevealText());
         }
         #endregion
@@ -105,13 +111,14 @@ namespace SEHOON.UI
             if (_textWidget == null) yield break;
 
             _textWidget.text = string.Empty;
-
+            SoundManager.Instance.PlayLoopSfx(_typingSound);
             for (int i = 1; i <= _fullText.Length; i++)
             {
                 _textWidget.text = _fullText.Substring(0, i);
                 yield return new WaitForSeconds(_charInterval);
             }
-
+            
+            SoundManager.Instance.StopLoopSfx();
             _typewriterCoroutine = null;
         }
         #endregion

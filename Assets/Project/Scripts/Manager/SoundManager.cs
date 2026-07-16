@@ -9,6 +9,7 @@ namespace SEHOON.GameSystem
         [Header("Audio Sources")]
         [SerializeField] private AudioSource _bgmSource;
         [SerializeField] private AudioSource _sfxSource;
+        [SerializeField] private AudioSource _loopSfxSource;
 
         [Header("Default Values")]
         [SerializeField] private float _defaultMasterVolume = 1f;
@@ -57,6 +58,14 @@ namespace SEHOON.GameSystem
             _bgmSource.Play();
         }
 
+        public void PlayLoopSfx(AudioClip clip, float volumeScale = 1f)
+        {
+            if (clip == null || _loopSfxSource == null || _isMuted) return;
+            _loopSfxSource.clip = clip;
+            _loopSfxSource.loop = true;
+            _loopSfxSource.Play();
+        }
+        
         public void StopBgm()
         {
             if (_bgmSource != null) _bgmSource.Stop();
@@ -70,6 +79,14 @@ namespace SEHOON.GameSystem
         public void ResumeBgm()
         {
             if (_bgmSource != null) _bgmSource.UnPause();
+        }
+        
+        public void StopLoopSfx()
+        {
+            if (_loopSfxSource == null) return;
+            
+            _loopSfxSource.loop = false;
+            _loopSfxSource.Stop();
         }
         #endregion
 

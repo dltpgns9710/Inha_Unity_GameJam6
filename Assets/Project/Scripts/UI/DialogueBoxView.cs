@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SEHOON.GameSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -72,7 +73,8 @@ namespace SEHOON.UI
             _currentIndex = 0;
             ShowLine(_currentIndex);
             _skipInputThisFrame = true;
-
+            
+            SoundManager.Instance.StopLoopSfx();
             _onEnableEvent?.Invoke();
         }
 
