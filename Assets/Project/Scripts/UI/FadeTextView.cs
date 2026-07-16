@@ -54,7 +54,7 @@ namespace SEHOON.UI
                 StopCoroutine(_fadeCoroutine);
                 _fadeCoroutine = null;
             }
-
+            _onDisableEvent?.Invoke();
             _fadeInEnd?.Invoke();
         }
         #endregion

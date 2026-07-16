@@ -11,16 +11,9 @@ public class PlayerAIInteract : MonoBehaviour
     public Texture2D _normalCursor;
 
     #region Private Fields
-    private bool _canDetect;
-    private bool _cantMove;
     private Vector2 hotSpot = Vector2.zero;
     #endregion
 
-    private void Awake()
-    {
-        _cantMove = false;
-        _canDetect = false;
-    }
 
     private void OnEnable()
     {
