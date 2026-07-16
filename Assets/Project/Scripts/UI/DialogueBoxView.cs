@@ -93,7 +93,11 @@ namespace SEHOON.UI
                 return;
             }
 
-            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            if ((Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
+                (Mouse.current != null && 
+                 (Mouse.current.leftButton.wasPressedThisFrame  || 
+                  Mouse.current.rightButton.wasPressedThisFrame  || 
+                  Mouse.current.middleButton.wasPressedThisFrame )))
             {
                 if (_textBoxItem != null && _textBoxItem.IsRevealing)
                 {
