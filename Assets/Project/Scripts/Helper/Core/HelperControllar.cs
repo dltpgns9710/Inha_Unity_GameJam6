@@ -77,7 +77,7 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
-            _commandBroadcaster.DetectAnomalyRequested += RequestUseAbility;
+            _commandBroadcaster.DetectAnomalyRequested += RequestDetectAnomaly;
             _commandBroadcaster.OnWaitRequested += RequestWait;
         }
 
@@ -99,7 +99,7 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
-            _commandBroadcaster.DetectAnomalyRequested -= RequestUseAbility;
+            _commandBroadcaster.DetectAnomalyRequested -= RequestDetectAnomaly;
             _commandBroadcaster.OnWaitRequested -= RequestWait;
         }
         #endregion
@@ -117,7 +117,10 @@ namespace TAEWOOK.Helper.Core
 
         public void RequestDetectAnomaly(Vector2 searchPosition)
         {
-            RequestUseAbility(searchPosition);
+            if(_currentState == EHelperState.Follow || _currentState == EHelperState.Idle)
+            {
+                RequestUseAbility(searchPosition);
+            }            
         }
 
         public void RequestWait()
