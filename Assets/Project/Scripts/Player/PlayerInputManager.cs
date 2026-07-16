@@ -56,6 +56,25 @@ namespace JUNBEOM.Player
             _playerInput.actions["PauseMenu"].started += OnPauseMenu; 
         }
 
+        private void OnDestroy()
+        {
+            if (_playerInput == null) return;
+            _playerInput.actions["Move"].performed -= OnMove;
+            _playerInput.actions["Move"].canceled -= OnMove;
+            _playerInput.actions["Run"].performed -= OnRun;
+            _playerInput.actions["Run"].canceled -= OnRun;
+            _playerInput.actions["Jump"].started -= OnJump;
+            _playerInput.actions["EquipFlashlight"].started -= OnEquipFlashlight;
+            _playerInput.actions["ToggleFlashlight"].started -= OnToggleFlashlight;
+            _playerInput.actions["Interact"].started -= OnInteract;
+            _playerInput.actions["ReturnCamera"].started -= OnReturnCamera;
+            _playerInput.actions["RequestDetectAnomaly"].started -= OnRequestDetectAnomaly;
+            _playerInput.actions["RequestWait"].started -= OnRequestWait;
+            _playerInput.actions["Confirm"].started -= OnConfirm;
+            _playerInput.actions["Cancel"].started -= OnCancel;
+            _playerInput.actions["PauseMenu"].started -= OnPauseMenu;
+        }
+
         private void OnEnable()
         {
             EnablePlayerInput();
