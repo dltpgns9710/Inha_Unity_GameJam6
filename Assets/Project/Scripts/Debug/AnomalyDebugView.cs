@@ -31,6 +31,7 @@ namespace SEHOON.UI
             _removeButton?.onClick.AddListener(OnRemoveButtonClicked);
 
             RefreshCurrentIndexText();
+            _anomalyManager.ChangeAnomalyIndex += RefreshCurrentIndexText;
         }
 
         private void OnDisable()
@@ -48,6 +49,7 @@ namespace SEHOON.UI
 
             _anomalyManager.DebugApplyAnomaly(index);
             RefreshCurrentIndexText();
+            DataManager.Instance.IsAnomalyApply = true;
         }
 
         private void OnRemoveButtonClicked()
@@ -56,6 +58,7 @@ namespace SEHOON.UI
 
             _anomalyManager.DebugRemoveAnomaly();
             RefreshCurrentIndexText();
+            DataManager.Instance.IsAnomalyApply = false;
         }
 
         private void RefreshCurrentIndexText()
