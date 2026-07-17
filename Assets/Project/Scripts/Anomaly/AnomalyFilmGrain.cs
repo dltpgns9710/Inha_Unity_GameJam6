@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using SEHOON.GameSystem;
+using System.Collections;
 
 public class AnomalyFilmGrain : AnomalyBase
 {
@@ -9,6 +10,11 @@ public class AnomalyFilmGrain : AnomalyBase
     public Volume globalVolume;
     private FilmGrain filmGrain;
 
+    [Header("효과 변화 설정")]
+    public float targetIntensity = 1f;
+    public float transitionDuration = 10f;
+
+    private Coroutine transitionCoroutine;
     private void Start()
     {
         if (globalVolume != null && globalVolume.profile != null)
@@ -21,7 +27,8 @@ public class AnomalyFilmGrain : AnomalyBase
     {
         if (filmGrain != null)
         {
-            filmGrain.intensity.value = 1f; // 0~1 사이. 수치가 높을수록 모래알 노이즈가 심해짐
+            if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
+            transitionCoroutine = StartCoroutine(TransitionIntensity(targetIntensity));
         }
     }
 
@@ -29,7 +36,22 @@ public class AnomalyFilmGrain : AnomalyBase
     {
         if (filmGrain != null) 
         {
+            if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
             filmGrain.intensity.value = 0f;
         }
+    }
+
+    private IEnumerator TransitionIntensity(float targetValue)
+    {
+        float startValue = filmGrain.intensity.value;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < transitionDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            filmGrain.intensity.value = Mathf.Lerp(startValue, targetValue, elapsedTime / transitionDuration);
+            yield return null;
+        }
+        filmGrain.intensity.value = targetValue;
     }
 }
