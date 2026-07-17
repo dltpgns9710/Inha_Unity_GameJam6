@@ -96,6 +96,7 @@ namespace JUNBEOM.Player
 
         public void DisablePlayerInput()
         {
+            if (_playerInput == null) return;
             _playerInput.actions.Disable();
             OnMoveEvent?.Invoke(0f);
             OnRunEvent?.Invoke(false);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using USingleton;
 
@@ -11,7 +12,6 @@ namespace SEHOON.GameSystem
 
     public class DataManager : Singleton<DataManager>
     {
-
         [SerializeField] private int _goalFloor = 8;
         [SerializeField] private Texture2D _normalCursor;
 
@@ -19,6 +19,8 @@ namespace SEHOON.GameSystem
         private bool _isAnomalyApply = false;
         private EStoryType _storyType = EStoryType.Start;
 
+        public Action<bool> ActiveGameUI;
+        
         public int Floor => _floor;
         public int GoalFloor => _goalFloor;
 
