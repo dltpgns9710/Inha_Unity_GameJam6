@@ -16,10 +16,13 @@ namespace SEHOON.UI
         [SerializeField] private GameObject _keyStateIcon;
         #endregion
 
-        #region Unity Lifecycle
-        private void OnEnable()
+        private void Awake()
         {
             DataManager.Instance.ActiveGameUI += HideGameUI;
+        }
+
+        private void OnEnable()
+        {
             PlayerEventManager.Instance.OnLightRatioChanged += HandleLightRatioChanged;
             PlayerEventManager.Instance.OnKeyStateChanged += HandleKeyStateChanged;
 
@@ -37,8 +40,6 @@ namespace SEHOON.UI
         {
             DataManager.Instance.ActiveGameUI -= HideGameUI;
         }
-
-        #endregion
 
         #region Private Methods
 

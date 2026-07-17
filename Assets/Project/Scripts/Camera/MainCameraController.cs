@@ -78,9 +78,11 @@ namespace JUNBEOM.Camera
 
         private void OnDisable()
         {
-            if (_inputManager == null) return;
-            _inputManager.OnReturnCameraEvent -= HandleToggleCameraMode;
-            _inputManager.OnInteractEvent -= HandlePlayerInterect;
+            if (!ReferenceEquals(_inputManager, null))
+            {
+                _inputManager.OnReturnCameraEvent -= HandleToggleCameraMode;
+                _inputManager.OnInteractEvent -= HandlePlayerInterect;
+            }
         }
 
         private void LateUpdate()
@@ -126,6 +128,11 @@ namespace JUNBEOM.Camera
             {
                 _freeCameraTargetPosition = transform.position;
             }
+        }
+
+        public bool GetPlayerFollowing()
+        {
+            return _isFollowingPlayer;
         }
 
         #endregion
