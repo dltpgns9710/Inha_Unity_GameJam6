@@ -7,6 +7,7 @@ public class StreetLampDialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _textBox;
     [SerializeField] private GameObject _light;
+    [SerializeField] private bool _enableable;
 
     private bool _isInteracted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,6 +53,10 @@ public class StreetLampDialogue : MonoBehaviour, IInteractable
             _isInteracted = true;
             DataManager.Instance.ActiveGameUI?.Invoke(true);
         });
-        _light.SetActive(true);
+
+        if (_enableable)
+        {
+            _light.SetActive(true);
+        }
     }
 }
