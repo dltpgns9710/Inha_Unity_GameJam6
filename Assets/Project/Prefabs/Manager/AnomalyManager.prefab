@@ -10,6 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5541795298805293282}
   - component: {fileID: 520029848582283925}
+  - component: {fileID: 3715808900249798020}
+  - component: {fileID: 2042888519193359337}
+  - component: {fileID: 7832147413095431012}
+  - component: {fileID: 3487335190691388479}
+  - component: {fileID: 8265042001102602689}
   m_Layer: 0
   m_Name: AnomalyManager
   m_TagString: Untagged
@@ -45,7 +50,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853edc360cb2abc4d97a263369cf1027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.System.AnomalyManager
-  _anomalies: []
+  _anomalies:
+  - {fileID: 3715808900249798020}
+  - {fileID: 2042888519193359337}
+  - {fileID: 7832147413095431012}
+  - {fileID: 3487335190691388479}
+  - {fileID: 8265042001102602689}
+  _anomalyApplyChance: 50
+--- !u!114 &3715808900249798020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecdbd40a6164454c8c5be565a60611a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChromaticAberrationAnomaly
+  _detectData:
+    _type: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _detectRange: 0
+  _weight: 1
+  globalVolume: {fileID: 0}
+  targetIntensity: 1
+  transitionDuration: 10
+--- !u!114 &2042888519193359337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13fdee6f63e3234ebb14e71cb4f2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustmentsAnomaly
+  _detectData:
+    _type: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _detectRange: 0
+  _weight: 1
+  globalVolume: {fileID: 0}
+  targetIntensity: -100
+  transitionDuration: 10
+--- !u!114 &7832147413095431012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5dc59baa054e9c48ae6f76742f24911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyFilmGrain
+  _detectData:
+    _type: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _detectRange: 0
+  _weight: 1
+  globalVolume: {fileID: 0}
+  targetIntensity: 1
+  transitionDuration: 10
+--- !u!114 &3487335190691388479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea13d25c91919046976bc9f90cf20a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LensDistortionAnomaly
+  _detectData:
+    _type: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _detectRange: 0
+  _weight: 1
+  globalVolume: {fileID: 0}
+--- !u!114 &8265042001102602689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3135b95bc0d49234396bab64af335da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyTwinkle
+  _detectData:
+    _type: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _detectRange: 0
+  _weight: 1
+  blinkUI: {fileID: 0}
+  blinkSpeed: 0.15
 --- !u!1001 &8143668340834116679
 PrefabInstance:
   m_ObjectHideFlags: 0
