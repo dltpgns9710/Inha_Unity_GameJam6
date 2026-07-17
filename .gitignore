@@ -119,9 +119,9 @@ output_log.txt
 **/[Aa]ssets/[Rr]ider[Pp]ackage
 
 # ========================
-#  Package Manager
+#  UI Toolkit
 # ========================
-/[Pp]ackages/packages-lock.json
+/[Uu][Ii][Ee]lements[Ss]chema/
 
 # ========================
 #  Misc
@@ -134,3 +134,6 @@ sysinfo.txt
 # ========================
 /Assets/ThirdParty/
 /Assets/ThirdParty.meta
+
+/Assets/Test
+Assets/Test.meta

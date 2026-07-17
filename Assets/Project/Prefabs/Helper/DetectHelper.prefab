@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3187395424099436423
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 840911104240159795, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 931972892576428545, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3155040495169286329, guid: ec0d47673120b3d47a59d99a8fdee82f, type: 3}
+    - target: {fileID: 931972892576428545, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Name
+      value: DetectHelper
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533632496865012697, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072896592744460911, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: _config
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de64a4a17b154e4c8d12b2f5820dc9a, type: 2}
+    - target: {fileID: 6072896592744460911, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: _commandBroadcaster
+      value: 
+      objectReference: {fileID: 3526886167333943713}
+    - target: {fileID: 7338665302950604535, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368933084546199429, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935917964602267340, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187919027183448551, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187919027183448551, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187919027183448551, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187919027183448551, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188787930090029856, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188787930090029856, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5043127154478296403}
+    - targetCorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5043127154478296404}
+    - targetCorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3526886167333943713}
+  m_SourcePrefab: {fileID: 100100000, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+--- !u!1 &779421284710873734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2804309660624420097, guid: b7ccce854cbaa92488fb5dc9fb0e1d1d, type: 3}
+  m_PrefabInstance: {fileID: 3187395424099436423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5043127154478296403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779421284710873734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfee11699cae2541a3475d39115b4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Detection.HelperDetector
+  _anomalyManager: {fileID: 0}
+--- !u!114 &5043127154478296404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779421284710873734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be02a377b195f54a97aaf60321ae13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Ability.DetectHelperAbility
+  _barkSound: {fileID: 8300000, guid: ae7cc764acbfc1a4cac1fd2609ac9e10, type: 3}
+--- !u!114 &3526886167333943713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779421284710873734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a9360d49741b04e9909e8496965e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Core.HelperCommandBroadcaster

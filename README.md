@@ -1,755 +1,332 @@
-# Unity 6 C# 코드 컨벤션 가이드
+# Inha Unity GameJam6
 
-> 팀 협업을 위한 통일된 코드 작성 기준입니다.
-> 이 가이드는 팀원 모두가 일관된 코드를 작성할 수 있도록 명명 규칙, 코드 구조, 서식 기준을 정의합니다.
+| 항목 | 내용 |
+|---|---|
+| Engine | Unity 6000.4.8f1 |
+| Render Pipeline | Universal 2D |
+| Version Control | GitHub |
 
 <br>
 
 ## 목차
 
-- [0. 기초 지식: 명명 스타일](#0-기초-지식-명명-스타일)
-- [1. 변수 명명 규칙](#1-변수-명명-규칙)
-- [2. 메서드 명명 규칙](#2-메서드-명명-규칙)
-- [3. 타입 명명 규칙](#3-타입-명명-규칙)
-- [4. 서식 규칙](#4-서식-규칙)
-- [5. 협업을 위한 추가 규칙](#5-협업을-위한-추가-규칙)
-- [6. 명명 규칙 요약표](#6-명명-규칙-요약표)
-- [7. 전체 예시 코드](#7-전체-예시-코드)
+- [1. 커밋 메시지 컨벤션](#1-커밋-메시지-컨벤션)
+- [2. 기타 규칙](#2-기타-규칙)
+- [3. 사용 에셋 크레딧](#3-사용-에셋-크레딧-asset-credits)
+  - [3-1. Bloodlines UI](#3-1-bloodlines-ui-unity-asset-by-xgaida-shieldomirs)
+  - [3-2. Character: Steven](#3-2-character-steven-free-by-kronovi-)
+  - [3-3. Font (마루 부리)](#3-3-font-마루-부리-maruburi)
+  - [3-4. Free Survival Horror Items Pack](#3-4-survival-horror-items-pack-by-leos-pixel)
+  - [3-5. Horror Sound Effects](#3-5-horror-sound-effects-by-yourpalrob)
+  - [3-6. House-tileset](#3-6-house-tileset-by-maschiat)
+  - [3-7. Free Horror SFX](#3-7-free-horror-sfx---vn---scary-sound-effects-by-liminal-games)
+  - [3-8. Melancholic Indie Horror Game Music Pack](#3-8-melancholic-indie-horror-game-music-pack-by-crow-shade)
+  - [3-9. pH64 Pixel Pack](#3-9-ph64-pixel-pack---100s-of-sideview-assets--opengameartorg)
+  - [3-10. PSX Horror Music & SFX Pack](#3-10-psx-horror-music--sfx-pack-by-pablo-alegria)
+  - [3-11. Pet Dogs Pack](#3-11-pet-dogs-pack-by-luizmelo)
+  - [3-12. Pixel Icons and Game controller](#3-12-pixel-icons-and-game-controller-2-by-disven)
+  - [3-13. Overworld Objects](#3-13-overworld-objects--opengameartorg)
+  - [3-14. Cursor Pixel Pack](#3-14-cursor-pixel-pack-by-kenney)
 
 <br>
 
 ---
 
-## 0. 기초 지식: 명명 스타일
+## 1. 커밋 메시지 컨벤션
 
-코드 컨벤션을 이해하려면 먼저 세 가지 명명 스타일을 알아야 합니다.
+### 1-1. 커밋 메시지 구조
 
-<br>
-
-### camelCase (카멜 케이스)
-
-첫 단어는 **소문자**로 시작하고, 이후 단어의 첫 글자만 **대문자**로 씁니다.
-이름이 낙타(camel) 등처럼 올록볼록해 보여서 붙여진 이름입니다.
-
-```csharp
-// 단어: move + speed  →  moveSpeed
-// 단어: player + name →  playerName
-// 단어: is + grounded →  isGrounded
-
-float moveSpeed = 5.0f;
-string playerName = "Hero";
-bool isGrounded = false;
+```
+태그: 요약문
+- 작업자
+- 상세 작업 내용 1 (선택 사항)
+- 상세 작업 내용 2 (선택 사항)
 ```
 
 <br>
 
-### PascalCase (파스칼 케이스)
+### 1-2. 커밋 태그 종류
 
-모든 단어의 첫 글자를 **대문자**로 씁니다.
-클래스, 메서드, 프로퍼티 등에 사용합니다.
+모든 태그는 **소문자**로 작성하고 콜론(`:`) 뒤에 한 칸을 띕니다.
 
-```csharp
-// 단어: move + speed   →  MoveSpeed
-// 단어: take + damage  →  TakeDamage
-// 단어: game + manager →  GameManager
-
-public class PlayerController { }
-public void TakeDamage(int amount) { }
-public int CurrentHealth { get; private set; }
-```
-
-<br>
-
-### UPPER_SNAKE_CASE (어퍼 스네이크 케이스)
-
-모든 글자를 **대문자**로 쓰고 단어 사이를 **언더스코어(`_`)**로 연결합니다.
-상수(`const`)에만 사용합니다.
-
-```csharp
-// 단어: max + player + count   →  MAX_PLAYER_COUNT
-// 단어: default + move + speed →  DEFAULT_MOVE_SPEED
-
-private const int MAX_PLAYER_COUNT = 4;
-private const float DEFAULT_MOVE_SPEED = 5.0f;
-```
-
-<br>
-
----
-
-## 1. 변수 명명 규칙
-
-### 1-1. 지역 변수 / 매개변수 → `camelCase`
-
-메서드 안에서 선언하는 변수와 메서드 인자에 사용합니다.
-
-```csharp
-void Move(float deltaTime, Vector3 direction)
-{
-    float adjustedSpeed = _moveSpeed * deltaTime;
-    int playerCount = GetActivePlayerCount();
-}
-```
-
-<br>
-
-### 1-2. private 필드 → `_camelCase`
-
-클래스 멤버 변수 중 `private`인 경우 언더스코어(`_`) 접두사를 붙입니다.
-
-```csharp
-public class PlayerController : MonoBehaviour
-{
-    private int   _health;
-    private float _moveSpeed;
-    private bool  _isGrounded;
-}
-```
-
-<br>
-
-### 1-3. public 필드 → Property 사용 (`PascalCase`)
-
-> ⚠️ `public` 필드를 직접 노출하면 외부에서 값을 제어 없이 변경할 수 있어 버그로 이어집니다. 반드시 Property를 사용하세요.
-
-```csharp
-// ❌ 지양 — 외부에서 Health = -999 등 마음대로 수정 가능
-public int Health;
-
-// ✅ 권장
-private int _health;
-
-// 읽기는 public, 쓰기는 private
-public int Health { get; private set; }
-
-// 값 검증 로직 포함
-public int MaxHealth
-{
-    get => _maxHealth;
-    private set => _maxHealth = Mathf.Max(1, value);
-}
-
-// 계산형 (읽기 전용)
-public bool IsAlive     => _health > 0;
-public float HealthRatio => (float)_health / _maxHealth;
-```
-
-<br>
-
-### 1-4. 상수 (`const`) → `UPPER_SNAKE_CASE`
-
-```csharp
-private const int    MAX_PLAYER_COUNT   = 4;
-private const float  DEFAULT_MOVE_SPEED = 5.0f;
-private const string SCENE_NAME_LOBBY   = "Lobby";
-```
-
-<br>
-
-### 1-5. static readonly → `PascalCase`
-
-런타임에 생성되지만 이후 변경되지 않는 값입니다.
-
-```csharp
-private static readonly WaitForSeconds    WaitOneSecond = new WaitForSeconds(1.0f);
-private static readonly WaitForEndOfFrame WaitEndFrame  = new WaitForEndOfFrame();
-```
-
-<br>
-
-### 1-6. bool 변수 → `is / can / has / should` 접두사
-
-`bool` 타입 변수는 의미에 맞는 접두사를 붙여 변수명만 봐도 뜻이 바로 읽히도록 합니다.
-
-> 💡 `is / can / has / should` 중 문맥에 가장 자연스러운 것을 선택합니다.
-> 메서드의 `bool` 반환값도 동일한 접두사를 사용합니다. ([2-2 참고](#2-2-bool-반환-메서드--is--has--can--should-접두사))
-
-```csharp
-// is  — 상태를 나타낼 때
-bool isAlive    = true;
-bool isGrounded = false;
-private bool _isInvincible;
-private bool _isDead;
-
-// can  — 가능 여부를 나타낼 때
-bool canAttack = true;
-bool canJump   = false;
-private bool _canMove;
-
-// has  — 보유 여부를 나타낼 때
-bool hasKey  = false;
-bool hasItem = true;
-private bool _hasWeapon;
-
-// should  — 해야 하는지 여부를 나타낼 때
-bool shouldRespawn = false;
-private bool _shouldUpdate;
-
-// ❌ 억지로 is에 맞추면 어색해짐
-bool isCanAttack;  // 잘못된 예
-bool isHasItem;    // 잘못된 예
-```
-
-<br>
-
----
-
-## 2. 메서드 명명 규칙
-
-### 2-1. 일반 메서드 → `PascalCase` + 동사 시작
-
-```csharp
-public void TakeDamage(int amount)  { }
-public void Heal(int amount)        { }
-private void UpdateHealthUI()       { }
-private void HandleInput()          { }
-```
-
-<br>
-
-### 2-2. bool 반환 메서드 → `Is / Has / Can / Should` 접두사
-
-```csharp
-private bool IsGrounded()           { }
-private bool HasEnoughMana(int cost) { }
-public  bool CanAttack()            { }
-private bool ShouldRespawn()        { }
-```
-
-<br>
-
-### 2-3. 코루틴 → `Co` 접두사
-
-```csharp
-private IEnumerator CoSpawnEffect() { }
-private IEnumerator CoRespawn()     { }
-private IEnumerator CoFadeIn()      { }
-
-// 호출 시
-StartCoroutine(CoSpawnEffect());
-```
-
-<br>
-
-### 2-4. 클래스 내부 선언 순서
-
-아래 순서를 지켜 선언하면 팀원 누구나 위치를 예측할 수 있습니다.
-
-```csharp
-public class EnemyController : MonoBehaviour, IDamageable
-{
-    // 1. 상수
-    private const float DETECTION_RANGE = 10.0f;
-
-    // 2. static 필드
-    private static int _instanceCount;
-
-    // 3. Serialized 필드 (Inspector 노출)
-    [SerializeField] private float    _moveSpeed;
-    [SerializeField] private Animator _animator;
-
-    // 4. private 필드
-    private int _currentHealth;
-
-    // 5. Property
-    public bool IsAlive => _currentHealth > 0;
-
-    // 6. Events / Actions
-    public event Action<int> OnHealthChanged;
-
-    // 7. Unity 라이프사이클 메서드
-    private void Awake()  { }
-    private void Start()  { }
-    private void Update() { }
-
-    // 8. public 메서드
-    public void TakeDamage(int amount) { }
-
-    // 9. private 메서드
-    private void UpdateHealthUI() { }
-
-    // 10. 코루틴
-    private IEnumerator CoSpawnEffect() { }
-}
-```
-
-<br>
-
----
-
-## 3. 타입 명명 규칙
-
-### 3-1. 클래스 → `PascalCase`
-
-```csharp
-public class PlayerController : MonoBehaviour { }
-public class GameManager       : MonoBehaviour { }
-public class InventorySystem   { }              // 순수 C# 클래스
-```
-
-<br>
-
-### 3-2. 인터페이스 → `I` + `PascalCase`
-
-```csharp
-public interface IDamageable
-{
-    void TakeDamage(int amount);
-}
-
-public interface IInteractable
-{
-    void Interact(GameObject interactor);
-}
-```
-
-<br>
-
-### 3-3. 구조체 → `S` + `PascalCase`
-
-> 💡 접두사 `S`를 붙여 인터페이스(`I`), 열거형(`E`)과 한눈에 구분할 수 있습니다.
-
-```csharp
-public struct SDamageInfo
-{
-    public int             Amount;
-    public EGameDamageType Type;
-    public Vector3         HitPoint;
-}
-
-public readonly struct SHealthData
-{
-    public readonly int Current;
-    public readonly int Max;
-    public float Ratio => (float)Current / Max;
-}
-```
-
-<br>
-
-### 3-4. 열거형 → `E` + `PascalCase`, 멤버는 `PascalCase`
-
-> 💡 접두사 `E`를 붙여 타입만 봐도 열거형임을 즉시 알 수 있습니다.
-
-```csharp
-public enum EGameState
-{
-    None,
-    MainMenu,
-    Loading,
-    Playing,
-    Paused,
-    GameOver,
-}
-
-public enum EGameDamageType
-{
-    Physical,
-    Fire,
-    Ice,
-    Poison,
-}
-
-// Flags 열거형: 복수형 + 2의 거듭제곱
-[Flags]
-public enum EStatusEffects
-{
-    None   = 0,
-    Burn   = 1 << 0,
-    Freeze = 1 << 1,
-    Poison = 1 << 2,
-    Stun   = 1 << 3,
-}
-```
-
-<br>
-
-### 3-5. ScriptableObject → `SO` + `PascalCase`
-
-```csharp
-[CreateAssetMenu(fileName = "SOWeaponData", menuName = "Game/Weapon Data")]
-public class SOWeaponData : ScriptableObject
-{
-    public string WeaponName;
-    public int    Damage;
-    public float  AttackSpeed;
-}
-
-[CreateAssetMenu(fileName = "SOEnemyData", menuName = "Game/Enemy Data")]
-public class SOEnemyData : ScriptableObject { }
-```
-
-<br>
-
----
-
-## 4. 서식 규칙
-
-### 4-1. 중괄호 `{ }` — 항상 새 줄에
-
-> ⚠️ 중괄호는 항상 새 줄에 작성합니다. 같은 줄에 여는 중괄호를 쓰지 않습니다.
-
-```csharp
-// ❌ 지양
-if (IsAlive) {
-    TakeDamage(10);
-}
-
-// ✅ 권장
-if (IsAlive)
-{
-    TakeDamage(10);
-}
-```
-
-<br>
-
-### 4-2. 공백 규칙
-
-연산자 양쪽, 쉼표(`,`) 뒤에 공백 한 칸을 둡니다. 괄호 안쪽에는 공백을 넣지 않습니다.
-
-```csharp
-// ❌ 지양
-int result=a+b;
-Move(x,y,z);
-if( isAlive )
-for(int i=0;i<count;i++)
-
-// ✅ 권장
-int result = a + b;
-Move(x, y, z);
-if (isAlive)
-for (int i = 0; i < count; i++)
-```
-
-<br>
-
-### 4-3. if 문 조건식 — 복잡한 조건의 개행 처리
-
-조건이 여러 개 이어질 때는 논리 연산자(`&&`, `||`) **뒤에서** 줄을 바꾸고 들여쓰기합니다.
-각 피연산자 그룹은 괄호로 묶어 가독성을 높입니다.
-
-```csharp
-// ❌ 지양 — 한 줄에 조건 나열
-if (isAlive && currentHealth > 0 && !isInvincible && attackCooldown <= 0)
-{
-    Attack();
-}
-
-// ✅ 권장 — 연산자 뒤에서 개행 + 괄호 그룹화
-if ((isAlive && currentHealth > 0) &&
-    (!isInvincible) &&
-    (attackCooldown <= 0))
-{
-    Attack();
-}
-```
-
-조건이 3개 이상이고 각 조건에 의미 단위가 있을 때는 `bool` 변수로 분리하는 것도 좋습니다.
-
-```csharp
-bool canFight  = isAlive && (currentHealth > 0);
-bool canAttack = !isInvincible && (attackCooldown <= 0);
-
-if (canFight && canAttack)
-{
-    Attack();
-}
-```
-
-<br>
-
-### 4-4. 메서드 인자 — 인자가 많을 때 개행
-
-인자가 3개를 넘거나 줄 길이가 길어지면 각 인자를 새 줄에 씁니다.
-
-```csharp
-// ✅ 인자가 적을 때 — 한 줄
-Move(direction, speed);
-
-// ✅ 인자가 많을 때 — 개행
-SpawnEnemy(
-    prefab,
-    spawnPoint.position,
-    Quaternion.identity,
-    parentTransform);
-```
-
-<br>
-
-### 4-5. 삼항 연산자 — 간단할 때만 사용
-
-```csharp
-// ✅ 간단한 경우: 한 줄 허용
-string label = isAlive ? "Alive" : "Dead";
-
-// ❌ 복잡한 중첩 삼항 연산자는 사용 금지
-// string msg = hp > 50 ? (mp > 30 ? "Good" : "Low MP") : "Danger";
-
-// ✅ 복잡한 경우: if-else로 변경
-string msg;
-if (hp > 50)
-    msg = (mp > 30) ? "Good" : "Low MP";
-else
-    msg = "Danger";
-```
-
-<br>
-
----
-
-## 5. 협업을 위한 추가 규칙
-
-### 5-1. SerializeField & Header — Inspector 정리
-
-```csharp
-[Header("Movement")]
-[SerializeField] private float _moveSpeed = 5.0f;
-[SerializeField] private float _jumpForce = 8.0f;
-
-[Header("Combat")]
-[SerializeField] private int   _maxHealth   = 100;
-[SerializeField] private float _attackRange = 2.0f;
-
-[Header("References")]
-[SerializeField] private Animator    _animator;
-[SerializeField] private AudioSource _audioSource;
-
-[Space(10)]
-[Tooltip("디버그 전용 — 빌드 전 반드시 해제")]
-[SerializeField] private bool _debugMode;
-```
-
-<br>
-
-### 5-2. 주석 컨벤션
-
-```csharp
-/// <summary>
-/// 플레이어에게 데미지를 입힙니다.
-/// </summary>
-/// <param name="amount">입힐 데미지 수치 (양수)</param>
-/// <returns>실제로 적용된 데미지 수치</returns>
-public int TakeDamage(int amount)
-{
-    // 무적 상태이면 데미지 무효
-    if (_isInvincible) return 0;
-
-    // TODO: 방어력 계산 로직 추가 필요 (@홍길동, 2025-06-01)
-    // FIXME: 음수 amount 예외 처리 필요
-    int finalDamage = Mathf.Max(0, amount);
-    CurrentHealth -= finalDamage;
-    return finalDamage;
-}
-```
-
-<br>
-
-### 5-3. Null 처리 & 방어 코딩
-
-```csharp
-// Null 조건 연산자 적극 활용
-OnHealthChanged?.Invoke(_currentHealth);
-_animator?.SetTrigger(AnimHash.Attack);
-
-// TryGetComponent 사용
-if (TryGetComponent<Rigidbody>(out var rb))
-{
-    rb.AddForce(Vector3.up * _jumpForce);
-}
-
-// Awake에서 컴포넌트 검증
-private void Awake()
-{
-    Debug.Assert(_animator != null,
-        $"[{name}] Animator가 연결되지 않았습니다.");
-}
-```
-
-<br>
-
-### 5-4. 성능 관련 규칙
-
-```csharp
-// Animator 파라미터는 해시로 캐싱
-private static class AnimHash
-{
-    public static readonly int IsRunning = Animator.StringToHash("IsRunning");
-    public static readonly int Attack    = Animator.StringToHash("Attack");
-}
-
-// 컴포넌트 캐싱: Awake에서 한 번만 호출
-private Transform _cachedTransform;
-private Animator  _animator;
-
-private void Awake()
-{
-    _cachedTransform = transform;
-    _animator = GetComponent<Animator>();
-}
-
-private void Update()
-{
-    // ❌ 매 프레임 GetComponent 금지
-    // GetComponent<Animator>().SetBool(...);
-
-    // ✅ 캐싱된 참조 사용
-    _animator.SetBool(AnimHash.IsRunning, _isMoving);
-}
-```
-
-<br>
-
-### 5-5. `#region`으로 코드 구조화
-
-```csharp
-public class PlayerController : MonoBehaviour
-{
-    #region Constants
-    private const float DEFAULT_MOVE_SPEED = 5.0f;
-    #endregion
-
-    #region Serialized Fields
-    [SerializeField] private float _moveSpeed;
-    #endregion
-
-    #region Private Fields
-    private int _currentHealth;
-    #endregion
-
-    #region Properties
-    public bool IsAlive => _currentHealth > 0;
-    #endregion
-
-    #region Unity Lifecycle
-    private void Awake()  { }
-    private void Update() { }
-    #endregion
-
-    #region Public Methods
-    public void TakeDamage(int amount) { }
-    #endregion
-
-    #region Coroutines
-    private IEnumerator CoSpawnEffect() { }
-    #endregion
-}
-```
-
-<br>
-
-### 5-6. 폴더 & 파일 구조
-
-```
-Assets/
-├── _Project/                  ← 프로젝트 전용 폴더 (최상위 정렬)
-│   ├── Scripts/
-│   │   ├── Core/              ← GameManager, SceneLoader 등
-│   │   ├── Player/
-│   │   ├── Enemy/
-│   │   ├── UI/
-│   │   ├── Systems/           ← InventorySystem, QuestSystem 등
-│   │   └── Utils/             ← 확장 메서드, 헬퍼 클래스
-│   ├── Scenes/
-│   ├── Prefabs/
-│   ├── ScriptableObjects/
-│   └── Art/
-└── ThirdParty/                ← 외부 에셋 (절대 수정 금지)
-```
-
-<br>
-
----
-
-## 6. 명명 규칙 요약표
-
-| 대상 | 규칙 | 예시 |
+| 태그 | 용도 | 예시 |
 |---|---|---|
-| 지역 변수 / 매개변수 | `camelCase` | `moveSpeed`, `playerName` |
-| bool 변수 (지역) | `is/can/has/should` + `camelCase` | `isAlive`, `canAttack`, `hasItem` |
-| bool 필드 (private) | `_is/_can/_has` + `camelCase` | `_isInvincible`, `_canMove` |
-| private 필드 | `_camelCase` | `_health`, `_rigidbody` |
-| public Property | `PascalCase` | `CurrentHealth`, `IsAlive` |
-| 상수 (`const`) | `UPPER_SNAKE_CASE` | `MAX_PLAYER_COUNT` |
-| static readonly | `PascalCase` | `WaitOneSecond` |
-| 메서드 | `PascalCase` + 동사 | `TakeDamage()`, `UpdateHealthUI()` |
-| bool 반환 메서드 | `Is/Can/Has/Should` + `PascalCase` | `IsGrounded()`, `CanAttack()` |
-| 코루틴 | `Co` + `PascalCase` | `CoSpawnEffect()`, `CoRespawn()` |
-| 클래스 | `PascalCase` | `PlayerController` |
-| 인터페이스 | `I` + `PascalCase` | `IDamageable` |
-| 구조체 | `S` + `PascalCase` | `SDamageInfo` |
-| 열거형 | `E` + `PascalCase` | `EGameState` |
-| ScriptableObject | `SO` + `PascalCase` | `SOWeaponData` |
+| `feat` | 새로운 기능 추가, 새로운 스크립트/에셋 생성 | `feat: 플레이어 이동 및 점프 기능 구현` |
+| `fix` | 버그, 에러, 씬/프리팹 깨짐 현상 수정 | `fix: 셰이더 Y축 뒤집힘 및 암전 오류 수정` |
+| `refactor` | 기능 변화 없이 코드 구조 개선, 변수명 변경, 구조 최적화 | `refactor: 웨이브 매니저 루프 구조 최적화` |
+| `chore` | 코드 외적인 작업 (폴더 구조 생성, 패키지 설치, .gitignore/README 수정) | `chore: 프로젝트 README.md 코딩 컨벤션 추가` |
+
+<br>
+
+### 1-3. 작성 규칙
+
+`~함`, `~했음` 보다는 `~구현`, `~수정`, `~제거` 등의 형태로 작성합니다.
+
+```
+권장: feat: 인벤토리 슬롯 드래그 앤 드롭 구현
+지양: feat: 인벤토리 슬롯 드래그 앤 드롭 구현함
+
+권장: fix: 점프 시 콜라이더 끼임 현상 제거
+지양: fix: 점프 시 콜라이더 끼임 현상 제거했음
+```
+
+<br>
+
+### 1-4. 커밋 메시지 예시
+
+```
+feat: 플레이어 이동 및 점프 기능 구현
+- 홍길동
+- Rigidbody 기반 이동 로직 작성
+- 점프 시 이중 점프 방지 로직 추가
+```
+
+```
+fix: 셰이더 Y축 뒤집힘 및 암전 오류 수정
+- 김철수
+```
 
 <br>
 
 ---
 
-## 7. 전체 예시 코드
+## 2. 기타 규칙
 
-위의 모든 컨벤션이 적용된 실제 스크립트 예시입니다.
+- `main` 및 개발 브랜치 **직접 push 금지** — 반드시 별도 브랜치에서 작업 후 PR로 병합합니다.
+- **pull 습관적으로** — 작업 시작 전 최신 변경 사항을 받아옵니다.
+- **Base Scene 수정 금지** — 공용 씬은 임의로 수정하지 않습니다.
 
-```csharp
-public class PlayerController : MonoBehaviour, IDamageable
-{
-    #region Constants
-    private const int   MAX_HEALTH        = 100;
-    private const float DEFAULT_MOVE_SPEED = 5.0f;
-    #endregion
+<br>
 
-    #region Serialized Fields
-    [Header("Stats")]
-    [SerializeField] private float _moveSpeed = DEFAULT_MOVE_SPEED;
+---
 
-    [Header("References")]
-    [SerializeField] private Animator _animator;
-    #endregion
+## 3. 사용 에셋 크레딧 (Asset Credits)
 
-    #region Private Fields
-    private static readonly WaitForSeconds WaitRespawn = new WaitForSeconds(3.0f);
-    private int  _currentHealth;
-    private bool _isInvincible;
-    #endregion
+이 프로젝트에서 사용하는 외부 에셋과 라이선스 조건입니다. **빌드 시 아래 크레딧 표기를 반드시 포함해야 합니다.**
 
-    #region Properties
-    public int  CurrentHealth => _currentHealth;
-    public bool IsAlive       => _currentHealth > 0;
-    #endregion
+<br>
 
-    #region Events
-    public event Action<int> OnHealthChanged;
-    public event Action      OnDied;
-    #endregion
+### 3-1. [BloodLines UI (Unity Asset) by xGaida, Shieldomirs](https://xgaida.itch.io/bloodlines-ui)
 
-    #region Unity Lifecycle
-    private void Awake()
-    {
-        Debug.Assert(_animator != null, $"[{name}] Animator 누락");
-        _currentHealth = MAX_HEALTH;
-    }
-    #endregion
+| 항목 | 내용 |
+|---|---|
+| 제작자 | xGaida, Shieldomirs |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
 
-    #region Public Methods
-    public void TakeDamage(int amount)
-    {
-        bool canTakeDamage = IsAlive && !_isInvincible;
-        if (!canTakeDamage) return;
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능
+- 무제한 게임에 사용 가능
+- 에셋 자체의 재판매 및 재패키징 금지
+- 크레딧 표기 의무는 없음
 
-        _currentHealth = Mathf.Max(0, _currentHealth - amount);
-        OnHealthChanged?.Invoke(_currentHealth);
+<br>
 
-        if (!IsAlive)
-            StartCoroutine(CoDie());
-    }
-    #endregion
+### 3-2. [Character: Steven [FREE] by Kronovi-](https://darkpixel-kronovi.itch.io/character-steven-free)
 
-    #region Coroutines
-    private IEnumerator CoDie()
-    {
-        OnDied?.Invoke();
-        yield return WaitRespawn;
-        _currentHealth = MAX_HEALTH;
-    }
-    #endregion
-}
-```
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Kronovi |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- 에셋 자체의 재판매 및 재배포 금지
+- 수정 가능
+- 비상업적/상업적 프로젝트 모두 사용 가능
+- 상업적으로 사용할 경우 제작자에게 기부를 권장함 (필수는 아님)
+
+<br>
+
+### 3-3. Font (마루 부리, MaruBuri)
+
+- [눈누 폰트 페이지](https://noonnu.cc/font_page/487)
+- [네이버 한글한글 아름답게 (다운로드)](https://hangeul.naver.com/fonts/search?f=maru)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | 네이버 (네이버문화재단) |
+| 출처 | 네이버 한글한글 아름답게 |
+| 라이선스 | 네이버 나눔글꼴 라이선스 (OFL 기반, 상업용 무료) |
+
+**조건**
+- 개인/기업 모두 무료 사용, 인쇄물/웹사이트/영상/BI·CI 등 사용 가능
+- 수정 및 재배포 가능
+- 폰트 파일 자체를 유료로 판매하는 것은 금지
+- 라이선스 전문을 포함하기 어려울 경우 출처 표기를 권장함
+
+<br>
+
+### 3-4. [Survival Horror Items Pack by Leo's Pixel](https://leos-pixel.itch.io/survival-horror-items-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Leo's Pixel |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능
+- 수정 가능
+- 수정 여부와 관계없이 재배포 및 재판매 금지
+- 크레딧 표기 의무는 없음
+
+<br>
+
+### 3-5. [Horror Sound Effects by YourPalRob](https://yourpalrob.itch.io/must-have-horror-sound-effects)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | YourPalRob |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스, 무료/유료 번들 혼합) |
+
+**조건**
+- 개인/상업 프로젝트 모두 크레딧 표기 없이 사용 가능
+- 게임, 영상, 음악 등 미디어 프로젝트에 자유롭게 사용 가능
+- 사운드 자체를 단독 파일로 재판매·재배포·리패키징 금지
+- 크레딧 표기 의무는 없음
+
+<br>
+
+### 3-6. [House-tileset by maschiaT](https://maschiat.itch.io/house-tileset)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | maschiaT |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- 모든 종류의 프로젝트에 무료 사용 가능
+- 수정 가능
+- 크레딧 표기 필수 (maschiaT@wememo.art)
+
+<br>
+
+### 3-7. [FREE HORROR SFX - VN - SCARY SOUND EFFECTS by Liminal Games](https://liminal-space-dev.itch.io/free-horror-sfx-sounds)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Liminal Games |
+| 출처 | itch.io |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 크레딧 표기 불필요
+- 팩 자체의 재배포 및 재판매 금지
+- AI로 생성된 사운드가 포함되어 있음 (AI-generated)
+
+<br>
+
+### 3-8. [Melancholic Indie Horror Game Music Pack by Crow Shade](https://crowshade.itch.io/melancholic-indie-horror-game-soundtrack-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Crow Shade |
+| 출처 | itch.io |
+| 라이선스 | **CC-BY 4.0** |
+
+**조건**
+- 무료/상업적 프로젝트 모두 사용 가능
+- 크레딧 표기 필수
+
+<br>
+
+### 3-9. [pH64 Pixel Pack - 100s of Sideview Assets | OpenGameArt.org](https://opengameart.org/content/ph64-pixel-pack-100s-of-sideview-assets)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | PurpleHeart (Stacy Kendra Love) / 브랜드명: Narcissist Interactive |
+| 출처 | OpenGameArt.org |
+| 라이선스 | CC-BY 4.0 / CC-BY 3.0 / GPL 3.0 / GPL 2.0 / OGA-BY 3.0 중 선택 가능 |
+
+**조건**
+- 5개 라이선스 중 하나를 선택해서 사용 가능 (가장 쓰기 쉬운 **CC-BY 4.0** 권장)
+- 작가 **이름(Stacy Kendra Love)** 과 **브랜드명(Narcissist Interactive)** 모두 크레딧 표기 필수
+- 비디오/게임 형태로 출시 시 두 이름 모두 표기 필요
+- 온라인 갤러리(Instagram, OpenGameArt, deviantArt, 개인 블로그 등)에 게시 시 리소스 링크 포함 필요
+
+<br>
+
+### 3-10. [PSX Horror Music & SFX Pack by Pablo Alegria](https://pabloalegria9.itch.io/psxhorrorpack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Pablo Alegria |
+| 출처 | itch.io |
+| 라이선스 | Royalty-Free License |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 로열티 없이 사용 가능
+- 크레딧 표기 의무는 명시되어 있지 않음
+
+<br>
+
+### 3-11. [Pet Dogs Pack by LuizMelo](https://luizmelo.itch.io/pet-dogs-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | LuizMelo |
+| 출처 | itch.io |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 자유롭게 상업적/비상업적 사용 가능
+- 크레딧 표기 불필요 (단, 제작자는 크레딧 표기를 권장함)
+
+<br>
+
+### 3-12. [Pixel Icons and Game Controller 2 by Disven](https://disven.itch.io/pixel-icons-and-game-controller-2)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Disven |
+| 출처 | itch.io |
+| 라이선스 | **CC-BY 4.0** |
+
+**조건**
+- 상업적 사용 가능, 수정 가능
+- 크레딧 표기는 필수는 아니라고 명시되어 있으나, 라이선스가 CC-BY 4.0이므로 크레딧 표기를 권장함
+
+<br>
+
+### 3-13. [Overworld Objects | OpenGameArt.org](https://opengameart.org/content/overworld-objects)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Kelvin Shadewing |
+| 출처 | OpenGameArt.org |
+| 라이선스 | **CC-BY-SA 4.0** 또는 **GPL 3.0** 중 선택 |
+
+**조건 (CC-BY-SA 4.0 선택 시)**
+- 상업적 사용 가능, 수정 가능
+- 출처 표기 필수 — **kelvinshadewing.net 링크 포함 필수**
+- ShareAlike — 이 에셋을 수정해서 만든 2차 저작물은 동일한 라이선스(CC-BY-SA)로 배포해야 함
+
+<br>
+
+### 3-14. [Cursor Pixel Pack by Kenney](https://kenney.nl/assets/cursor-pixel-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Kenney |
+| 출처 | kenney.nl |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 크레딧 표기 불필요
+
+<br>
+
+### 3-15. 빌드 시 크레딧 표기 위치
+
+위 크레딧 문구는 게임 내 다음 위치 중 한 곳에 반드시 포함합니다.
+
+- 게임 시작 화면 또는 메인 메뉴의 "Credits" 항목
+- 엔딩 크레딧 롤
+- 게임 설명서(설치 파일 동봉 README, 스토어 페이지 설명 등)
+
+> 에셋 추가/교체 시 이 섹션도 함께 업데이트해야 합니다.
