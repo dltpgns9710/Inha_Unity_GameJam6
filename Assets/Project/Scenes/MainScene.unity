@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 14955840}
   - component: {fileID: 14955839}
   - component: {fileID: 14955838}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3001,6 +3001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5986242626322969738, guid: db8095e82dd8aa745aececa56f788339, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3746,7 +3750,7 @@ GameObject:
   - component: {fileID: 714769521}
   - component: {fileID: 714769520}
   - component: {fileID: 714769519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room2RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4254,7 +4258,7 @@ GameObject:
   - component: {fileID: 796190477}
   - component: {fileID: 796190476}
   - component: {fileID: 796190475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5810,7 +5814,7 @@ GameObject:
   - component: {fileID: 1068360998}
   - component: {fileID: 1068360997}
   - component: {fileID: 1068360996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6248,7 +6252,7 @@ GameObject:
   - component: {fileID: 1165191283}
   - component: {fileID: 1165191282}
   - component: {fileID: 1165191281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room2LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7039,7 +7043,7 @@ GameObject:
   - component: {fileID: 1340682249}
   - component: {fileID: 1340682248}
   - component: {fileID: 1340682247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room3LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8456,7 +8460,7 @@ GameObject:
   - component: {fileID: 1764113197}
   - component: {fileID: 1764113196}
   - component: {fileID: 1764113195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9076,12 +9080,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1542145555}
     - target: {fileID: 7193557415866107352, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
+      propertyPath: _onEnableEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2112389301}
+    - target: {fileID: 7193557415866107352, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
       propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1542145555}
+    - target: {fileID: 7193557415866107352, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
+      propertyPath: _onDisableEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2112389301}
     - target: {fileID: 9171797771779220452, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171797771779220452, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9534,7 +9550,7 @@ GameObject:
   - component: {fileID: 2019572751}
   - component: {fileID: 2019572750}
   - component: {fileID: 2019572749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room3RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9752,6 +9768,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2909152750784496243, guid: 4a92342ca8ea19449a960a89ff0e8597, type: 3}
   m_PrefabInstance: {fileID: 1672557649}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112389301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+  m_PrefabInstance: {fileID: 258776353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b57de1732465469c563fc4b4b67ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerFlashlight
 --- !u!4 &2133979903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 905028612664267451, guid: db8095e82dd8aa745aececa56f788339, type: 3}
