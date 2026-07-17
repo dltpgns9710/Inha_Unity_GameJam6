@@ -117,10 +117,23 @@ namespace TAEWOOK.Helper.Core
 
         public void RequestDetectAnomaly(Vector2 searchPosition)
         {
-            if(_currentState == EHelperState.Follow || _currentState == EHelperState.Idle)
+            if(_currentState == EHelperState.Wait || _currentState == EHelperState.Sleep)
             {
-                RequestUseAbility(searchPosition);
-            }            
+                return;
+            }
+
+            int wallLayer = LayerMask.GetMask("Wall");
+
+            Collider2D wall = Physics2D.OverlapPoint(
+                searchPosition,
+                wallLayer);
+
+            if (wall != null)
+            {
+                return;
+            }
+
+            RequestUseAbility(searchPosition);
         }
 
         public void RequestWait()
