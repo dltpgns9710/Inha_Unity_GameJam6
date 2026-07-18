@@ -8,19 +8,26 @@ namespace SEHOON.GameSystem
         Local,
         Global
     };
-    
+    public enum EHintType
+    {
+        Detected,
+        instant,
+    };
+
     [System.Serializable]
     public struct SDetectData
     {
         [SerializeField] private EAnomalyType _type;
+        [SerializeField] private EHintType _hintType;
         [SerializeField] private Vector3 _anomalyPos;
         [SerializeField] private string _hintText;
-        [SerializeField, Range(0, 60)] private float _detectRange;
+        [SerializeField, Range(0, 60)] private float _detectRange;      
 
         public EAnomalyType Type => _type;
+        public EHintType HintType => _hintType;
         public Vector3 AnomalyPos => _anomalyPos;
         public float DetectRange => _detectRange;
-        public string HintText => _hintText;
+        public string HintText => _hintText;        
     };
     
     public abstract class AnomalyBase : MonoBehaviour
