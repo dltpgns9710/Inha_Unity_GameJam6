@@ -1,18 +1,24 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using JUNBEOM.Player;
+using System.Collections;
+using SEHOON.GameSystem;
 
 public class PickUpObject : MonoBehaviour, IInteractable
 {
-    // TODO : SetActive when going through an end door
+    [SerializeField] private GameObject _keyObject;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private AudioClip _collectSound;
+
+    [SerializeField] private float _animationDuration = 0.5f;
+
+    private bool _hasInteracted = false;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
        
@@ -21,6 +27,44 @@ public class PickUpObject : MonoBehaviour, IInteractable
     public void Interact(GameObject interactor)
     {
         PlayerEventManager.Instance.OnKeyCollected?.Invoke();
-        Debug.Log("Picked up item: " + gameObject.name);
+        if (!_hasInteracted)
+        {
+            SoundManager.Instance.PlaySfx(_collectSound);
+            StartCoroutine(AnimateKeyObject());
+        }
+
+        _hasInteracted = true;
+    }
+
+    private IEnumerator AnimateKeyObject()
+    {
+        Transform keyTransform = _keyObject.transform;
+        SpriteRenderer spriteRenderer = _keyObject.GetComponent<SpriteRenderer>();
+
+        Vector3 startPos = keyTransform.position;
+        float elapsed = 0f;
+
+        while (elapsed < _animationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float progress = elapsed / _animationDuration;
+
+            float easedProgress = 1 - (1 - progress) * (1 - progress);
+
+            keyTransform.Rotate(0, 360 * Time.deltaTime / _animationDuration, 0);
+
+            keyTransform.position = startPos + Vector3.up * (easedProgress * 2f);
+
+            if (spriteRenderer != null)
+            {
+                Color color = spriteRenderer.color;
+                color.a = Mathf.Lerp(1f, 0f, progress);
+                spriteRenderer.color = color;
+            }
+
+            yield return null;
+        }
+
+        _keyObject.SetActive(false);
     }
 }
