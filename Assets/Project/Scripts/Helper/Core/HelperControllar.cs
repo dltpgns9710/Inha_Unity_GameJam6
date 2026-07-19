@@ -15,6 +15,7 @@ namespace TAEWOOK.Helper.Core
         [Header("References")]
         [SerializeField] private HelperCommandBroadcaster _commandBroadcaster;
         [SerializeField] private HelperConfig _config;
+        [SerializeField] private int _maxCount;
         #endregion
 
         #region Private Fields      
@@ -26,6 +27,7 @@ namespace TAEWOOK.Helper.Core
         private float _waitElapsedTime;
         private Collider2D _playerCollider;
         private Collider2D _helperCollider;
+        private int _detectChance;
         #endregion
 
         #region Properties
@@ -48,7 +50,7 @@ namespace TAEWOOK.Helper.Core
 
             _movement = GetComponent<HelperMovement>();
             _helperAnimation = GetComponent<HelperAnimation>();
-            _ability = GetComponent<HelperAbility>();
+            _ability = GetComponent<HelperAbility>();            
 
             if (_movement == null)
             {
@@ -68,6 +70,10 @@ namespace TAEWOOK.Helper.Core
             Debug.Assert(_playerTransform != null, "Player Transform is not connected.");
             Debug.Assert(_movement != null, "HelperMovement is not connected.");
             Debug.Assert(_helperAnimation != null, "HelperAnimation is not connected.");
+        }
+        private void Start()
+        {
+            _detectChance = 0;
         }
 
         private void OnEnable()
@@ -122,6 +128,11 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
+            if(_detectChance >= _maxCount)
+            {
+                return;
+            }
+
             int wallLayer = LayerMask.GetMask("Wall");
 
             Collider2D wall = Physics2D.OverlapPoint(
@@ -134,6 +145,7 @@ namespace TAEWOOK.Helper.Core
             }
 
             RequestUseAbility(searchPosition);
+            _detectChance++;
         }
 
         public void RequestWait()
