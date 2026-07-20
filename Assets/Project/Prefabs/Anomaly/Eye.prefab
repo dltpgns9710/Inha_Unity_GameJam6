@@ -175,3 +175,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Eye
   _animator: {fileID: 2366355652393534588}
+  _eyeClip: {fileID: 8300000, guid: b744108e80b20e84bb54cda385693cb9, type: 3}
