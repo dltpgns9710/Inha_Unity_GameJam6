@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TAEWOOK.Helper.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ namespace SEHOON.UI
 
         #region Private Fields
         private readonly List<Image> _icons = new List<Image>();
+        private HelperControllar _helperComponent;
         private int _currentCount;
         #endregion
 
@@ -27,12 +29,18 @@ namespace SEHOON.UI
         private void Start()
         {
             //todo : _chanceCountSource 에서 갯수 가져와 초기화
-            Initialize(4);
+            _helperComponent = _chanceCountSource.GetComponent<HelperControllar>();
+            if (_helperComponent == null) return;
+
+            Initialize(_helperComponent.MaxCount);
+            _helperComponent.HasDected += TryDetect;
         }
 
         private void OnDestroy()
         {
-            //todo : _chanceCountSource 에서 갯수 변화 구독 해제
+            if (_helperComponent == null) return;
+
+            _helperComponent.HasDected -= TryDetect;
         }
 
         #endregion

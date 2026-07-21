@@ -113,6 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127988855401367697}
   - component: {fileID: 3889361343910847049}
+  - component: {fileID: 463416698885763828}
   m_Layer: 0
   m_Name: Whiteboard
   m_TagString: Untagged
@@ -195,6 +196,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &463416698885763828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8607748446074860069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59daf7a089989ef4f80e4feea23c1896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.WhiteboardView
+  _hintText: {fileID: 6380357326306992921}
+  _defaultText: "Floor 1\uC740 \uBCC0\uD558\uC9C0 \uC54A\uB294\uB2E4.\n\uBCC0\uD654\uAC00
+    \uC5C6\uB2E4\uBA74, <color=#7EFF7E>\uCD08\uB85D \uBB38</color>\uC73C\uB85C \uAC04\uB2E4.\n\uAD34\uD604\uC0C1\uC774
+    \uB098\uD0C0\uB098\uBA74, <color=#FF7E7E>\uBE68\uAC04 \uBB38</color>\uC73C\uB85C
+    \uAC04\uB2E4.\n\uC0AC\uB77C\uC9C0\uC9C0 \uC54A\uAC70\uB098, \uB108\uB97C \uD574\uCE58\uB294
+    \uAC83\uC774\n<color=#FF0000>\uAD34\uD604\uC0C1</color>\uC774\uB2E4."
+  _defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  _hintColor: {r: 0.9019608, g: 0, b: 0, a: 1}
+  _hintTiltAngle: -10
+  _hintFontSize: 18
 --- !u!1 &8898437869730815714
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,10 +283,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sasdsadsadsdsadadas
+  m_text: "Floor 1\uC740 \uBCC0\uD558\uC9C0 \uC54A\uB294\uB2E4.\n\uBCC0\uD654\uAC00
+    \uC5C6\uB2E4\uBA74, <color=#7EFF7E>\uCD08\uB85D \uBB38</color>\uC73C\uB85C \uAC04\uB2E4.\n\uAD34\uD604\uC0C1\uC774
+    \uB098\uD0C0\uB098\uBA74, <color=#FF7E7E>\uBE68\uAC04 \uBB38</color>\uC73C\uB85C
+    \uAC04\uB2E4.\n\uC0AC\uB77C\uC9C0\uC9C0 \uC54A\uAC70\uB098, \uB108\uB97C \uD574\uCE58\uB294
+    \uAC83\uC774\n<color=#FF0000>\uAD34\uD604\uC0C1</color>\uC774\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 115feffced8cacd4e941cb6b98ccc7e4, type: 2}
+  m_sharedMaterial: {fileID: 3008993675002172286, guid: 115feffced8cacd4e941cb6b98ccc7e4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -294,13 +321,13 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 39.49
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
