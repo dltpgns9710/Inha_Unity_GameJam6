@@ -94,7 +94,7 @@ MonoBehaviour:
   _eyePrefab: {fileID: 7335635355533317596, guid: 07c602605858a8c4ab32d24ab23514ad, type: 3}
   _poolRoot: {fileID: 836822827572055997}
   _poolSize: 30
-  _activeEyeCount: 10
+  _activeEyeCount: 5
   _minSpawnDistance: 1.55
   _maxSpawnDistance: 4
   _despawnDistance: 9.42
