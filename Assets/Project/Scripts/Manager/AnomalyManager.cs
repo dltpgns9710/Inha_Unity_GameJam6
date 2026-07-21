@@ -37,7 +37,7 @@ namespace SEHOON.GameSystem
             SelectAnomaly();
             if (_selectedAnomaly != null)
             {
-                DataManager.Instance.IsAnomalyApply = true;
+                DataManager.Instance.IsAnomalyApply = _selectedAnomaly.ShouldGoBackAnomaly;
                 _selectedAnomaly.Apply();
             }
 #if UNITY_EDITOR
@@ -87,7 +87,7 @@ namespace SEHOON.GameSystem
             _selectedAnomaly = _anomalies[index];
             _selectedAnomaly.Apply();
             ChangeAnomalyIndex?.Invoke();
-            DataManager.Instance.IsAnomalyApply = true;
+            DataManager.Instance.IsAnomalyApply = _selectedAnomaly.ShouldGoBackAnomaly;
         }
 
         public void DebugRemoveAnomaly()
