@@ -203,5 +203,17 @@ namespace JUNBEOM.Player
         }
 
         #endregion
+
+        #region Public Methods
+
+        public void TurnOffFlashlight()
+        {
+            if (_isTurnedOn)
+            {
+                SetFlashlightActive(false);
+            }
+        }
+
+        #endregion
     }
 }

@@ -1,6 +1,7 @@
+using SEHOON.GameSystem;
 using System.Collections.Generic;
 using UnityEngine;
-using SEHOON.GameSystem;
+using UnityEngine.InputSystem;
 namespace JUNBEOM.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -23,6 +24,9 @@ namespace JUNBEOM.Player
         [SerializeField] private float _runSpeed = DEFAULT_RUN_SPEED;
         [SerializeField] private float _jumpForce = DEFAULT_JUMP_FORCE;
 
+        [Header("Dead Light")]
+        [SerializeField] private GameObject _deadLight;
+
         [Header("References")]
         [SerializeField] private PlayerInputManager _inputManager;
 
@@ -32,6 +36,7 @@ namespace JUNBEOM.Player
         [Header("AudioSetting")]
         [SerializeField] private AudioClip _moveClip;
         [SerializeField] private AudioClip _runClip;
+        [SerializeField] private AudioClip _deadClip;
         [SerializeField] private float _walkSoundInterval = 0.1f; 
         [SerializeField] private float _runSoundInterval = 0.05f;
         #endregion
@@ -53,8 +58,7 @@ namespace JUNBEOM.Player
 
         private HashSet<Collider2D> _groundColliders = new HashSet<Collider2D>();
 
-        private float _footstepTimer = 0f; // 발소리 타이머
-        private float _runstepTimer = 0f; // 달리기 타이머
+        private float _footstepTimer = 0f; // 통합 발소리 타이머
 
         private bool _isFollowingPlayer;
 
@@ -81,6 +85,8 @@ namespace JUNBEOM.Player
 
         private void Awake()
         {
+            if(_deadLight  != null) 
+                _deadLight.SetActive(false);
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _cachedTransform = transform;
@@ -108,8 +114,6 @@ namespace JUNBEOM.Player
         {
             UpdateAnimation();
             HandleFootstepSound();
-            HandleRunstepSound();
-
         }
 
         private void FixedUpdate()
@@ -165,39 +169,30 @@ namespace JUNBEOM.Player
 
         private void HandleFootstepSound()
         {
-            // 땅에 닿아있고 && 좌우 이동 입력이 있을 때만 실행
-            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f && !_isRunning)
+
+            if (!_isGrounded)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            if (Mathf.Abs(_moveInputX) > 0.1f)
             {
                 _footstepTimer -= Time.deltaTime;
 
                 if (_footstepTimer <= 0f)
                 {
-                    SoundManager.Instance.PlaySfx(_moveClip);
 
-                    _footstepTimer =_walkSoundInterval;
+                    AudioClip clipToPlay = _isRunning ? (_runClip != null ? _runClip : _moveClip) : _moveClip;
+                    float currentInterval = _isRunning ? _runSoundInterval : _walkSoundInterval;
+
+                    SoundManager.Instance.PlaySfx(clipToPlay);
+                    _footstepTimer += currentInterval;
                 }
             }
             else
             {
                 _footstepTimer = 0f;
-            }
-        }
-        private void HandleRunstepSound()
-        {
-            if (_isGrounded && Mathf.Abs(_moveInputX) > 0.1f&&_isRunning)
-            {
-                _runstepTimer -= Time.deltaTime;
-
-                if (_runstepTimer <= 0f)
-                {
-                    SoundManager.Instance.PlaySfx(_runClip);
-
-                    _runstepTimer = _runSoundInterval;
-                }
-            }
-            else
-            {
-                _runstepTimer = 0f;
             }
         }
 
@@ -291,11 +286,20 @@ namespace JUNBEOM.Player
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // 충돌한 Collider가 적(크리쳐)이면 사망처리
             if (collision.CompareTag("ENEMY"))
             {
-                //_inputManager.DisablePlayerInput();
+                SoundManager.Instance.PlaySfx(_deadClip);
+                _inputManager.DisablePlayerInput();
                 _isDead = true;
+                _rigidbody.linearVelocity = Vector2.zero;
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                if (_deadLight != null)
+                    _deadLight.SetActive(true);
+                PlayerFlashlight flashlight = GetComponent<PlayerFlashlight>();
+                if (flashlight != null)
+                {
+                    flashlight.TurnOffFlashlight();
+                }
             }
         }
         #endregion
