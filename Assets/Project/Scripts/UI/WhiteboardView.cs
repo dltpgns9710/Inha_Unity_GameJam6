@@ -35,6 +35,7 @@ namespace SEHOON.UI
         public void ShowHint(string hintText)
         {
             if (_hintText == null) return;
+            if (string.IsNullOrEmpty(hintText)) return;
 
             _hintText.text = hintText;
             _hintText.color = _hintColor;
