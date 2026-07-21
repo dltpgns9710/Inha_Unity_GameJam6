@@ -110,8 +110,8 @@ GameObject:
   - component: {fileID: 5696824040067253841}
   - component: {fileID: 3181727023848422106}
   - component: {fileID: 1008887758534178700}
-  - component: {fileID: 6140788598189116335}
   - component: {fileID: 1612542955956462334}
+  - component: {fileID: 8226256352007633910}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -260,8 +260,8 @@ MonoBehaviour:
   _flashlightObject: {fileID: 9144347914524029728}
   _flashlightLight: {fileID: 8878459012611453915}
   _maximumLightIntensity: 3
-  _minimumLightIntensity: 0
-  _lightDecreaseDuration: 50
+  _minimumLightIntensity: 3
+  _lightDecreaseDuration: 5000
   _flashOnClip: {fileID: 8300000, guid: e7c33cf4d7b887d45b70ad6e4d7fcb78, type: 3}
   _flashOffClip: {fileID: 8300000, guid: dcdd4190abbc75d46b7436ee29e2920e, type: 3}
 --- !u!114 &7465885626439827489
@@ -373,8 +373,22 @@ MonoBehaviour:
   _HelperInteract: {fileID: 0}
   _findCursor: {fileID: 2800000, guid: d8f04af95468a6e4185bf7819f2f3a3c, type: 3}
   _normalCursor: {fileID: 2800000, guid: 035f5f0489ff6ea4e91f81fb8c6c34fa, type: 3}
---- !u!70 &6140788598189116335
-CapsuleCollider2D:
+--- !u!114 &1612542955956462334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696961991513125471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f66a053edefdc458d03e708878e5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPauseMenu
+  _pauseMenuView: {fileID: 0}
+  _playerInputManager: {fileID: 7465885626439827489}
+--- !u!61 &8226256352007633910
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -407,23 +421,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.05, y: 0}
-  m_Size: {x: 0.18194565, y: 0.49}
-  m_Direction: 0
---- !u!114 &1612542955956462334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6696961991513125471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f66a053edefdc458d03e708878e5e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerPauseMenu
-  _pauseMenuView: {fileID: 0}
-  _playerInputManager: {fileID: 7465885626439827489}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.23, y: 0.49}
+    newSize: {x: 0.23, y: 0.49}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.14, y: 0.49}
+  m_EdgeRadius: 0
 --- !u!1 &9144347914524029728
 GameObject:
   m_ObjectHideFlags: 0
