@@ -1539,6 +1539,14 @@ PrefabInstance:
       propertyPath: _pauseMenuView
       value: 
       objectReference: {fileID: 1881624330}
+    - target: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: _lightDecreaseDuration
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: _minimumLightIntensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6696961991513125471, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: m_Name
       value: Player
