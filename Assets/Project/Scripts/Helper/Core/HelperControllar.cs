@@ -1,6 +1,8 @@
 using UnityEngine;
 using TAEWOOK.Helper.Ability;
 using TAEWOOK.Helper.Data;
+using System;
+using UnityEngine.UI;
 
 namespace TAEWOOK.Helper.Core
 {
@@ -28,13 +30,19 @@ namespace TAEWOOK.Helper.Core
         private Collider2D _playerCollider;
         private Collider2D _helperCollider;
         private int _detectChance;
-        private bool hasDetectChance;
+        private bool _hasDetectChance;
         #endregion
 
         #region Properties
         public HelperConfig Config => _config;
         public Vector2 PlayerPosition => _playerTransform != null ? _playerTransform.position : transform.position;
-        public float FollowDistance => _config.FollowDistance;
+        public float FollowDistance => _config.FollowDistance;        
+
+        //탐지 찬스 최대 개수
+        public int MaxCount => _maxCount;
+        //탐지 실행되면 넘길 이벤트
+        public event Action HasDected;
+        public bool HasDetectChance => _detectChance >= _maxCount ? _hasDetectChance = true : _hasDetectChance = false;
         #endregion
 
         #region Unity Lifecycle
@@ -129,7 +137,7 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
-            if(_detectChance >= _maxCount)
+            if(_detectChance >= _maxCount)            
             {
                 return;
             }
@@ -144,8 +152,11 @@ namespace TAEWOOK.Helper.Core
             {
                 return;
             }
+            
+            
 
             RequestUseAbility(searchPosition);
+            HasDected?.Invoke();
             _detectChance++;
         }
 
