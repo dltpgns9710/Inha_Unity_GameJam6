@@ -69,7 +69,6 @@ public class AnomalyJumpscareOnce : AnomalyBase
             ++count;
         }
 
-        // 설정한 시간만큼 대기
         yield return new WaitForSeconds(_displayDuration);
 
         if (_targetImage != null)

@@ -8,12 +8,14 @@ public class ObjectCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _detect = true;
+        if (collision.CompareTag("Player"))
+            _detect = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _detect = false;
+        if (collision.CompareTag("Player"))
+            _detect = false;
     }
     public bool Detect()
     {
