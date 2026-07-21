@@ -15,7 +15,6 @@ public class TutorialDoorController : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _fadeText;
 
     [SerializeField] private AudioClip _doorOpenSound;
-    [SerializeField] private AudioClip _doorCloseSound;
 
     private Animator _animator;
     private bool _isOpening;
@@ -54,8 +53,6 @@ public class TutorialDoorController : MonoBehaviour, IInteractable
         SoundManager.Instance.PlaySfx(_doorOpenSound);
 
         yield return new WaitForSeconds(_openDuration);
-        
-        SoundManager.Instance.PlaySfx(_doorCloseSound);
 
         SceneManager.LoadScene("MainScene");
         yield break;
