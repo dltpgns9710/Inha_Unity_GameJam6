@@ -30,12 +30,16 @@ namespace SEHOON.UI
         {
             //todo : _chanceCountSource 에서 갯수 가져와 초기화
             _helperComponent = _chanceCountSource.GetComponent<HelperControllar>();
-            Initialize(_helperComponent .MaxCount);
+            if (_helperComponent == null) return;
+
+            Initialize(_helperComponent.MaxCount);
             _helperComponent.HasDected += TryDetect;
         }
 
         private void OnDestroy()
         {
+            if (_helperComponent == null) return;
+
             _helperComponent.HasDected -= TryDetect;
         }
 
