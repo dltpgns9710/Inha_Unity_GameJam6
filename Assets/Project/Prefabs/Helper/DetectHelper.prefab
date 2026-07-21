@@ -118,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888616979825809860, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_ChildAlignment
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4888616979825809860, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_Padding.m_Left
@@ -177,16 +177,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8058142226414840726, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4415597153808394397, guid: 79a63a9e6c46c174ca5fefecc8e43e22, type: 3}
+    - target: {fileID: 8058142226414840726, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_Color.b
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8058142226414840726, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_Color.g
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8058142226414840726, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_Color.r
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8058142226414840726, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
@@ -207,6 +211,22 @@ PrefabInstance:
     - target: {fileID: 8378065905801654777, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
       propertyPath: m_margin.z
       value: -281.64865
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378065905801654777, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.26610893
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378065905801654777, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.26610893
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378065905801654777, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378065905801654777, guid: d4507db81f877494ca9d65fac6a12f0a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4282664157
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
