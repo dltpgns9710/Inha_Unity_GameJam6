@@ -32,6 +32,8 @@ namespace SEHOON.GameSystem
 
         private void TryApplyAnomaly()
         {
+            if (DataManager.Instance.Floor == 1) return;
+            
             SelectAnomaly();
             if (_selectedAnomaly != null)
             {
