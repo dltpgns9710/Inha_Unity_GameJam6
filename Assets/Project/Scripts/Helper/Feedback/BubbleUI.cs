@@ -32,7 +32,7 @@ namespace TAEWOOK.Helper.Feedback
             }
 
             _hintText.text = hintText;
-            _bubblePanel.SetActive(true);            
+            _bubblePanel.SetActive(true);          
             _hideCoroutine = StartCoroutine(HideAfterDelay());
         }
 
