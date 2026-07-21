@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
       propertyPath: _dialogueLines.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
       propertyPath: _dialogueLines.Array.data[2]._name
@@ -154,6 +154,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
       propertyPath: _dialogueLines.Array.data[5]._name
+      value: "\uC2DC\uC2A4\uD15C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
+      propertyPath: _dialogueLines.Array.data[6]._name
       value: "\uC2DC\uC2A4\uD15C"
       objectReference: {fileID: 0}
     - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
@@ -187,6 +191,11 @@ PrefabInstance:
         \uAC04\uB2E4.\n\uC774\uC0C1\uD55C\uAC78 \uAC10\uC9C0\uD558\uBA74 \uC544\uD0A4\uD0C0\uAC00
         \uC9D6\uC5B4\uC904\uAC70\uB2E4.\n\uC6B0\uD074\uB9AD\uC73C\uB85C \uCDE8\uC18C\uAC00
         \uAC00\uB2A5\uD558\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333908905734255330, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
+      propertyPath: _dialogueLines.Array.data[6]._dialogue
+      value: "\uB8E8\uD504\uB2F9 4\uBC88\uB9CC \uC0AC\uC6A9\uD560\uC218 \uC788\uC73C\uB2C8
+        \uC870\uC2EC\uD788 \uC0AC\uC6A9\uD558\uC790."
       objectReference: {fileID: 0}
     - target: {fileID: 5467573301739940871, guid: fa602f55418a72f4190cbdccc453a49e, type: 3}
       propertyPath: m_LocalPosition.x
