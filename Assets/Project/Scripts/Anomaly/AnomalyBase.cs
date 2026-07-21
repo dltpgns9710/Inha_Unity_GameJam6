@@ -32,7 +32,7 @@ namespace SEHOON.GameSystem
     
     public abstract class AnomalyBase : MonoBehaviour
     {
-        [SerializeField] private SDetectData _detectData;
+        [SerializeField] protected SDetectData _detectData;
         [SerializeField] private float _weight = 1f;
         [SerializeField] private bool _shouldGoBackAnomaly = true;
         
