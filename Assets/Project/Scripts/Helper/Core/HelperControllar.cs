@@ -28,6 +28,7 @@ namespace TAEWOOK.Helper.Core
         private Collider2D _playerCollider;
         private Collider2D _helperCollider;
         private int _detectChance;
+        private bool hasDetectChance;
         #endregion
 
         #region Properties

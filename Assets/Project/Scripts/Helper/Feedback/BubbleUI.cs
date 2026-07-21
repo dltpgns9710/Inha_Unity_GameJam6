@@ -8,9 +8,10 @@ namespace TAEWOOK.Helper.Feedback
     {
         [SerializeField] private GameObject _bubblePanel;
         [SerializeField] private TextMeshProUGUI _hintText;
+        [SerializeField] private AnimationClip _bubbleAnimation;
         [SerializeField, Min(0f)] private float _displayDuration = 3f;
 
-        private Coroutine _hideCoroutine;
+        private Coroutine _playCoroutine;
 
         private void Awake()
         {            
@@ -26,22 +27,22 @@ namespace TAEWOOK.Helper.Feedback
                 return;
             }
 
-            if (_hideCoroutine != null)
+            if (_playCoroutine != null)
             {
-                StopCoroutine(_hideCoroutine);
+                StopCoroutine(_playCoroutine);
             }
 
             _hintText.text = hintText;
-            _bubblePanel.SetActive(true);          
-            _hideCoroutine = StartCoroutine(HideAfterDelay());
+            _bubblePanel.SetActive(true);
+            _playCoroutine = StartCoroutine(PlayBubbleAnimation());
         }
 
         public void Hide()
         {
-            if (_hideCoroutine != null)
+            if (_playCoroutine != null)
             {
-                StopCoroutine(_hideCoroutine);
-                _hideCoroutine = null;
+                StopCoroutine(_playCoroutine);
+                _playCoroutine = null;
             }
 
             _bubblePanel.SetActive(false);
@@ -49,12 +50,31 @@ namespace TAEWOOK.Helper.Feedback
         #endregion
 
         #region Private Methods
-        private IEnumerator HideAfterDelay()
-        {            
-            yield return new WaitForSeconds(_displayDuration);
+        private IEnumerator PlayBubbleAnimation()
+        {
+            if (_bubbleAnimation == null)
+            {
+                yield return new WaitForSeconds(_displayDuration);
+            }
+            else
+            {
+                GameObject animationRoot = transform.parent != null
+                    ? transform.parent.gameObject
+                    : gameObject;
+                float elapsedTime = 0f;
+
+                while (elapsedTime < _bubbleAnimation.length)
+                {
+                    _bubbleAnimation.SampleAnimation(animationRoot, elapsedTime);
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                _bubbleAnimation.SampleAnimation(animationRoot, _bubbleAnimation.length);
+            }
 
             _bubblePanel.SetActive(false);
-            _hideCoroutine = null;            
+            _playCoroutine = null;
         }
         #endregion
     }

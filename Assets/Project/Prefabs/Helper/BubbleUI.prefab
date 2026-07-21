@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TAEWOOK.Helper.Feedback.BubbleUI
   _bubblePanel: {fileID: 6564118299261996797}
   _hintText: {fileID: 8378065905801654777}
+  _bubbleAnimation: {fileID: 7400000, guid: 8c750430d02fad64bb51e12078079e60, type: 2}
   _displayDuration: 3
 --- !u!1 &6564118299261996797
 GameObject:
