@@ -60,6 +60,10 @@ namespace JUNBEOM.Player
 
         #endregion
 
+        #region Private Fields
+        public float ControlMultiplier = 1.0f;
+        #endregion
+
         #region Animator Hash
 
         private static class AnimHash
@@ -124,7 +128,7 @@ namespace JUNBEOM.Player
             {
                 _mainCamera.ToggleCameraMode();
             }
-            _moveInputX = inputX;
+            _moveInputX = inputX * ControlMultiplier;
             UpdateFacingDirection();
         }
 
@@ -236,6 +240,16 @@ namespace JUNBEOM.Player
         }
 
 
+        #endregion
+
+        #region Public Methods
+        public void SetSpeedMultiplier(float multiplier)
+        {
+            _walkSpeed = DEFAULT_WALK_SPEED * multiplier;
+            _runSpeed = DEFAULT_RUN_SPEED * multiplier;
+
+            _currentMoveSpeed = _isRunning ? _runSpeed : _walkSpeed;
+        }
         #endregion
 
         #region Collision

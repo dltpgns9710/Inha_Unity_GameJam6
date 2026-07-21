@@ -42,6 +42,8 @@ namespace JUNBEOM.Player
 
         private bool _isEquipped;
         private bool _isTurnedOn;
+
+        private bool _isLogged = false;
         #endregion
 
         #region Properties
@@ -51,6 +53,8 @@ namespace JUNBEOM.Player
         public float CurrentLightIntensity => _flashlightLight.intensity;
 
         public float CurrentLightRatio { get; private set; } = 1.0f;
+
+        public float DrainMultiplier = 1.0f;
 
         /// <summary>
         /// 현재 손전등의 남은 빛 비율
@@ -171,10 +175,9 @@ namespace JUNBEOM.Player
 
         private void DecreaseLight()
         {
-            _remainingLightTime -= Time.deltaTime;
-            _remainingLightTime = Mathf.Max(
-                0.0f,
-                _remainingLightTime);
+            _remainingLightTime -= (Time.deltaTime * DrainMultiplier);
+
+            _remainingLightTime = Mathf.Max(0.0f, _remainingLightTime);
 
             float lightRatio = RemainingLightRatio;
 
@@ -186,9 +189,10 @@ namespace JUNBEOM.Player
             CurrentLightRatio = Mathf.Clamp01(lightRatio);
             PlayerEventManager.Instance.OnLightRatioChanged?.Invoke(CurrentLightRatio);
 
-            if (_remainingLightTime <= 0.0f)
+            if (_remainingLightTime <= 0.0f&& !_isLogged)
             {
                 Debug.Log($"[{name}] 손전등 빛이 모두 감소했습니다.");
+                _isLogged = true;
             }
         }
 
