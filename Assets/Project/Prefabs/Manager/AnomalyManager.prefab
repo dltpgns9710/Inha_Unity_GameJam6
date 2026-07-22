@@ -872,6 +872,9 @@ MonoBehaviour:
   - targetObject: {fileID: 5752216803866033473, guid: 224561af2e7cb614e8e0c0e0d7828023, type: 3}
     xValue: -5
     yValue: -50
+  - targetObject: {fileID: 3361764741449188652, guid: 7c2f9a43396a21746bf37833ba4a9ac5, type: 3}
+    xValue: 16
+    yValue: -3
 --- !u!1001 &8143668340834116679
 PrefabInstance:
   m_ObjectHideFlags: 0

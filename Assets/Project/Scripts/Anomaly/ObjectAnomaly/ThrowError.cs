@@ -1,7 +1,7 @@
+using SEHOON.GameSystem;
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
-
 public class ThrowError : MonoBehaviour
 {
     // Imports the native Windows user32 library
