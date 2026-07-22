@@ -55,7 +55,7 @@ public class EyeSpawner : MonoBehaviour
         }
 
         RecycleDistantEyes();
-        FillActiveEyes(false);
+        FillActiveEyes(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
