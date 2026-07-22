@@ -418,7 +418,7 @@ MonoBehaviour:
   _storyTypeEntries:
   - StoryType: 0
     StoryInstance: {fileID: 1956637180}
-    SceneName: MainScene
+    SceneName: TutorialScene
     AudioClip: {fileID: 8300000, guid: f30a6d21f4ee0c04fb299a33abad3d80, type: 3}
   - StoryType: 1
     StoryInstance: {fileID: 44300878}
