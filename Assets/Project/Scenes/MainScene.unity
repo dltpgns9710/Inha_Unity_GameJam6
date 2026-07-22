@@ -1551,6 +1551,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 7.5139527
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11497,6 +11509,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1547651226}
     m_Modifications:
+    - target: {fileID: 4547909260808524110, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7170918606400915476, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 321406931609148070, guid: 6fcec47ffb6065f4c946f466d012c10c, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11594,14 +11614,6 @@ PrefabInstance:
       value: "\uCEE4\uD53C \uB9C8\uC2DC\uACE0 \uC2F6\uC5C8\uB294\uB370..."
       objectReference: {fileID: 0}
     - target: {fileID: 8145470237846266046, guid: 6fcec47ffb6065f4c946f466d012c10c, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547909260808524110, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170918606400915476, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
