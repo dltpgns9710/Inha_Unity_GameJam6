@@ -658,7 +658,7 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uAC00\uAD6C\uAC00 \uC88C\uC6B0\uBC18\uC804 \uB418\uC788\uB2E4."
     _detectRange: 2
-  _weight: 1
+  _weight: 3
   _shouldGoBackAnomaly: 1
   _objectToFlip:
   - {fileID: 0}
@@ -710,7 +710,7 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uAC00\uAD6C\uAC00 \uC0AC\uB77C\uC84C\uB2E4."
     _detectRange: 2
-  _weight: 1
+  _weight: 3
   _shouldGoBackAnomaly: 1
   _objectToRemove:
   - {fileID: 0}
@@ -756,7 +756,7 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uAC00\uAD6C\uAC00 \uC6C0\uC9C1\uC600\uB2E4."
     _detectRange: 2
-  _weight: 1
+  _weight: 3
   _shouldGoBackAnomaly: 1
   pairList:
   - targetObject: {fileID: 0}
@@ -809,7 +809,7 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uC804\uC5D0 \uC5C6\uB358 \uAC00\uAD6C\uB2E4."
     _detectRange: 2
-  _weight: 1
+  _weight: 3
   _shouldGoBackAnomaly: 1
   _prefabPlacement:
   - targetObject: {fileID: 5515625701429651015, guid: f3f764c5180b7ec4a92d9d26e8e8fa2f, type: 3}

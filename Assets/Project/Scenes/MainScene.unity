@@ -3828,7 +3828,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.075
+  m_Intensity: 0.01
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -5874,61 +5874,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3305568467647952544, guid: 7ad8dc209ad89dc49be020f17ec4ed73, type: 3}
   m_PrefabInstance: {fileID: 8212432337295286691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &876234495 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5835899973791495005, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1993425512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddObject
---- !u!114 &876234496 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8769105890600362374, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1993425512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddObject
---- !u!114 &876234497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6041727212779676458, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1993425512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd01e2d799d8559488570d3186dc0893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveObject
---- !u!114 &876234498 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 880955462609774656, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1993425512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c14f296df66cd3243b2051da465ac0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RemoveObject
---- !u!114 &876234499 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8820679595672613942, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1993425512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678e155f490b85e46b19e8d398bc4672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlipObjectX
 --- !u!114 &876364545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7465885626439827489, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
@@ -11393,30 +11338,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: _anomalies.Array.size
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: '_anomalies.Array.data[23]'
-      value: 
-      objectReference: {fileID: 876234499}
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: '_anomalies.Array.data[24]'
-      value: 
-      objectReference: {fileID: 876234498}
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: '_anomalies.Array.data[25]'
-      value: 
-      objectReference: {fileID: 876234497}
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: '_anomalies.Array.data[26]'
-      value: 
-      objectReference: {fileID: 876234496}
-    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: '_anomalies.Array.data[27]'
-      value: 
-      objectReference: {fileID: 876234495}
     - target: {fileID: 677552356214852595, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: ghost
       value: 
@@ -11571,10 +11492,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5541795298805293282, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5835899973791495005, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-      propertyPath: _shouldGoBackAnomaly
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5874803359942359181, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
