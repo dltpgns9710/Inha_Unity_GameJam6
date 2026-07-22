@@ -11338,6 +11338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _anomalyApplyChance
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 677552356214852595, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: ghost
       value: 
@@ -11354,6 +11358,10 @@ PrefabInstance:
       propertyPath: _playerFlashlight
       value: 
       objectReference: {fileID: 2112389301}
+    - target: {fileID: 880955462609774656, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _weight
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1371440180187339268, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _hiddenObject
       value: 
@@ -11506,6 +11514,14 @@ PrefabInstance:
       propertyPath: targetCreature
       value: 
       objectReference: {fileID: 2009556682}
+    - target: {fileID: 6041727212779676458, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _weight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077084610532766781, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6682812641803670355, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _pet
       value: 
@@ -11526,9 +11542,21 @@ PrefabInstance:
       propertyPath: objectCollider
       value: 
       objectReference: {fileID: 1048633472}
+    - target: {fileID: 8507869994397055065, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: m_Name
       value: AnomalyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769105890600362374, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _weight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820679595672613942, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _weight
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9027441931629811600, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _hiddenObject
