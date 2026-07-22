@@ -24,6 +24,7 @@ namespace SEHOON.UI
 
         #region Properties
         public UnityEvent OnDisableEvent => _onDisableEvent;
+        public float DisplayDuration => _displayDuration;
         #endregion
 
         #region Unity Lifecycle
@@ -37,11 +38,6 @@ namespace SEHOON.UI
         {
             ApplyText();
             ApplyFont();
-        }
-
-        private void OnEnable()
-        {
-            StartCoroutine(CoAutoClose());
         }
 
         private void OnDisable()
@@ -59,15 +55,6 @@ namespace SEHOON.UI
         private void ApplyFont()
         {
             if (_font != null && _messageTextWidget != null) _messageTextWidget.font = _font;
-        }
-        #endregion
-
-        #region Coroutines
-        private IEnumerator CoAutoClose()
-        {
-            yield return new WaitForSeconds(_displayDuration);
-
-            gameObject.SetActive(false);
         }
         #endregion
     }

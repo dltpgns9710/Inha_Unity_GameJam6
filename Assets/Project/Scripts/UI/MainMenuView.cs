@@ -81,7 +81,7 @@ namespace SEHOON.UI
             GameObject warningInstance = Instantiate(_warningPrefab, parent);
 
             WarningPopupView warningView = warningInstance.GetComponent<WarningPopupView>();
-            warningView.OnDisableEvent.AddListener(OnWarningClosed);
+            StartCoroutine(CoWaitForWarning(warningView.DisplayDuration));
         }
 
         public void OnCreditsButtonClicked()
@@ -173,6 +173,13 @@ namespace SEHOON.UI
         #endregion
 
         #region Coroutines
+        private IEnumerator CoWaitForWarning(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+
+            OnWarningClosed();
+        }
+
         private IEnumerator CoFadeInButtons()
         {
             float elapsed = 0f;
