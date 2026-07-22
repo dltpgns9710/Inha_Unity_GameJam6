@@ -33,6 +33,9 @@ namespace SEHOON.UI
         [SerializeField] private float _slideDistance = 60f;
         [SerializeField] private float _slideDuration = 0.25f;
 
+        [Header("Auto Advance")]
+        [SerializeField] private float _autoAdvanceDelay = 2f;
+
         [Header("Events")]
         [SerializeField] private UnityEvent _onEnableEvent;
         [SerializeField] private UnityEvent _onDisableEvent;
@@ -44,6 +47,7 @@ namespace SEHOON.UI
         private readonly List<TextBoxItemView> _itemViews = new List<TextBoxItemView>();
         private Coroutine _revealCoroutine;
         private CanvasGroup _skipButtonGroup;
+        private float _autoAdvanceTimer;
         #endregion
 
         #region Unity Lifecycle
@@ -104,21 +108,36 @@ namespace SEHOON.UI
 
             if (isPaused) return;
 
-            if ((Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
-                (Mouse.current != null && 
-                 (Mouse.current.leftButton.wasPressedThisFrame  || 
-                 Mouse.current.rightButton.wasPressedThisFrame  || 
-                 Mouse.current.middleButton.wasPressedThisFrame )))
+            bool inputThisFrame = (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
+                (Mouse.current != null &&
+                 (Mouse.current.leftButton.wasPressedThisFrame  ||
+                 Mouse.current.rightButton.wasPressedThisFrame  ||
+                 Mouse.current.middleButton.wasPressedThisFrame ));
+
+            TextBoxItemView currentItem = (_currentIndex > 0 && _currentIndex - 1 < _itemViews.Count)
+                ? _itemViews[_currentIndex - 1]
+                : null;
+
+            if (inputThisFrame)
             {
-                TextBoxItemView currentItem = (_currentIndex > 0 && _currentIndex - 1 < _itemViews.Count)
-                    ? _itemViews[_currentIndex - 1]
-                    : null;
+                _autoAdvanceTimer = 0f;
 
                 if (currentItem != null && currentItem.IsRevealing)
                 {
                     currentItem.CompleteText();
                 }
                 else
+                {
+                    ShowNext();
+                }
+
+                return;
+            }
+
+            if (currentItem != null && !currentItem.IsRevealing)
+            {
+                _autoAdvanceTimer += Time.deltaTime;
+                if (_autoAdvanceTimer >= _autoAdvanceDelay)
                 {
                     ShowNext();
                 }
@@ -136,6 +155,8 @@ namespace SEHOON.UI
 
         public void ShowNext()
         {
+            _autoAdvanceTimer = 0f;
+
             if (_currentIndex >= _items.Count)
             {
                 gameObject.SetActive(false);
