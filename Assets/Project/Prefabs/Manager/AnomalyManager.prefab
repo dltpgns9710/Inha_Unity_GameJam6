@@ -38,6 +38,12 @@ GameObject:
   - component: {fileID: 6041727212779676458}
   - component: {fileID: 8769105890600362374}
   - component: {fileID: 5835899973791495005}
+  - component: {fileID: 2899487213208806563}
+  - component: {fileID: 169623479834883643}
+  - component: {fileID: 3447013324404143083}
+  - component: {fileID: 864814762607142837}
+  - component: {fileID: 113824176208297128}
+  - component: {fileID: 5150400496582586131}
   m_Layer: 0
   m_Name: AnomalyManager
   m_TagString: Untagged
@@ -102,7 +108,13 @@ MonoBehaviour:
   - {fileID: 6041727212779676458}
   - {fileID: 8769105890600362374}
   - {fileID: 5835899973791495005}
-  _anomalyApplyChance: 80
+  - {fileID: 2899487213208806563}
+  - {fileID: 169623479834883643}
+  - {fileID: 3447013324404143083}
+  - {fileID: 864814762607142837}
+  - {fileID: 113824176208297128}
+  - {fileID: 5150400496582586131}
+  _anomalyApplyChance: 81
   _whiteboardView: {fileID: 0}
 --- !u!114 &3715808900249798020
 MonoBehaviour:
@@ -875,6 +887,154 @@ MonoBehaviour:
   - targetObject: {fileID: 3361764741449188652, guid: 7c2f9a43396a21746bf37833ba4a9ac5, type: 3}
     xValue: 16
     yValue: -3
+--- !u!114 &2899487213208806563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38673f6fc69f90468fa3c71f61c4627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyDontStop
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uBA48\uCD94\uC9C0 \uB9C8"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _pauseMenuObject: {fileID: 0}
+  _warningTextPrefab: {fileID: 5694321302383117401, guid: 5aea9709009e0e24aa46a1a11a5270b4, type: 3}
+  _warningMessage: "\uACC4\uC18D \uD574"
+  _forceResumeDelay: 0.3
+  _warningSound: {fileID: 8300000, guid: 70ecbe9b7300e5b498b53e7769cacead, type: 3}
+  _punchScale: 2
+  _punchDuration: 0.05
+--- !u!114 &169623479834883643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9bb2c4bf1cef845968a4fe6e617dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPlayerAnimatorOff
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uC6C0\uC9C1\uC5EC\uBD10"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _playerObject: {fileID: 0}
+--- !u!114 &3447013324404143083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e878d1ab15a294dbcb356580dc73e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyBgm
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC19\uC774 \uB180\uC790"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _bgmClip: {fileID: 8300000, guid: 5338dc4800588e647a2a51c089d94eaf, type: 3}
+--- !u!114 &864814762607142837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee5191c427a8894fb7a4ba8abab495a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyRandomSpriteBlink
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _sprite: {fileID: 5778599956146097137, guid: 0900b54239dd1cf4bb7ad76fa9a8b638, type: 3}
+  _spriteSize: {x: 100, y: 100}
+  _visibleDuration: 2
+  _hiddenDuration: 1
+  _fadeInDuration: 0.2
+  _fadeOutDuration: 0.2
+  _rotationRange: 180
+  _appearSound: {fileID: 8300000, guid: b744108e80b20e84bb54cda385693cb9, type: 3}
+--- !u!114 &113824176208297128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b2623bc1fba0b40b36c03773f22c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyDestroyOnInteract
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -14.81, y: -1.63, z: 0}
+    _hintText: "\uC870\uC0AC \uD574\uBD10"
+    _detectRange: 1
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _spawnPosition: {x: -14.81, y: -1.63, z: 0}
+  _spawnRotationEuler: {x: 0, y: 0, z: 0}
+  _furniturePrefab: {fileID: 8746907109224183886, guid: 106a573b571ea364585b5bce80039295, type: 3}
+  _sprite: {fileID: 1536475745180069275, guid: 487212309b0ae5449a811ba57182e642, type: 3}
+  _dialogueLines:
+  - _name: "\uB2D0 \uBE0C\uB8E9\uC2A4"
+    _dialogue: ....!
+    _alignment: 0
+--- !u!114 &5150400496582586131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebdd7c315f77634295bbcc22490d011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPostInteract
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 9, y: -33, z: 0}
+    _hintText: "\uC870\uC0AC \uD574\uBD10"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _furnitureObject: {fileID: 0}
+  _spawnPrefab: {fileID: 307584887857341128, guid: 3e225f441be6f354f8c2c5c23a784b60, type: 3}
+  _spawnPosition: {x: 9, y: -33, z: 0}
 --- !u!1001 &8143668340834116679
 PrefabInstance:
   m_ObjectHideFlags: 0

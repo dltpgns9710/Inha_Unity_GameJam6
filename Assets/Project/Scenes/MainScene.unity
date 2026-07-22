@@ -11741,6 +11741,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
+--- !u!1 &1859813031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9171797771779220452, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
+  m_PrefabInstance: {fileID: 1859813030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1860096104 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6799108512905154250, guid: ed1def0ec2ecfb0459e237e0c4a15c0a, type: 3}
@@ -11867,7 +11872,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7193557415866107352, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
   m_PrefabInstance: {fileID: 1859813030}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1859813031}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97ae1dfb69163ff4f8eb5cc2d9cfb475, type: 3}
@@ -12244,6 +12249,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169623479834883643, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _playerObject
+      value: 
+      objectReference: {fileID: 205663486}
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _whiteboardView
       value: 
@@ -12420,6 +12429,10 @@ PrefabInstance:
       propertyPath: objectCollider
       value: 
       objectReference: {fileID: 1048633472}
+    - target: {fileID: 2899487213208806563, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _pauseMenuObject
+      value: 
+      objectReference: {fileID: 1859813031}
     - target: {fileID: 3020511548661528589, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _playerMovement
       value: 
@@ -12464,6 +12477,10 @@ PrefabInstance:
       propertyPath: _creature
       value: 
       objectReference: {fileID: 2009556681}
+    - target: {fileID: 5150400496582586131, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _furnitureObject
+      value: 
+      objectReference: {fileID: 283696861}
     - target: {fileID: 5541795298805293282, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2176995
@@ -15291,6 +15308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureDialogue
   _textBox: {fileID: 3932752829364823405}
+  _interactEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &3932752829364823408
 BoxCollider2D:
   m_ObjectHideFlags: 0

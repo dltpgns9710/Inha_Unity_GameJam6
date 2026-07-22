@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using SEHOON.GameSystem;
 
@@ -16,6 +17,11 @@ public class AnomalyPlayerAnimatorOff : AnomalyBase
         }
     }
 
+    private void Update()
+    {
+        if(_playerObject != null) _detectData.AnomalyPos = _playerObject.transform.position;
+    }
+
     public override void Apply()
     {
         if (_playerAnimator != null)
@@ -23,7 +29,7 @@ public class AnomalyPlayerAnimatorOff : AnomalyBase
             _playerAnimator.enabled = false;
         }
     }
-
+    
     public override void Remove()
     {
         if (_playerAnimator != null)

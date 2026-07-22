@@ -8,6 +8,7 @@ public class AnomalyPostInteract : AnomalyBase
 
     [Header("표시 프리팹")]
     [SerializeField] private GameObject _spawnPrefab;
+    [SerializeField] private Vector3 _spawnPosition;
 
     private FurnitureDialogue _furnitureDialogue;
     private GameObject _spawnedInstance;
@@ -55,7 +56,7 @@ public class AnomalyPostInteract : AnomalyBase
             return;
         }
 
-        _spawnedInstance = Instantiate(_spawnPrefab, _furnitureObject.transform.position, Quaternion.identity);
+        _spawnedInstance = Instantiate(_spawnPrefab, _spawnPosition, Quaternion.identity);
         _spawnedInstance.SetActive(false);
     }
 
