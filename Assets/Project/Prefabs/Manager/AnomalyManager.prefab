@@ -97,6 +97,11 @@ MonoBehaviour:
   - {fileID: 1941731068111474942}
   - {fileID: 5874803359942359181}
   - {fileID: 3101172946396985826}
+  - {fileID: 8820679595672613942}
+  - {fileID: 880955462609774656}
+  - {fileID: 6041727212779676458}
+  - {fileID: 8769105890600362374}
+  - {fileID: 5835899973791495005}
   _anomalyApplyChance: 50
   _whiteboardView: {fileID: 0}
 --- !u!114 &3715808900249798020
@@ -859,7 +864,7 @@ MonoBehaviour:
     _hintText: '?'
     _detectRange: 0
   _weight: 1
-  _shouldGoBackAnomaly: 1
+  _shouldGoBackAnomaly: 0
   _prefabPlacement:
   - targetObject: {fileID: 9168040765304839236, guid: 65cb61ad37efc6b46b43d63e287ec97f, type: 3}
     xValue: 25

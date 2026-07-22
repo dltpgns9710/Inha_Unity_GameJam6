@@ -1594,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 519420033}
     - target: {fileID: 957542905352963982, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1008887758534178700, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: _HelperInteract
@@ -1611,6 +1611,10 @@ PrefabInstance:
     - target: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: _minimumLightIntensity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3854675355273559752, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6696961991513125471, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: m_Name
@@ -11567,6 +11571,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5541795298805293282, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835899973791495005, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _shouldGoBackAnomaly
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5874803359942359181, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
