@@ -77,7 +77,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.DetecteChanceCountView
   _iconContainer: {fileID: 60787255259908050}
   _iconPrefab: {fileID: 8514687846402047291, guid: b0f83c889738c1e44b12f2ada25e084a, type: 3}
-  _iconSprite: {fileID: 0}
+  _chanceCountSource: {fileID: 0}
+  _iconSprite: {fileID: -4760757151807066862, guid: ab6979aeb059714418f9c3524de6b5fd, type: 3}
+  _iconSize: {x: 32, y: 32}
 --- !u!1 &7907307820212406948
 GameObject:
   m_ObjectHideFlags: 0
