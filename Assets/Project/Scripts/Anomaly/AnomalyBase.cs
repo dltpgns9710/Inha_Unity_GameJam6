@@ -25,7 +25,11 @@ namespace SEHOON.GameSystem
 
         public EAnomalyType Type => _type;
         public EHintType HintType => _hintType;
-        public Vector3 AnomalyPos => _anomalyPos;
+        public Vector3 AnomalyPos
+        {
+            get => _anomalyPos;
+            set => _anomalyPos = value;
+        }
         public float DetectRange => _detectRange;
         public string HintText => _hintText;        
     };
@@ -38,6 +42,7 @@ namespace SEHOON.GameSystem
         
         public float Weight => _weight;
         public SDetectData DetectData => _detectData;
+  
         public bool ShouldGoBackAnomaly => _shouldGoBackAnomaly;
            
 #if UNITY_EDITOR
