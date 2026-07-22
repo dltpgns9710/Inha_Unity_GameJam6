@@ -186,6 +186,10 @@ PrefabInstance:
       value: "\uBA48\uCD94\uC9C0 \uC54A\uB294 \uC6C3\uC74C\uC744 \uB4A4\uB85C\uD55C
         \uCC44, \uB098\uB294 \uC9D1\uC758 \uBB38\uC744 \uC5F4\uC5C8\uB2E4."
       objectReference: {fileID: 0}
+    - target: {fileID: 5652621426272490285, guid: ca67ab3bea54e2742b915855d05d3155, type: 3}
+      propertyPath: _canSkip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7899900098521827209, guid: ca67ab3bea54e2742b915855d05d3155, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
