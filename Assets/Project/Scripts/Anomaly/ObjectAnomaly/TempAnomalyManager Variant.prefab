@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1899987198762501828
+--- !u!1001 &8199035976303922861
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -15,23 +15,23 @@ PrefabInstance:
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: '_anomalies.Array.data[0]'
       value: 
-      objectReference: {fileID: 7940879181768550282}
+      objectReference: {fileID: 3790616414224867282}
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: '_anomalies.Array.data[1]'
       value: 
-      objectReference: {fileID: 8444017088795669919}
+      objectReference: {fileID: 1617759508594513670}
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: '_anomalies.Array.data[2]'
       value: 
-      objectReference: {fileID: 4423361911417726889}
+      objectReference: {fileID: 5403392755829980759}
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: '_anomalies.Array.data[3]'
       value: 
-      objectReference: {fileID: 9173538054267286714}
+      objectReference: {fileID: 5524174249574252738}
     - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: '_anomalies.Array.data[4]'
       value: 
-      objectReference: {fileID: 7559573407716768749}
+      objectReference: {fileID: 18168523688301300}
     - target: {fileID: 3715808900249798020, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: _detectData._type
       value: 1
@@ -90,32 +90,32 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7940879181768550282}
+      addedObject: {fileID: 3790616414224867282}
     - targetCorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8444017088795669919}
+      addedObject: {fileID: 1617759508594513670}
     - targetCorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4423361911417726889}
+      addedObject: {fileID: 5403392755829980759}
     - targetCorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9173538054267286714}
+      addedObject: {fileID: 5524174249574252738}
     - targetCorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7559573407716768749}
+      addedObject: {fileID: 18168523688301300}
   m_SourcePrefab: {fileID: 100100000, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
---- !u!1 &7110214460277011840 stripped
+--- !u!1 &664916379367980521 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8715188942861726532, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
-  m_PrefabInstance: {fileID: 1899987198762501828}
+  m_PrefabInstance: {fileID: 8199035976303922861}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7940879181768550282
+--- !u!114 &3790616414224867282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110214460277011840}
+  m_GameObject: {fileID: 664916379367980521}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678e155f490b85e46b19e8d398bc4672, type: 3}
@@ -161,13 +161,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &8444017088795669919
+--- !u!114 &1617759508594513670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110214460277011840}
+  m_GameObject: {fileID: 664916379367980521}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14f296df66cd3243b2051da465ac0c0, type: 3}
@@ -207,13 +207,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &4423361911417726889
+--- !u!114 &5403392755829980759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110214460277011840}
+  m_GameObject: {fileID: 664916379367980521}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd01e2d799d8559488570d3186dc0893, type: 3}
@@ -260,13 +260,13 @@ MonoBehaviour:
     value: -2
   - targetObject: {fileID: 0}
     value: 23
---- !u!114 &9173538054267286714
+--- !u!114 &5524174249574252738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110214460277011840}
+  m_GameObject: {fileID: 664916379367980521}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
@@ -314,24 +314,30 @@ MonoBehaviour:
   - targetObject: {fileID: 8933261901103766954, guid: 828159c4fbd53a84dacf741091e11b94, type: 3}
     xValue: 1
     yValue: 19
---- !u!114 &7559573407716768749
+--- !u!114 &18168523688301300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110214460277011840}
+  m_GameObject: {fileID: 664916379367980521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce591026d9651934fb7a9c6f0d04b479, type: 3}
+  m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::AddObject
   _detectData:
-    _type: 0
+    _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: '?'
     _detectRange: 0
   _weight: 1
-  _shouldGoBackAnomaly: 0
-  _Room: {fileID: 9168040765304839236, guid: 65cb61ad37efc6b46b43d63e287ec97f, type: 3}
+  _shouldGoBackAnomaly: 1
+  _prefabPlacement:
+  - targetObject: {fileID: 9168040765304839236, guid: 65cb61ad37efc6b46b43d63e287ec97f, type: 3}
+    xValue: 25
+    yValue: 30
+  - targetObject: {fileID: 5752216803866033473, guid: 224561af2e7cb614e8e0c0e0d7828023, type: 3}
+    xValue: -5
+    yValue: -50
