@@ -12244,6 +12244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520029848582283925, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
+      propertyPath: _whiteboardView
+      value: 
+      objectReference: {fileID: 5231252960209918111}
     - target: {fileID: 677552356214852595, guid: 0db6f885a0f39c64984f29eda8ad5b0a, type: 3}
       propertyPath: ghost
       value: 
@@ -15825,6 +15829,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffddef44cde75cb4da2a62138a185ffb, type: 3}
+--- !u!114 &5231252960209918111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 463416698885763828, guid: ffddef44cde75cb4da2a62138a185ffb, type: 3}
+  m_PrefabInstance: {fileID: 5231252960209918110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59daf7a089989ef4f80e4feea23c1896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.WhiteboardView
 --- !u!1001 &5313044044910416866
 PrefabInstance:
   m_ObjectHideFlags: 0
