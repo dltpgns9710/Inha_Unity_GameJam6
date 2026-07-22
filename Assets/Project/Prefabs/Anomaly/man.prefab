@@ -538,43 +538,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.DialogueBoxView
   _dialogueLines:
   - _name: 
-    _dialogue: SW4gdGhpcyBib3JpbmcgbGlmZSwgSSd2ZSBjb21lIHRvIHJlYWxpemUgdGhhdCB3aXRob3V0IGZyaWVuZHMsIHdpdGhvdXQg
+    _dialogue: V2VsbCwgdGhlcmUgaXMgYSBtYW4gaGVyZS4=
     _alignment: 0
   - _name: 
-    _dialogue: aG9iYmllcywgYW5kIHdpdGhvdXQgYSByZWFzb24gdG8gbGl2ZSwgSSBhbSBub3RoaW5nLg==
+    _dialogue: SGUgcG9pbnRlZCBpbnRvIHRoZSBkaXN0YW5jZS4=
     _alignment: 0
   - _name: 
-    _dialogue: SW4gdGhpcyBib3JpbmcgbGlmZSwgSSB3YW50IHRvIGVuam95IGxlYXJuaW5nIG5ldyB0aGluZ3MsIG1lZXRpbmcgbmV3
+    _dialogue: T3ZlciB0aGVyZSwgd2FzIGFub3RoZXIgdHJlZS4=
     _alignment: 0
   - _name: 
-    _dialogue: cGVvcGxlLCBhbmQgYmVpbmcgdGhlIHBlcnNvbiBJIGVuam95IGJlaW5nLgo=
+    _dialogue: SW4gZmFjdCwgaXQgc2VlbWVkIHZlcnkgbXVjaCBsaWtlIHRoaXMgdHJlZS4=
     _alignment: 0
   - _name: 
-    _dialogue: SSBhbSBhIGJvcmluZyBwZXJzb24uCg==
+    _dialogue: Q3JhbmluZyB5b3VyIGhlYWQsIHlvdSBub3RpY2VkIHRoYXQgdGhlcmUgd2FzIGFub3RoZXIgdHJlZSBhZnRlciB0aGF0Lg==
     _alignment: 0
   - _name: 
-    _dialogue: QSBidW0gb24gdGhlIHN0cmVldC4K
+    _dialogue: SXQgZmVsdCBhIGxpdHRsZSBiaXQgbGlrZSBsb29raW5nIGludG8gc2VyaWVzIG9mIG1pcnJvcnMuLi4=
     _alignment: 0
   - _name: 
-    _dialogue: TXkgc29jaWFsIGFuZCBteSByZWxhdGlvbnNoaXAgdG8gdGhlIG91dHNpZGUgd29ybGQgaGFzIGdvbmUgdG8gbm90aGluZy4K
+    _dialogue: WW91ciBoZWFkIGJlZ2FuIHRvIHNwaW4u
     _alignment: 0
   - _name: 
-    _dialogue: SW4gdGhpcyBib3JpbmcgbGlmZSwgSSB3YW50IHRvIGNoYW5nZS4K
+    _dialogue: Li4uIHRoZSBtYW4gc2F3IHRoaXMgYW5kIGxvb2tlZCBjb25jZXJuZWQu
     _alignment: 0
   - _name: 
-    _dialogue: VG8gYmUgdGhlIG1hbiwgSSB1c2VkIHRvIGJlLg==
+    _dialogue: SGUgc2VlbWVkIGxpa2UgaGUgd2FudGVkIHRvIHNwZWFrLCBidXQuLi4=
     _alignment: 0
   - _name: 
-    _dialogue: VG8gYmUgdGhlIGZ1biwgZXhjaXRpbmcgcGVyc29uLCBJIHVzZWQgdG8gYmUu
+    _dialogue: Li4u
     _alignment: 0
   - _name: 
-    _dialogue: VGhpcyBib3JpbmcgbGlmZSwgaGFzIGdvdCB0byBjb21lIHRvIGFuIGVuZC4=
+    _dialogue: V2VsbCwgdGhlIG1hbiBzbWlsZWQu
     _alignment: 0
   - _name: 
-    _dialogue: QW4gZW5kLCB3aGVuIEkgY2FuIGxvb2sgYmFjaywgYW5kIGxhdWdoIGF0IHRoZSBvbGQgbWUu
-    _alignment: 0
-  - _name: 
-    _dialogue: QW5kIGluIHdpdGggdGhlIG5ldyBtZS4=
+    _dialogue: QW5kIGhlIHdhdmVkIGdvb2RieWUsIGZvciBub3cu
     _alignment: 0
   - _name: 
     _dialogue: TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gTmFtIGlwc3VtIG51bmMsIHVsdHJpY2VzIGluIHR1cnBpcyBldCwgcHVsdmluYXIgY29udmFsbGlzIGxpYmVyby4gVXQgdGVtcHVzIGxvcmVtIGluIGRpYW0gYWxpcXVhbSwgc2VkIGVmZmljaXR1ciBlcm9zIGZldWdpYXQuIE51bmMgY29uZ3VlIGNvbmRpbWVudHVtIG51bmMgYXQgZmFjaWxpc2lzLiBRdWlzcXVlIGFjIG9kaW8gc2l0IGFtZXQgZW5pbSBzY2VsZXJpc3F1ZSB2YXJpdXMuIENyYXMgc29sbGljaXR1ZGluIGFsaXF1YW0gdGVsbHVzLCBhYyBjb25ndWUgbmliaCB2b2x1dHBhdCBlZ2V0LiBTZWQgYXQgc2VtIGF0IG5pc2kgZXVpc21vZCBmZXVnaWF0LiBOdWxsYW0gdXQganVzdG8gdHVycGlzLiBJbiB2aXZlcnJhIGxvcmVtIHN1c2NpcGl0IGdyYXZpZGEgc3VzY2lwaXQu
@@ -627,40 +624,10 @@ MonoBehaviour:
   - _name: 
     _dialogue: 
     _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
-  - _name: 
-    _dialogue: 
-    _alignment: 0
   _nameTextWidget: {fileID: 2768595138545002793}
   _textBoxItem: {fileID: 3973384190161666305}
   _font: {fileID: 11400000, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
-  _skipButton: {fileID: 5877217821476480600}
+  _skipButton: {fileID: 0}
   _onEnableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -962,7 +929,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4051860082700022099, guid: dd8629fffaa175c47b9db56deb080282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1120,7 +1087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SW4gdGhpcyBib3JpbmcgbGlmZSwgSSd2ZSBjb21lIHRvIHJlYWxpemUgdGhhdCB3aXRob3V0IGZyaWVuZHMsIHdpdGhvdXQg
+  m_text: V2VsbCwgdGhlcmUgaXMgYSBtYW4gaGVyZS4=
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
   m_sharedMaterial: {fileID: 5929983933777521458, guid: a2070cf8cbeb8024aa902f4ad3a7fa96, type: 2}
