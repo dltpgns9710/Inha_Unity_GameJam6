@@ -1113,21 +1113,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2905363883561489888, guid: 15c786a66a01ebf41b986ceffb6a2d96, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6385378189840608257, guid: 15c786a66a01ebf41b986ceffb6a2d96, type: 3}
       propertyPath: m_Name
       value: man
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815761137523008798, guid: 15c786a66a01ebf41b986ceffb6a2d96, type: 3}
-      propertyPath: _skipButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815761137523008798, guid: 15c786a66a01ebf41b986ceffb6a2d96, type: 3}
-      propertyPath: _dialogueLines.Array.size
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
