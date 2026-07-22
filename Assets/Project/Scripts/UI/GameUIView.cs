@@ -18,6 +18,7 @@ namespace SEHOON.UI
 
         private void Awake()
         {
+            _lightRatioSlider.value = 1.0f;
             DataManager.Instance.ActiveGameUI += HideGameUI;
         }
 
@@ -26,7 +27,7 @@ namespace SEHOON.UI
             PlayerEventManager.Instance.OnLightRatioChanged += HandleLightRatioChanged;
             PlayerEventManager.Instance.OnKeyStateChanged += HandleKeyStateChanged;
 
-            HandleLightRatioChanged(PlayerEventManager.Instance.CurrentLightRatio);
+            //HandleLightRatioChanged(PlayerEventManager.Instance.CurrentLightRatio);
             PlayerEventManager.Instance.OnKeyStateRequested?.Invoke(HandleKeyStateChanged);
         }
 

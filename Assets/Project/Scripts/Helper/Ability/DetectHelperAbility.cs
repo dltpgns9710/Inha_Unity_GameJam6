@@ -3,6 +3,7 @@ using SEHOON.GameSystem;
 using TAEWOOK.Helper.Core;
 using TAEWOOK.Helper.Data;
 using TAEWOOK.Helper.Detection;
+using TAEWOOK.Helper.Feedback;
 using System;
 
 namespace TAEWOOK.Helper.Ability
@@ -11,6 +12,7 @@ namespace TAEWOOK.Helper.Ability
     public class DetectHelperAbility : HelperAbility
     {
         [SerializeField] AudioClip _barkSound;
+        [SerializeField] private BubbleUI _bubbleUI;
         private enum EDetectAbilityState
         {
             None,
@@ -108,13 +110,19 @@ namespace TAEWOOK.Helper.Ability
                 return;
             }
 
-            Transform targetAnomaly = _detector.FindAnomaly(_commandSearchPosition);
+            AnomalyBase targetAnomaly = _detector.FindAnomaly(_commandSearchPosition);
 
             if (targetAnomaly == null)
             {
                 _currentState = EDetectAbilityState.ReturnToPlayer;
                 return;
             }
+
+           
+            if (targetAnomaly.DetectData.HintType == EHintType.Detected)
+            {                
+                _bubbleUI.Show(targetAnomaly.DetectData.HintText);
+            }            
 
             _movement.Stop();
             ShowExclamationIcon();

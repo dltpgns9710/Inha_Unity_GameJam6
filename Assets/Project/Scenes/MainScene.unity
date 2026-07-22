@@ -494,7 +494,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3526886167333943713, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
   m_PrefabInstance: {fileID: 1440553134}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1440553135}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1a9360d49741b04e9909e8496965e4d, type: 3}
@@ -923,6 +923,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4990744750647799109, guid: e38a247f57f09a941bee89c592654b25, type: 3}
+      propertyPath: _chanceCountSource
+      value: 
+      objectReference: {fileID: 1440553135}
     - target: {fileID: 6187410681487833640, guid: e38a247f57f09a941bee89c592654b25, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -934,10 +938,6 @@ PrefabInstance:
     - target: {fileID: 8713928302100794686, guid: e38a247f57f09a941bee89c592654b25, type: 3}
       propertyPath: m_Name
       value: GameUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8713928302100794686, guid: e38a247f57f09a941bee89c592654b25, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1539,9 +1539,29 @@ PrefabInstance:
       propertyPath: _pauseMenuView
       value: 
       objectReference: {fileID: 1881624330}
+    - target: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: _lightDecreaseDuration
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100961302472923795, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: _minimumLightIntensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6696961991513125471, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878459012611453915, guid: 3eda9852aa77b844789b84157e24abba, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 7.5139527
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3165,7 +3185,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.0075
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -7356,6 +7376,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8545064540386577545, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545064540386577545, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620237771074231336, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8681994530092856808, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
       propertyPath: _playerTransform
       value: 
@@ -7365,6 +7417,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+--- !u!1 &1440553135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 779421284710873734, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+  m_PrefabInstance: {fileID: 1440553134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1463546284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11452,6 +11509,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1547651226}
     m_Modifications:
+    - target: {fileID: 4547909260808524110, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7170918606400915476, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 321406931609148070, guid: 6fcec47ffb6065f4c946f466d012c10c, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -11549,14 +11614,6 @@ PrefabInstance:
       value: "\uCEE4\uD53C \uB9C8\uC2DC\uACE0 \uC2F6\uC5C8\uB294\uB370..."
       objectReference: {fileID: 0}
     - target: {fileID: 8145470237846266046, guid: 6fcec47ffb6065f4c946f466d012c10c, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547909260808524110, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170918606400915476, guid: 7db874267c50ded469ccc6c64105b6a0, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
