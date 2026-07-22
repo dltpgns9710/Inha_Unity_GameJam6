@@ -16,27 +16,28 @@ namespace TAEWOOK.Helper.Detection
             anomaly = null;
 
             if (_anomalyManager == null)
-            {
+            {                
                 return false;
             }
             anomaly = _anomalyManager.SelectedAnomaly;
 
             if(anomaly == null)
-            {
+            {                
                 return false;
             }
 
             SDetectData detectData = anomaly.DetectData;
 
             if (detectData.Type == EAnomalyType.Global)
-            {
+            {                
                 anomaly = null;
                 return false;
             }
+            
             return true;
         }                                        
 
-        public Transform FindAnomaly(Vector2 searchCenter)
+        public AnomalyBase FindAnomaly(Vector2 searchCenter)
         {
             if(!TryGetAnomaly(out AnomalyBase anomaly))
             {
@@ -49,14 +50,12 @@ namespace TAEWOOK.Helper.Detection
 
             float distance = Vector2.Distance(searchCenter, anomalyPosition);
 
-            
-
             if (distance > detectRange)
-            {
+            {               
                 return null;
             }
-
-            return anomaly.transform;
+            
+            return anomaly;
         }
         #endregion
     }

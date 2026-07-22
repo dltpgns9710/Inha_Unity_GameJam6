@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using SEHOON.UI;
 using Random = UnityEngine.Random;
 
 namespace SEHOON.GameSystem
@@ -9,6 +10,7 @@ namespace SEHOON.GameSystem
     {
         [SerializeField] private List<AnomalyBase> _anomalies;
         [SerializeField, Range(0, 100)] private int _anomalyApplyChance = 80;
+        [SerializeField] private WhiteboardView _whiteboardView;
 
         private AnomalyBase _selectedAnomaly = null;
 
@@ -28,19 +30,42 @@ namespace SEHOON.GameSystem
                 _selectedAnomaly.Remove();
                 DataManager.Instance.IsAnomalyApply = false;
             }
+
+            _whiteboardView?.ClearHint();
         }
 
         private void TryApplyAnomaly()
         {
+            if (DataManager.Instance.Floor == 1) return;
+
             SelectAnomaly();
             if (_selectedAnomaly != null)
             {
                 DataManager.Instance.IsAnomalyApply = _selectedAnomaly.ShouldGoBackAnomaly;
                 _selectedAnomaly.Apply();
+                UpdateWhiteboardHint();
+            }
+            else
+            {
+                _whiteboardView?.ClearHint();
             }
 #if UNITY_EDITOR
             ChangeAnomalyIndex?.Invoke();
 #endif
+        }
+
+        private void UpdateWhiteboardHint()
+        {
+            if (_whiteboardView == null) return;
+
+            if (_selectedAnomaly.DetectData.Type == EAnomalyType.Global)
+            {
+                _whiteboardView.ShowHint(_selectedAnomaly.DetectData.HintText);
+            }
+            else
+            {
+                _whiteboardView.ClearHint();
+            }
         }
         
         private void SelectAnomaly()
@@ -84,6 +109,7 @@ namespace SEHOON.GameSystem
 
             _selectedAnomaly = _anomalies[index];
             _selectedAnomaly.Apply();
+            UpdateWhiteboardHint();
             ChangeAnomalyIndex?.Invoke();
             DataManager.Instance.IsAnomalyApply = _selectedAnomaly.ShouldGoBackAnomaly;
         }
@@ -94,6 +120,7 @@ namespace SEHOON.GameSystem
 
             _selectedAnomaly.Remove();
             _selectedAnomaly = null;
+            _whiteboardView?.ClearHint();
             ChangeAnomalyIndex?.Invoke();
             DataManager.Instance.IsAnomalyApply = false;
         }
