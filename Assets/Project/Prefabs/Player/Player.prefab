@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JUNBEOM.Player.PlayerInteraction
   _interactionPoint: {fileID: 177742966616357621}
-  _interactionRadius: 0.34
+  _interactionRadius: 0.41
   _interactableLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -424,7 +424,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 0.49}
+    oldSize: {x: 0.43, y: 0.49}
     newSize: {x: 0.23, y: 0.49}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
