@@ -142,6 +142,11 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
+            if (_ability == null || !_ability.CanUseAbility())
+            {
+                return;
+            }
+
             int wallLayer = LayerMask.GetMask("Wall");
 
             Collider2D wall = Physics2D.OverlapPoint(
