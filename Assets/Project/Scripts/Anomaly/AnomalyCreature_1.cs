@@ -1,5 +1,5 @@
 using SEHOON.GameSystem;
-using Unity.AppUI.MVVM;
+//using Unity.AppUI.MVVM;
 using UnityEngine;
 
 public class AnomalyCreature_1 : AnomalyBase

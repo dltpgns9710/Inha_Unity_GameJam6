@@ -302,7 +302,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -18, y: -16.5, z: 0}
-    _hintText: 
+    _hintText: "\uD3C9\uC18C\uC640 \uB2EC\uB77C\uBCF4\uC778\uB2E4."
     _detectRange: 2
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -506,7 +506,7 @@ MonoBehaviour:
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
-  _drainMultiplier: 100
+  _drainMultiplier: 5
   _playerFlashlight: {fileID: 0}
 --- !u!114 &9027441931629811600
 MonoBehaviour:
@@ -672,19 +672,9 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uAC00\uAD6C\uAC00 \uC88C\uC6B0\uBC18\uC804 \uB418\uC788\uB2E4."
     _detectRange: 2
-  _weight: 9
+  _weight: 5
   _shouldGoBackAnomaly: 1
   _objectToFlip:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -724,10 +714,9 @@ MonoBehaviour:
     _anomalyPos: {x: 0, y: 0, z: 0}
     _hintText: "\uAC00\uAD6C\uAC00 \uC0AC\uB77C\uC84C\uB2E4."
     _detectRange: 2
-  _weight: 9
+  _weight: 11
   _shouldGoBackAnomaly: 1
   _objectToRemove:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -832,9 +821,6 @@ MonoBehaviour:
   - targetObject: {fileID: 1981043682500279514, guid: e558bc075fdf3e143bc22fcb028b0b1a, type: 3}
     xValue: -2.5
     yValue: 0
-  - targetObject: {fileID: 6845214925584126617, guid: ea39871d9ceb08e46842d410d90f9779, type: 3}
-    xValue: -1
-    yValue: -2.75
   - targetObject: {fileID: 7934043540112508919, guid: accc43e4f67419f45a2b8a15e8a61e0b, type: 3}
     xValue: -12
     yValue: -17.6
@@ -847,9 +833,6 @@ MonoBehaviour:
   - targetObject: {fileID: 4204168382548913528, guid: 8ae81c2ad60da1043abe58c95faa5c1d, type: 3}
     xValue: -7.5
     yValue: -31.85
-  - targetObject: {fileID: 6845214925584126617, guid: ea39871d9ceb08e46842d410d90f9779, type: 3}
-    xValue: -5
-    yValue: -34.75
   - targetObject: {fileID: 1123535692582023561, guid: defc15b4fc45abb4f893c96ff57fbab9, type: 3}
     xValue: -0.5
     yValue: -34.5
