@@ -53,7 +53,7 @@ namespace SEHOON.UI
         #region Unity Lifecycle
         private void Awake()
         {
-            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+            Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
 
             ApplyFont();
             ApplyText();
