@@ -11173,7 +11173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SEHOON.UI.KeyGuideCameraXTrigger
   _camera: {fileID: 1645400043}
-  _minX: 21
+  _minX: 20.5
   _keyGuideView: {fileID: 284404383}
   _guideActions:
   - Target: 6
