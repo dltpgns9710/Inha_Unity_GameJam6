@@ -7,9 +7,6 @@ public class AnomalyPet_2 : AnomalyBase
     [SerializeField] private GameObject _pet;
     [SerializeField] private GameObject _horrorPet;
 
-    [Header("PetSound")]
-    [SerializeField] private AudioClip _horrorSound;
-
     public override void Apply()
     {
         if (_pet != null&&_horrorPet != null)

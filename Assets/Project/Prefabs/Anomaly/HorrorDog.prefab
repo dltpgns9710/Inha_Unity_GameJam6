@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2747567556700240182}
   - component: {fileID: 634220491474901958}
+  - component: {fileID: 4197214062106506617}
   m_Layer: 0
   m_Name: HorrorDog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2747567556700240182
 Transform:
   m_ObjectHideFlags: 0
@@ -91,3 +92,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4197214062106506617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469618794374416020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312cf92e109c4254a90ac7a026b7ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HorrorPetTrigger
+  horrorSound: {fileID: 8300000, guid: 3d79d4bf26fe36345ba819e2d0eeada8, type: 3}

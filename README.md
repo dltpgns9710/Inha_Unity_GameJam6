@@ -27,6 +27,14 @@
   - [3-12. Pixel Icons and Game controller](#3-12-pixel-icons-and-game-controller-2-by-disven)
   - [3-13. Overworld Objects](#3-13-overworld-objects--opengameartorg)
   - [3-14. Cursor Pixel Pack](#3-14-cursor-pixel-pack-by-kenney)
+  - [3-15. Dirt walls and Platforms](#3-15-dirt-walls-and-platforms-by-imdaniell)
+  - [3-16. Parallax (Bongseng)](#3-16-parallax-country-side-city-night-city-destroyed-by-bongseng)
+  - [3-17. Pixel Art Sidescroller 32x32 City](#3-17-free---pixel-art-sidescroller-asset-pack-32x32-modern-city-by-gandalfhardcore)
+  - [3-18. the creature](#3-18-the-creature-character-sprites-by-panacotable)
+  - [3-19. Pixel Streets Pack](#3-19-pixel-streets-pack-by-fadinfadin)
+  - [3-20. Keyboard/Controller Keys](#3-20-keyboardcontroller-keys-by-hyohnoo)
+  - [3-21. LSD Dreamy texture pack](#3-21-lsd-dreamy-texture-pack-by-btl-games)
+  - [3-22. Pixabay 음원/효과음](#3-22-pixabay-음원효과음-공통-라이선스-pixabay-content-license)
 
 <br>
 
@@ -321,7 +329,131 @@ fix: 셰이더 Y축 뒤집힘 및 암전 오류 수정
 
 <br>
 
-### 3-15. 빌드 시 크레딧 표기 위치
+### 3-15. [Dirt walls and Platforms by ImDaniell](https://imdaniell.itch.io/dirt-walls-and-platforms)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | ImDaniell |
+| 출처 | itch.io |
+| 라이선스 | 명시되어 있지 않음 |
+
+**조건**
+- 페이지에 사용 범위(상업적 사용 가능 여부, 재배포 금지 여부 등)에 대한 안내가 없음
+- 실제 사용 전 작가에게 직접 문의 확인을 권장함
+
+<br>
+
+### 3-16. [Parallax (Country side, city night, city destroyed) by Bongseng](https://bongseng.itch.io/parallax-country-side-city-night-city-destroyed)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Bongseng |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 수정해서 사용 가능
+- 에셋 자체의 재판매 및 재배포 금지 (수정 여부와 관계없이)
+
+<br>
+
+### 3-17. [FREE - Pixel Art Sidescroller Asset Pack 32x32 Modern City by GandalfHardcore](https://gandalfhardcore.itch.io/free-pixel-art-sidescroller-asset-pack-32x32-city)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | GandalfHardcore |
+| 출처 | itch.io |
+| 라이선스 | 무료 (커스텀 라이선스) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 재판매·리패키징·재배포 금지
+- AI 학습 및 NFT(크립토, 블록체인, web3) 프로젝트 사용 금지
+- 게임 개발 툴이나 인쇄물에 포함시키는 것 금지
+- 크레딧 표기 의무는 없음 (별점 평가를 권장함)
+
+<br>
+
+### 3-18. [the creature (character sprites) by Panacotable](https://panacotable.itch.io/the-creature)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Panacotable |
+| 출처 | itch.io |
+| 라이선스 | 명시되어 있지 않음 |
+
+**조건**
+- 페이지에 사용 범위에 대한 안내가 없음
+- 실제 사용 전 작가에게 직접 문의 확인을 권장함
+
+<br>
+
+### 3-19. [Pixel Streets Pack by fadinfadin](https://fadinfadin.itch.io/pixelstreetspack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | fadinfadin |
+| 출처 | itch.io |
+| 라이선스 | 명시되어 있지 않음 |
+
+**조건**
+- 페이지에 사용 범위에 대한 안내가 없음
+- 실제 사용 전 작가에게 직접 문의 확인을 권장함
+
+<br>
+
+### 3-20. [Keyboard/Controller Keys by Hyohnoo](https://hyohnoo.itch.io/keyboard-controller-keys)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | Hyohnoo |
+| 출처 | itch.io |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 크레딧 표기 불필요
+
+<br>
+
+### 3-21. [LSD Dreamy texture pack by BTL games](https://btl-games.itch.io/lsd-dreamy-texture-pack)
+
+| 항목 | 내용 |
+|---|---|
+| 제작자 | BTL games |
+| 출처 | itch.io |
+| 라이선스 | **CC0** (Creative Commons Zero) |
+
+**조건**
+- 상업적/비상업적 프로젝트 모두 사용 가능, 수정 가능
+- 크레딧 표기 불필요
+
+<br>
+
+### 3-22. Pixabay 음원/효과음 (공통 라이선스: Pixabay Content License)
+
+| 항목 | 내용 |
+|---|---|
+| 출처 | Pixabay |
+| 라이선스 | Pixabay Content License |
+
+**조건 (Pixabay 콘텐츠 공통)**
+- 상업적/비상업적 프로젝트 모두 사용 가능
+- 크레딧 표기 불필요
+- 소재 자체를 그대로 재판매하거나(스톡 사이트 재업로드 등) 상표/로고처럼 브랜드 식별용으로 사용하는 것은 금지
+
+**사용한 트랙 목록**
+- [Dog Bark 04](https://pixabay.com/ko/sound-effects/자연-dog-bark-04-472385/)
+- [Item Pickup SFX](https://pixabay.com/sound-effects/film-special-effects-item-pickup-37089/)
+- [City Suburban Evening](https://pixabay.com/sound-effects/city-suburban-evening-18141/)
+- [Horror "Panic/Fear" Sound Effect](https://pixabay.com/sound-effects/horror-quot-panic-fear-quot-sound-effect-479998/)
+- [Epic Dragon Roar](https://pixabay.com/sound-effects/film-special-effects-epic-dragon-roar-364481/)
+- [Falling Into the Void (Mystery Music)](https://pixabay.com/music/mystery-falling-into-the-void-385338/)
+- [Drone / Creeped Out Dark Ambient Background Drone](https://pixabay.com/sound-effects/film-special-effects-drone-creeped-out-dark-ambient-background-drone-533890/)
+
+<br>
+
+### 3-23. 빌드 시 크레딧 표기 위치
 
 위 크레딧 문구는 게임 내 다음 위치 중 한 곳에 반드시 포함합니다.
 

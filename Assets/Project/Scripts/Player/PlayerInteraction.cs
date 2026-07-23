@@ -54,8 +54,7 @@ namespace JUNBEOM.Player
         private void Update()
         {
             UpdateInteractionTarget();
-            _playerPos = transform.position;
-            _interactionIndicator.transform.position = new Vector3(_playerPos.x - 1, _playerPos.y + 1.5f);
+            _interactionIndicator.transform.position = new Vector3(this.transform.position.x - 1, this.transform.position.y + 1.5f);
         }
 
 
@@ -151,7 +150,6 @@ namespace JUNBEOM.Player
             {
                 return;
             }
-            //_interactionIndicator.transform.position = new Vector3(_playerPos.x-1, _playerPos.y+1.5f);
             _interactionIndicator.SetActive(isActive);
         }
 

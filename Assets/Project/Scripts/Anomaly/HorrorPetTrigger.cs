@@ -2,16 +2,16 @@ using UnityEngine;
 using SEHOON.GameSystem;
 public class HorrorPetTrigger : MonoBehaviour
 {
-    [Header("호러 펫 재생 사운드")]
-    public AudioClip horrorSound;
+    [Header("PetSound")]
+    [SerializeField] private AudioClip _horrorSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (horrorSound != null)
+            if (_horrorSound != null)
             {
-                SoundManager.Instance.PlaySfx(horrorSound);
+                SoundManager.Instance.PlaySfx(_horrorSound);
             }
 
             // GetComponent<BoxCollider2D>().enabled = false; 

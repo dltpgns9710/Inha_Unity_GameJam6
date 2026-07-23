@@ -42,7 +42,7 @@ namespace TAEWOOK.Helper.Core
         public int MaxCount => _maxCount;
         //탐지 실행되면 넘길 이벤트
         public event Action HasDected;
-        public bool HasDetectChance => _detectChance >= _maxCount ? _hasDetectChance = true : _hasDetectChance = false;
+        public bool HasDetectChance => _hasDetectChance;
         #endregion
 
         #region Unity Lifecycle
@@ -142,6 +142,11 @@ namespace TAEWOOK.Helper.Core
                 return;
             }
 
+            if (_ability == null || !_ability.CanUseAbility())
+            {
+                return;
+            }
+
             int wallLayer = LayerMask.GetMask("Wall");
 
             Collider2D wall = Physics2D.OverlapPoint(
@@ -156,8 +161,9 @@ namespace TAEWOOK.Helper.Core
             
 
             RequestUseAbility(searchPosition);
-            HasDected?.Invoke();
+            HasDected?.Invoke();           
             _detectChance++;
+            _hasDetectChance = _detectChance >= _maxCount ? _hasDetectChance = true : _hasDetectChance = false;
         }
 
         public void RequestWait()
