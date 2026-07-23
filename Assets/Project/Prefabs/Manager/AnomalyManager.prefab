@@ -203,7 +203,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uD654\uBA74\uC744 \uC798\uBD10"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -324,7 +324,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -18, y: -16.5, z: 0}
-    _hintText: 
+    _hintText: "\uC6D0\uB798 \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uC558\uB098?"
     _detectRange: 2
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -18, y: -16.5, z: 0}
-    _hintText: 
+    _hintText: "\uC5B4\uB514 \uAC14\uC9C0?"
     _detectRange: 2
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -388,7 +388,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 7, y: -17.5, z: 0}
-    _hintText: 
+    _hintText: "\uBB54\uAC00 \uC774\uC0C1\uD558\uB2E4."
     _detectRange: 1.5
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -432,7 +432,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uB354 \uBE60\uB974\uAC8C"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -454,7 +454,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uAC70\uAFB8\uB85C"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -475,7 +475,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -1.5, y: -17, z: 0}
-    _hintText: 
+    _hintText: "\uBAA8\uB2C8\uD130\uC5D0 \uBB54\uAC00 \uC788\uB294 \uAC83 \uAC19\uB2E4."
     _detectRange: 1.5
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -524,7 +524,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 14, y: 15.5, z: 0}
-    _hintText: 
+    _hintText: "\uBCBD\uC18D\uC5D0 \uBB50\uAC00 \uC788\uB294\uB370..?"
     _detectRange: 3
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 8, y: 3, z: 0}
-    _hintText: 
+    _hintText: "\uCC9C\uC7A5\uC5D0\uC11C \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4."
     _detectRange: 3
   _weight: 1
   _shouldGoBackAnomaly: 1
