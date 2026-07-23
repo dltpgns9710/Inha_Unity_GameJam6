@@ -526,7 +526,7 @@ MonoBehaviour:
     _anomalyPos: {x: 14, y: 15.5, z: 0}
     _hintText: "\uBCBD\uC18D\uC5D0 \uBB50\uAC00 \uC788\uB294\uB370..?"
     _detectRange: 3
-  _weight: 1
+  _weight: 2
   _shouldGoBackAnomaly: 1
   _hiddenObject: {fileID: 0}
   _objectCollider: {fileID: 0}
@@ -551,7 +551,7 @@ MonoBehaviour:
     _anomalyPos: {x: 8, y: 3, z: 0}
     _hintText: "\uCC9C\uC7A5\uC5D0\uC11C \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4."
     _detectRange: 3
-  _weight: 1
+  _weight: 2
   _shouldGoBackAnomaly: 1
   _hiddenObject: {fileID: 0}
   _objectCollider: {fileID: 0}
