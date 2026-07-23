@@ -80,6 +80,7 @@ namespace SEHOON.UI
 
         private void OnDisable()
         {
+            SoundManager.Instance.StopLoopSfx();
             _onDisableEvent?.Invoke();
         }
 
