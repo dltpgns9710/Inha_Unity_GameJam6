@@ -24,6 +24,9 @@ public class MoveObject : AnomalyBase
 
     public override void Remove()
     {
-        pairList[index].targetObject.transform.position -= new Vector3(pairList[index].value, 0, 0);
+        if (pairList != null)
+        {
+            pairList[index].targetObject.transform.position -= new Vector3(pairList[index].value, 0, 0);
+        }
     }
 }

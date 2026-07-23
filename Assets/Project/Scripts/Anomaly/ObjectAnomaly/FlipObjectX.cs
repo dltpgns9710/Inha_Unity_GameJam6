@@ -15,6 +15,9 @@ public class FlipObjectX : AnomalyBase
 
     public override void Remove()
     {
-        _objectToFlip[index].GetComponent<SpriteRenderer>().flipX = false;
+        if (_objectToFlip != null)
+        {
+            _objectToFlip[index].GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }

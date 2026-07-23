@@ -15,6 +15,9 @@ public class RemoveObject : AnomalyBase
 
     public override void Remove()
     {
-        _objectToRemove[index].SetActive(true);
+        if (_objectToRemove != null)
+        {
+            _objectToRemove[index].SetActive(true);
+        }
     }
 }
