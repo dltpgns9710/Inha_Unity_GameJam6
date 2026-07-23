@@ -2019,6 +2019,7 @@ GameObject:
   - component: {fileID: 491766716}
   - component: {fileID: 491766718}
   - component: {fileID: 491766717}
+  - component: {fileID: 491766719}
   m_Layer: 0
   m_Name: JumpHideZone
   m_TagString: Untagged
@@ -2105,6 +2106,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &491766719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491766715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acef4295ddef874fb85c4bf9feb554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableObjectInTrigger
+  _playerTag: Player
+  _deactivateTargets:
+  - {fileID: 409631817}
 --- !u!1 &495154784
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,7 +5250,9 @@ MonoBehaviour:
   _target: 5
   _action: 1
   _activateTarget: {fileID: 0}
-  _deactivateTarget: {fileID: 1730480136}
+  _deactivateTargets:
+  - {fileID: 1730480136}
+  - {fileID: 1908651364}
 --- !u!1 &1064387812
 GameObject:
   m_ObjectHideFlags: 0
@@ -6519,7 +6537,8 @@ MonoBehaviour:
   _target: 4
   _action: 1
   _activateTarget: {fileID: 1908651364}
-  _deactivateTarget: {fileID: 844939973}
+  _deactivateTargets:
+  - {fileID: 844939973}
 --- !u!1 &1260200115
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,7 +7039,9 @@ MonoBehaviour:
   _target: 3
   _action: 1
   _activateTarget: {fileID: 0}
-  _deactivateTarget: {fileID: 827844606}
+  _deactivateTargets:
+  - {fileID: 827844606}
+  - {fileID: 410343452}
 --- !u!224 &1386136533 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3621526773697459055, guid: be6f12df6e37cb846ad29b3a6cb7f17a, type: 3}
@@ -10379,6 +10400,7 @@ GameObject:
   - component: {fileID: 2005398939}
   - component: {fileID: 2005398938}
   - component: {fileID: 2005398941}
+  - component: {fileID: 2005398942}
   m_Layer: 0
   m_Name: MoveRunHideZone
   m_TagString: Untagged
@@ -10483,6 +10505,21 @@ MonoBehaviour:
   _action: 1
   _setActiveTarget: {fileID: 0}
   _setActiveValue: 1
+--- !u!114 &2005398942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005398937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acef4295ddef874fb85c4bf9feb554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableObjectInTrigger
+  _playerTag: Player
+  _deactivateTargets:
+  - {fileID: 1467750657}
 --- !u!1 &2032956048
 GameObject:
   m_ObjectHideFlags: 0

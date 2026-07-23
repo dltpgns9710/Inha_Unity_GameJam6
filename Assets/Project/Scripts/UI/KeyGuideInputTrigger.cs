@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using JUNBEOM.Player;
+using System.Collections.Generic;
 
 namespace SEHOON.UI
 {
@@ -21,7 +22,7 @@ namespace SEHOON.UI
         [SerializeField] private EAction _action;
 
         [SerializeField] private GameObject _activateTarget;
-        [SerializeField] private GameObject _deactivateTarget;
+        [SerializeField] private List<GameObject> _deactivateTargets;
         #endregion
 
         #region Private Fields
@@ -105,7 +106,13 @@ namespace SEHOON.UI
             }
 
             if (_activateTarget != null) _activateTarget.SetActive(true);
-            if (_deactivateTarget != null) _deactivateTarget.SetActive(false);
+            if (_deactivateTargets != null && _deactivateTargets.Count != 0)
+            {
+                foreach(GameObject _deactivateTarget in _deactivateTargets)
+                {
+                    _deactivateTarget.SetActive(false);
+                }
+            }
         }
         #endregion
     }
