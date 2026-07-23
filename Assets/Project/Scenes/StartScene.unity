@@ -264,6 +264,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8492255051401657574, guid: 1d0c07b958b780146867050cde6f0e4e, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492255051401657574, guid: 1d0c07b958b780146867050cde6f0e4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5760202260919997367, guid: c673bb5133f33f845b40100217041cee, type: 3}
+    - target: {fileID: 8952848844018446143, guid: 1d0c07b958b780146867050cde6f0e4e, type: 3}
+      propertyPath: _warningPrefab
+      value: 
+      objectReference: {fileID: 1979885926367912238, guid: 349db56f2f8da7c4e80780e5c092eca8, type: 3}
     - target: {fileID: 9034393315313763927, guid: 1d0c07b958b780146867050cde6f0e4e, type: 3}
       propertyPath: m_Name
       value: MainMenu

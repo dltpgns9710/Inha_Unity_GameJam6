@@ -21,7 +21,7 @@ public class LensDistortionAnomaly : AnomalyBase
     {
         if (lensDistortion != null)
         {
-            lensDistortion.intensity.value = -0.5f; // 마이너스면 화면 중심이 멀어지고, 플러스면 돋보기처럼 됨
+            lensDistortion.intensity.value = -0.5f; //화면 왜곡 정도
         }
     }
 

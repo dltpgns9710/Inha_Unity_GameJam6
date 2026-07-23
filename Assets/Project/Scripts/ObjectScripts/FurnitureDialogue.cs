@@ -2,10 +2,17 @@ using JUNBEOM.Player;
 using SEHOON.GameSystem;
 using SEHOON.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FurnitureDialogue : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _textBox;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent _interactEndEvent;
+
+    public UnityEvent InteractEndEvent => _interactEndEvent;
+    public DialogueBoxView TextBoxView => _textBox != null ? _textBox.GetComponent<DialogueBoxView>() : null;
 
     private bool _isInteracted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,6 +57,7 @@ public class FurnitureDialogue : MonoBehaviour, IInteractable
             inputManager.EnablePlayerInput();
             _isInteracted = true;
             DataManager.Instance.ActiveGameUI?.Invoke(true);
+            _interactEndEvent?.Invoke();
         });
         
     }

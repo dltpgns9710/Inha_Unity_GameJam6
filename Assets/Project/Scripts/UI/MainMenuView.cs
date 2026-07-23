@@ -17,6 +17,8 @@ namespace SEHOON.UI
         [SerializeField] private string _sceneToLoad;
         [SerializeField] private GameObject _creditsPrefab;
         [SerializeField] private Transform _creditsSpawnParent;
+        [SerializeField] private GameObject _warningPrefab;
+        [SerializeField] private Transform _warningSpawnParent;
 
         [Header("Button Fade In")]
         [SerializeField] private CanvasGroup _startButtonGroup;
@@ -69,8 +71,17 @@ namespace SEHOON.UI
         #region Public Methods
         public void OnStartButtonClicked()
         {
-            DataManager.Instance.Init();
-            SceneManager.LoadScene(_sceneToLoad);
+            if (_warningPrefab == null)
+            {
+                OnWarningClosed();
+                return;
+            }
+
+            Transform parent = _warningSpawnParent != null ? _warningSpawnParent : transform.parent;
+            GameObject warningInstance = Instantiate(_warningPrefab, parent);
+
+            WarningPopupView warningView = warningInstance.GetComponent<WarningPopupView>();
+            StartCoroutine(CoWaitForWarning(warningView.DisplayDuration));
         }
 
         public void OnCreditsButtonClicked()
@@ -99,6 +110,12 @@ namespace SEHOON.UI
         #endregion
 
         #region Private Methods
+        private void OnWarningClosed()
+        {
+            DataManager.Instance.Init();
+            SceneManager.LoadScene(_sceneToLoad);
+        }
+
         private void BindButtons()
         {
             _startButton?.onClick.AddListener(OnStartButtonClicked);
@@ -156,6 +173,13 @@ namespace SEHOON.UI
         #endregion
 
         #region Coroutines
+        private IEnumerator CoWaitForWarning(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+
+            OnWarningClosed();
+        }
+
         private IEnumerator CoFadeInButtons()
         {
             float elapsed = 0f;

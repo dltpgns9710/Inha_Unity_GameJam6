@@ -15,6 +15,36 @@ GameObject:
   - component: {fileID: 7832147413095431012}
   - component: {fileID: 3487335190691388479}
   - component: {fileID: 8265042001102602689}
+  - component: {fileID: 2841778131167280555}
+  - component: {fileID: 677552356214852595}
+  - component: {fileID: 1372527474778495512}
+  - component: {fileID: 5928880151006077309}
+  - component: {fileID: 5114367419648803535}
+  - component: {fileID: 6682812641803670355}
+  - component: {fileID: 5067132139560307242}
+  - component: {fileID: 2599366481584159184}
+  - component: {fileID: 3020511548661528589}
+  - component: {fileID: 4305306711690073338}
+  - component: {fileID: 4531957500269402004}
+  - component: {fileID: 859265051033534209}
+  - component: {fileID: 9027441931629811600}
+  - component: {fileID: 1371440180187339268}
+  - component: {fileID: 2347123029928516128}
+  - component: {fileID: 1941731068111474942}
+  - component: {fileID: 5874803359942359181}
+  - component: {fileID: 3101172946396985826}
+  - component: {fileID: 8820679595672613942}
+  - component: {fileID: 880955462609774656}
+  - component: {fileID: 6041727212779676458}
+  - component: {fileID: 8769105890600362374}
+  - component: {fileID: 5835899973791495005}
+  - component: {fileID: 2899487213208806563}
+  - component: {fileID: 169623479834883643}
+  - component: {fileID: 3447013324404143083}
+  - component: {fileID: 864814762607142837}
+  - component: {fileID: 5150400496582586131}
+  - component: {fileID: 2158717572850729930}
+  - component: {fileID: 4407350247028277879}
   m_Layer: 0
   m_Name: AnomalyManager
   m_TagString: Untagged
@@ -56,7 +86,38 @@ MonoBehaviour:
   - {fileID: 7832147413095431012}
   - {fileID: 3487335190691388479}
   - {fileID: 8265042001102602689}
-  _anomalyApplyChance: 50
+  - {fileID: 2841778131167280555}
+  - {fileID: 677552356214852595}
+  - {fileID: 1372527474778495512}
+  - {fileID: 5928880151006077309}
+  - {fileID: 5114367419648803535}
+  - {fileID: 6682812641803670355}
+  - {fileID: 5067132139560307242}
+  - {fileID: 2599366481584159184}
+  - {fileID: 3020511548661528589}
+  - {fileID: 4305306711690073338}
+  - {fileID: 4531957500269402004}
+  - {fileID: 859265051033534209}
+  - {fileID: 9027441931629811600}
+  - {fileID: 1371440180187339268}
+  - {fileID: 2347123029928516128}
+  - {fileID: 1941731068111474942}
+  - {fileID: 5874803359942359181}
+  - {fileID: 3101172946396985826}
+  - {fileID: 8820679595672613942}
+  - {fileID: 880955462609774656}
+  - {fileID: 6041727212779676458}
+  - {fileID: 8769105890600362374}
+  - {fileID: 5835899973791495005}
+  - {fileID: 2899487213208806563}
+  - {fileID: 169623479834883643}
+  - {fileID: 3447013324404143083}
+  - {fileID: 864814762607142837}
+  - {fileID: 5150400496582586131}
+  - {fileID: 2158717572850729930}
+  - {fileID: 4407350247028277879}
+  _anomalyApplyChance: 81
+  _whiteboardView: {fileID: 0}
 --- !u!114 &3715808900249798020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,9 +132,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChromaticAberrationAnomaly
   _detectData:
     _type: 1
+    _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _detectRange: 0
+    _hintText: 
+    _detectRange: 28.5
   _weight: 1
+  _shouldGoBackAnomaly: 1
   globalVolume: {fileID: 0}
   targetIntensity: 1
   transitionDuration: 60
@@ -91,9 +155,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustmentsAnomaly
   _detectData:
     _type: 1
+    _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
     _detectRange: 0
   _weight: 1
+  _shouldGoBackAnomaly: 1
   globalVolume: {fileID: 0}
   targetIntensity: -100
   transitionDuration: 60
@@ -111,9 +178,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnomalyFilmGrain
   _detectData:
     _type: 1
+    _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
     _detectRange: 0
   _weight: 1
+  _shouldGoBackAnomaly: 1
   globalVolume: {fileID: 0}
   targetIntensity: 1
   transitionDuration: 60
@@ -131,9 +201,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LensDistortionAnomaly
   _detectData:
     _type: 1
+    _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uD654\uBA74\uC744 \uC798\uBD10"
     _detectRange: 0
   _weight: 1
+  _shouldGoBackAnomaly: 1
   globalVolume: {fileID: 0}
 --- !u!114 &8265042001102602689
 MonoBehaviour:
@@ -149,11 +222,845 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnomalyTwinkle
   _detectData:
     _type: 1
+    _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
     _detectRange: 0
   _weight: 1
+  _shouldGoBackAnomaly: 1
   blinkUI: {fileID: 0}
-  blinkSpeed: 0.15
+  ghost: {fileID: 0}
+  objectCollider: {fileID: 0}
+  _scream: {fileID: 8300000, guid: abc1c6f6d8975d545bed44c4045d091c, type: 3}
+  blinkSpeedA: 0.15
+  blinkSpeedB: 0.15
+--- !u!114 &2841778131167280555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3135b95bc0d49234396bab64af335da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyTwinkle
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  blinkUI: {fileID: 0}
+  ghost: {fileID: 0}
+  objectCollider: {fileID: 0}
+  _scream: {fileID: 8300000, guid: 1f0e3a4eb8bb7654185665ec6d656032, type: 3}
+  blinkSpeedA: 0.15
+  blinkSpeedB: 0.15
+--- !u!114 &677552356214852595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3135b95bc0d49234396bab64af335da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyTwinkle
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  blinkUI: {fileID: 0}
+  ghost: {fileID: 0}
+  objectCollider: {fileID: 0}
+  _scream: {fileID: 8300000, guid: 1f0e3a4eb8bb7654185665ec6d656032, type: 3}
+  blinkSpeedA: 1000
+  blinkSpeedB: 0.3
+--- !u!114 &1372527474778495512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00960fe3d37c19646aa948a40d75fa5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyCreature_1
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -18, y: -16.5, z: 0}
+    _hintText: 
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _attackRange: {fileID: 0}
+  _creature: {fileID: 0}
+--- !u!114 &5928880151006077309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4b77a49ee68cc4cb207ba75d3ff146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyCreatureAnimation
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -18, y: -16.5, z: 0}
+    _hintText: "\uC6D0\uB798 \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uC558\uB098?"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  targetCreature: {fileID: 0}
+--- !u!114 &5114367419648803535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679e4c400f8f1f2469c75ac954655010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyCreatureDelete
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -18, y: -16.5, z: 0}
+    _hintText: "\uC5B4\uB514 \uAC14\uC9C0?"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _creature: {fileID: 0}
+--- !u!114 &6682812641803670355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5690c89ffdd014f81d99c3b700425e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPet_1
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _pet: {fileID: 0}
+  _scale: {x: 40, y: 40, z: 0}
+--- !u!114 &5067132139560307242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0a1db807398894aa80b444b082397a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPet_2
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 7, y: -17.5, z: 0}
+    _hintText: "\uBB54\uAC00 \uC774\uC0C1\uD558\uB2E4."
+    _detectRange: 1.5
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _pet: {fileID: 0}
+  _horrorPet: {fileID: 0}
+--- !u!114 &2599366481584159184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0a1db807398894aa80b444b082397a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPet_2
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -14.3, y: 14.97, z: 0}
+    _hintText: 
+    _detectRange: 1.5
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _pet: {fileID: 0}
+  _horrorPet: {fileID: 0}
+--- !u!114 &3020511548661528589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea20740df83f99428675708d6f433a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPlayerSpeed
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uB354 \uBE60\uB974\uAC8C"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _speedMultiplier: 5
+  _playerMovement: {fileID: 0}
+--- !u!114 &4305306711690073338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8e84067f55c4f4188a3734f232c4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyInvertedControls
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC70\uAFB8\uB85C"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _playerMovement: {fileID: 0}
+--- !u!114 &4531957500269402004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63769f498b742a49a2b0e48d7f31d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyExpandingImage
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: -1.5, y: -17, z: 0}
+    _hintText: "\uBAA8\uB2C8\uD130\uC5D0 \uBB54\uAC00 \uC788\uB294 \uAC83 \uAC19\uB2E4."
+    _detectRange: 1.5
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _triggerZone: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _minScale: {x: 0.04, y: 0.04, z: 1}
+  _maxScale: {x: 1, y: 1, z: 1}
+  _expandSpeed: 1
+  _shrinkWhenLeave: 1
+  _scream: {fileID: 8300000, guid: 5ff88159f3563f841b4bdfd77e62f3f0, type: 3}
+--- !u!114 &859265051033534209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1378cb689470a4399c39d327f74077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyFlashlightDrain
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _drainMultiplier: 100
+  _playerFlashlight: {fileID: 0}
+--- !u!114 &9027441931629811600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd069e0b5a85f24aa967203eeffa0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.GameSystem.AnomalySliding
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 14, y: 15.5, z: 0}
+    _hintText: "\uBCBD\uC18D\uC5D0 \uBB50\uAC00 \uC788\uB294\uB370..?"
+    _detectRange: 3
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _hiddenObject: {fileID: 0}
+  _objectCollider: {fileID: 0}
+  _slideOffset: {x: -3, y: 0, z: 0}
+  _moveSpeed: 5
+  _scream: {fileID: 8300000, guid: 15a6c37556b69fc468769654a0982be7, type: 3}
+--- !u!114 &1371440180187339268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd069e0b5a85f24aa967203eeffa0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SEHOON.GameSystem.AnomalySliding
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 8, y: 3, z: 0}
+    _hintText: "\uCC9C\uC7A5\uC5D0\uC11C \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4."
+    _detectRange: 3
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _hiddenObject: {fileID: 0}
+  _objectCollider: {fileID: 0}
+  _slideOffset: {x: 0, y: -5, z: 0}
+  _moveSpeed: 3
+  _scream: {fileID: 8300000, guid: 1f0e3a4eb8bb7654185665ec6d656032, type: 3}
+--- !u!114 &2347123029928516128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7cfe93f10d4a4abe0271423d63f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyJumpscareOnce
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 5, y: -33.4, z: 0}
+    _hintText: 
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _triggerZone: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _displayDuration: 6.5
+  _scream: {fileID: 8300000, guid: 5ff88159f3563f841b4bdfd77e62f3f0, type: 3}
+--- !u!114 &1941731068111474942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7cfe93f10d4a4abe0271423d63f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyJumpscareOnce
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _triggerZone: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _displayDuration: 1
+  _scream: {fileID: 8300000, guid: 70ecbe9b7300e5b498b53e7769cacead, type: 3}
+--- !u!114 &5874803359942359181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7cfe93f10d4a4abe0271423d63f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyJumpscareOnce
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _triggerZone: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _displayDuration: 1
+  _scream: {fileID: 8300000, guid: 70ecbe9b7300e5b498b53e7769cacead, type: 3}
+--- !u!114 &3101172946396985826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7cfe93f10d4a4abe0271423d63f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyJumpscareOnce
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _triggerZone: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _displayDuration: 1
+  _scream: {fileID: 8300000, guid: 70ecbe9b7300e5b498b53e7769cacead, type: 3}
+--- !u!114 &8820679595672613942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678e155f490b85e46b19e8d398bc4672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlipObjectX
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC00\uAD6C\uAC00 \uC88C\uC6B0\uBC18\uC804 \uB418\uC788\uB2E4."
+    _detectRange: 2
+  _weight: 9
+  _shouldGoBackAnomaly: 1
+  _objectToFlip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &880955462609774656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14f296df66cd3243b2051da465ac0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveObject
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC00\uAD6C\uAC00 \uC0AC\uB77C\uC84C\uB2E4."
+    _detectRange: 2
+  _weight: 9
+  _shouldGoBackAnomaly: 1
+  _objectToRemove:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &6041727212779676458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd01e2d799d8559488570d3186dc0893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveObject
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC00\uAD6C\uAC00 \uC6C0\uC9C1\uC600\uB2E4."
+    _detectRange: 2
+  _weight: 9
+  _shouldGoBackAnomaly: 1
+  pairList:
+  - targetObject: {fileID: 0}
+    value: -1.5
+  - targetObject: {fileID: 0}
+    value: 0.5
+  - targetObject: {fileID: 0}
+    value: 1
+  - targetObject: {fileID: 0}
+    value: -1
+  - targetObject: {fileID: 0}
+    value: 2
+  - targetObject: {fileID: 0}
+    value: -1
+  - targetObject: {fileID: 0}
+    value: 0.4
+  - targetObject: {fileID: 0}
+    value: -1
+  - targetObject: {fileID: 0}
+    value: 0.8
+  - targetObject: {fileID: 0}
+    value: 0.5
+  - targetObject: {fileID: 0}
+    value: 3
+  - targetObject: {fileID: 0}
+    value: -1.5
+  - targetObject: {fileID: 0}
+    value: -1
+  - targetObject: {fileID: 0}
+    value: -1
+  - targetObject: {fileID: 0}
+    value: -2
+  - targetObject: {fileID: 0}
+    value: 23
+--- !u!114 &8769105890600362374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddObject
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uC804\uC5D0 \uC5C6\uB358 \uAC00\uAD6C\uB2E4."
+    _detectRange: 2
+  _weight: 7
+  _shouldGoBackAnomaly: 1
+  _prefabPlacement:
+  - targetObject: {fileID: 5515625701429651015, guid: f3f764c5180b7ec4a92d9d26e8e8fa2f, type: 3}
+    xValue: 11
+    yValue: -1
+  - targetObject: {fileID: 1981043682500279514, guid: e558bc075fdf3e143bc22fcb028b0b1a, type: 3}
+    xValue: -2.5
+    yValue: 0
+  - targetObject: {fileID: 6845214925584126617, guid: ea39871d9ceb08e46842d410d90f9779, type: 3}
+    xValue: -1
+    yValue: -2.75
+  - targetObject: {fileID: 7934043540112508919, guid: accc43e4f67419f45a2b8a15e8a61e0b, type: 3}
+    xValue: -12
+    yValue: -17.6
+  - targetObject: {fileID: 8773528361597229732, guid: a17820f0b24a90c44bc65a05591cdb82, type: 3}
+    xValue: 0
+    yValue: -12.7
+  - targetObject: {fileID: 8795020324850324472, guid: b107d28ef27ac424f9ac09f803a6ad72, type: 3}
+    xValue: 1
+    yValue: -14
+  - targetObject: {fileID: 4204168382548913528, guid: 8ae81c2ad60da1043abe58c95faa5c1d, type: 3}
+    xValue: -7.5
+    yValue: -31.85
+  - targetObject: {fileID: 6845214925584126617, guid: ea39871d9ceb08e46842d410d90f9779, type: 3}
+    xValue: -5
+    yValue: -34.75
+  - targetObject: {fileID: 1123535692582023561, guid: defc15b4fc45abb4f893c96ff57fbab9, type: 3}
+    xValue: -0.5
+    yValue: -34.5
+  - targetObject: {fileID: 1789128479070607387, guid: db8095e82dd8aa745aececa56f788339, type: 3}
+    xValue: 2.75
+    yValue: 13.6
+  - targetObject: {fileID: 8933261901103766954, guid: 828159c4fbd53a84dacf741091e11b94, type: 3}
+    xValue: 1
+    yValue: 19
+--- !u!114 &5835899973791495005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760b17edaebff444ba758d84be7b51ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddObject
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: '?'
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 0
+  _prefabPlacement:
+  - targetObject: {fileID: 9168040765304839236, guid: 65cb61ad37efc6b46b43d63e287ec97f, type: 3}
+    xValue: 25
+    yValue: 30
+  - targetObject: {fileID: 5752216803866033473, guid: 224561af2e7cb614e8e0c0e0d7828023, type: 3}
+    xValue: -5
+    yValue: -50
+  - targetObject: {fileID: 3361764741449188652, guid: 7c2f9a43396a21746bf37833ba4a9ac5, type: 3}
+    xValue: 16
+    yValue: -3
+--- !u!114 &2899487213208806563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38673f6fc69f90468fa3c71f61c4627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyDontStop
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uBA48\uCD94\uC9C0 \uB9C8"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _pauseMenuObject: {fileID: 0}
+  _warningTextPrefab: {fileID: 5694321302383117401, guid: 5aea9709009e0e24aa46a1a11a5270b4, type: 3}
+  _warningMessage: "\uACC4\uC18D \uD574"
+  _forceResumeDelay: 0.3
+  _warningSound: {fileID: 8300000, guid: 70ecbe9b7300e5b498b53e7769cacead, type: 3}
+  _punchScale: 2
+  _punchDuration: 0.05
+--- !u!114 &169623479834883643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9bb2c4bf1cef845968a4fe6e617dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPlayerAnimatorOff
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uC6C0\uC9C1\uC5EC\uBD10"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _playerObject: {fileID: 0}
+--- !u!114 &3447013324404143083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e878d1ab15a294dbcb356580dc73e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyBgm
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uAC19\uC774 \uB180\uC790"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _bgmClip: {fileID: 8300000, guid: 5338dc4800588e647a2a51c089d94eaf, type: 3}
+--- !u!114 &864814762607142837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee5191c427a8894fb7a4ba8abab495a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyRandomSpriteBlink
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: 
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _sprite: {fileID: 5778599956146097137, guid: 0900b54239dd1cf4bb7ad76fa9a8b638, type: 3}
+  _spriteSize: {x: 100, y: 100}
+  _visibleDuration: 2
+  _hiddenDuration: 1
+  _fadeInDuration: 0.2
+  _fadeOutDuration: 0.2
+  _rotationRange: 180
+  _appearSound: {fileID: 8300000, guid: b744108e80b20e84bb54cda385693cb9, type: 3}
+--- !u!114 &5150400496582586131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebdd7c315f77634295bbcc22490d011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPostInteract
+  _detectData:
+    _type: 0
+    _hintType: 0
+    _anomalyPos: {x: 9, y: -33, z: 0}
+    _hintText: "\uC870\uC0AC \uD574\uBD10"
+    _detectRange: 2
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _furnitureObject: {fileID: 0}
+  _spawnPrefab: {fileID: 307584887857341128, guid: 3e225f441be6f354f8c2c5c23a784b60, type: 3}
+  _spawnPosition: {x: 9, y: -33, z: 0}
+--- !u!114 &2158717572850729930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ddd5d88c005a84d81ee2c2eb0c0d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyEye
+  _detectData:
+    _type: 1
+    _hintType: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uB208\uC744 \uB9C8\uC8FC\uCE58\uC9C0\uB9C8"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _eyeSpawner: {fileID: 0}
+--- !u!114 &4407350247028277879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aefb5733bf545a9908075457f60f5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPetClone
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uB204\uAC00 \uC9C4\uC9DC\uAC8C?"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _sourcePetPrefab: {fileID: 779421284710873734, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+  _poolSize: 30
+  _minX: -30
+  _maxX: 30
+  _minY: -2.43
+  _maxY: -2.43
+  _minMoveSpeed: 0.7
+  _maxMoveSpeed: 5
+  _minIdleTime: 0.4
+  _maxIdleTime: 2.2
+  _minimumMoveDistance: 3
 --- !u!1001 &8143668340834116679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 2689277300801753210, guid: af824abe9ff51c4438f332bf57d00567, type: 3}
       propertyPath: m_Name
       value: AnomalyDebugUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689277300801753210, guid: af824abe9ff51c4438f332bf57d00567, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2689277300801753210, guid: af824abe9ff51c4438f332bf57d00567, type: 3}
       propertyPath: m_TagString

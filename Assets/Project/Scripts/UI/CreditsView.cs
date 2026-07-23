@@ -27,6 +27,9 @@ namespace SEHOON.UI
         [SerializeField] private bool _autoScroll = true;
         [SerializeField] private float _scrollSpeed = 40f;
 
+        [Header("Skip")]
+        [SerializeField] private bool _canSkip = true;
+
         [Header("Events")]
         [SerializeField] private UnityEvent _onDisableEvent;
         #endregion
@@ -59,7 +62,7 @@ namespace SEHOON.UI
 
         private void Update()
         {
-            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            if (_canSkip && Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 gameObject.SetActive(false);
                 return;

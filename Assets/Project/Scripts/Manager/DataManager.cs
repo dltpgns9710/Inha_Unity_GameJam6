@@ -16,13 +16,16 @@ namespace SEHOON.GameSystem
         [SerializeField] private Texture2D _normalCursor;
 
         private int _floor = 1;
+        private int _score = 1;
         private bool _isAnomalyApply = false;
         private EStoryType _storyType = EStoryType.Start;
 
         public Action<bool> ActiveGameUI;
-        
+        public Action<int> OnScoreChanged;
+
         public int Floor => _floor;
         public int GoalFloor => _goalFloor;
+        public int Score => _score;
 
         private void Start()
         {
@@ -49,16 +52,22 @@ namespace SEHOON.GameSystem
             _storyType = EStoryType.Start;
             _floor = 1;
             _isAnomalyApply = false;
+            _score = 1;
+            OnScoreChanged?.Invoke(_score);
         }
         
         public void SelectCorrectDoor()
         {
             ++_floor;
+            ++_score;
+            OnScoreChanged?.Invoke(_score);
         }
         
         public void SelectIncorrectDoor()
         {
             _floor = 1;
+            ++_score;
+            OnScoreChanged?.Invoke(_score);
         }
     }
 }

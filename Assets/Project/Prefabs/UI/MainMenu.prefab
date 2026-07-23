@@ -410,6 +410,8 @@ MonoBehaviour:
   _sceneToLoad: StoryScene
   _creditsPrefab: {fileID: 300700430032903538, guid: 81716fc1517e76a4d923cb49ef882066, type: 3}
   _creditsSpawnParent: {fileID: 0}
+  _warningPrefab: {fileID: 1979885926367912238, guid: 349db56f2f8da7c4e80780e5c092eca8, type: 3}
+  _warningSpawnParent: {fileID: 0}
   _startButtonGroup: {fileID: 5529288537672551965}
   _creditsButtonGroup: {fileID: 8837823521479101894}
   _quitButtonGroup: {fileID: 7575937612635261354}

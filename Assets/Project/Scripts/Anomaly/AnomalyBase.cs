@@ -25,19 +25,24 @@ namespace SEHOON.GameSystem
 
         public EAnomalyType Type => _type;
         public EHintType HintType => _hintType;
-        public Vector3 AnomalyPos => _anomalyPos;
+        public Vector3 AnomalyPos
+        {
+            get => _anomalyPos;
+            set => _anomalyPos = value;
+        }
         public float DetectRange => _detectRange;
         public string HintText => _hintText;        
     };
     
     public abstract class AnomalyBase : MonoBehaviour
     {
-        [SerializeField] private SDetectData _detectData;
+        [SerializeField] protected SDetectData _detectData;
         [SerializeField] private float _weight = 1f;
         [SerializeField] private bool _shouldGoBackAnomaly = true;
         
         public float Weight => _weight;
         public SDetectData DetectData => _detectData;
+  
         public bool ShouldGoBackAnomaly => _shouldGoBackAnomaly;
            
 #if UNITY_EDITOR
