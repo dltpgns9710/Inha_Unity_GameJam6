@@ -42,8 +42,9 @@ GameObject:
   - component: {fileID: 169623479834883643}
   - component: {fileID: 3447013324404143083}
   - component: {fileID: 864814762607142837}
-  - component: {fileID: 113824176208297128}
   - component: {fileID: 5150400496582586131}
+  - component: {fileID: 2158717572850729930}
+  - component: {fileID: 4407350247028277879}
   m_Layer: 0
   m_Name: AnomalyManager
   m_TagString: Untagged
@@ -112,8 +113,9 @@ MonoBehaviour:
   - {fileID: 169623479834883643}
   - {fileID: 3447013324404143083}
   - {fileID: 864814762607142837}
-  - {fileID: 113824176208297128}
   - {fileID: 5150400496582586131}
+  - {fileID: 2158717572850729930}
+  - {fileID: 4407350247028277879}
   _anomalyApplyChance: 81
   _whiteboardView: {fileID: 0}
 --- !u!114 &3715808900249798020
@@ -201,7 +203,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uD654\uBA74\uC744 \uC798\uBD10"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -322,7 +324,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -18, y: -16.5, z: 0}
-    _hintText: 
+    _hintText: "\uC6D0\uB798 \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uC558\uB098?"
     _detectRange: 2
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -343,7 +345,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -18, y: -16.5, z: 0}
-    _hintText: 
+    _hintText: "\uC5B4\uB514 \uAC14\uC9C0?"
     _detectRange: 2
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -386,7 +388,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 7, y: -17.5, z: 0}
-    _hintText: 
+    _hintText: "\uBB54\uAC00 \uC774\uC0C1\uD558\uB2E4."
     _detectRange: 1.5
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -430,7 +432,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uB354 \uBE60\uB974\uAC8C"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -452,7 +454,7 @@ MonoBehaviour:
     _type: 1
     _hintType: 0
     _anomalyPos: {x: 0, y: 0, z: 0}
-    _hintText: 
+    _hintText: "\uAC70\uAFB8\uB85C"
     _detectRange: 0
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -473,7 +475,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: -1.5, y: -17, z: 0}
-    _hintText: 
+    _hintText: "\uBAA8\uB2C8\uD130\uC5D0 \uBB54\uAC00 \uC788\uB294 \uAC83 \uAC19\uB2E4."
     _detectRange: 1.5
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -522,7 +524,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 14, y: 15.5, z: 0}
-    _hintText: 
+    _hintText: "\uBCBD\uC18D\uC5D0 \uBB50\uAC00 \uC788\uB294\uB370..?"
     _detectRange: 3
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -547,7 +549,7 @@ MonoBehaviour:
     _type: 0
     _hintType: 0
     _anomalyPos: {x: 8, y: 3, z: 0}
-    _hintText: 
+    _hintText: "\uCC9C\uC7A5\uC5D0\uC11C \uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4."
     _detectRange: 3
   _weight: 1
   _shouldGoBackAnomaly: 1
@@ -984,34 +986,6 @@ MonoBehaviour:
   _fadeOutDuration: 0.2
   _rotationRange: 180
   _appearSound: {fileID: 8300000, guid: b744108e80b20e84bb54cda385693cb9, type: 3}
---- !u!114 &113824176208297128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8715188942861726532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b2623bc1fba0b40b36c03773f22c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnomalyDestroyOnInteract
-  _detectData:
-    _type: 0
-    _hintType: 0
-    _anomalyPos: {x: -14.81, y: -1.63, z: 0}
-    _hintText: "\uC870\uC0AC \uD574\uBD10"
-    _detectRange: 1
-  _weight: 1
-  _shouldGoBackAnomaly: 0
-  _spawnPosition: {x: -14.81, y: -1.63, z: 0}
-  _spawnRotationEuler: {x: 0, y: 0, z: 0}
-  _furniturePrefab: {fileID: 8746907109224183886, guid: 106a573b571ea364585b5bce80039295, type: 3}
-  _sprite: {fileID: 1536475745180069275, guid: 487212309b0ae5449a811ba57182e642, type: 3}
-  _dialogueLines:
-  - _name: "\uB2D0 \uBE0C\uB8E9\uC2A4"
-    _dialogue: ....!
-    _alignment: 0
 --- !u!114 &5150400496582586131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,6 +1009,58 @@ MonoBehaviour:
   _furnitureObject: {fileID: 0}
   _spawnPrefab: {fileID: 307584887857341128, guid: 3e225f441be6f354f8c2c5c23a784b60, type: 3}
   _spawnPosition: {x: 9, y: -33, z: 0}
+--- !u!114 &2158717572850729930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ddd5d88c005a84d81ee2c2eb0c0d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyEye
+  _detectData:
+    _type: 1
+    _hintType: 1
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uB208\uC744 \uB9C8\uC8FC\uCE58\uC9C0\uB9C8"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _eyeSpawner: {fileID: 0}
+--- !u!114 &4407350247028277879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715188942861726532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aefb5733bf545a9908075457f60f5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnomalyPetClone
+  _detectData:
+    _type: 1
+    _hintType: 0
+    _anomalyPos: {x: 0, y: 0, z: 0}
+    _hintText: "\uB204\uAC00 \uC9C4\uC9DC\uAC8C?"
+    _detectRange: 0
+  _weight: 1
+  _shouldGoBackAnomaly: 1
+  _sourcePetPrefab: {fileID: 779421284710873734, guid: e71da96fdb4652346a062d51a71b3da5, type: 3}
+  _poolSize: 30
+  _minX: -30
+  _maxX: 30
+  _minY: -2.43
+  _maxY: -2.43
+  _minMoveSpeed: 0.7
+  _maxMoveSpeed: 5
+  _minIdleTime: 0.4
+  _maxIdleTime: 2.2
+  _minimumMoveDistance: 3
 --- !u!1001 &8143668340834116679
 PrefabInstance:
   m_ObjectHideFlags: 0
