@@ -69,9 +69,18 @@ MonoBehaviour:
   - _part: UI
     _names:
     - Lee Sehoon
+  - _part: Anomaly
+    _names:
+    - Yang JunBeom
+    - Justin Sung Joo Kang
+    - Park TaeWook
+    - Lee Sehoon
   - _part: Design
     _names: []
   - _part: Main Scene
+    _names:
+    - Justin Sung Joo Kang
+  - _part: Tutorial Scene
     _names:
     - Justin Sung Joo Kang
   - _part: LICENSE
@@ -125,6 +134,50 @@ MonoBehaviour:
   - _part: Cursor Pixel Pack by Kenney
     _names:
     - https://kenney.nl/assets/cursor-pixel-pack
+  - _part: Dirt walls and Platforms by ImDaniell
+    _names:
+    - https://imdaniell.itch.io/dirt-walls-and-platforms
+  - _part: Parallax (Country side, city night, city destroyed) by Bongseng
+    _names:
+    - https://bongseng.itch.io/parallax-country-side-city-night-city-destroyed
+  - _part: Pixel Art Sidescroller Asset Pack 32x32 Modern City by GandalfHardcore
+    _names:
+    - https://gandalfhardcore.itch.io/free-pixel-art-sidescroller-asset-pack-32x32-city
+  - _part: the creature (character sprites) by Panacotable
+    _names:
+    - https://panacotable.itch.io/the-creature
+  - _part: Pixel Streets Pack by fadinfadin
+    _names:
+    - https://fadinfadin.itch.io/pixelstreetspack
+  - _part: Keyboard/Controller Keys by Hyohnoo
+    _names:
+    - https://hyohnoo.itch.io/keyboard-controller-keys
+  - _part: LSD Dreamy texture pack by BTL games
+    _names:
+    - https://btl-games.itch.io/lsd-dreamy-texture-pack
+  - _part: Sound Effects & Music by Pixabay
+    _names: []
+  - _part: Dog Bark 04
+    _names:
+    - "https://pixabay.com/ko/sound-effects/\uC790\uC5F0-dog-bark-04-472385/"
+  - _part: Item Pickup SFX
+    _names:
+    - https://pixabay.com/sound-effects/film-special-effects-item-pickup-37089/
+  - _part: City Suburban Evening
+    _names:
+    - https://pixabay.com/sound-effects/city-suburban-evening-18141/
+  - _part: Horror "Panic/Fear" Sound Effect
+    _names:
+    - https://pixabay.com/sound-effects/horror-quot-panic-fear-quot-sound-effect-479998/
+  - _part: Epic Dragon Roar
+    _names:
+    - https://pixabay.com/sound-effects/film-special-effects-epic-dragon-roar-364481/
+  - _part: Falling Into the Void
+    _names:
+    - https://pixabay.com/music/mystery-falling-into-the-void-385338/
+  - _part: Drone / Creeped Out Dark Ambient Background Drone
+    _names:
+    - https://pixabay.com/sound-effects/film-special-effects-drone-creeped-out-dark-ambient-background-drone-533890/
   _viewport: {fileID: 7163553046750750161}
   _content: {fileID: 2348386119439047377}
   _linePrefab: {fileID: 5290113893863494285, guid: 3cbeaef24a9da734880040d01164becc, type: 3}
@@ -135,7 +188,8 @@ MonoBehaviour:
   _lineSpacing: 5
   _groupSpacing: 30
   _autoScroll: 1
-  _scrollSpeed: 80
+  _scrollSpeed: 100
+  _canSkip: 1
   _onDisableEvent:
     m_PersistentCalls:
       m_Calls: []

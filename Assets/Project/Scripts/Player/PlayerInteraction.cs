@@ -20,6 +20,7 @@ namespace JUNBEOM.Player
         private PlayerInputManager _inputManager;
         private PlayerEventManager _eventManager;
         private GameObject _currentTarget;
+        private Vector3 _playerPos;
 
         #endregion
 
@@ -53,6 +54,7 @@ namespace JUNBEOM.Player
         private void Update()
         {
             UpdateInteractionTarget();
+            _interactionIndicator.transform.position = new Vector3(this.transform.position.x - 1, this.transform.position.y + 1.5f);
         }
 
 
@@ -148,7 +150,6 @@ namespace JUNBEOM.Player
             {
                 return;
             }
-
             _interactionIndicator.SetActive(isActive);
         }
 

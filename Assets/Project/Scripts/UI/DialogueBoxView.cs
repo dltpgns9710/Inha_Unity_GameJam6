@@ -71,15 +71,16 @@ namespace SEHOON.UI
         private void OnEnable()
         {
             _currentIndex = 0;
+            SoundManager.Instance.StopLoopSfx();
             ShowLine(_currentIndex);
             _skipInputThisFrame = true;
             
-            SoundManager.Instance.StopLoopSfx();
             _onEnableEvent?.Invoke();
         }
 
         private void OnDisable()
         {
+            SoundManager.Instance.StopLoopSfx();
             _onDisableEvent?.Invoke();
         }
 

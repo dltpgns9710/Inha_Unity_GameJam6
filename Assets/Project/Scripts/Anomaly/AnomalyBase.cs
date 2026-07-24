@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SEHOON.GameSystem
@@ -7,26 +8,42 @@ namespace SEHOON.GameSystem
         Local,
         Global
     };
-    
+    public enum EHintType
+    {
+        Detected,
+        instant,
+    };
+
     [System.Serializable]
     public struct SDetectData
     {
         [SerializeField] private EAnomalyType _type;
+        [SerializeField] private EHintType _hintType;
         [SerializeField] private Vector3 _anomalyPos;
-        [SerializeField, Range(0, 60)] private float _detectRange;
+        [SerializeField] private string _hintText;
+        [SerializeField, Range(0, 60)] private float _detectRange;      
 
         public EAnomalyType Type => _type;
-        public Vector3 AnomalyPos => _anomalyPos;
+        public EHintType HintType => _hintType;
+        public Vector3 AnomalyPos
+        {
+            get => _anomalyPos;
+            set => _anomalyPos = value;
+        }
         public float DetectRange => _detectRange;
+        public string HintText => _hintText;        
     };
     
     public abstract class AnomalyBase : MonoBehaviour
     {
-        [SerializeField] private SDetectData _detectData;
-        [SerializeField] private float _weight = 1f;      
-
+        [SerializeField] protected SDetectData _detectData;
+        [SerializeField] private float _weight = 1f;
+        [SerializeField] private bool _shouldGoBackAnomaly = true;
+        
         public float Weight => _weight;
         public SDetectData DetectData => _detectData;
+  
+        public bool ShouldGoBackAnomaly => _shouldGoBackAnomaly;
            
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
